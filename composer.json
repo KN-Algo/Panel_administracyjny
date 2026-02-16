@@ -1,0 +1,26 @@
+{
+    "name": "eddy/kn-algo",
+    "autoload": {
+        "psr-4": {
+            "Eddy\\KnAlgo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name":"Krystian Bury",
+            "email": "krystian.bury1@gmail.com"
+        },
+        {
+            "name": "Adrian Goral",
+            "email": "adrian.goral@gmail.com"
+        },
+        {
+            "name": "Adam Krzywicki",
+            "email": "adas.krzywicki@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

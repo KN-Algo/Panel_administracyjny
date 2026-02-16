@@ -1,0 +1,56 @@
+[
+    {
+      "title": "Fabriken und Lagerhäuser",
+      "description": "<center><b>Eine Webanwendung, die eine logische Herausforderung basierend auf der Optimierung von Verbindungen darstellt</b></center><br>Der Spieler steht vor einem Spielfeld, auf dem sich 7 Fabriken an festgelegten Positionen befinden. Die Aufgabe des Spielers besteht darin, 4 Lagerhäuser an beliebigen Standorten zu platzieren und die Fabriken mit den Lagerhäusern so zu verbinden, dass jede Fabrik Zugang zu mindestens einem Lagerhaus hat. Das Ziel des Spiels ist es, das kürzestmögliche Verbindungsnetzwerk zu schaffen. Der Spieler, der die geringste Straßenlänge verwendet, um Fabriken mit Lagerhäusern zu verbinden, gewinnt und erreicht die Spitze der Rangliste. Um eine zusätzliche Herausforderung zu bieten, haben wir auch einen Algorithmus entwickelt, der die optimale Lösung berechnet und einen Vergleich der Ergebnisse mit dem theoretisch bestmöglichen Ergebnis ermöglicht.",
+      "images": [
+        "../img/projects/fabryki1.webp",
+        "../img/projects/fabryki2.webp",
+        "../img/projects/fabryki3.webp"
+      ]
+    },
+    {
+      "title": "Musikalischer Controller",
+      "description": "<center><b>Wir haben ein Skript erstellt, das die Steuerung eines Computers mithilfe einer MIDI-Tastatur ermöglicht und neue Möglichkeiten für die Interaktion mit Anwendungen und Spielen eröffnet.</b></center>Unser Projekt ist eine innovative Verbindung von Musik und Technologie! Das von uns erstellte Skript ermöglicht die Verwendung einer MIDI-Tastatur zur Steuerung eines Computers. Dadurch kann jede Taste des Instruments entsprechenden Computertastaturfunktionen oder Mausaktionen zugeordnet werden, was völlig neue Möglichkeiten für die Interaktion mit Anwendungen und Spielen bietet. Die Idee entstand aus dem Wunsch zu experimentieren und Spaß zu haben, und ihre Umsetzung basiert auf der Programmiersprache Python. Das Skript lässt sich leicht anpassen – jeder Benutzer kann MIDI-Tasten nach seinen Bedürfnissen und Ideen unabhängig Computerfunktionen zuordnen.",
+      "images": []
+    },
+    {
+      "title": "Studentische Forschungskreise schaffen Innovation – Unsere Teilnahme am Programm",
+      "description": "<center><b>Unser Team hat am Regierungsprogramm \"Studentische Forschungskreise schaffen Innovation\" teilgenommen, das junge Wissenschaftler bei der Umsetzung innovativer Projekte unterstützt.</b></center>Unser Projekt zielte darauf ab, ein bestehendes System in der Industrie weiterzuentwickeln, das den Transport von Objekten ohne Reibung ermöglicht, indem eine integrierte Gewichtsmessung hinzugefügt wird. Diese Verbesserung würde eine kontinuierliche Überwachung der Masse der transportierten Objekte ermöglichen, was die Effizienz und Präzision in industriellen Prozessen erhöhen würde. Die Vorbereitung des Antrags erforderte von uns einen detaillierten Plan und den Einsatz des gesamten Teams. Das Ergebnis unserer Arbeit ist ein Projekt, das auf echte industrielle Bedürfnisse eingeht und neue Herausforderungen eröffnet, die wir mit Leidenschaft verfolgen möchten.",
+      "images": null
+    },
+    {
+      "title": "SoundControl",
+      "description": "<center><b>SoundControl ist eine Weiterentwicklung eines früheren Projekts, das provisorisch Musikalischer Controller genannt wurde.</b></center><br><center>Sein Hauptziel war die Simulation der Funktionsweise einer Computertastatur mithilfe von MIDI-Signalen. In der neuen Version haben wir dasselbe Ziel beibehalten, aber den Ansatz geändert – anstelle von MIDI verwenden wir Klang als Steuerungsmedium.</center><br>Das System arbeitet in Echtzeit und sammelt Geräusche aus der Umgebung mithilfe eines unidirektionalen Mikrofons, was zur Reduzierung von Hintergrundgeräuschen beiträgt. Die Klangprobe durchläuft dann einen Tiefpassfilter, der zusätzlich Störungen eliminiert. Ein Schlüsselelement der Signalverarbeitung ist die <b>schnelle Fourier-Transformation (FFT)</b>, mit der wir das Frequenzspektrum des Klangs analysieren können. Dies ermöglicht die Identifizierung dominanter Töne – z. B. C4, E5 usw.<br><br>Jede erkannte Frequenz wird einer bestimmten Taste auf der Computertastatur zugeordnet, was die Computersteuerung durch Klänge ermöglicht. Durch den Verzicht auf MIDI hat das System an Vielseitigkeit gewonnen – es ist nicht mehr auf elektronische Geräte beschränkt und kann sogar auf die menschliche Stimme als Interaktionsform reagieren.",
+      "images": [
+        "../img/projects/soundcontrol1.webp",
+        "../img/projects/soundcontrol2.webp"
+      ]
+
+    },
+    {
+      "title": "SteamPhony",
+      "description": "<center><b>Steamphony ist eine Kombination aus Leidenschaft für Technologie, Musik und Kreativität.</b></center><br>Steamphony ist ein Plattform-Computerspiel, das von Grund auf von Mitgliedern des Forschungskreises Algo erstellt wurde. Sein Unterscheidungsmerkmal ist eine innovative Steuerungsmethode – anstatt einer Tastatur oder eines Gamepads bewegt der Spieler die Figur, indem er ein Musikinstrument spielt! Die vom Instrument erzeugten Klänge werden in Echtzeit analysiert und dank der Integration mit unserem proprietären Projekt Sound Control in spezifische Spielaktionen übersetzt.<br><br>Das Projekt hatte seine Premiere während der Tage der offenen Tür an der Technischen Universität Breslau, wo Besucher das Spiel testen konnten, indem sie die Figur mithilfe eines Keyboards (Musikinstrument) steuerten. Ihre begeisterten Reaktionen bestätigten unsere Überzeugung, dass diese ungewöhnliche Form der Interaktion weiterentwickelt werden sollte.<br><br>Kreismitglieder haben die Spielmechanik, Karten, das Klangverarbeitungssystem und die gesamte Grafik eigenständig entworfen und dabei auf jedes Detail geachtet – vom ersten Pixel bis zum kleinsten Klang. Wir sind optimistisch hinsichtlich der weiteren Entwicklung dieses Projekts.",
+      "images": [
+        "../img/projects/steamphony1.webp",
+        "../img/projects/steamphony2.webp",
+        "../img/projects/steamphony3.webp",
+        "../img/projects/steamphony4.webp",
+        "../img/projects/steamphony5.webp",
+        "../img/projects/steamphony6.webp",
+        "../img/events/dni3.webp"
+      ]
+    },
+    {
+      "title":"Schachmatt 2.0",
+      "description":"<center><b>Das Projekt Schachmatt 2.0 ist ein modernes, interaktives Schachspielsystem,</b></center><br>das ein traditionelles Brett mit Elementen der Automatisierung und künstlichen Intelligenz verbindet. Die Figuren bewegen sich automatisch dank eines Elektromagneten, der sich in <b>CoreXY-Kinematik</b> bewegt<br><br><b>Das System integriert ein physisches Brett,</b> das mit Sensoren ausgestattet ist, mit einer eigenen Schach-Engine und einem Backend, mit dem es über das MQTT-Protokoll kommuniziert. Dies ermöglicht sowohl manuelles Spielen auf dem Brett als auch vollständige Synchronisierung des Spielstands mit <b>einer von uns entworfenen Webanwendung.</b><br><br>Das Projekt entwickelt Kompetenzen in den Bereichen Mechatronik, Programmierung und verteilte Systeme und zeigt, wie ein klassisches Spiel in die Welt moderner Technologien übertragen werden kann.<br><br>Die erste Präsentation des Projekts fand während des Niederschlesischen Wissenschaftsfestivals in Breslau statt, wo es großes Interesse sowohl bei Kindern als auch bei Erwachsenen fand. Die verbesserte Version von Schachmatt 2.0 wird bei kommenden Veranstaltungen an der Technischen Universität Breslau zu sehen sein.",
+      "images":[
+        "../img/events/dawit7.webp",
+        "../img/projects/szachy1.webp",
+        "../img/events/dawit8.webp",
+        "../img/projects/szachy2.webp",
+        "../img/projects/szachy3.webp",
+        "../img/projects/szachy4.webp",
+        "../img/projects/szachy5.webp"
+      ]
+    }
+  ]

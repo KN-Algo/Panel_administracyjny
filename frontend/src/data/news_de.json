@@ -1,0 +1,112 @@
+[
+  {
+      "type": "info",
+      "title": "Vortrag über die Fourier-Transformation",
+      "description": "Unbedingt ansehen!",
+      "image": "../img/events/Wyklad1.webp",
+      "link": "/pages/events.php#Wyklad1"
+    },
+    {
+      "type": "info",
+      "title": "ALGO am Tag der offenen Tür der Technischen Universität Wrocław",
+      "description": "Dieses Jahr haben wir die Projekte SoundControl und die SteamPhony-Umgebung präsentiert",
+      "image": "../img/events/dni1.webp",
+      "link": "/pages/events.php#Dni_otwarte"
+    },
+    {
+      "type": "info",
+      "title": "KN ALGO auf der WITKoN 2025",
+      "description": "Vortrag über die Anwendung der schnellen Fourier-Transformation in Minecraft!",
+      "image": "../img/events/witkon1.webp",
+      "link": "/pages/events.php#Witkon"
+    },
+    {
+      "type":"info",
+      "title":"Besuch bei Mitsubishi Electric",
+      "description":"Wir hatten die Gelegenheit, den Hauptsitz von Mitsubishi Electric zu besuchen!",
+      "image":"../img/events/algo_mitsu.webp",
+      "link":"/pages/events.php#Mitsubishi_2"
+    },
+    {
+      "type":"info",
+      "title":"KN Algo auf dem Niederschlesischen Wissenschaftsfestival",
+      "description":"Wir haben unser neuestes Projekt präsentiert - Schach-Matt 2.0",
+      "image":"../img/events/dfn5.webp",
+      "link":"/pages/events.php#DFN"
+    },
+    {
+      "type": "info",
+      "title": "Neues Semester – neue Möglichkeiten!",
+      "description": "Die offene Rekrutierung hat begonnen – wir laden Sie herzlich ein!",
+      "image": "../img/events/algo_rekru.webp",
+      "link": "/pages/events.php#Rekrutacja"
+    },
+    {
+      "type": "info",
+      "title": "Auftritt bei der Fakultätseröffnung des akademischen Jahres 2025/26",
+      "description":"Wir hatten die Ehre, unsere Projekte und die Aktivitäten des wissenschaftlichen Vereins vor neuen Studierenden zu präsentieren!",
+      "image": "../img/events/inauguracja1.webp",
+      "link": "/pages/events.php#Inauguracja"
+    },
+    {
+      "type": "info",
+      "title": "ALGO erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!",
+      "description":"Wir freuen uns, dass Sie unsere Arbeit gewürdigt haben!",
+      "image": "../img/events/dawit1.webp",
+      "link": "/pages/events.php#DaWiT2025"
+    },
+    {
+      "type": "info",
+      "title": "Zertifizierter Trainer der Bielik.AI-Staffel in unserem Team!",
+      "description": "Große Leistung von Jakub Dobrzański - Mitglied von KN Algo",
+      "image": "../img/events/bielik.webp",
+      "link": "/pages/events.php#Bielik"
+    },
+    {
+      "type": "info",
+      "title": "DAS 2025 ist vorbei!",
+      "description": "Wir danken Ihnen für Ihre Anwesenheit!",
+      "image":"../img/events/das2_1.webp",
+      "link": "/pages/events.php#das2025"
+    },
+    {
+      "type": "info",
+      "title": "Algo bei den Aktivitätstagen in NOT",
+      "description": "Wir haben uns den Schülern der Oberschulen vorgestellt!",
+      "image": "../img/events/NOT1.webp",
+      "link":"/pages/events.php#NOT"
+    },
+
+    {
+      "type":"info",
+      "title": "Wir haben neue Mitglieder von KN Algo begrüßt!",
+      "description":"Wir freuen uns, dass Sie bei uns sind — vor uns liegen viele Ideen, Projekte und gemeinsame Herausforderungen!",
+      "image":"../img/events/_grupowe_1.webp",
+      "link":"/pages/events.php#nowi"
+    },
+    {
+  "type": "info",
+  "title": "Wir haben am SynderHacks Wrocław teilgenommen!",
+  "description": "Wir haben den 2. Platz erreicht!",
+  "image": "../img/events/Synder1.webp",
+  "link": "/pages/events.php#synder"
+},
+
+{
+  "type": "info",
+  "title": "KN Algo auf der Formnext 2025 in Frankfurt!",
+  "description": "Eines der größten Events weltweit zum Thema 3D-Druck und additive Fertigung!",
+  "image": "../img/events/targi1.webp",
+  "link": "/pages/events.php#targi"
+},
+
+{
+  "type": "info",
+  "title": "Wir waren beim BEST Mind Challenge 2025!",
+  "description": "Vielen Dank für die Einladung und die gemeinsame Zeit!",
+  "image": "../img/events/best1.webp",
+  "link": "/pages/events.php#best"
+}
+
+
+  ]

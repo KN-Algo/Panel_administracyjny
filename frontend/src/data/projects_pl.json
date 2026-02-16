@@ -1,0 +1,57 @@
+[
+    {
+      "title": "Fabryki i Magazyny",
+      "description": "<center><b>Aplikacja internetowa, która stanowi wyzwanie logiczne oparte na optymalizacji połączeń</b></center><br>Gracz ma przed sobą planszę, na której znajduje się 7 fabryk, ulokowanych w ustalonych miejscach. Zadaniem gracza jest postawienie 4 magazynów w dowolnych lokalizacjach oraz połączenie fabryk z magazynami w taki sposób, aby każda fabryka miała dostęp do przynajmniej jednego magazynu. Celem gry jest stworzenie jak najkrótszej sieci połączeń. Gracz, który użyje najmniejszej ilości drogi, aby połączyć fabryki z magazynami, wygrywa i trafia na szczyt rankingu. Aby dodać wyzwania, stworzyliśmy także algorytm, który oblicza optymalne rozwiązanie, co pozwala na porównanie wyników z teoretycznie najlepszym możliwym wynikiem.",
+      "images": [
+        "../img/projects/fabryki1.webp", 
+        "../img/projects/fabryki2.webp",
+        "../img/projects/fabryki3.webp"
+      ]
+    },
+    {
+      "title": "Muzyczny kontroler",
+      "description": "<center><b>Stworzyliśmy skrypt, który pozwala sterować komputerem za pomocą klawiatury MIDI, otwierając nowe możliwości interakcji z aplikacjami i grami.</b></center>Nasz projekt to innowacyjne połączenie muzyki i technologii! Skrypt, który stworzyliśmy, umożliwia wykorzystanie klawiatury MIDI do kontrolowania komputera. Dzięki temu każdy klawisz na instrumencie może zostać przypisany do odpowiednich funkcji klawiatury komputerowej lub działań myszy, co daje zupełnie nowe możliwości interakcji z aplikacjami i grami. Pomysł zrodził się z chęci eksperymentowania i zabawy, a jego realizacja opiera się na języku Python. Skrypt jest łatwy do dostosowania – każdy użytkownik może samodzielnie przypisać klawisze MIDI do funkcji komputera, według swoich potrzeb i pomysłów.",
+      "images": []
+    },
+    {
+      "title": "Studenckie Koła Naukowe Tworzą Innowacje – Nasz Udział w Programie",
+      "description": "<center><b>Nasz zespół wziął udział w programie rządowym „Studenckie koła naukowe tworzą innowacje”, który wspiera młodych naukowców w realizacji nowatorskich projektów.</b></center>Nasz projekt zakładał rozwinięcie istniejącego systemu w przemyśle, który umożliwia przenoszenie przedmiotów bez tarcia, poprzez dodanie zintegrowanego pomiaru wagi. To usprawnienie pozwoliłoby na bieżące monitorowanie masy transportowanych obiektów, co zwiększyłoby wydajność i precyzję w procesach przemysłowych. Przygotowanie wniosku wymagało od nas szczegółowego planu i zaangażowania całego zespołu. Efektem naszej pracy jest projekt, który odpowiada na rzeczywiste potrzeby przemysłu i otwiera przed nami nowe wyzwania, które z pasją chcemy realizować.",
+      "images": null
+    },
+    {
+      "title": "SoundControl",
+      "description": "<center><b>SoundControl to rozwinięcie wcześniejszego projektu, który roboczo nosił nazwę Muzyczny kontroler.</b></center><br><center>Jego głównym założeniem była symulacja działania klawiatury komputerowej za pomocą sygnałów MIDI. W nowej wersji zachowaliśmy ten sam cel, jednak zmieniliśmy podejście – zamiast MIDI wykorzystujemy dźwięk jako medium sterujące.</center><br>System działa w czasie rzeczywistym, zbierając dźwięk z otoczenia przy użyciu mikrofonu jednokierunkowego, co pomaga zredukować szumy tła. Następnie próbka dźwięku przechodzi przez filtr dolnoprzepustowy, który dodatkowo eliminuje zakłócenia. Kluczowym elementem przetwarzania sygnału jest <b>szybka transformata Fouriera (FFT)</b>, dzięki której możemy analizować widmo częstotliwościowe dźwięku. Pozwala to na identyfikację dominujących tonów – np. C4, E5 itp.<br><br>Każda z wykrytych częstotliwości jest przypisana do określonego klawisza na klawiaturze komputerowej, co umożliwia sterowanie komputerem za pomocą dźwięków. Dzięki rezygnacji z MIDI system zyskał większą uniwersalność – nie jest już ograniczony do urządzeń elektronicznych i może reagować nawet na ludzki głos jako formę interakcji.",
+      "images": [
+        "../img/projects/soundcontrol1.webp",
+        "../img/projects/soundcontrol2.webp"
+      ]
+
+    },
+    {
+      "title": "SteamPhony",
+      "description": "<center><b>Steamphony to połączenie pasji do technologii, muzyki i kreatywności.</b></center><br>Steamphony to platformowa gra komputerowa stworzona od podstaw przez członków Koła Naukowego Algo. Jej wyróżnikiem jest innowacyjny sposób sterowania – zamiast klawiatury czy pada, gracz porusza postacią grając na instrumencie muzycznym! Dźwięki emitowane przez instrument są analizowane w czasie rzeczywistym i przekładane na konkretne akcje w grze, dzięki integracji z naszym autorskim projektem Sound Control.<br><br>Projekt miał swoją premierę podczas Dni Otwartych Politechniki Wrocławskiej, gdzie odwiedzający mogli przetestować grę, sterując postacią za pomocą keyboardu (instrumentu klawiszowego). Ich entuzjastyczne reakcje utwierdziły nas w przekonaniu, że warto rozwijać tę nietypową formę interakcji.<br><br>Członkowie koła samodzielnie zaprojektowali mechaniki rozgrywki, mapy, system przetwarzania dźwięku oraz całą oprawę graficzną, dbając o każdy szczegół – od pierwszego piksela po najdrobniejszy dźwięk. Jesteśmy optymistycznie nastawieni na dalszy rozwój tego projektu.",
+      "images": [
+        "../img/projects/steamphony1.webp",
+        "../img/projects/steamphony2.webp",
+        "../img/projects/steamphony3.webp",
+        "../img/projects/steamphony4.webp",
+        "../img/projects/steamphony5.webp",
+        "../img/projects/steamphony6.webp",
+        "../img/events/dni3.webp"
+      ]
+    },
+    {
+      "title":"Szach-Mat 2.0",
+      "description":"<center><b>Projekt Szach-Mat 2.0 to nowoczesny, interaktywny system do gry w szachy,</b></center><br>który łączy tradycyjną planszę z elementami automatyki i sztucznej inteligencji. Pionki poruszają się automatycznie dzięki elektromagnesowi poruszającego się w kinematyce <b>Corex xy</b><br><br><b>System integruje fizyczną planszę</b> wyposażoną w czujniki z własnym silnikiem szachowym oraz backendem, z którym komunikuje się przez protokół MQTT. Dzięki temu możliwe jest zarówno ręczne granie na planszy, jak i pełna synchronizacja stanu gry z <b>zaprojektowaną przez nas aplikacją webową.</b><br><br>Projekt rozwija kompetencje w obszarze mechatroniki, programowania i systemów rozproszonych, pokazując, jak klasyczna gra może zostać przeniesiona w świat nowoczesnych technologii.<br><br> Pierwsza prezentacja projektu miała miejsce podczas Dolnośląskiego Festiwalu Nauki we Wrocławiu, gdzie cieszył się dużym zainteresowaniem zarówno dzieci, jak i dorosłych. Ulepszona wersja Szach-Mat 2.0 będzie dostępna do zobaczenia podczas nadchodzących wydarzeń na Politechnice Wrocławskiej.",
+      "images":[
+        "../img/events/dawit7.webp",
+        "../img/projects/szachy1.webp",
+        "../img/events/dawit8.webp",
+        "../img/projects/szachy2.webp",
+        "../img/projects/szachy3.webp",
+        "../img/projects/szachy4.webp",
+        "../img/projects/szachy5.webp"
+      ]
+    }
+  ]
+  

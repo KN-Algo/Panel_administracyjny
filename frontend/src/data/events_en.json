@@ -1,0 +1,261 @@
+[
+  {
+  "id": "best",
+  "title": "We were at BEST Mind Challenge 2025!",
+  "date": "2025-11-25",
+  "thumbnail": "../img/events/best1.webp",
+  "description": "✨ <b>We were at BEST Mind Challenge 2025!</b> ✨<br><br>, the Algo Student Research Group had the great pleasure of attending BEST Mind Challenge 2025 – an engineering competition organized by the BEST Wrocław Student Organization 🤝💡<br><br>During the networking session, participants could visit our stand, chat about algorithms, projects and student life, and learn more about what we do every day in Algo 🚀✨<br><br>There were plenty of inspiring conversations, fresh ideas and positive energy, confirming once again that the tech community at Wrocław University of Science and Technology is thriving 💙🤍<br><br>Huge thanks to the organizers for the invitation and to all participants for the great time spent together 😉<br><br>See you next time! 💻💙",
+  "images": [
+    "../img/events/best1.webp",
+    "../img/events/best2.webp"
+  ]
+}
+
+  ,{
+    "id":"targi",
+    "title":"KN Algo at Formnext 2025!",
+    "date":"2025-11-24",
+    "thumbnail":"../img/events/targi1.webp",
+    "description":"<center><b>⭐ KN Algo at Formnext 2025! ⭐</center></b><br><br>On November 20–21, we visited Formnext 2025 in Frankfurt. <b>It is one of the largest events in the world dedicated to 3D printing and additive manufacturing technologies,</b> where companies from many countries present their innovations. Thank you to all the companies and people we had the chance to talk to — we’re returning with fresh motivation and new ideas for future projects.<br><br><b>See you at the next events! 💙</b>",
+    "images":[
+      "../img/events/targi1.webp",
+      "../img/events/targi2.webp",
+      "../img/events/targi3.webp",
+      "../img/events/targi4.webp",
+      "../img/events/targi5.webp",
+      "../img/events/targi6.webp",
+      "../img/events/targi7.webp",
+      "../img/events/targi8.webp",
+      "../img/events/targi9.webp",
+      "../img/events/targi10.webp",
+      "../img/events/targi11.webp",
+      "../img/events/targi12.webp",
+      "../img/events/targi13.webp",
+      "../img/events/targi14.webp",
+      "../img/events/targi15.webp"
+    ]
+  }
+  ,
+  {
+  "id": "synder",
+  "title": "We won 2nd place at SynderHacks Wrocław!",
+  "date": "2025-11-18",
+  "thumbnail": "../img/events/Synder1.webp",
+  "description": "💥 <b>2nd place at SynderHacks Wrocław!</b> 💥<br><br>Our student association took part in SynderHacks Wrocław – a 24h AI Hackathon, during which we spent an entire day creating innovative solutions based on artificial intelligence 🤖<br><br>We participated with two teams:<br>💡 <b>Algo-7</b> – composed of 7th-semester members<br>⚡ <b>Algo-3</b> – representing younger students from the 3rd semester<br><br>The hackathon challenge was to design a complete business application for small companies in just 24 hours, supporting online store management – from integrations with external sales platforms, through inventory control, all the way to cost analysis and invoicing 💼<br><br>🔹 <b>The Algo-7 team</b> developed the “SellHub” application, focused on analysing the reasons behind product returns and summarising profits using artificial intelligence 🤖 Their solution not only identified return causes and recommended ways to reduce them, but also visualised net sales profit using interactive charts.<br><br>🔹 <b>The Algo-3 team</b> created the “Sales Optimizer Platform” – a tool for dynamic product price optimisation. Their AI agent analysed the market, trends and inventory levels to automatically propose optimal pricing strategies, suggesting discounts or promotional bundles, and updating them across external e-commerce platforms with a single click 📊<br><br>It was 24 hours of intense work, creativity and fighting off sleep 😅 But it was absolutely worth it!<br><br>🏆 <b>The Algo-7 team won 2nd place and received a special award from the jury</b> for originality and for taking on a challenge that no other team wanted to attempt – huge congratulations! 👏🔥<br><br>It was an amazing weekend full of inspiration, new experiences and collaboration. We hope this is only the beginning of our hackathon journey – see you at the next events! 🚀",
+  "images": [
+    "../img/events/Synder1.webp",
+    "../img/events/Synder2.webp",
+    "../img/events/Synder3.webp",
+    "../img/events/Synder4.webp",
+    "../img/events/Synder5.webp",
+    "../img/events/Synder6.webp",
+    "../img/events/Synder7.webp",
+    "../img/events/Synder8.webp",
+    "../img/events/Synder9.webp",
+    "../img/events/Synder10.webp",
+    "../img/events/Synder11.webp",
+    "../img/events/Synder12.webp",
+    "../img/events/Synder13.webp",
+    "../img/events/Synder14.webp",
+    "../img/events/Synder15.webp",
+    "../img/events/Synder16.webp",
+    "../img/events/Synder17.webp",
+    "../img/events/Synder18.webp",
+    "../img/events/Synder19.webp"
+  ]
+},
+
+  {
+    "id":"nowi",
+    "title":"Welcome to the new members of KN Algo!",
+    "date":"2025-11-12",
+    "thumbnail":"../img/events/_grupowe_1.webp",
+    "description":"💙 <b>Welcome to the new members of KN Algo!</b> 💙<br>On Wednesday, November 12, 2025, we held our special meeting for new members, during which we <b>officially welcomed them into the ranks of Algo</b> 🤝✨<br><br>As many as 19 people successfully passed the recruitment process, which… doubled the number of members in our society! 😍<br><br><b>We are delighted to have you with us — ahead of us are plenty of ideas, projects, and shared challenges</b> 💻⚡♟️<br><br>Thanks to you, we will be able to work even more intensively, creatively, and with even greater passion! 🚀<br><br><center><b><u>Welcome aboard Algo — now it really begins</u></b> 🔥</center>",
+    "images":[
+      "../img/events/_grupowe_1.webp",
+      "../img/events/_grupowe_3.webp"
+    ]
+  },
+
+  {
+    "id":"NOT",
+    "title":"Participation in Activity Days at NOT",
+    "date":"2025-11-10",
+    "thumbnail":"../img/events/NOT1.webp",
+    "description":"🎓 <b>Algo at Activity Days at NOT!</b> 🎓<br>We had the pleasure of participating in the Activity Days organized by the <b>National Technical Organization (NOT)</b>, where we presented the activities of our Society to high school students 💼✨<br><br>Our latest project – Checkmate 2.0, an intelligent, interactive chessboard that combines electronics, programming, and algorithmics, attracted great interest. We shared the story of its creation, the technology it uses, and how collaboration between team members works 🤖♟️<br><br>We are pleased that we could introduce younger enthusiasts to the world of algorithms and new technologies, and show that studying at Wrocław University of Science and Technology is not only about learning, but also an opportunity to realize ambitious projects and collaborate in an inspiring academic environment 💙<br><br><b>We would like to thank the organizers for the invitation and the opportunity to present our work!</b> 🙌<br><br><br>🐍 The snake in the photos is from skn_zywienia_zwierzat",
+    "images":[
+      "../img/events/NOT1.webp",
+      "../img/events/NOT2.webp",
+      "../img/events/NOT3.webp",
+      "../img/events/NOT4.webp"
+    ]
+  },
+  {
+    "id":"das2025",
+    "title": "Student Activity Days are behind us!",
+    "date": "2025-11-05",
+    "thumbnail": "../img/events/das2_1.webp",
+    "description": "🎉 <b>DAS 2025 is behind us!</b> 🎉<br>It was a day full of energy, conversations, and inspiration! 💬✨<br><br>During <b>Student Activity Days</b>, we had the opportunity to present the activities of the Algo Research Society — not only to students from our Faculty of Computer Science and Telecommunications at WUST, but also to many visitors from other faculties across Wrocław University of Science and Technology 🔥<br><br>Our booth with the Checkmate 2.0 project ♟️⚙️ attracted many curious people — thank you to everyone who stopped by to talk with us, see the project in action, and share your ideas 🙌<br><br>The atmosphere was fantastic, and your reactions reminded us why we love what we do 💡💙<br><br><b>See you at future events — this is just the beginning!</b> 🚀",
+    "images": [
+      "../img/events/das2_1.webp",
+      "../img/events/das2_2.webp",
+      "../img/events/das2_3.webp",
+      "../img/events/das2_4.webp",
+      "../img/events/das2_5.webp",
+      "../img/events/das2_6.webp",
+      "../img/events/das2_7.webp",
+      "../img/events/das2_8.webp"
+    ]
+  },
+
+  {
+    "id":"Bielik",
+    "title": "Jakub Dobrzański becomes certified trainer of Bielik.AI squadron",
+    "date":"2025-11-02",
+    "thumbnail":"../img/events/bielik.webp",
+    "description":" 🔥 Great news from Algo! 🔥<br>We are extremely proud to announce that <b>Jakub Dobrzański</b> – a member of our Algo research society – has become a <b>certified trainer of the Bielik.AI squadron!</b> 🦅💥<br><br>💬 Bielik.AI is a modern Polish language model developed by the SpeakLeash Foundation and Cyfronet AGH — open, secure, and created with the Polish language in mind 🇵🇱🤖<br><br>👏 <b>Congratulations</b>, Kuba! We are incredibly proud of your achievement — this is a huge step forward not only for you, but for our entire team 💪<br><br>And maybe soon… 👀<br>workshops on Bielik.AI, led by our trainer? 🔥<br><br><b>Stay with us — things are going to happen!</b> 🚀",
+    "images": [
+      "../img/events/bielik.webp"
+    ]
+  },
+
+  {
+    "id":"DaWiT2025",
+    "title":"ALGO once again wins the competition for the best booth at DaWIT!",
+    "date":"2025-10-24",
+    "thumbnail":"../img/events/dawit1.webp",
+    "description":"🎉<b>🥇 KN Algo once again wins the competition for the best booth at DaWIT!</b><br>On Tuesday, October 21, we had the opportunity to present <b>Checkmate 2.0</b> to you ♟️ This project was created thanks to the enormous work and dedication of many people active in our society, who remained determined despite a small team 💪<br><br>We are pleased that you shared this moment with us - together we watched how our autonomously operating chess game gains speed ☄️<br><br>We are counting on more successes next year 🤞<br>Because as they say - third time's the charm! 🏆🎉<br><br><b>Thank you to everyone who visited our booth and appreciated our work! 🙏</b>",
+    "images": [
+      "../img/events/dawit1.webp",
+      "../img/events/dawit2.webp",
+      "../img/events/dawit3.webp",
+      "../img/events/dawit4.webp",
+      "../img/events/dawit5.webp",
+      "../img/events/dawit6.webp",
+      "../img/events/dawit7.webp",
+      "../img/events/dawit8.webp"
+    ]
+  },
+  {
+    "id":"Inauguracja",
+    "title": "KN Algo at the Faculty Inauguration of the 2025/26 academic year",
+    "date": "2025-10-17",
+    "thumbnail": "../img/events/inauguracja1.webp",
+    "description": "🎓 <b>KN Algo at the Faculty Inauguration of the 2025/26 academic year</b>🎓<br>On Wednesday, October 15, we had the pleasure of speaking during the <b>Inauguration of the Faculty of Computer Science and Telecommunications at Wrocław University of Science and Technology</b> 💙<br>Our Society was represented by <b>President Jakub Barczyński</b> and <b>Vice President Adrian Goral</b>. They talked about what we do at Algo – from algorithms to creative projects combining computer science with practice 🔍⚙️<br>Thank you for the invitation and the opportunity to speak at such an important event ✨<br><br><b>💬 And to all new students – welcome aboard WUST 🚀</b><br>We hope we managed to inspire you at least a little… because if so, the doors to KN Algo are open! Come by to chat, see how we work, and maybe… stay with us longer 👀<br><br>📷 photo: Kamil Winiarz (Department of Promotion, Faculty of Computer Science and Telecommunications)",
+    "images":[
+      "../img/events/inauguracja1.webp",
+      "../img/events/inauguracja2.webp",
+      "../img/events/inauguracja3.webp",
+      "../img/events/inauguracja4.webp"
+    ]
+  },
+
+    {
+    "id":"Rekrutacja",
+    "title": "New semester – new opportunities!",
+    "date": "2025-10-13",
+    "thumbnail": "../img/events/algo_rekru.webp",
+    "description": "We are starting another semester of activities of the <b>Algo Research Society</b> and we cannot wait to work even more actively than before!<br><br>If you are interested in algorithmics, programming, or simply want to develop your skills in a cohesive team of technology enthusiasts — <b>this is the perfect time to join us!</b><br><br>Recruitment to our Society is currently underway.</b><br> Fill out the recruitment form and let us know you — <b>we are waiting for you!</b><br><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdrH77bBYWOwYfHsaS_MdbeBNQkQLhAsgrdQtlPtBoWAfq72g/viewform?usp=header\" target=\"_blank\" rel=\"noopener noreferrer\">Recruitment form</a><br><br>Together we can create projects that will change the world for the better!<br><b>See you at the meetings!</b>",
+    "images": [
+      "../img/events/algo_rekru.webp"
+    ]
+  },
+  {
+    "id":"DFN",
+    "title":"KN Algo at the Lower Silesian Science Festival",
+    "date":"2025-09-01",
+    "thumbnail":"../img/events/dfn5.webp",
+    "description":"🎓 <b>KN Algo at the Lower Silesian Science Festival</b><br>On September 18, we had the pleasure of participating in the Lower Silesian Science Festival, where we presented our latest project – 'Checkmate 2.0' ♟️<br>It is a unique combination of the classic game of chess with modern technology. Our physical chessboard was equipped with a CoreXY mechanism and a system of electromagnets, thanks to which the pieces can move automatically. What's more – the game can be played in two ways:<br>♟️ through a web application<br>♟️ or traditionally – by moving pieces by hand, which are immediately detected thanks to magnetic sensors.<br><b>Checkmate 2.0</b> is not an ordinary board, but a truly interactive system that combines elements of computer science, automation, mechatronics, and algorithmics 🤖<br>During the workshops, everyone could compete with our proprietary chess engine. There were emotions, joy, and lots of fun – both children and adults eagerly took up the challenge 💪<br>The best players were rewarded with gadgets from our society, and we had great satisfaction seeing how much joy our project brought.<br>🙏 We sincerely thank everyone who joined us. We are pleased that we could share the result of our work with you – these are the moments that motivate us to continue working.<br>⚡ <b>And this is just the beginning! Already in October, you will be able to see an improved version of Checkmate 2.0 at the events:</b><br>📍 DaWIT – October 21 (building C1, Wrocław University of Science and Technology)<br>📍 DAS – October 29 (building C3, Wrocław University of Science and Technology)<br><b>See you at the chessboard! ♟️✨</b>",
+    "images":[
+      "../img/events/dfn1.webp",
+      "../img/events/dfn2.webp",
+      "../img/events/dfn3.webp",
+      "../img/events/dfn4.webp"
+    ]
+  },
+  {
+    "id":"Mitsubishi_2",
+    "title":"Visit to Mitsubishi Electric",
+    "date": "2025-06-03",
+    "thumbnail": "../img/events/algo_mitsu.webp",
+    "description": "On June 4, we had the opportunity to visit the headquarters of Mitsubishi Electric, where we learned about selected solutions used in industry. 🏭<br>We were able to test an image recognition application 📷 and learn about tools supporting network management 🌐.<br>We also saw industrial computers 💻 and other examples of equipment used in automation.<br>We are pleased that we could broaden our knowledge 📚 and see up close what technologies used in practice look like!",
+    "images":[
+      "../img/events/algo_mitsu1.webp",
+      "../img/events/algo_mitsu2.webp"
+
+    ]
+
+  }
+  ,{
+    "id":"Witkon",
+    "title": "KN ALGO at WITKoN 2025",
+    "date": "2025-04-15",
+    "thumbnail": "../img/events/witkon1.webp",
+    "description": "On April 15, 2025, our Algo Research Society had the honor of participating in the second edition of WITKoN – the Conference of Research Societies and Active Students, organized by the Faculty of Computer Science and Telecommunications Student Government and the Solvro and TK Games research societies. The event took place at the Faculty of Computer Science and Telecommunications of Wrocław University of Science and Technology.<br><br>During the conference, we presented a lecture entitled 'How to play Minecraft with fast Fourier transform', which was delivered by Adrian Goral, the current vice-president of our society. During the presentation, we discussed how advanced mathematical algorithms, such as the fast Fourier transform (FFT), can be used in the game Minecraft, combining theory with practice in a virtual environment.<br><br>Participation in WITKoN was an excellent opportunity for us to present our activities, establish contacts with other research societies, and exchange experiences. We would like to thank the organizers for creating a space for integration and cooperation between students.",
+    "images":[
+      "../img/events/witkon1.webp",
+      "../img/events/witkon2.webp",
+      "../img/events/witkon3.webp",
+      "../img/events/witkon4.webp",
+      "../img/events/witkon5.webp",
+      "../img/events/witkon6.webp",
+      "../img/events/witkon7.webp",
+      "../img/events/witkon8.webp",
+      "../img/events/witkon9.webp"
+    ]
+  },
+  {
+    "id":"Dni_otwarte",
+    "title": "ALGO at the Open Days of Wrocław University of Science and Technology!",
+    "date": "2025-04-11",
+    "thumbnail": "../img/events/dni1.webp",
+    "description": "On April 11, 2025, our research society participated in the Open Days of Wrocław University of Science and Technology. Our booth attracted great interest from both this year's high school graduates and current students. This year we presented the projects: <b>SoundControl and the SteamPhony environment</b><br><br>During the event, we had the opportunity to have many interesting conversations. We talked about the activities of our society, the projects we are involved in, and the development opportunities offered by studying at Wrocław University of Science and Technology.<br><br>We are pleased that we could share our passion. We hope that our conversations helped high school graduates make important decisions about their educational future.<br><br>We sincerely thank everyone for visiting our booth and showing interest. We wish you success in the upcoming high school graduation exams and hope to meet you as students of Wrocław University of Science and Technology.",
+    "images":[
+      "../img/events/dni1.webp",
+      "../img/events/dni2.webp",
+      "../img/events/dni3.webp",
+      "../img/events/dni4.webp",
+      "../img/events/dni5.webp",
+      "../img/events/dni6.webp",
+      "../img/events/dni7.webp",
+      "../img/events/dni8.webp",
+      "../img/events/dni9.webp",
+      "../img/events/dni10.webp",
+      "../img/events/dni11.webp",
+      "../img/events/dni12.webp"
+    ]
+  },
+  {
+    "id":"Wyklad1",
+    "title": "Lecture on Fourier Transform",
+    "date": "2024-12-18",
+    "thumbnail": "../img/events/Wyklad1.webp",
+    "description": "As part of our <b>SoundControl</b> project, <i><u><b>Dr. Jacek Jagodziński</b></u></i> prepared a special lecture on the <b>Fourier Transform</b> – a tool without which there would be no sound analysis, data compression, or signal processing!<br>If you want to learn:<br>– how to decompose a signal into frequencies,<br>– why sines and cosines rule the world of signals,<br>– and how we use all this in the SoundControl project<br><center><b>be sure to check out this lecture!</b></center><br> You can find the link to the material <a href=\"https://www.youtube.com/watch?v=WgS0eSEAfhU&amp;t=3045s\" target=\"_blank\" rel=\"noopener noreferrer\">HERE</a>",
+    "images": []
+  },
+  {
+    "id": "Beckhoff",
+    "title": "KN Algo visit to Beckhoff",
+    "date": "2024-12-16",
+    "thumbnail": "../img/events/beckhoff1.webp",
+    "description": "Our research society had the opportunity to participate in a presentation organized by Beckhoff. We had the chance to see the <b>XPlanar</b> system in action, observing the operation of levitating modules.<br> <b>XPlanar</b> is an innovative, contactless transport system that uses magnetic levitation to move products. It allows smooth and free movement, including rotation, while maintaining great flexibility in configuration and control.<br>Moreover, in the section dedicated to the practical aspect of the technology, we learned the basics of writing code to control this innovative system. <br><br><center>The visit to Beckhoff was a developing experience that will remain in our memory for a long time.</center><br> <b><center>We sincerely thank Beckhoff for the interesting presentation and the opportunity to learn about the technology!</center></b>",
+    "images": [
+      "../img/events/beckhoff1.webp",
+      "../img/events/beckhoff2.webp",
+      "../img/events/beckhoff3.webp",
+      "../img/events/beckhoff4.webp",
+      "../img/events/beckhoff5.webp"
+    ]
+  },
+
+  {
+    "id": "Mitsubishi",
+    "title": "KN Algo visit to Mitsubishi Electric!",
+    "date": "2024-05-22",
+    "thumbnail": "../img/events/algo.webp",
+    "description": "On May 22, 2024, thanks to the courtesy of <b>Mitsubishi Electronics</b>, members of our society participated in a presentation of the company's latest solutions.<br>During the presentation, we learned about the programs: <br><b>Iconics</b> - Advanced SCADA and visualization environment for industrial processes.<br> <b>Mailab</b> - Innovative machine learning solutions for industrial applications.<br> <b>Vixio</b> - Image recognition software that opens new possibilities in automation.<br><br> <center>It was an extremely interesting and developing experience that gave us a picture of what the industry of the future may look like.</center> <br><center><b>We sincerely thank Mitsubishi Electronics for their hospitality and fascinating presentation!</b></center>",
+    "images": [
+      "../img/events/Mitsubishi.webp"
+    ]
+  }
+]

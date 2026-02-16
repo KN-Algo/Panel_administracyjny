@@ -1,0 +1,38 @@
+[
+    {
+
+      "title": "Magdalena",
+      "description": "<b>Magdalena – Modular Automatic Expandable-Logic Head-equipped Printer with Inertial-Adaptive Drive</b> is a concept of a modern, modular FDM 3D printer, whose design is based on a universal mechanical module also used in the chess project. Building upon a ready-made CoreXY mechanics frame, the device will be adapted to work with various tool heads, with automatic exchange capability – both based on a proprietary system and ready-made solutions such as Bondtech.<br><br>The project assumes full online control, with the possibility of further refinement of communication technology and user interface. The printer will be enclosed, with active temperature control inside the working chamber, ensuring stable printing conditions for demanding materials. An integral part of the construction will also be an efficient air filtration system, enabling safe operation in enclosed spaces.<br><br>A camera will be placed inside the chamber, providing real-time monitoring of the printing process. Additionally, the camera can be used for image analysis and early detection of printing errors. The system will be equipped with a magnetic build plate facilitating print removal, as well as a series of sensors monitoring filament tangles, proper operation of main components, and progressive wear of mechanical elements. In the future, the device may be expanded with laser cutter functionality, thus becoming a multifunctional workshop tool.",
+      "images": [
+
+      ]
+    },
+
+    {
+  "title": "Checkmate 3.0",
+  "description": "<center><b>Project Checkmate 3.0 is a completely new generation of our well-known construction.</b></center><br><br>Project Chess 3.0 is a completely new generation of our well-known construction. We plan a full redesign of the board, improvements to elements that could not be refined earlier, and the addition of full manual play support. Our goal is to create a system that is more reliable, visually refined and easier to maintain, becoming our main flagship project.<br><br>As part of the work, a new 3D model of the board will be created, a PCB will be designed from scratch, and new electrical schematics will be prepared. We will introduce FreeRTOS on the microcontroller along with a solid communication protocol. We will determine the final method of detecting player movement, implement an improved algorithm for controlling the carriage, and redesign the entire electronics section to make it more durable and easier to service.<br><br>The project is based on microcontroller technology, 3D modeling, electronics design and algorithm development. We invite electronics engineers, technicians and programmers to join the team and co-create a new version of one of our most recognizable projects.",
+  "images": []
+},
+
+{
+  "title": "Project Airlight",
+  "description": "<center><b>Project Airlight is a lightweight and highly impressive idea for transmitting sound using a beam of light.</b></center><br><br>Project Airlight is a lightweight and highly impressive idea for transmitting sound using a beam of light. Our goal is to create a fully interactive model demonstrating that optical communication can be simple, accessible and surprisingly effective. We plan to build two small modules — an emitter and a receiver — enclosed in 3D-printed housings. The emitter will take a signal from a 3.5 mm Jack input and convert it into a modulated beam of light, while the receiver, using a photovoltaic panel, will transform the captured signal back into sound and output it through a speaker. The project will use conductive FDM filament and basic electronics.<br><br>Airlight will also include an extended educational component — we want to thoroughly describe the physical phenomena involved, explain the entire signal-processing pipeline and present the system diagram. This is a project that combines a visually striking effect with strong academic value. We are mainly looking for people familiar with basic electronics and willing to prepare documentation and technical descriptions.",
+  "images": []
+},
+
+{
+  "title": "AWC Project",
+  "description": "<center><b>The AWC (Active Waves Cancellation) project is a long-term and technically demanding undertaking.</b></center><br><br>The AWC (Active Waves Cancellation) project is a long-term and technically demanding undertaking aimed at actively detecting waves, analyzing their parameters and generating opposite waves to cancel the incoming signal. Ultimately, we want to create a small, portable device that can be mounted on drones. The work includes designing the electronics, housing and all key components.<br><br>The project will be carried out in stages — we will begin by recreating the ANC mechanism known from noise-cancelling headphones, and then move on to more complex signals, with the intention of eventually operating also in the microwave range. Potential applications are particularly relevant in the field of defence, where such technology could protect critical infrastructure from various types of interference and threats. For development, we will use wave physics, microcontrollers, sensors, electronics and algorithms for signal analysis and response generation.",
+  "images": []
+},
+
+{
+  "title": "Project p-UAP-ka",
+  "description": "<center><b>Project p-UAP-ka is an idea to create a portable system for observing the sky and detecting unidentified atmospheric phenomena.</b></center><br><br>Project p-UAP-ka is an idea to create a portable system for observing the sky and detecting unidentified atmospheric phenomena. We want to build a device resistant to environmental conditions, capable of operating continuously, monitoring the sky and collecting reliable data on appearing objects. The system is intended to use two synchronised 360° cameras, which will make it possible to determine the distance and size of the observed phenomenon, and all data will be stored in a database.<br><br>In the project we will use atmospheric physics and phenomena such as Rayleigh scattering to analyse object parameters — including colour, transparency, absorption and reflection of light. We will need image-processing tools, including filtering and object detection. The entire system will be based on a microcontroller, e.g. a Raspberry Pico, which will handle the system, data storage and the local database. This is a project that combines physics, electronics and image analysis into one coherent solution.",
+  "images": []
+}
+
+
+
+
+]

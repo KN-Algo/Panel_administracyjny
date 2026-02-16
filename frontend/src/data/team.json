@@ -1,0 +1,221 @@
+[{
+    "firstName": "Krystian",
+    "lastName": "Bury",
+    "position": "president",
+    "image": "../img/members/Krystian.webp"
+  },
+  
+  {
+    "firstName": "Adrian",
+    "lastName": "Goral",
+    "position": "vice_president",
+    "image": "../img/members/Adrian.webp"
+  },
+  {
+    "firstName": "Paulina",
+    "lastName": "Szulc",
+    "position": "secretary",
+    "image":"../img/members/Paulina.webp"
+  },
+  {
+    "firstName": "Jakub",
+    "lastName": "Barczyński",
+    "position": "board_member",
+    "image": "../img/members/Jakub.webp"
+  },
+  {
+    "firstName": "Mateusz",
+    "lastName": "Andrzejewski",
+    "position": "board_member",
+    "image": "../img/members/Mateusz.webp"
+  },
+  {
+    "firstName": "Wiktor",
+    "lastName": "Jankowski-Ostrowski",
+    "position": "board_member",
+    "image": "../img/members/Wiktor.webp"
+  },
+  
+{
+  "firstName":"Szymon",
+  "lastName":"Banasiak",
+  "image":"../img/members/Szymon.webp"
+},
+
+{
+  "firstName":"Paweł",
+  "lastName":"Bijak",
+  "image":"../img/members/Pawel.webp"
+},
+
+
+
+{
+  "firstName":"Artiom",
+  "lastName":"Borokhov",
+  "image":"../img/members/Artiom.webp"
+},
+
+{
+  "firstName":"Jakub",
+  "lastName":"Dobrzański",
+  "image":"../img/members/JakubD.webp"
+},
+{
+  "firstName":"Hanna",
+  "lastName":"Gąsior",
+  "image":"../img/members/Hania.webp"
+},
+
+{
+  "firstName":"Karol",
+  "lastName":"Hegenbarth",
+  "image":"../img/members/Karol.webp"
+},
+
+{
+  "firstName":"Viacheslav",
+  "lastName":"Ilchuk",
+  "image":"../img/members/Viacheslav.webp"
+},
+
+  {
+    "firstName": "Piotr",
+    "lastName": "Kosior",
+    "image": "../img/members/Piotr.webp"
+  },
+
+{
+  "firstName":"Jakub",
+  "lastName":"Kowalewski",
+  "image":"../img/members/JakubK2.webp"
+},
+
+{
+  "firstName":"Mateusz",
+  "lastName":"Kozik",
+  "image":"../img/members/MateuszK.webp"
+},
+
+{
+  "firstName":"Adam",
+  "lastName":"Kruszczyński",
+  "image":"../img/members/AdamK2.webp"
+},
+
+
+  {
+    "firstName": "Adam",
+    "lastName": "Krystek",
+    "image": "../img/members/AdamK.webp"
+  },
+  
+  
+  {
+    "firstName": "Adam",
+    "lastName": "Krzywicki",
+    "image": "../img/members/Adam.webp"
+  },
+  {
+    "firstName": "Bartek",
+    "lastName": "Kuk",
+    "image": "../img/members/Bartlomiej.webp"
+  },
+  {
+    "firstName": "Jakub",
+    "lastName": "Kulik",
+    "image": "../img/members/JakubK.webp"
+  },
+
+  {
+  "firstName":"Ida",
+  "lastName":"Langowska",
+  "image":"../img/members/Ida.webp"
+},
+
+{
+  "firstName":"Filip",
+  "lastName":"Mikłusiak",
+  "image":"../img/members/Filip.webp"
+},
+
+  {
+    "firstName": "Andrii",
+    "lastName": "Nikonchuk",
+    "image": "../img/members/Andrii.webp"
+  },
+
+  {
+    "firstName": "Szymon",
+    "lastName": "Nowicki",
+    "image": "../img/members/SzymonN.webp"
+  },
+
+  
+  {
+    "firstName": "Igor",
+    "lastName": "Olewicz",
+    "image": "../img/members/Igor.webp"
+  },
+
+   {
+    "firstName": "Kristina",
+    "lastName": "Pavlovska",
+    "image": "../img/members/Kristina.webp"
+  },
+
+   {
+    "firstName": "Oliwia",
+    "lastName": "Perkowska",
+    "image": "../img/members/Oliwia.webp"
+  },
+
+   {
+    "firstName": "Jakub",
+    "lastName": "Rolak",
+    "image": "../img/members/JakubR.webp"
+  },
+
+   {
+    "firstName": "Tobiasz",
+    "lastName": "Rolla",
+    "image": "../img/members/Tobiasz.webp"
+  },
+
+  {
+    "firstName": "Wiktor",
+    "lastName": "Siepka",
+    "image": "../img/members/WiktorS.webp"
+  },
+
+   {
+    "firstName": "Pavel",
+    "lastName": "Stankevich",
+    "image": "../img/members/Pavel.webp"
+  },
+
+   
+
+  {
+    "firstName": "Monika",
+    "lastName": "Świgost",
+    "image":"../img/members/Monika.webp"
+  },
+  
+   {
+    "firstName": "Aleksandra",
+    "lastName": "Zimna",
+    "image": "../img/members/Aleksandra.webp"
+  },
+
+{
+    "firstName": "Kacper",
+    "lastName": "Strugała",
+    "image": "../img/members/temp.webp"
+  },
+{
+  "firstName":"Mikołaj",
+  "lastName":"Bogusz",
+  "image":"../img/members/temp.webp"
+}
+]
