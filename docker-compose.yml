@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine  # Lekka i stabilna wersja Postgresa
+    container_name: bazaStronyKNAlgo
+    restart: always
+    environment:
+      POSTGRES_DB: stronaKNAlgo    # Nazwa bazy (musi pasować do application.properties)
+      POSTGRES_USER: admin         # Użytkownik
+      POSTGRES_PASSWORD: admin  # Hasło (musi pasować do application.properties)
+    ports:
+      - "5432:5432" # Mapowanie portów: Twój komputer -> Kontener
+
+volumes:
+  db_data:
