@@ -1,0 +1,10 @@
+[
+    {
+      
+      "title": "Magdalena",
+      "description": "<b>Magdalena – Modularna Automatyczna Głowicowa Drukarka Adaptacyjna z Logiką Ekspandowalną i Napędem Inercyjno-Adaptacyjnym</b> to koncepcja nowoczesnej, modułowej drukarki 3D pracującej w technologii FDM, której konstrukcja oparta jest na uniwersalnym module mechanicznym wykorzystywanym również w projekcie szachowym. Bazując na gotowej ramie z mechaniką typu CoreXY, urządzenie zostanie przystosowane do pracy z różnymi głowicami narzędziowymi, z możliwością automatycznej wymiany – zarówno w oparciu o autorski system, jak i gotowe rozwiązania, takie jak Bondtech.<br><br>Projekt zakłada pełne sterowanie online, z możliwością dalszego dopracowania technologii komunikacji i interfejsu użytkownika. Drukarka będzie zabudowana, z aktywną kontrolą temperatury wewnątrz komory roboczej, co zapewni stabilne warunki druku dla wymagających materiałów. Integralną częścią konstrukcji będzie również wydajny system filtracji powietrza, umożliwiający bezpieczną pracę w zamkniętych pomieszczeniach.<br><br>Wewnątrz komory znajdzie się kamera, zapewniająca podgląd procesu drukowania w czasie rzeczywistym. Dodatkowo kamera może zostać wykorzystana do analizy obrazu i wczesnego wykrywania błędów druku. System zostanie wyposażony w magnetyczny stół roboczy ułatwiający zdejmowanie wydruków, a także szereg czujników monitorujących m.in. zaplątanie filamentu, poprawność działania głównych komponentów czy postępujące zużycie elementów mechanicznych. W przyszłości urządzenie może być rozbudowane o funkcjonalność wycinarki laserowej, dzięki czemu stanie się wielofunkcyjnym narzędziem warsztatowym.",
+      "images": [
+        
+      ]
+    }
+]

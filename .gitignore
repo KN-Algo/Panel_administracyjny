@@ -1,0 +1,17 @@
+/vendor/
+.env
+composer.lock
+# Devenv
+.devenv*
+devenv.local.nix
+
+devenv.nix
+devenv.yaml
+devenv.lock
+.envrc
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

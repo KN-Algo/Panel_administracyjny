@@ -1,0 +1,56 @@
+[
+    {
+      "title": "Factories and Warehouses",
+      "description": "<center><b>A web application that presents a logical challenge based on connection optimization</b></center><br>The player faces a board with 7 factories located in fixed positions. The player's task is to place 4 warehouses in any locations and connect the factories to the warehouses in such a way that each factory has access to at least one warehouse. The goal of the game is to create the shortest connection network possible. The player who uses the least amount of road to connect factories to warehouses wins and reaches the top of the leaderboard. To add challenge, we have also created an algorithm that calculates the optimal solution, allowing for comparison of results with the theoretically best possible outcome.",
+      "images": [
+        "../img/projects/fabryki1.webp",
+        "../img/projects/fabryki2.webp",
+        "../img/projects/fabryki3.webp"
+      ]
+    },
+    {
+      "title": "Musical Controller",
+      "description": "<center><b>We created a script that allows controlling a computer using a MIDI keyboard, opening new possibilities for interaction with applications and games.</b></center>Our project is an innovative combination of music and technology! The script we created enables the use of a MIDI keyboard to control a computer. Thanks to this, each key on the instrument can be assigned to corresponding computer keyboard functions or mouse actions, providing entirely new possibilities for interaction with applications and games. The idea originated from a desire to experiment and have fun, and its implementation is based on the Python language. The script is easy to customize – each user can independently assign MIDI keys to computer functions according to their needs and ideas.",
+      "images": []
+    },
+    {
+      "title": "Student Research Circles Create Innovation – Our Participation in the Program",
+      "description": "<center><b>Our team participated in the government program \"Student Research Circles Create Innovation\", which supports young scientists in implementing innovative projects.</b></center>Our project aimed to develop an existing system in industry that enables the transport of objects without friction by adding integrated weight measurement. This improvement would allow for continuous monitoring of the mass of transported objects, which would increase efficiency and precision in industrial processes. Preparing the proposal required us to create a detailed plan and engage the entire team. The result of our work is a project that responds to real industrial needs and opens new challenges that we are passionate about pursuing.",
+      "images": null
+    },
+    {
+      "title": "SoundControl",
+      "description": "<center><b>SoundControl is a development of an earlier project, which was provisionally called Musical Controller.</b></center><br><center>Its main objective was to simulate the operation of a computer keyboard using MIDI signals. In the new version, we maintained the same goal, but changed the approach – instead of MIDI, we use sound as the control medium.</center><br>The system operates in real-time, collecting sound from the environment using a unidirectional microphone, which helps reduce background noise. The sound sample then passes through a low-pass filter, which additionally eliminates interference. A key element of signal processing is the <b>Fast Fourier Transform (FFT)</b>, which allows us to analyze the frequency spectrum of sound. This enables the identification of dominant tones – e.g., C4, E5, etc.<br><br>Each detected frequency is assigned to a specific key on the computer keyboard, enabling computer control through sounds. By abandoning MIDI, the system gained greater versatility – it is no longer limited to electronic devices and can even respond to the human voice as a form of interaction.",
+      "images": [
+        "../img/projects/soundcontrol1.webp",
+        "../img/projects/soundcontrol2.webp"
+      ]
+
+    },
+    {
+      "title": "SteamPhony",
+      "description": "<center><b>Steamphony is a combination of passion for technology, music, and creativity.</b></center><br>Steamphony is a platform computer game created from scratch by members of the Algo Research Club. Its distinguishing feature is an innovative control method – instead of a keyboard or gamepad, the player moves the character by playing a musical instrument! Sounds emitted by the instrument are analyzed in real-time and translated into specific in-game actions, thanks to integration with our proprietary Sound Control project.<br><br>The project had its premiere during the Open Days at Wrocław University of Science and Technology, where visitors could test the game by controlling the character using a keyboard (musical instrument). Their enthusiastic reactions confirmed our belief that this unusual form of interaction is worth developing.<br><br>Club members independently designed the gameplay mechanics, maps, sound processing system, and all the graphics, taking care of every detail – from the first pixel to the smallest sound. We are optimistic about the further development of this project.",
+      "images": [
+        "../img/projects/steamphony1.webp",
+        "../img/projects/steamphony2.webp",
+        "../img/projects/steamphony3.webp",
+        "../img/projects/steamphony4.webp",
+        "../img/projects/steamphony5.webp",
+        "../img/projects/steamphony6.webp",
+        "../img/events/dni3.webp"
+      ]
+    },
+    {
+      "title":"Checkmate 2.0",
+      "description":"<center><b>The Checkmate 2.0 project is a modern, interactive chess playing system,</b></center><br>which combines a traditional board with elements of automation and artificial intelligence. Pieces move automatically thanks to an electromagnet moving in <b>CoreXY kinematics</b><br><br><b>The system integrates a physical board</b> equipped with sensors with its own chess engine and backend, with which it communicates via the MQTT protocol. This enables both manual playing on the board and full synchronization of the game state with <b>a web application we designed.</b><br><br>The project develops competencies in the areas of mechatronics, programming, and distributed systems, showing how a classic game can be transferred into the world of modern technologies.<br><br>The first presentation of the project took place during the Lower Silesian Science Festival in Wrocław, where it enjoyed great interest from both children and adults. The improved version of Checkmate 2.0 will be available to see during upcoming events at Wrocław University of Science and Technology.",
+      "images":[
+        "../img/events/dawit7.webp",
+        "../img/projects/szachy1.webp",
+        "../img/events/dawit8.webp",
+        "../img/projects/szachy2.webp",
+        "../img/projects/szachy3.webp",
+        "../img/projects/szachy4.webp",
+        "../img/projects/szachy5.webp"
+      ]
+    }
+  ]

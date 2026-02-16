@@ -1,0 +1,38 @@
+[
+    {
+
+      "title": "Magdalena",
+      "description": "<b>Magdalena – Modularer Automatischer Druckkopf-Drucker mit Erweiterbarer Logik und Trägheits-Adaptivem Antrieb</b> ist ein Konzept eines modernen, modularen FDM-3D-Druckers, dessen Konstruktion auf einem universellen mechanischen Modul basiert, das auch im Schachprojekt verwendet wird. Aufbauend auf einem fertigen Rahmen mit CoreXY-Mechanik wird das Gerät für die Arbeit mit verschiedenen Werkzeugköpfen angepasst, mit automatischer Wechselmöglichkeit – sowohl auf Basis eines proprietären Systems als auch fertiger Lösungen wie Bondtech.<br><br>Das Projekt sieht eine vollständige Online-Steuerung vor, mit der Möglichkeit zur weiteren Verfeinerung der Kommunikationstechnologie und Benutzeroberfläche. Der Drucker wird geschlossen sein, mit aktiver Temperaturkontrolle innerhalb der Arbeitskammer, was stabile Druckbedingungen für anspruchsvolle Materialien gewährleistet. Ein integraler Bestandteil der Konstruktion wird auch ein effizientes Luftfiltersystem sein, das einen sicheren Betrieb in geschlossenen Räumen ermöglicht.<br><br>Innerhalb der Kammer wird eine Kamera platziert, die eine Echtzeitüberwachung des Druckvorgangs ermöglicht. Zusätzlich kann die Kamera zur Bildanalyse und Früherkennung von Druckfehlern verwendet werden. Das System wird mit einer magnetischen Druckplatte ausgestattet, die das Entfernen von Drucken erleichtert, sowie einer Reihe von Sensoren, die unter anderem Filamentverflechtungen, ordnungsgemäßen Betrieb der Hauptkomponenten und fortschreitenden Verschleiß mechanischer Elemente überwachen. In Zukunft kann das Gerät um Laserschneider-Funktionalität erweitert werden, wodurch es zu einem multifunktionalen Werkstattwerkzeug wird.",
+      "images": [
+
+      ]
+    },
+
+    {
+  "title": "Schachmatt 3.0",
+  "description": "<center><b>Projekt Schachmatt 3.0 ist eine völlig neue Generation unserer bekannten Konstruktion.</b></center><br><br>Projekt Schach 3.0 ist eine völlig neue Generation unserer bekannten Konstruktion. Wir planen eine vollständige Überarbeitung des Spielbretts, Verbesserungen an Elementen, die zuvor nicht vollständig ausgearbeitet werden konnten, sowie die Einführung einer vollständigen manuellen Spielunterstützung. Unser Ziel ist es, ein zuverlässigeres, ästhetischeres und wartungsfreundlicheres System zu schaffen, das zu unserem wichtigsten Flaggschiffprojekt wird.<br><br>Im Rahmen der Arbeiten entsteht ein neues 3D-Modell des Spielbretts, eine von Grund auf neu entwickelte Leiterplatte sowie neue elektrische Schaltpläne. Wir führen FreeRTOS auf dem Mikrocontroller ein und nutzen ein stabiles Kommunikationsprotokoll. Wir legen die endgültige Methode zur Erkennung der Spielerbewegungen fest, implementieren einen verbesserten Algorithmus zur Steuerung des Schlittens und überarbeiten die gesamte Elektroniksektion, um sie langlebiger und servicefreundlicher zu machen.<br><br>Das Projekt basiert auf Mikrocontrollern, 3D-Modellierung, Elektronikentwicklung und Algorithmen. Wir laden Elektroniker, Techniker und Programmierer ein, sich dem Team anzuschließen und eine neue Version eines unserer bekanntesten Projekte mitzugestalten.",
+  "images": []
+},
+
+{
+  "title": "Project Airlight",
+  "description": "<center><b>Project Airlight ist eine leichte und sehr eindrucksvolle Idee zur Übertragung von Ton über einen Lichtstrahl.</b></center><br><br>Project Airlight ist eine leichte und sehr eindrucksvolle Idee zur Übertragung von Ton über einen Lichtstrahl. Unser Ziel ist es, ein vollständig interaktives Modell zu entwickeln, das zeigt, dass optische Kommunikation einfach, zugänglich und überraschend effektiv sein kann. Wir planen den Bau zweier kleiner Module – eines Emitters und eines Empfängers – in 3D-gedruckten Gehäusen. Der Emitter nimmt ein Signal über eine 3,5-mm-Klinkenbuchse auf und wandelt es in einen modulierten Lichtstrahl um, während der Empfänger mit Hilfe eines Photovoltaik-Panels das empfangene Signal in Ton umwandelt und an einen Lautsprecher weitergibt. Im Projekt verwenden wir leitfähiges FDM-Filament und einfache Elektronik.<br><br>Airlight wird außerdem einen erweiterten edukativen Teil enthalten – wir möchten die physikalischen Phänomene detailliert beschreiben, den gesamten Signalverarbeitungsprozess erklären und das Funktionsschema vorstellen. Das Projekt verbindet einen beeindruckenden visuellen Effekt mit solidem akademischem Wert. Wir suchen hauptsächlich Personen mit Grundkenntnissen in Elektronik sowie solche, die bereit sind, Dokumentation und technische Beschreibungen zu erstellen.",
+  "images": []
+},
+
+{
+  "title": "Projekt AWC",
+  "description": "<center><b>Das Projekt AWC (Active Waves Cancellation) ist ein langfristiges und technisch anspruchsvolles Vorhaben.</b></center><br><br>Das Projekt AWC (Active Waves Cancellation) ist ein langfristiges und technisch anspruchsvolles Vorhaben, dessen Ziel es ist, Wellen aktiv zu erfassen, ihre Parameter zu analysieren und Gegenwellen zu erzeugen, um das eintreffende Signal zu neutralisieren. Langfristig möchten wir ein kleines, tragbares Gerät entwickeln, das auf Drohnen montiert werden kann. Die Arbeiten umfassen die Entwicklung der Elektronik, des Gehäuses und aller zentralen Komponenten.<br><br>Das Projekt wird in mehreren Etappen realisiert — zunächst versuchen wir, den ANC-Mechanismus aus geräuschunterdrückenden Kopfhörern nachzubilden, und gehen anschließend zu komplexeren Signalen über, mit dem Ziel, später auch im Mikrowellenbereich zu arbeiten. Die möglichen Anwendungen sind besonders im Verteidigungsbereich relevant, wo eine solche Technologie kritische Infrastruktur vor verschiedenartigen Störungen und Bedrohungen schützen könnte. Für die Umsetzung nutzen wir Wellenphysik, Mikrocontroller, Sensorik, Elektronik sowie Algorithmen zur Signalanalyse und Erzeugung der Gegenantwort.",
+  "images": []
+},
+
+{
+  "title": "Projekt p-UAP-ka",
+  "description": "<center><b>Projekt p-UAP-ka ist eine Idee zur Entwicklung eines tragbaren Systems zur Himmelsbeobachtung und Erfassung nicht identifizierter atmosphärischer Phänomene.</b></center><br><br>Projekt p-UAP-ka ist eine Idee zur Entwicklung eines tragbaren Systems zur Himmelsbeobachtung und Erfassung nicht identifizierter atmosphärischer Phänomene. Wir möchten ein Gerät bauen, das widerstandsfähig gegenüber äußeren Bedingungen ist, im Dauerbetrieb arbeiten kann, den Himmel überwacht und verlässliche Daten über auftauchende Objekte sammelt. Das System soll zwei synchronisierte 360°-Kameras nutzen, wodurch Entfernung und Größe des beobachteten Phänomens bestimmt werden können, während alle Daten in einer Datenbank gespeichert werden.<br><br>Im Projekt verwenden wir Atmosphärenphysik und Phänomene wie Rayleigh-Streuung, um Parameter der Objekte zu analysieren – unter anderem Farbe, Transparenz, Absorption und Reflexion des Lichts. Es werden Werkzeuge zur Bildverarbeitung benötigt, darunter Filterung und Objekterkennung. Das gesamte System basiert auf einem Mikrocontroller, z.B. einem Raspberry Pico, der das System, die Datenspeicherung und die lokale Datenbank steuert. Dieses Projekt vereint Physik, Elektronik und Bildanalyse in einer einzigen, stimmigen Lösung.",
+  "images": []
+}
+
+
+
+
+]

@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projects",
+    "events": "Events",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Algo Science Club",
+    "motto": "Beauty of theory, power of practice!",
+    "about_title": "Let's get to know each other!",
+    "about_p1": "Algo Science Club brings together students who want to broaden their horizons and are eager to develop in various fields of science.",
+    "about_p2": "Our goal is to create new solutions to contemporary problems using technology and mathematical algorithms.",
+    "about_p3": "Through cooperation and innovation, we change the reality around us.",
+    "news_title": "News",
+    "read_more": "Read more"
+  },
+  "team": {
+    "page_title": "Meet our team",
+    "page_subtitle": "People who create the Algo Science Club",
+    "supervisors_title": "Supervisors",
+    "president": "President",
+    "vice_president": "Vice President",
+    "secretary": "Secretary",
+    "board_member": "Board Member",
+    "supervisors_intro": "<strong>Dr. Jacek Jagodziński and Marta Lampasiak, M.Sc.</strong> are a well-coordinated duo that combines passion for algorithmics with teaching experience. They inspire students to explore the world of computer science and automation – from data structures, through dynamic systems, to algorithm design and analysis.",
+    "supervisors_intro_p2": "Their cooperation is more than just running the club. It also involves joint organization of events, creation of research projects and scientific papers. Together they build an environment where science meets practice, and ideas turn into real actions.",
+    "marta_bio": "Marta Lampasiak, M.Sc., graduated in 2022 with a degree in Automation and Robotics from the Faculty of Electronics. She started working at the Faculty of Computer Science and Telecommunications at Wrocław University of Technology in the same year.<br> She mainly teaches subjects related to programming and information technologies, however, her research interests include: modeling and identification of dynamic systems, control system design and simulation studies. She is currently working on her doctorate and conducts scientific research, the results of which she often presents at international scientific conferences. Working at WUST allows her to combine two aspects without which she cannot imagine her life: acquiring knowledge and passing it on to others. For Marta Lampasiak, M.Sc., didactic work, including the atmosphere in her classes, is as important as scientific work, which is evidenced by the title of laureate in the Quintus Program, in which students choose teachers who stand out for their commitment and teaching methods.",
+    "jacek_bio": "Jacek Jagodziński, PhD, graduated in Automation and Robotics from the Faculty of Electronics, obtained his doctorate degree at Wrocław University of Technology, and started working at the university in 2017. He teaches subjects related to broadly understood industrial automation, IoT, signal processing and many others. It is also worth mentioning that his doctoral thesis concerned issues related to robotics. In his scientific work, he focuses mainly on creating system models (not only those related to automation), their identification and generally understood estimation. Jacek Jagodziński, PhD, is the supervisor of the Laboratory of Automation Devices and Systems, and as for his didactic work, the best proof of his commitment and ingenuity in coming up with new project topics is the graduates, both of engineering and master's studies, whom he had the pleasure of being a supervisor. Additionally, it should be mentioned that he has extensive experience in working on research projects.",
+    "members_title": "Club members"
+  },
+  "projects": {
+    "page_title": "Our projects",
+    "upcoming_title": "Upcoming projects"
+  },
+  "events": {
+    "page_title": "Events",
+    "read_more": "Read more"
+  },
+  "contact": {
+    "page_title": "Contact us!",
+    "page_subtitle": "We are open to new collaborations.",
+    "form_name": "Full Name",
+    "form_email": "Email Address",
+    "form_subject": "Subject",
+    "form_message": "Message",
+    "form_submit": "Send message",
+    "alert_wait": "Please wait...",
+    "alert_sending": "Sending message...",
+    "alert_robot_title": "Wait!",
+    "alert_robot_text": "No robots allowed!",
+    "alert_robot_footer": "reCAPTCHA test failed."
+  },
+  "common": {
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "footer": {
+    "follow_us": "Stay updated – follow us:",
+    "copyright": "Algo Science Club",
+    "tagline": "Passion for algorithms | Made with ❤️"
+  }
+}
