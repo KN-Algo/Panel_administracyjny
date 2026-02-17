@@ -1,40 +1,44 @@
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect, useMemo, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import eventsData from '@/data/events_pl.json';
-
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  thumbnail: string;
-  description: string;
-  images: string[];
-}
+import eventsDataPl from '@/data/events_pl.json';
+import eventsDataEn from '@/data/events_en.json';
+import eventsDataDe from '@/data/events_de.json';
+import type { Event } from '@/types';
 
 export default function EventsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isModalAnimating, setIsModalAnimating] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [isGalleryAnimating, setIsGalleryAnimating] = useState(false);
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
   const [currentGallerySlide, setCurrentGallerySlide] = useState(0);
+  const hasOpenedFromState = useRef(false);
 
-  const events = eventsData as Event[];
+  const events = useMemo(() => {
+    const lang = i18n.language;
+    if (lang === 'en') return eventsDataEn as Event[];
+    if (lang === 'de') return eventsDataDe as Event[];
+    return eventsDataPl as Event[];
+  }, [i18n.language]);
 
-  // Auto-open event if eventId is passed via state
+  // Auto-open event if eventId is passed via state (only once)
   useEffect(() => {
     const state = location.state as { eventId?: string } | null;
-    if (state?.eventId) {
+    if (state?.eventId && !hasOpenedFromState.current) {
       const event = events.find(e => e.id === state.eventId);
       if (event) {
         openEventModal(event);
+        hasOpenedFromState.current = true;
+        // Clear state to prevent reopening
+        navigate(location.pathname, { replace: true, state: {} });
       }
     }
-  }, [location.state, events]);
+  }, [location.state, events, location.pathname, navigate]);
 
   const openEventModal = (event: Event) => {
     setSelectedEvent(event);

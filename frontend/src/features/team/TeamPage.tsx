@@ -2,13 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import teamData from '@/data/team.json';
-
-interface TeamMember {
-  firstName: string;
-  lastName: string;
-  position?: string;
-  image: string;
-}
+import type { TeamMember } from '@/types';
 
 export default function TeamPage() {
   const { t } = useTranslation();

@@ -1,21 +1,23 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import newsData from '@/data/news_pl.json';
-
-interface NewsItem {
-  type: string;
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-}
+import newsDataPl from '@/data/news_pl.json';
+import newsDataEn from '@/data/news_en.json';
+import newsDataDe from '@/data/news_de.json';
+import type { NewsItem } from '@/types';
 
 export default function NewsSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  const newsData = useMemo(() => {
+    const lang = i18n.language;
+    if (lang === 'en') return newsDataEn;
+    if (lang === 'de') return newsDataDe;
+    return newsDataPl;
+  }, [i18n.language]);
   
   const allNews = [...newsData].reverse() as NewsItem[];
   const itemsPerSlide = 3;
