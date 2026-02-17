@@ -1,8 +1,9 @@
-package stronaKNAlgo.module;
+package algo.module;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,20 +29,17 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
     private String role;
+
+    // getUsername zostało "przejęte" przez lombok'a i elegancko działa
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
         return Collections.singletonList(authority);
-    }
-
-    @Override
-    public String getUsername() {
-        return "";
     }
 
     @Override
