@@ -1,17 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import projectsData from '@/data/projects.json';
-import mipProjectsData from '@/data/mip_projects.json';
-
-interface Project {
-  title: string;
-  description: string;
-  images: string[] | null;
-}
+import projectsDataPl from '@/data/projects_pl.json';
+import projectsDataEn from '@/data/projects_en.json';
+import projectsDataDe from '@/data/projects_de.json';
+import mipProjectsDataPl from '@/data/mip_projects_pl.json';
+import mipProjectsDataEn from '@/data/mip_projects_en.json';
+import mipProjectsDataDe from '@/data/mip_projects_de.json';
+import type { Project } from '@/types';
 
 export default function ProjectsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [expandedMipProject, setExpandedMipProject] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState<{ [key: string]: number }>({});
@@ -21,8 +20,19 @@ export default function ProjectsPage() {
 
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  const projects = projectsData as Project[];
-  const mipProjects = mipProjectsData as Project[];
+  const projects = useMemo(() => {
+    const lang = i18n.language;
+    if (lang === 'en') return projectsDataEn as Project[];
+    if (lang === 'de') return projectsDataDe as Project[];
+    return projectsDataPl as Project[];
+  }, [i18n.language]);
+
+  const mipProjects = useMemo(() => {
+    const lang = i18n.language;
+    if (lang === 'en') return mipProjectsDataEn as Project[];
+    if (lang === 'de') return mipProjectsDataDe as Project[];
+    return mipProjectsDataPl as Project[];
+  }, [i18n.language]);
 
   const toggleProject = (index: number) => {
     // Jeśli zamykamy projekt
