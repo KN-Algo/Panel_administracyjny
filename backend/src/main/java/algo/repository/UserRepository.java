@@ -1,8 +1,8 @@
-package stronaKNAlgo.repository;
+package algo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import stronaKNAlgo.module.User;
+import algo.module.User;
 import java.util.Optional;
 
 @Repository

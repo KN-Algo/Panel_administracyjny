@@ -1,4 +1,4 @@
-package stronaKNAlgo.dto;
+package algo.dto;
 
 import lombok.Data;
 

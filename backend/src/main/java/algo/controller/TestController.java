@@ -1,4 +1,4 @@
-package stronaKNAlgo.controller;
+package algo.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +17,9 @@ public class TestController {
     public String home() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        return "Witaj! \n" +
-                "Twój login: " + auth.getName() + "\n" +
-                "Twoje uprawnienia (role): " + auth.getAuthorities();
+        return "Welcome! \n" +
+                "Your login: " + auth.getName() + "\n" +
+                "Your role: " + auth.getAuthorities();
     }
 
     @GetMapping("/")
