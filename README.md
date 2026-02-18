@@ -28,7 +28,25 @@ Projekt tworzony jest w celu usprawnienia procesu dodawania i edytowania wpisów
 
 ## 💻 Jak uruchomić (Getting Started)
 ### Wymagania wstępne
+
+- **Java 23**
+- **Node**
+- **Docker**
+- **Python** - do pobrania i zainstalowania `pre-commit`
+
 ### Instalacja
+
+#### pre-commit
+
+Aby uruchomić i skorzystać z `pre-commit` należy:
+
+1. Zainstalować paczkę pre-commit: `pip install pre-commit`
+2. W root folderu ją uruchomić: `pre-commit install`
+3. Jeśli się wcześniej tego nie używało, warto wykonać: `pre-commit run --all-files`
+
+> [!TIP]
+> Pierwsze uruchomienie `pre-commit` może trochę potrwać ze względu na potrzebę pobrania wszystki zależności.
+
 ### Uruchomienie
 
 ## 📊 Przykładowe wyniki
