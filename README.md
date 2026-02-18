@@ -40,8 +40,8 @@ Projekt realizowany przez członków **KN Algo** przy Politechnice Wrocławskiej
   * **Adrian Goral (https://github.com/xEdziu)**
   * **Krystian Bury (https://github.com/KBruy)**
   * **Adam Kruszczyński (https://github.com/AdamKruszczynski)**
-  * **Paweł Bijak (https://github.com/bijakpawel)** 
-  
+  * **Paweł Bijak (https://github.com/bijakpawel)**
+
 
 -----
 
