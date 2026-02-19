@@ -70,12 +70,12 @@ export default function ContactPage() {
       <section 
         className="py-20 text-center text-white relative overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #0b0c2a 0%, #1a1b3a 50%, #000424 100%)',
+          background: 'linear-gradient(135deg, var(--color-brand-darkest) 0%, var(--color-brand-medium) 50%, var(--color-brand-dark) 100%)',
         }}
       >
         {/* Decorative circles */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-[#f8e9e5]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#f8e9e5]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-brand-light/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-brand-light/10 rounded-full blur-3xl"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
@@ -107,7 +107,7 @@ export default function ContactPage() {
                   <div className="relative">
                     <User 
                       className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
-                        focusedField === 'name' ? 'text-[#000424]' : 'text-gray-400'
+                        focusedField === 'name' ? 'text-brand-dark' : 'text-gray-400'
                       }`} 
                     />
                     <input
@@ -120,7 +120,7 @@ export default function ContactPage() {
                       onBlur={() => setFocusedField(null)}
                       required
                       maxLength={100}
-                      className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#000424] focus:border-transparent transition-all"
+                      className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-dark focus:border-transparent transition-all"
                       placeholder={t('contact.placeholder_name')}
                     />
                   </div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                   <div className="relative">
                     <Mail 
                       className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
-                        focusedField === 'email' ? 'text-[#000424]' : 'text-gray-400'
+                        focusedField === 'email' ? 'text-brand-dark' : 'text-gray-400'
                       }`} 
                     />
                     <input
@@ -147,7 +147,7 @@ export default function ContactPage() {
                       onBlur={() => setFocusedField(null)}
                       required
                       maxLength={100}
-                      className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#000424] focus:border-transparent transition-all"
+                      className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-dark focus:border-transparent transition-all"
                       placeholder={t('contact.placeholder_email')}
                     />
                   </div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                   <div className="relative">
                     <MessageSquare 
                       className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
-                        focusedField === 'subject' ? 'text-[#000424]' : 'text-gray-400'
+                        focusedField === 'subject' ? 'text-brand-dark' : 'text-gray-400'
                       }`} 
                     />
                     <input
@@ -174,7 +174,7 @@ export default function ContactPage() {
                       onBlur={() => setFocusedField(null)}
                       required
                       maxLength={120}
-                      className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#000424] focus:border-transparent transition-all"
+                      className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-dark focus:border-transparent transition-all"
                       placeholder={t('contact.placeholder_subject')}
                     />
                   </div>
@@ -195,7 +195,7 @@ export default function ContactPage() {
                     required
                     maxLength={2000}
                     rows={6}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#000424] focus:border-transparent resize-none transition-all"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-dark focus:border-transparent resize-none transition-all"
                     placeholder={t('contact.placeholder_message')}
                   />
                 </div>
@@ -204,7 +204,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#000424] to-[#1a1b3a] text-white py-4 px-6 rounded-xl font-semibold transition-all hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2 group"
+                  className="w-full bg-gradient-to-r from-brand-dark to-brand-medium text-white py-4 px-6 rounded-xl font-semibold transition-all hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2 group"
                 >
                   {isSubmitting ? (
                     <>
@@ -229,14 +229,14 @@ export default function ContactPage() {
                 {/* Email */}
                 <div className="mb-6">
                   <div className="flex items-center gap-3 text-gray-700 mb-2">
-                    <div className="bg-[#f8e9e5] p-2 rounded-lg">
-                      <MailIcon className="w-5 h-5 text-[#000424]" />
+                    <div className="bg-brand-light p-2 rounded-lg">
+                      <MailIcon className="w-5 h-5 text-brand-dark" />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-500">{t('contact.info_email_label')}</p>
                       <a 
                         href="mailto:algo.pwr@gmail.com" 
-                        className="text-[#000424] hover:underline font-medium"
+                        className="text-brand-dark hover:underline font-medium"
                       >
                         algo.pwr@gmail.com
                       </a>
@@ -254,7 +254,7 @@ export default function ContactPage() {
                       href="https://www.facebook.com/kolo.naukowe.algo"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#f8e9e5] p-3 rounded-xl hover:bg-[#000424] hover:text-white transition-all hover:scale-110 group"
+                      className="bg-brand-light p-3 rounded-xl hover:bg-brand-dark hover:text-white transition-all hover:scale-110 group"
                     >
                       <Facebook className="w-5 h-5" />
                     </a>
@@ -262,7 +262,7 @@ export default function ContactPage() {
                       href="https://www.instagram.com/kn_algo/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#f8e9e5] p-3 rounded-xl hover:bg-[#000424] hover:text-white transition-all hover:scale-110 group"
+                      className="bg-brand-light p-3 rounded-xl hover:bg-brand-dark hover:text-white transition-all hover:scale-110 group"
                     >
                       <Instagram className="w-5 h-5" />
                     </a>
@@ -270,7 +270,7 @@ export default function ContactPage() {
                       href="https://github.com/KN-Algo"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#f8e9e5] p-3 rounded-xl hover:bg-[#000424] hover:text-white transition-all hover:scale-110 group"
+                      className="bg-brand-light p-3 rounded-xl hover:bg-brand-dark hover:text-white transition-all hover:scale-110 group"
                     >
                       <Github className="w-5 h-5" />
                     </a>
@@ -278,7 +278,7 @@ export default function ContactPage() {
                       href="https://linkedin.com/company/koło-naukowe-algo"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#f8e9e5] p-3 rounded-xl hover:bg-[#000424] hover:text-white transition-all hover:scale-110 group"
+                      className="bg-brand-light p-3 rounded-xl hover:bg-brand-dark hover:text-white transition-all hover:scale-110 group"
                     >
                       <Linkedin className="w-5 h-5" />
                     </a>

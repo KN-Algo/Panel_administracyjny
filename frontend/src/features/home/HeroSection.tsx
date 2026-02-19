@@ -1,8 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import type { Container, Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { useTranslation } from 'react-i18next';
+
+// Helper function to get CSS variable value
+const getThemeColor = (variableName: string): string => {
+  if (typeof window === 'undefined') return '#f8e9e5'; // fallback for SSR
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(variableName)
+    .trim() || '#f8e9e5';
+};
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -16,7 +24,7 @@ export default function HeroSection() {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
+  const particlesLoaded = async (): Promise<void> => {
     // Particles loaded successfully
   };
 
@@ -25,10 +33,10 @@ export default function HeroSection() {
       fpsLimit: 120,
       particles: {
         color: {
-          value: "#f8e9e5",
+          value: getThemeColor('--color-brand-light'),
         },
         links: {
-          color: "#f8e9e5",
+          color: getThemeColor('--color-brand-light'),
           distance: 120,
           enable: true,
           opacity: 0.4,
@@ -63,7 +71,7 @@ export default function HeroSection() {
   );
 
   return (
-    <section className="relative w-full h-[calc(100vh-120px)] bg-[#000424] text-[#f8e9e5] flex items-center justify-center overflow-hidden z-0">
+    <section className="relative w-full h-[calc(100vh-120px)] bg-brand-dark text-brand-light flex items-center justify-center overflow-hidden z-0">
       {init && (
         <Particles
           id="tsparticles"
@@ -73,10 +81,10 @@ export default function HeroSection() {
         />
       )}
       <div className="container mx-auto px-4 relative z-10 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-[#f8e9e5]">
+        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-brand-light">
           {t('home.title')}
         </h1>
-        <p className="text-xl md:text-2xl text-[#f8e9e5]">
+        <p className="text-xl md:text-2xl text-brand-light">
           {t('home.motto')}
         </p>
       </div>
