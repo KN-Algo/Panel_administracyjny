@@ -169,7 +169,7 @@ export default function TeamPage() {
                       <img
                         src={member.image.replace('../img/', '/img/')}
                         alt={`${member.firstName} ${member.lastName}`}
-                        className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
+                        className="w-67.5 h-87.5 object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
                       />
                     </div>
                     <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
