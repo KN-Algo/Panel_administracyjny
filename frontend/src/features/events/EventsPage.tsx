@@ -138,7 +138,7 @@ export default function EventsPage() {
               </h2>
               <button
                 onClick={closeEventModal}
-                className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors flex-shrink-0"
+                className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors shrink-0"
               >
                 <X className="w-6 h-6" />
               </button>
