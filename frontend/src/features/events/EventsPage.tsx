@@ -178,7 +178,7 @@ export default function EventsPage() {
 
       {/* Full Image Gallery Modal */}
       {galleryOpen && (
-        <div className={`fixed inset-0 bg-black/95 z-[60] flex items-center justify-center transition-opacity duration-300 ${
+        <div className={`fixed inset-0 bg-black/95 z-60 flex items-center justify-center transition-opacity duration-300 ${
           isGalleryAnimating ? 'opacity-100' : 'opacity-0'
         }`}>
           {/* Close button */}
