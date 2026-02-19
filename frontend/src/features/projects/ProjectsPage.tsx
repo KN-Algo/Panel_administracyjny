@@ -173,7 +173,7 @@ export default function ProjectsPage() {
                       <img
                         src={project.images![0].replace('../img/', '/img/')}
                         alt={project.title}
-                        className="max-w-full max-h-[600px] rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+                        className="max-w-full max-h-150 rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
                         onClick={() => openModal(project.images!, 0)}
                       />
                     </div>
