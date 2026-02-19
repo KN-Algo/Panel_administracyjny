@@ -155,7 +155,7 @@ export default function ProjectsPage() {
 
         <div
           className={`overflow-hidden transition-all duration-300 ${
-            isExpanded ? 'max-h-[4000px] mt-4' : 'max-h-0'
+            isExpanded ? 'max-h-1000 mt-4' : 'max-h-0'
           }`}
         >
           {isExpanded && (
