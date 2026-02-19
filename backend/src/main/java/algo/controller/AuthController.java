@@ -1,42 +1,46 @@
 package algo.controller;
 
 import algo.dto.UserSummary;
-import algo.module.User;
+import algo.module.AppUser;
+import algo.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import algo.dto.RegisterRequest;
-import algo.services.UserService;
 
+/** Controller handling authentication and user identity endpoints. */
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserService userService;
+  /** Service handling user-related operations. */
+  private final UserService userService;
 
-    // Na razie nie ma /login, ponieważ nie wiem jak to zrobić. Gemini proponuje mi jakiś kod ale go nie ogarniam,
-    // natomiast za niedługo posatram się znaleźć sposób jak to porządnie zrobić. Zostawiłem domyślną stone logowania
-    // aby sprawdzić czy kod i baza działa.
+  /**
+   * Retrieves the currently authenticated user's summary.
+   *
+   * @param appUser the authenticated user from the security context
+   * @return a response containing the user summary
+   */
+  @GetMapping("/me")
+  public ResponseEntity<UserSummary> getCurrentUser(
+      @AuthenticationPrincipal final AppUser appUser) {
 
-    @GetMapping("/me")
-    public ResponseEntity<UserSummary> getCurrentUser(@AuthenticationPrincipal User user) {
+    final ResponseEntity<UserSummary> response;
 
-        if (user == null) {
-            return ResponseEntity.status(401).build();
-        }
+    if (appUser == null) {
+      response = ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    } else {
+      final String email = appUser.getEmail();
+      final String name = appUser.getUsername();
+      final String role = appUser.getRole();
 
-        UserSummary userSummary = new UserSummary(
-                user.getEmail(),
-                user.getUsername(),
-                user.getRole()
-        );
-
-        return ResponseEntity.ok(userSummary);
+      final UserSummary userSummary = new UserSummary(email, name, role);
+      response = ResponseEntity.ok(userSummary);
     }
 
+    return response;
+  }
 }
