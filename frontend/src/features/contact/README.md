@@ -37,9 +37,12 @@ const recaptchaToken = await grecaptcha.execute("TWÓJ_SITE_KEY", {
 **Linia ~21-25:** Weryfikacja tokenu
 
 ```typescript
+const formDataRecaptcha = new FormData();
+formDataRecaptcha.append("token", recaptchaToken);
+
 const recaptchaResponse = await fetch("/src/api/recaptcha.php", {
   method: "POST",
-  body: new FormData().append("token", recaptchaToken),
+  body: formDataRecaptcha,
 });
 const recaptchaData = await recaptchaResponse.json();
 

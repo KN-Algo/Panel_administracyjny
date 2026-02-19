@@ -66,7 +66,7 @@
   {
     "id":"nowi",
     "title":"Wir begrüßen neue Mitglieder des SK Algo! ",
-    "date":"12.11.2025",
+    "date":"2025-11-12",
     "thumbnail":"../img/events/_grupowe_1.webp",
     "description":"💙 <b>Wir begrüßen neue Mitglieder des SK Algo!</b> 💙<br>Am Mittwoch, den 12.11.2025, fand unser besonderes Treffen für neue Personen statt, bei dem wir <b>sie offiziell in die Reihen von Algo aufgenommen haben</b> 🤝✨<br><br>Die Rekrutierung haben sogar 19 Personen erfolgreich bestanden, was… die Anzahl der Mitglieder unseres Studentischen Vereins verdoppelt hat! 😍<br><br><b>Wir freuen uns, dass ihr bei uns seid – vor uns liegen zahlreiche Ideen, Projekte und gemeinsame Herausforderungen </b>💻⚡♟️<br><br>Dank euch werden wir noch intensiver, kreativer und mit noch größerer Leidenschaft arbeiten können! 🚀<br><br><center><b><u>Willkommen an Bord von Algo – jetzt geht es erst richtig los</u></b> 🔥</center>",
     "images":[
@@ -78,7 +78,7 @@
   {
     "id":"NOT",
     "title":"Teilnahme an den Aktivitätstagen bei NOT",
-    "date":"10.11.2025",
+    "date":"2025-11-10",
     "thumbnail":"../img/events/NOT1.webp",
     "description":"🎓 <b>Algo bei den Aktivitätstagen bei NOT!</b> 🎓<br>Wir hatten das Vergnügen, an den Aktivitätstagen teilzunehmen, die von der <b>Obersten Technischen Organisation (NOT)</b> organisiert wurden, wo wir Oberschülern die Aktivitäten unseres Studentischen Vereins präsentierten 💼✨<br><br>Großes Interesse weckte unser neuestes Projekt – Schach-Matt 2.0, ein intelligentes, interaktives Schachbrett, das Elektronik, Programmierung und Algorithmik verbindet. Wir berichteten über den Prozess seiner Entwicklung, die verwendete Technologie sowie darüber, wie die Zusammenarbeit zwischen den Teammitgliedern aussieht 🤖♟️<br><br>Wir freuen uns, dass wir jüngeren Enthusiasten die Welt der Algorithmen und neuen Technologien näherbringen konnten und zeigen durften, dass das Studium an der Technischen Universität Breslau nicht nur Lernen bedeutet, sondern auch die Möglichkeit bietet, ambitionierte Projekte zu realisieren und in einem inspirierenden akademischen Umfeld zusammenzuarbeiten 💙<br><br><b>Wir danken den Organisatoren für die Einladung und die Möglichkeit, unsere Arbeit zu präsentieren!</b> 🙌<br><br><br>🐍 Die Schlange auf den Fotos stammt von skn_zywienia_zwierzat",
     "images":[
@@ -109,7 +109,7 @@
   {
     "id":"Bielik",
     "title": "Jakub Dobrzański zertifizierter Trainer der Bielik.AI-Staffel",
-    "date":"02.11.2025",
+    "date":"2025-11-02",
     "thumbnail":"../img/events/bielik.webp",
     "description":" 🔥 Große Neuigkeiten von Algo! 🔥<br>Mit großem Stolz verkünden wir, dass <b>Jakub Dobrzański</b> – Mitglied unseres Studentischen Vereins Algo – zum <b>zertifizierten Trainer der Bielik.AI-Staffel</b> geworden ist! 🦅💥<br><br>💬 Bielik.AI ist ein modernes, polnisches Sprachmodell, das von der SpeakLeash-Stiftung und Cyfronet AGH entwickelt wird – offen, sicher und für die polnische Sprache konzipiert 🇵🇱🤖<br><br>👏 <b>Herzlichen Glückwunsch</b>, Kuba! Wir sind außerordentlich stolz auf deine Leistung – dies ist ein großer Schritt nach vorne nicht nur für dich, sondern für unser gesamtes Team 💪<br><br>Und vielleicht schon bald… 👀<br>Workshops mit Bielik.AI, geleitet von unserem eigenen Trainer? 🔥<br><br><b>Bleibt dran – es wird spannend!</b> 🚀",
     "images": [
@@ -120,7 +120,7 @@
   {
     "id":"DaWiT2025",
     "title":"ALGO erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!",
-    "date":"24.10.2025",
+    "date":"2025-10-24",
     "thumbnail":"../img/events/dawit1.webp",
     "description":"🎉<b>🥇 SK Algo erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!</b><br>Am Dienstag, dem 21. Oktober, hatten wir die Gelegenheit, euch <b>Schach-Matt 2.0</b> zu präsentieren ♟️ Dieses Projekt entstand dank der enormen Arbeit und dem Engagement vieler Personen, die in unserem Verein tätig sind und trotz des kleinen Teams entschlossen blieben 💪<br><br>Wir freuen uns, dass ihr diesen Moment mit uns geteilt habt – gemeinsam haben wir beobachtet, wie unser autonom arbeitendes Schachspiel an Geschwindigkeit gewinnt ☄️<br><br>Wir hoffen auf weitere Erfolge im nächsten Jahr 🤞<br>Denn wie man so sagt – aller guten Dinge sind drei! 🏆🎉<br><br><b>Wir danken allen, die unseren Stand besucht und unsere Arbeit gewürdigt haben! 🙏</b>",
     "images": [
@@ -161,7 +161,7 @@
   {
     "id":"DFN",
     "title":"SK Algo beim Niederschlesischen Wissenschaftsfestival",
-    "date":"01.09.2025",
+    "date":"2025-09-01",
     "thumbnail":"../img/events/dfn5.webp",
     "description":"🎓 <b>SK Algo beim Niederschlesischen Wissenschaftsfestival</b><br>Am 18. September hatten wir das Vergnügen, am Niederschlesischen Wissenschaftsfestival teilzunehmen, wo wir unser neuestes Projekt - Schach-Matt 2.0 präsentierten ♟️<br>Dies ist eine einzigartige Verbindung des klassischen Schachspiels mit moderner Technologie. Unser physisches Schachbrett wurde mit einem CoreXY-Mechanismus und einem Elektromagnetsystem ausgestattet, dank derer sich die Figuren automatisch bewegen können. Darüber hinaus kann das Spiel auf zwei Arten gespielt werden:<br>♟️ über eine Webanwendung<br>♟️ oder traditionell - durch manuelles Bewegen der Figuren, die dank Magnetsensoren sofort erkannt werden.<br><b>Schach-Matt 2.0</b> ist kein gewöhnliches Brett, sondern ein wahrhaft interaktives System, das Elemente der Informatik, Automatisierung, Mechatronik und Algorithmik vereint 🤖<br>Während der Workshops konnte jeder gegen unsere eigene Schach-Engine antreten. Es gab Emotionen, Freude und viel gute Unterhaltung - sowohl Kinder als auch Erwachsene nahmen die Herausforderung gerne an💪<br>Die besten Spieler wurden mit Gadgets unseres Vereins belohnt, und wir hatten große Zufriedenheit, zu sehen, wie viel Freude unser Projekt bereitet hat.<br>🙏 Wir danken herzlich allen, die zu uns gekommen sind. Wir freuen uns, dass wir das Ergebnis unserer Arbeit mit euch teilen konnten - gerade solche Momente motivieren uns zum weiteren Handeln.<br>⚡ <b>Und das ist erst der Anfang! Bereits im Oktober wird die verbesserte Version von Schach-Matt 2.0 bei folgenden Veranstaltungen zu sehen sein:</b><br>📍 DaWiT - 21.10 (Gebäude C1, Technische Universität Breslau)<br>📍 DAS - 29.10 (Gebäude C3, Technische Universität Breslau)<br><b>Wir sehen uns beim Schachbrett! ♟️✨</b>",
     "images":[

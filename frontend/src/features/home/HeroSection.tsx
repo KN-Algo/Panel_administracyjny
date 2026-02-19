@@ -17,7 +17,7 @@ export default function HeroSection() {
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
+    // Particles loaded successfully
   };
 
   const options = useMemo(
