@@ -88,14 +88,14 @@ export default function NewsSection() {
           >
             {displayedNews.map((news, index) => (
               <div key={currentSlide * itemsPerSlide + index} className="flex-[0_1_360px]">
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-[580px]">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-145">
                   <img
                     src={news.image}
                     alt={news.title}
-                    className="w-full h-64 object-contain bg-[#fcfbfb] flex-shrink-0"
+                    className="w-full h-64 object-contain bg-[#fcfbfb] shrink-0"
                   />
-                  <div className="p-6 bg-[#f3f0f0] flex-grow flex flex-col justify-between">
-                    <div className="flex-grow">
+                  <div className="p-6 bg-[#f3f0f0] grow flex flex-col justify-between">
+                    <div className="grow">
                       <h3 className="font-semibold text-xl mb-2 text-black line-clamp-2">
                         {news.title}
                       </h3>
