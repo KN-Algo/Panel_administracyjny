@@ -180,7 +180,7 @@ export default function ProjectsPage() {
                   ) : (
                     // Multiple images - carousel
                     <div className="relative">
-                      <div className="flex justify-center items-center h-[500px] bg-gray-50 rounded-2xl">
+                      <div className="flex justify-center items-center h-125 bg-gray-50 rounded-2xl">
                         <img
                           src={project.images![currentProjectSlide].replace('../img/', '/img/')}
                           alt={`${project.title} - ${currentProjectSlide + 1}`}
