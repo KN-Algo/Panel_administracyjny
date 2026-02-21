@@ -1,6 +1,5 @@
 package algo.services;
 
-import algo.dto.RegisterRequest;
 import algo.module.AppUser;
 import algo.repository.UserRepository;
 import java.util.regex.Pattern;
@@ -16,24 +15,21 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
-  /** Regex part 1 - letters and digits. */
-  private static final String REGEX1 = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)";
+    /** Regex part 1 - local and @. */
+    private static final String MAIL_PT1 = "^[A-Za-z0-9+_.-]+@";
 
-  /** Regex part 2 - special chars and length. */
-  private static final String REGEX2 = "(?=.*[^\\da-zA-Z]).{8,64}$";
+    /** Regex part 2 - domain body. */
+    private static final String MAIL_PT2 = "[A-Za-z0-9.-]+";
 
-  /** Compiled regex. */
-  private static final Pattern PATTERN = Pattern.compile(REGEX1 + REGEX2);
+    /** Regex part 3 - domain extension. */
+    private static final String MAIL_PT3 = "\\.[A-Za-z]{2,64}$";
 
-  /** Password error message. */
-  private static final String PWD_ERR =
-      "Password must be 8-64 chars with lower, upper, digit, special.";
+    /** Compiled email regex. */
+    private static final Pattern MAIL_PAT =
+            Pattern.compile(MAIL_PT1 + MAIL_PT2 + MAIL_PT3);
 
-  /** User repository. */
+    /** User repository. */
   private final UserRepository userRepository;
-
-  /** Password encoder. */
-  private final PasswordEncoder passwordEncoder;
 
   @Override
   public final UserDetails loadUserByUsername(final String username)
@@ -43,47 +39,17 @@ public class UserService implements UserDetailsService {
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
 
-  /**
-   * Registers a new user.
-   *
-   * @param req user details
-   * @throws IllegalStateException if taken
-   * @throws IllegalArgumentException if weak pwd
-   */
-  public final void registerUser(final RegisterRequest req) {
-
-    final String rawPwd = req.getPassword();
-    validatePassword(rawPwd);
-
-    final String email = req.getEmail();
-    final boolean emailExists = userRepository.findByEmail(email).isPresent();
-    if (emailExists) {
-      throw new IllegalStateException("Email taken");
+    /**
+     * Validates email format.
+     *
+     * @param email raw email string
+     */
+    private void validateEmail(final String email) {
+        if (email == null || !MAIL_PAT.matcher(email).matches()) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
     }
 
-    final String name = req.getUsername();
-    final boolean nameExists = userRepository.findByUsername(name).isPresent();
-    if (nameExists) {
-      throw new IllegalStateException("Username taken");
-    }
 
-    final AppUser user = new AppUser();
-    user.setUsername(name != null ? name : email);
-    user.setEmail(email);
-    user.setPassword(passwordEncoder.encode(rawPwd));
-    user.setRole("ROLE_USER");
 
-    userRepository.save(user);
-  }
-
-  /**
-   * Validates password strength.
-   *
-   * @param pwd raw password
-   */
-  private void validatePassword(final String pwd) {
-    if (pwd == null || !PATTERN.matcher(pwd).matches()) {
-      throw new IllegalArgumentException(PWD_ERR);
-    }
-  }
 }

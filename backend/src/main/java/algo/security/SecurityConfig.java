@@ -39,7 +39,10 @@ public class SecurityConfig implements WebMvcConfigurer {
   /** Config injected via Lombok constructor to save line length. */
   private final AuthenticationConfiguration authConfig;
 
-  /**
+  /** Config injected via Lombok constructor to save line length. */
+  private final ObjectMapper objectMapper;
+
+    /**
    * Configures the main security filter chain.
    *
    * @param http HttpSecurity builder (short name for formatting)
@@ -134,7 +137,9 @@ public class SecurityConfig implements WebMvcConfigurer {
         msg = "Auth failed";
       }
 
-      response.getWriter().write("{\"error\": \"" + msg + "\"}");
+      final Map<String, String> errorBody = Map.of("error", msg);
+
+      objectMapper.writeValue(response.getWriter(), errorBody);
     };
   }
 
