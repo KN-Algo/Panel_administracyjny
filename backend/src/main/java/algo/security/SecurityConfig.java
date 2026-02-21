@@ -33,9 +33,6 @@ public class SecurityConfig implements WebMvcConfigurer {
   /** Service for loading user data. */
   private final UserService userService;
 
-  /** Password encoder bean. */
-  private final BCryptPasswordEncoder passwordEncoder;
-
   /** Config injected via Lombok constructor to save line length. */
   private final AuthenticationConfiguration authConfig;
 
@@ -155,16 +152,26 @@ public class SecurityConfig implements WebMvcConfigurer {
     return authConfig.getAuthenticationManager();
   }
 
-  /**
-   * Configures DAO auth provider.
-   *
-   * @return DaoAuthenticationProvider
-   */
-  @Bean
-  public DaoAuthenticationProvider daoAuthenticationProvider() {
-    final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-    provider.setPasswordEncoder(passwordEncoder);
-    provider.setUserDetailsService(userService);
-    return provider;
-  }
+    /**
+     * Defines the password encoder bean.
+     *
+     * @return BCryptPasswordEncoder
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * Configures DAO auth provider.
+     *
+     * @return DaoAuthenticationProvider
+     */
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(userService);
+        return provider;
+    }
 }
