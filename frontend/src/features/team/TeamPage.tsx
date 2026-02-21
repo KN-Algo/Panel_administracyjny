@@ -101,7 +101,7 @@ export default function TeamPage() {
                   </div>
                   <div
                     className={`overflow-hidden transition-all duration-500 ${
-                      martaExpanded ? 'max-h-[2000px] mt-4' : 'max-h-0'
+                      martaExpanded ? 'max-h-500 mt-4' : 'max-h-0'
                     }`}
                   >
                     <p
