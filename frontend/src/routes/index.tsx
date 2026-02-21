@@ -4,7 +4,6 @@ import HomePage from '../features/home/HomePage';
 import TeamPage from '../features/team/TeamPage';
 import ProjectsPage from '../features/projects/ProjectsPage';
 import EventsPage from '../features/events/EventsPage';
-import ContactPage from '../features/contact/ContactPage';
 
 export default function AppRouter() {
   return (
@@ -14,7 +13,6 @@ export default function AppRouter() {
         <Route path="team" element={<TeamPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="events" element={<EventsPage />} />
-        <Route path="contact" element={<ContactPage />} />
       </Route>
     </Routes>
   );

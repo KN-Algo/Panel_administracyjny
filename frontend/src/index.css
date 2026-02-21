@@ -47,8 +47,13 @@
     /* Custom brand colors */
     --color-brand-darkest: #0b0c2a;
     --color-brand-dark: #000424;
+    --color-brand-dark-hover: rgb(0 4 36 / 0.9);
     --color-brand-medium: #1a1b3a;
     --color-brand-light: #f8e9e5;
+    --color-brand-light-10: rgb(248 233 229 / 0.1)
+    --color-brand-light-20: rgb(248 233 229 / 0.2);
+    --color-brand-light-30: rgb(248 233 229 / 0.3);
+    --color-brand-light-40: rgb(248 233 229 / 0.4);
     --color-brand-beige: #eeded9;
     --color-neutral-lightest: #fcfbfb;
     --color-neutral-lighter: #f3f0f0;
