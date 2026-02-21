@@ -7,6 +7,9 @@ import newsDataEn from '@/data/news_en.json';
 import newsDataDe from '@/data/news_de.json';
 import type { NewsItem } from '@/types';
 
+// Grid pattern SVG for background decoration
+const GRID_PATTERN_SVG = "data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff0d' stroke-width='0.5'%3E%3Cpath d='M0 0 L100 0 L100 100 L0 100 Z'/%3E%3Cpath d='M0 20 L100 20 M0 40 L100 40 M0 60 L100 60 M0 80 L100 80'/%3E%3Cpath d='M20 0 L20 100 M40 0 L40 100 M60 0 L60 100 M80 0 L80 100'/%3E%3C/g%3E%3C/svg%3E";
+
 export default function NewsSection() {
   const { t, i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -55,10 +58,10 @@ export default function NewsSection() {
     <section 
       className="relative py-20 text-white z-10"
       style={{
-        backgroundColor: '#0b0c2a',
+        backgroundColor: 'var(--color-brand-darkest)',
         backgroundImage: `
           radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0),
-          url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff0d' stroke-width='0.5'%3E%3Cpath d='M0 0 L100 0 L100 100 L0 100 Z'/%3E%3Cpath d='M0 20 L100 20 M0 40 L100 40 M0 60 L100 60 M0 80 L100 80'/%3E%3Cpath d='M20 0 L20 100 M40 0 L40 100 M60 0 L60 100 M80 0 L80 100'/%3E%3C/g%3E%3C/svg%3E")
+          url("${GRID_PATTERN_SVG}")
         `,
         backgroundSize: '100px 100px',
         backgroundRepeat: 'repeat',
@@ -74,7 +77,7 @@ export default function NewsSection() {
           {/* Previous Button */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
             aria-label="Previous"
           >
             <ChevronLeft size={32} />
@@ -87,15 +90,15 @@ export default function NewsSection() {
             }`}
           >
             {displayedNews.map((news, index) => (
-              <div key={currentSlide * itemsPerSlide + index} className="flex-[0_1_360px]">
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-145">
+              <div key={currentSlide * itemsPerSlide + index} className="w-full max-w-sm">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-[580px]">
                   <img
                     src={news.image}
                     alt={news.title}
-                    className="w-full h-64 object-contain bg-[#fcfbfb] shrink-0"
+                    className="w-full h-64 object-contain bg-neutral-lightest flex-shrink-0"
                   />
-                  <div className="p-6 bg-[#f3f0f0] grow flex flex-col justify-between">
-                    <div className="grow">
+                  <div className="p-6 bg-neutral-lighter flex-grow flex flex-col justify-between">
+                    <div className="flex-grow">
                       <h3 className="font-semibold text-xl mb-2 text-black line-clamp-2">
                         {news.title}
                       </h3>
@@ -106,7 +109,7 @@ export default function NewsSection() {
                     <Link
                       to="/events"
                       state={{ eventId: news.link?.split('#')[1] }}
-                      className="inline-block bg-[#000424] text-white px-4 py-2 rounded-lg font-medium transition-colors hover:bg-[#000424]/90 text-center mt-auto"
+                      className="inline-block bg-brand-dark text-white px-4 py-2 rounded-lg font-medium transition-colors hover:bg-brand-dark-hover text-center mt-auto"
                     >
                       {t('home.read_more')}
                     </Link>
@@ -119,7 +122,7 @@ export default function NewsSection() {
           {/* Next Button */}
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
             aria-label="Next"
           >
             <ChevronRight size={32} />
@@ -134,7 +137,7 @@ export default function NewsSection() {
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 currentSlide === index 
-                  ? 'bg-[#f8e9e5] w-8' 
+                  ? 'bg-brand-light w-8' 
                   : 'bg-white/30 hover:bg-white/50'
               }`}
               aria-label={`Go to slide ${index + 1}`}
