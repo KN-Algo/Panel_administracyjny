@@ -35,9 +35,8 @@ public class AuthController {
     } else {
       final String email = appUser.getEmail();
       final String name = appUser.getUsername();
-      final String role = appUser.getRole();
 
-      final UserSummary userSummary = new UserSummary(email, name, role);
+      final UserSummary userSummary = new UserSummary(email, name);
       response = ResponseEntity.ok(userSummary);
     }
 

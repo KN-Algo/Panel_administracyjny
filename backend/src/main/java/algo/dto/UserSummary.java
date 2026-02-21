@@ -13,7 +13,4 @@ public class UserSummary {
 
   /** * Display name or username. */
   private String name;
-
-  /** * Assigned user role. Example: ROLE_USER. */
-  private String role;
 }
