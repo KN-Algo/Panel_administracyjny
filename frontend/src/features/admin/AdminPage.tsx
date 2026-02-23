@@ -1,33 +1,32 @@
-import { useNavigate } from 'react-router-dom';
+import { AdminLayout } from "./components/layout/AdminLayout";
 
 export default function AdminPage() {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    sessionStorage.removeItem('panel-auth');
-    navigate('/panel');
-  };
-
   return (
-    <main className="min-h-screen bg-background px-4 py-10">
-      <section className="mx-auto w-full max-w-5xl rounded-2xl border bg-card p-6 shadow-sm">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-semibold text-card-foreground">Panel administracyjny</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Tu bedzie  shadcn.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="rounded-md border px-4 py-2 text-sm font-medium transition hover:bg-muted"
-          >
-            Wyloguj
-          </button>
+    <AdminLayout>
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-semibold">Dashboard</h2>
+          <p className="text-sm text-muted-foreground">
+            Witaj w panelu administracyjnym. Tutaj będą statystyki i zarządzanie
+            treścią.
+          </p>
         </div>
-      </section>
-    </main>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-lg border bg-card p-4">
+            <h3 className="font-medium">Użytkownicy</h3>
+            <p className="mt-2 text-2xl font-bold">22</p>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <h3 className="font-medium">Projekty</h3>
+            <p className="mt-2 text-2xl font-bold">48</p>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <h3 className="font-medium">Wydarzenia</h3>
+            <p className="mt-2 text-2xl font-bold">32</p>
+          </div>
+        </div>
+      </div>
+    </AdminLayout>
   );
 }

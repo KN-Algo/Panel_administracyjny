@@ -1,22 +1,19 @@
 [
   {
-  "id": "best",
-  "title": "Wir waren beim BEST Mind Challenge 2025!",
-  "date": "2025-11-25",
-  "thumbnail": "../img/events/best1.webp",
-  "description": "✨ <b>Wir waren beim BEST Mind Challenge 2025!</b> ✨<br><br>Am 18. November hatte das Team der Studentengruppe Algo die große Freude, am BEST Mind Challenge 2025 teilzunehmen – einem Ingenieurwettbewerb, der von der Studierendenorganisation BEST Wrocław veranstaltet wird 🤝💡<br><br>Während der Networking-Phase konnten die Teilnehmer unseren Stand besuchen, über Algorithmen, Projekte und das Studentenleben sprechen und mehr darüber erfahren, womit wir uns bei Algo täglich beschäftigen 🚀✨<br><br>Es gab viele inspirierende Gespräche, neue Ideen und eine Menge Energie – ein weiterer Beweis dafür, dass die technische Community an der TU Wrocław hervorragend gedeiht 💙🤍<br><br>Ein großes Dankeschön an die Veranstalter für die Einladung und an alle Teilnehmenden für die gemeinsam verbrachte Zeit 😉<br><br>Bis zum nächsten Mal! 💻💙",
-  "images": [
-    "../img/events/best1.webp",
-    "../img/events/best2.webp"
-  ]
-}
-  ,{
-    "id":"targi",
-    "title":"KN Algo auf der Formnext 2025!",
-    "date":"2025-11-24",
-    "thumbnail":"../img/events/targi1.webp",
-    "description":"<center><b>⭐ KN Algo auf der Formnext 2025! ⭐</center></b><br><br>Am 20.–21. November waren wir in Frankfurt auf der Formnext 2025. <b>Dies ist eine der größten Veranstaltungen weltweit im Bereich des 3D-Drucks und der additiven Fertigung,</b> bei der Unternehmen aus vielen Ländern ihre Lösungen präsentieren. Vielen Dank an alle Firmen und Personen, mit denen wir sprechen konnten — wir kommen voller Motivation und neuer Ideen zurück.<br><br><b>Bis zum nächsten Event! 💙</b>",
-    "images":[
+    "id": "best",
+    "title": "Wir waren beim BEST Mind Challenge 2025!",
+    "date": "2025-11-25",
+    "thumbnail": "../img/events/best1.webp",
+    "description": "✨ <b>Wir waren beim BEST Mind Challenge 2025!</b> ✨<br><br>Am 18. November hatte das Team der Studentengruppe Algo die große Freude, am BEST Mind Challenge 2025 teilzunehmen – einem Ingenieurwettbewerb, der von der Studierendenorganisation BEST Wrocław veranstaltet wird 🤝💡<br><br>Während der Networking-Phase konnten die Teilnehmer unseren Stand besuchen, über Algorithmen, Projekte und das Studentenleben sprechen und mehr darüber erfahren, womit wir uns bei Algo täglich beschäftigen 🚀✨<br><br>Es gab viele inspirierende Gespräche, neue Ideen und eine Menge Energie – ein weiterer Beweis dafür, dass die technische Community an der TU Wrocław hervorragend gedeiht 💙🤍<br><br>Ein großes Dankeschön an die Veranstalter für die Einladung und an alle Teilnehmenden für die gemeinsam verbrachte Zeit 😉<br><br>Bis zum nächsten Mal! 💻💙",
+    "images": ["../img/events/best1.webp", "../img/events/best2.webp"]
+  },
+  {
+    "id": "targi",
+    "title": "KN Algo auf der Formnext 2025!",
+    "date": "2025-11-24",
+    "thumbnail": "../img/events/targi1.webp",
+    "description": "<center><b>⭐ KN Algo auf der Formnext 2025! ⭐</center></b><br><br>Am 20.–21. November waren wir in Frankfurt auf der Formnext 2025. <b>Dies ist eine der größten Veranstaltungen weltweit im Bereich des 3D-Drucks und der additiven Fertigung,</b> bei der Unternehmen aus vielen Ländern ihre Lösungen präsentieren. Vielen Dank an alle Firmen und Personen, mit denen wir sprechen konnten — wir kommen voller Motivation und neuer Ideen zurück.<br><br><b>Bis zum nächsten Event! 💙</b>",
+    "images": [
       "../img/events/targi1.webp",
       "../img/events/targi2.webp",
       "../img/events/targi3.webp",
@@ -33,55 +30,52 @@
       "../img/events/targi14.webp",
       "../img/events/targi15.webp"
     ]
-  }
-,{
-  "id": "synder",
-  "title": "Wir haben den 2. Platz beim SynderHacks Wrocław gewonnen!",
-  "date": "2025-11-18",
-  "thumbnail": "../img/events/Synder1.webp",
-  "description": "💥 <b>2. Platz beim SynderHacks Wrocław!</b> 💥<br><br>Unsere Hochschulgruppe nahm am SynderHacks Wrocław teil – einem 24-Stunden-AI-Hackathon, bei dem wir einen ganzen Tag lang innovative KI-basierte Lösungen entwickelt haben 🤖<br><br>Zu diesem Event traten wir mit zwei Teams an:<br>💡 <b>Algo-7</b> – bestehend aus Mitgliedern des 7. Semesters<br>⚡ <b>Algo-3</b> – vertreten durch jüngere Studierende des 3. Semesters<br><br>Die Aufgabe des Hackathons bestand darin, innerhalb von 24 Stunden eine Geschäftsapplikation für kleine Unternehmen zu entwerfen, die das Management eines Online-Shops unterstützt – von Integrationen mit externen Verkaufsplattformen über Lagerbestandskontrolle bis hin zu Kostenanalyse und Rechnungsstellung 💼<br><br>🔹 <b>Das Team Algo-7</b> entwickelte die Anwendung „SellHub“, deren Ziel es war, Gründe für Produktrückgaben zu analysieren und Gewinne mithilfe künstlicher Intelligenz zusammenzufassen 🤖 Die Lösung identifizierte nicht nur Rückgabeursachen und empfahl Maßnahmen zu deren Reduzierung, sondern visualisierte auch den Nettogewinn in Form interaktiver Diagramme.<br><br>🔹 <b>Das Team Algo-3</b> entwarf die „Sales Optimizer Platform“ – ein Tool zur dynamischen Preisoptimierung von Produkten. Ihr KI-Agent analysierte den Markt, Trends und Lagerbestände, um automatisch optimale Preisstrategien vorzuschlagen, Rabatte oder Bundles zu empfehlen und diese mit einem einzigen Klick auf externen Online-Shops zu aktualisieren 📊<br><br>Es waren 24 Stunden voller intensiver Arbeit, Kreativität und Kampf gegen die Müdigkeit 😅 Aber es hat sich absolut gelohnt!<br><br>🏆 <b>Das Team Algo-7 gewann den 2. Platz und erhielt eine Auszeichnung der Jury</b> für Originalität und dafür, dass sie sich einer Herausforderung stellten, die kein anderes Team wagen wollte – herzlichen Glückwunsch! 👏🔥<br><br>Es war ein fantastisches Wochenende voller Inspiration, neuer Erfahrungen und Zusammenarbeit. Wir hoffen, dass dies erst der Anfang unserer Hackathon-Reise ist – wir sehen uns bei den nächsten Events! 🚀",
-  "images": [
-    "../img/events/Synder1.webp",
-    "../img/events/Synder2.webp",
-    "../img/events/Synder3.webp",
-    "../img/events/Synder4.webp",
-    "../img/events/Synder5.webp",
-    "../img/events/Synder6.webp",
-    "../img/events/Synder7.webp",
-    "../img/events/Synder8.webp",
-    "../img/events/Synder9.webp",
-    "../img/events/Synder10.webp",
-    "../img/events/Synder11.webp",
-    "../img/events/Synder12.webp",
-    "../img/events/Synder13.webp",
-    "../img/events/Synder14.webp",
-    "../img/events/Synder15.webp",
-    "../img/events/Synder16.webp",
-    "../img/events/Synder17.webp",
-    "../img/events/Synder18.webp",
-    "../img/events/Synder19.webp"
-  ]
-},
-
+  },
   {
-    "id":"nowi",
-    "title":"Wir begrüßen neue Mitglieder des SK Algo! ",
-    "date":"12.11.2025",
-    "thumbnail":"../img/events/_grupowe_1.webp",
-    "description":"💙 <b>Wir begrüßen neue Mitglieder des SK Algo!</b> 💙<br>Am Mittwoch, den 12.11.2025, fand unser besonderes Treffen für neue Personen statt, bei dem wir <b>sie offiziell in die Reihen von Algo aufgenommen haben</b> 🤝✨<br><br>Die Rekrutierung haben sogar 19 Personen erfolgreich bestanden, was… die Anzahl der Mitglieder unseres Studentischen Vereins verdoppelt hat! 😍<br><br><b>Wir freuen uns, dass ihr bei uns seid – vor uns liegen zahlreiche Ideen, Projekte und gemeinsame Herausforderungen </b>💻⚡♟️<br><br>Dank euch werden wir noch intensiver, kreativer und mit noch größerer Leidenschaft arbeiten können! 🚀<br><br><center><b><u>Willkommen an Bord von Algo – jetzt geht es erst richtig los</u></b> 🔥</center>",
-    "images":[
-      "../img/events/_grupowe_1.webp",
-      "../img/events/_grupowe_3.webp"
+    "id": "synder",
+    "title": "Wir haben den 2. Platz beim SynderHacks Wrocław gewonnen!",
+    "date": "2025-11-18",
+    "thumbnail": "../img/events/Synder1.webp",
+    "description": "💥 <b>2. Platz beim SynderHacks Wrocław!</b> 💥<br><br>Unsere Hochschulgruppe nahm am SynderHacks Wrocław teil – einem 24-Stunden-AI-Hackathon, bei dem wir einen ganzen Tag lang innovative KI-basierte Lösungen entwickelt haben 🤖<br><br>Zu diesem Event traten wir mit zwei Teams an:<br>💡 <b>Algo-7</b> – bestehend aus Mitgliedern des 7. Semesters<br>⚡ <b>Algo-3</b> – vertreten durch jüngere Studierende des 3. Semesters<br><br>Die Aufgabe des Hackathons bestand darin, innerhalb von 24 Stunden eine Geschäftsapplikation für kleine Unternehmen zu entwerfen, die das Management eines Online-Shops unterstützt – von Integrationen mit externen Verkaufsplattformen über Lagerbestandskontrolle bis hin zu Kostenanalyse und Rechnungsstellung 💼<br><br>🔹 <b>Das Team Algo-7</b> entwickelte die Anwendung „SellHub“, deren Ziel es war, Gründe für Produktrückgaben zu analysieren und Gewinne mithilfe künstlicher Intelligenz zusammenzufassen 🤖 Die Lösung identifizierte nicht nur Rückgabeursachen und empfahl Maßnahmen zu deren Reduzierung, sondern visualisierte auch den Nettogewinn in Form interaktiver Diagramme.<br><br>🔹 <b>Das Team Algo-3</b> entwarf die „Sales Optimizer Platform“ – ein Tool zur dynamischen Preisoptimierung von Produkten. Ihr KI-Agent analysierte den Markt, Trends und Lagerbestände, um automatisch optimale Preisstrategien vorzuschlagen, Rabatte oder Bundles zu empfehlen und diese mit einem einzigen Klick auf externen Online-Shops zu aktualisieren 📊<br><br>Es waren 24 Stunden voller intensiver Arbeit, Kreativität und Kampf gegen die Müdigkeit 😅 Aber es hat sich absolut gelohnt!<br><br>🏆 <b>Das Team Algo-7 gewann den 2. Platz und erhielt eine Auszeichnung der Jury</b> für Originalität und dafür, dass sie sich einer Herausforderung stellten, die kein anderes Team wagen wollte – herzlichen Glückwunsch! 👏🔥<br><br>Es war ein fantastisches Wochenende voller Inspiration, neuer Erfahrungen und Zusammenarbeit. Wir hoffen, dass dies erst der Anfang unserer Hackathon-Reise ist – wir sehen uns bei den nächsten Events! 🚀",
+    "images": [
+      "../img/events/Synder1.webp",
+      "../img/events/Synder2.webp",
+      "../img/events/Synder3.webp",
+      "../img/events/Synder4.webp",
+      "../img/events/Synder5.webp",
+      "../img/events/Synder6.webp",
+      "../img/events/Synder7.webp",
+      "../img/events/Synder8.webp",
+      "../img/events/Synder9.webp",
+      "../img/events/Synder10.webp",
+      "../img/events/Synder11.webp",
+      "../img/events/Synder12.webp",
+      "../img/events/Synder13.webp",
+      "../img/events/Synder14.webp",
+      "../img/events/Synder15.webp",
+      "../img/events/Synder16.webp",
+      "../img/events/Synder17.webp",
+      "../img/events/Synder18.webp",
+      "../img/events/Synder19.webp"
     ]
   },
 
   {
-    "id":"NOT",
-    "title":"Teilnahme an den Aktivitätstagen bei NOT",
-    "date":"10.11.2025",
-    "thumbnail":"../img/events/NOT1.webp",
-    "description":"🎓 <b>Algo bei den Aktivitätstagen bei NOT!</b> 🎓<br>Wir hatten das Vergnügen, an den Aktivitätstagen teilzunehmen, die von der <b>Obersten Technischen Organisation (NOT)</b> organisiert wurden, wo wir Oberschülern die Aktivitäten unseres Studentischen Vereins präsentierten 💼✨<br><br>Großes Interesse weckte unser neuestes Projekt – Schach-Matt 2.0, ein intelligentes, interaktives Schachbrett, das Elektronik, Programmierung und Algorithmik verbindet. Wir berichteten über den Prozess seiner Entwicklung, die verwendete Technologie sowie darüber, wie die Zusammenarbeit zwischen den Teammitgliedern aussieht 🤖♟️<br><br>Wir freuen uns, dass wir jüngeren Enthusiasten die Welt der Algorithmen und neuen Technologien näherbringen konnten und zeigen durften, dass das Studium an der Technischen Universität Breslau nicht nur Lernen bedeutet, sondern auch die Möglichkeit bietet, ambitionierte Projekte zu realisieren und in einem inspirierenden akademischen Umfeld zusammenzuarbeiten 💙<br><br><b>Wir danken den Organisatoren für die Einladung und die Möglichkeit, unsere Arbeit zu präsentieren!</b> 🙌<br><br><br>🐍 Die Schlange auf den Fotos stammt von skn_zywienia_zwierzat",
-    "images":[
+    "id": "nowi",
+    "title": "Wir begrüßen neue Mitglieder des SK Algo! ",
+    "date": "12.11.2025",
+    "thumbnail": "../img/events/_grupowe_1.webp",
+    "description": "💙 <b>Wir begrüßen neue Mitglieder des SK Algo!</b> 💙<br>Am Mittwoch, den 12.11.2025, fand unser besonderes Treffen für neue Personen statt, bei dem wir <b>sie offiziell in die Reihen von Algo aufgenommen haben</b> 🤝✨<br><br>Die Rekrutierung haben sogar 19 Personen erfolgreich bestanden, was… die Anzahl der Mitglieder unseres Studentischen Vereins verdoppelt hat! 😍<br><br><b>Wir freuen uns, dass ihr bei uns seid – vor uns liegen zahlreiche Ideen, Projekte und gemeinsame Herausforderungen </b>💻⚡♟️<br><br>Dank euch werden wir noch intensiver, kreativer und mit noch größerer Leidenschaft arbeiten können! 🚀<br><br><center><b><u>Willkommen an Bord von Algo – jetzt geht es erst richtig los</u></b> 🔥</center>",
+    "images": ["../img/events/_grupowe_1.webp", "../img/events/_grupowe_3.webp"]
+  },
+
+  {
+    "id": "NOT",
+    "title": "Teilnahme an den Aktivitätstagen bei NOT",
+    "date": "10.11.2025",
+    "thumbnail": "../img/events/NOT1.webp",
+    "description": "🎓 <b>Algo bei den Aktivitätstagen bei NOT!</b> 🎓<br>Wir hatten das Vergnügen, an den Aktivitätstagen teilzunehmen, die von der <b>Obersten Technischen Organisation (NOT)</b> organisiert wurden, wo wir Oberschülern die Aktivitäten unseres Studentischen Vereins präsentierten 💼✨<br><br>Großes Interesse weckte unser neuestes Projekt – Schach-Matt 2.0, ein intelligentes, interaktives Schachbrett, das Elektronik, Programmierung und Algorithmik verbindet. Wir berichteten über den Prozess seiner Entwicklung, die verwendete Technologie sowie darüber, wie die Zusammenarbeit zwischen den Teammitgliedern aussieht 🤖♟️<br><br>Wir freuen uns, dass wir jüngeren Enthusiasten die Welt der Algorithmen und neuen Technologien näherbringen konnten und zeigen durften, dass das Studium an der Technischen Universität Breslau nicht nur Lernen bedeutet, sondern auch die Möglichkeit bietet, ambitionierte Projekte zu realisieren und in einem inspirierenden akademischen Umfeld zusammenzuarbeiten 💙<br><br><b>Wir danken den Organisatoren für die Einladung und die Möglichkeit, unsere Arbeit zu präsentieren!</b> 🙌<br><br><br>🐍 Die Schlange auf den Fotos stammt von skn_zywienia_zwierzat",
+    "images": [
       "../img/events/NOT1.webp",
       "../img/events/NOT2.webp",
       "../img/events/NOT3.webp",
@@ -89,7 +83,7 @@
     ]
   },
   {
-    "id":"das2025",
+    "id": "das2025",
     "title": "Die Tage der Studentischen Aktivität sind vorüber!",
     "date": "05.11.2025",
     "thumbnail": "../img/events/das2_1.webp",
@@ -107,22 +101,20 @@
   },
 
   {
-    "id":"Bielik",
+    "id": "Bielik",
     "title": "Jakub Dobrzański zertifizierter Trainer der Bielik.AI-Staffel",
-    "date":"02.11.2025",
-    "thumbnail":"../img/events/bielik.webp",
-    "description":" 🔥 Große Neuigkeiten von Algo! 🔥<br>Mit großem Stolz verkünden wir, dass <b>Jakub Dobrzański</b> – Mitglied unseres Studentischen Vereins Algo – zum <b>zertifizierten Trainer der Bielik.AI-Staffel</b> geworden ist! 🦅💥<br><br>💬 Bielik.AI ist ein modernes, polnisches Sprachmodell, das von der SpeakLeash-Stiftung und Cyfronet AGH entwickelt wird – offen, sicher und für die polnische Sprache konzipiert 🇵🇱🤖<br><br>👏 <b>Herzlichen Glückwunsch</b>, Kuba! Wir sind außerordentlich stolz auf deine Leistung – dies ist ein großer Schritt nach vorne nicht nur für dich, sondern für unser gesamtes Team 💪<br><br>Und vielleicht schon bald… 👀<br>Workshops mit Bielik.AI, geleitet von unserem eigenen Trainer? 🔥<br><br><b>Bleibt dran – es wird spannend!</b> 🚀",
-    "images": [
-      "../img/events/bielik.webp"
-    ]
+    "date": "02.11.2025",
+    "thumbnail": "../img/events/bielik.webp",
+    "description": " 🔥 Große Neuigkeiten von Algo! 🔥<br>Mit großem Stolz verkünden wir, dass <b>Jakub Dobrzański</b> – Mitglied unseres Studentischen Vereins Algo – zum <b>zertifizierten Trainer der Bielik.AI-Staffel</b> geworden ist! 🦅💥<br><br>💬 Bielik.AI ist ein modernes, polnisches Sprachmodell, das von der SpeakLeash-Stiftung und Cyfronet AGH entwickelt wird – offen, sicher und für die polnische Sprache konzipiert 🇵🇱🤖<br><br>👏 <b>Herzlichen Glückwunsch</b>, Kuba! Wir sind außerordentlich stolz auf deine Leistung – dies ist ein großer Schritt nach vorne nicht nur für dich, sondern für unser gesamtes Team 💪<br><br>Und vielleicht schon bald… 👀<br>Workshops mit Bielik.AI, geleitet von unserem eigenen Trainer? 🔥<br><br><b>Bleibt dran – es wird spannend!</b> 🚀",
+    "images": ["../img/events/bielik.webp"]
   },
 
   {
-    "id":"DaWiT2025",
-    "title":"ALGO erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!",
-    "date":"24.10.2025",
-    "thumbnail":"../img/events/dawit1.webp",
-    "description":"🎉<b>🥇 SK Algo erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!</b><br>Am Dienstag, dem 21. Oktober, hatten wir die Gelegenheit, euch <b>Schach-Matt 2.0</b> zu präsentieren ♟️ Dieses Projekt entstand dank der enormen Arbeit und dem Engagement vieler Personen, die in unserem Verein tätig sind und trotz des kleinen Teams entschlossen blieben 💪<br><br>Wir freuen uns, dass ihr diesen Moment mit uns geteilt habt – gemeinsam haben wir beobachtet, wie unser autonom arbeitendes Schachspiel an Geschwindigkeit gewinnt ☄️<br><br>Wir hoffen auf weitere Erfolge im nächsten Jahr 🤞<br>Denn wie man so sagt – aller guten Dinge sind drei! 🏆🎉<br><br><b>Wir danken allen, die unseren Stand besucht und unsere Arbeit gewürdigt haben! 🙏</b>",
+    "id": "DaWiT2025",
+    "title": "ALGO erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!",
+    "date": "24.10.2025",
+    "thumbnail": "../img/events/dawit1.webp",
+    "description": "🎉<b>🥇 SK Algo erneut Gewinner des Wettbewerbs für den besten Stand auf DaWIT!</b><br>Am Dienstag, dem 21. Oktober, hatten wir die Gelegenheit, euch <b>Schach-Matt 2.0</b> zu präsentieren ♟️ Dieses Projekt entstand dank der enormen Arbeit und dem Engagement vieler Personen, die in unserem Verein tätig sind und trotz des kleinen Teams entschlossen blieben 💪<br><br>Wir freuen uns, dass ihr diesen Moment mit uns geteilt habt – gemeinsam haben wir beobachtet, wie unser autonom arbeitendes Schachspiel an Geschwindigkeit gewinnt ☄️<br><br>Wir hoffen auf weitere Erfolge im nächsten Jahr 🤞<br>Denn wie man so sagt – aller guten Dinge sind drei! 🏆🎉<br><br><b>Wir danken allen, die unseren Stand besucht und unsere Arbeit gewürdigt haben! 🙏</b>",
     "images": [
       "../img/events/dawit1.webp",
       "../img/events/dawit2.webp",
@@ -135,12 +127,12 @@
     ]
   },
   {
-    "id":"Inauguracja",
+    "id": "Inauguracja",
     "title": "SK Algo bei der Fakultätsinauguration des akademischen Jahres 2025/26",
     "date": "17.10.2025",
     "thumbnail": "../img/events/inauguracja1.webp",
     "description": "🎓 <b>SK Algo bei der Fakultätsinauguration des akademischen Jahres 2025/26</b>🎓<br>Am Mittwoch, dem 15. Oktober, hatten wir das Vergnügen, während der <b>Inauguration der Fakultät für Informatik und Telekommunikation der Technischen Universität Breslau</b> aufzutreten 💙<br>Unser Verein wurde von <b>Vorsitzendem Jakub Barczyński</b> und <b>Stellvertretendem Vorsitzenden Adrian Goral</b> präsentiert. Sie berichteten darüber, womit wir uns bei Algo beschäftigen – von Algorithmen bis zu kreativen Projekten, die Informatik mit Praxis verbinden 🔍⚙️<br>Wir danken für die Einladung und die Möglichkeit, bei einer so wichtigen Veranstaltung aufzutreten ✨<br><br><b>💬 Und an alle neuen Studierenden – willkommen an Bord der TU Breslau 🚀</b><br>Wir hoffen, dass es uns gelungen ist, euch zumindest ein wenig zu inspirieren… denn wenn ja, dann stehen die Türen zum SK Algo offen! Kommt vorbei, um zu sehen, wie wir arbeiten, und vielleicht… um länger bei uns zu bleiben 👀<br><br>📷 Foto: Kamil Winiarz (Abteilung für Promotion FIT)",
-    "images":[
+    "images": [
       "../img/events/inauguracja1.webp",
       "../img/events/inauguracja2.webp",
       "../img/events/inauguracja3.webp",
@@ -148,23 +140,21 @@
     ]
   },
 
-    {
-    "id":"Rekrutacja",
+  {
+    "id": "Rekrutacja",
     "title": "Neues Semester – neue Möglichkeiten!",
     "date": "13.10.2025",
     "thumbnail": "../img/events/algo_rekru.webp",
     "description": "Wir beginnen ein weiteres Semester der Aktivität des <b>Studentischen Vereins Algo</b> und können es kaum erwarten, noch aktiver als zuvor zu sein!<br><br>Wenn du dich für Algorithmik, Programmierung interessierst oder einfach deine Fähigkeiten in einem eingeschworenen Team von Technologie-Enthusiasten entwickeln möchtest – <b>dies ist der perfekte Zeitpunkt, um uns beizutreten!</b><br><br>Die Rekrutierung für unseren Verein läuft gerade.</b><br> Fülle das Rekrutierungsformular aus und stelle dich vor – <b>wir warten auf dich!</b><br><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdrH77bBYWOwYfHsaS_MdbeBNQkQLhAsgrdQtlPtBoWAfq72g/viewform?usp=header\" target=\"_blank\" rel=\"noopener noreferrer\">Rekrutierungsformular</a><br><br>Gemeinsam können wir Projekte schaffen, die die Welt zum Besseren verändern!<br><b>Wir sehen uns bei den Treffen!</b>",
-    "images": [
-      "../img/events/algo_rekru.webp"
-    ]
+    "images": ["../img/events/algo_rekru.webp"]
   },
   {
-    "id":"DFN",
-    "title":"SK Algo beim Niederschlesischen Wissenschaftsfestival",
-    "date":"01.09.2025",
-    "thumbnail":"../img/events/dfn5.webp",
-    "description":"🎓 <b>SK Algo beim Niederschlesischen Wissenschaftsfestival</b><br>Am 18. September hatten wir das Vergnügen, am Niederschlesischen Wissenschaftsfestival teilzunehmen, wo wir unser neuestes Projekt - Schach-Matt 2.0 präsentierten ♟️<br>Dies ist eine einzigartige Verbindung des klassischen Schachspiels mit moderner Technologie. Unser physisches Schachbrett wurde mit einem CoreXY-Mechanismus und einem Elektromagnetsystem ausgestattet, dank derer sich die Figuren automatisch bewegen können. Darüber hinaus kann das Spiel auf zwei Arten gespielt werden:<br>♟️ über eine Webanwendung<br>♟️ oder traditionell - durch manuelles Bewegen der Figuren, die dank Magnetsensoren sofort erkannt werden.<br><b>Schach-Matt 2.0</b> ist kein gewöhnliches Brett, sondern ein wahrhaft interaktives System, das Elemente der Informatik, Automatisierung, Mechatronik und Algorithmik vereint 🤖<br>Während der Workshops konnte jeder gegen unsere eigene Schach-Engine antreten. Es gab Emotionen, Freude und viel gute Unterhaltung - sowohl Kinder als auch Erwachsene nahmen die Herausforderung gerne an💪<br>Die besten Spieler wurden mit Gadgets unseres Vereins belohnt, und wir hatten große Zufriedenheit, zu sehen, wie viel Freude unser Projekt bereitet hat.<br>🙏 Wir danken herzlich allen, die zu uns gekommen sind. Wir freuen uns, dass wir das Ergebnis unserer Arbeit mit euch teilen konnten - gerade solche Momente motivieren uns zum weiteren Handeln.<br>⚡ <b>Und das ist erst der Anfang! Bereits im Oktober wird die verbesserte Version von Schach-Matt 2.0 bei folgenden Veranstaltungen zu sehen sein:</b><br>📍 DaWiT - 21.10 (Gebäude C1, Technische Universität Breslau)<br>📍 DAS - 29.10 (Gebäude C3, Technische Universität Breslau)<br><b>Wir sehen uns beim Schachbrett! ♟️✨</b>",
-    "images":[
+    "id": "DFN",
+    "title": "SK Algo beim Niederschlesischen Wissenschaftsfestival",
+    "date": "01.09.2025",
+    "thumbnail": "../img/events/dfn5.webp",
+    "description": "🎓 <b>SK Algo beim Niederschlesischen Wissenschaftsfestival</b><br>Am 18. September hatten wir das Vergnügen, am Niederschlesischen Wissenschaftsfestival teilzunehmen, wo wir unser neuestes Projekt - Schach-Matt 2.0 präsentierten ♟️<br>Dies ist eine einzigartige Verbindung des klassischen Schachspiels mit moderner Technologie. Unser physisches Schachbrett wurde mit einem CoreXY-Mechanismus und einem Elektromagnetsystem ausgestattet, dank derer sich die Figuren automatisch bewegen können. Darüber hinaus kann das Spiel auf zwei Arten gespielt werden:<br>♟️ über eine Webanwendung<br>♟️ oder traditionell - durch manuelles Bewegen der Figuren, die dank Magnetsensoren sofort erkannt werden.<br><b>Schach-Matt 2.0</b> ist kein gewöhnliches Brett, sondern ein wahrhaft interaktives System, das Elemente der Informatik, Automatisierung, Mechatronik und Algorithmik vereint 🤖<br>Während der Workshops konnte jeder gegen unsere eigene Schach-Engine antreten. Es gab Emotionen, Freude und viel gute Unterhaltung - sowohl Kinder als auch Erwachsene nahmen die Herausforderung gerne an💪<br>Die besten Spieler wurden mit Gadgets unseres Vereins belohnt, und wir hatten große Zufriedenheit, zu sehen, wie viel Freude unser Projekt bereitet hat.<br>🙏 Wir danken herzlich allen, die zu uns gekommen sind. Wir freuen uns, dass wir das Ergebnis unserer Arbeit mit euch teilen konnten - gerade solche Momente motivieren uns zum weiteren Handeln.<br>⚡ <b>Und das ist erst der Anfang! Bereits im Oktober wird die verbesserte Version von Schach-Matt 2.0 bei folgenden Veranstaltungen zu sehen sein:</b><br>📍 DaWiT - 21.10 (Gebäude C1, Technische Universität Breslau)<br>📍 DAS - 29.10 (Gebäude C3, Technische Universität Breslau)<br><b>Wir sehen uns beim Schachbrett! ♟️✨</b>",
+    "images": [
       "../img/events/dfn1.webp",
       "../img/events/dfn2.webp",
       "../img/events/dfn3.webp",
@@ -172,25 +162,23 @@
     ]
   },
   {
-    "id":"Mitsubishi_2",
-    "title":"Besuch bei Mitsubishi Electric",
+    "id": "Mitsubishi_2",
+    "title": "Besuch bei Mitsubishi Electric",
     "date": "03.06.2025",
     "thumbnail": "../img/events/algo_mitsu.webp",
     "description": "Am 4. Juni hatten wir die Gelegenheit, den Hauptsitz von Mitsubishi Electric zu besuchen, wo wir uns mit ausgewählten in der Industrie verwendeten Lösungen vertraut machten. 🏭<br>Wir konnten eine Anwendung zur Bilderkennung testen 📷 sowie Werkzeuge zur Unterstützung der Netzwerkverwaltung kennenlernen 🌐.<br>Wir sahen auch Industriecomputer 💻 und andere Beispiele für in der Automatisierung eingesetzte Geräte.<br>Wir freuen uns, dass wir unser Wissen erweitern 📚 und aus nächster Nähe sehen konnten, wie in der Praxis eingesetzte Technologien aussehen!",
-    "images":[
+    "images": [
       "../img/events/algo_mitsu1.webp",
       "../img/events/algo_mitsu2.webp"
-
     ]
-
-  }
-  ,{
-    "id":"Witkon",
+  },
+  {
+    "id": "Witkon",
     "title": "SK ALGO auf der WITKoN 2025",
     "date": "15.04.2025",
     "thumbnail": "../img/events/witkon1.webp",
     "description": "Am 15. April 2025 hatte unser Studentischer Verein Algo die Ehre, an der zweiten Ausgabe der WITKoN - der Konferenz der Studentischen Vereine und Aktiven Studierenden - teilzunehmen, die von der Studentenvertretung der FIT sowie den Studentischen Vereinen Solvro und TK Games organisiert wurde. Die Veranstaltung fand an der Fakultät für Informatik und Telekommunikation der Technischen Universität Breslau statt.<br><br>Während der Konferenz präsentierten wir einen Vortrag mit dem Titel \"Wie man Minecraft mit schneller Fourier-Transformation spielt\", der von Adrian Goral, dem derzeitigen stellvertretenden Vorsitzenden unseres Vereins, gehalten wurde. Im Verlauf des Vortrags wurde erörtert, wie fortgeschrittene mathematische Algorithmen wie die schnelle Fourier-Transformation (FFT) im Spiel Minecraft eingesetzt werden können, wobei Theorie mit Praxis in einer virtuellen Umgebung verbunden wurde.<br><br>Die Teilnahme an der WITKoN war für uns eine ausgezeichnete Gelegenheit, unsere Aktivitäten zu präsentieren, Kontakte mit anderen Studentischen Vereinen zu knüpfen und Erfahrungen auszutauschen. Wir danken den Organisatoren dafür, einen Raum für Integration und Zusammenarbeit zwischen Studierenden geschaffen zu haben.",
-    "images":[
+    "images": [
       "../img/events/witkon1.webp",
       "../img/events/witkon2.webp",
       "../img/events/witkon3.webp",
@@ -203,12 +191,12 @@
     ]
   },
   {
-    "id":"Dni_otwarte",
+    "id": "Dni_otwarte",
     "title": "ALGO beim Tag der offenen Tür der Technischen Universität Breslau!",
     "date": "11.04.2025",
     "thumbnail": "../img/events/dni1.webp",
     "description": "Am 11. April 2025 nahm unser Studentischer Verein am Tag der offenen Tür der Technischen Universität Breslau teil. Unser Stand stieß sowohl bei diesjährigen Abiturienten als auch bei aktuellen Studierenden auf großes Interesse. In diesem Jahr präsentierten wir die Projekte: <b>SoundControl sowie die SteamPhony-Umgebung</b><br><br>Während der Veranstaltung hatten wir die Gelegenheit, viele interessante Gespräche zu führen. Wir erzählten von den Aktivitäten unseres Vereins, den Projekten, an denen wir beteiligt sind, sowie von den Entwicklungsmöglichkeiten, die ein Studium an der Technischen Universität Breslau bietet.<br><br>Wir freuen uns, dass wir unsere Leidenschaft teilen konnten. Wir hoffen, dass unsere Gespräche den Abiturienten bei wichtigen Entscheidungen bezüglich ihrer Bildungszukunft geholfen haben.<br><br>Wir danken allen herzlich für den Besuch unseres Standes und das gezeigte Interesse. Wir wünschen viel Erfolg bei den bevorstehenden Abiturprüfungen und hoffen auf ein Wiedersehen mit euch als Studierende der Technischen Universität Breslau.",
-    "images":[
+    "images": [
       "../img/events/dni1.webp",
       "../img/events/dni2.webp",
       "../img/events/dni3.webp",
@@ -224,7 +212,7 @@
     ]
   },
   {
-    "id":"Wyklad1",
+    "id": "Wyklad1",
     "title": "Vorlesung über die Fourier-Transformation",
     "date": "18.12.2024",
     "thumbnail": "../img/events/Wyklad1.webp",
@@ -252,8 +240,6 @@
     "date": "22.05.2024",
     "thumbnail": "../img/events/algo.webp",
     "description": "Am 22. Mai 2024 nahmen dank der Freundlichkeit der <b>Firma Mitsubishi Electronics</b> Mitglieder unseres Vereins an einer Präsentation der neuesten Lösungen des Unternehmens teil.<br>Während der Präsentation machten wir uns mit folgenden Programmen vertraut: <br><b>Iconics</b> - Fortgeschrittene SCADA- und Visualisierungsumgebung für industrielle Prozesse.<br> <b>Mailab</b> - Innovative maschinelle Lernlösungen für industrielle Anwendungen.<br> <b>Vixio</b> - Software zur Bilderkennung, die neue Möglichkeiten in der Automatisierung eröffnet.<br><br> <center>Es war eine äußerst interessante und entwickelnde Erfahrung, die uns ein Bild davon gab, wie die Industrie der Zukunft aussehen kann.</center> <br><center><b>Wir danken Mitsubishi Electronics herzlich für die Gastfreundschaft und die faszinierende Präsentation!</b></center>",
-    "images": [
-      "../img/events/Mitsubishi.webp"
-    ]
+    "images": ["../img/events/Mitsubishi.webp"]
   }
 ]

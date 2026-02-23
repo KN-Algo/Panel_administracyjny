@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Container, Engine } from "@tsparticles/engine";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -59,7 +59,7 @@ export default function HeroSection() {
       },
       detectRetina: true,
     }),
-    []
+    [],
   );
 
   return (
@@ -74,11 +74,9 @@ export default function HeroSection() {
       )}
       <div className="container mx-auto px-4 relative z-10 text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-[#f8e9e5]">
-          {t('home.title')}
+          {t("home.title")}
         </h1>
-        <p className="text-xl md:text-2xl text-[#f8e9e5]">
-          {t('home.motto')}
-        </p>
+        <p className="text-xl md:text-2xl text-[#f8e9e5]">{t("home.motto")}</p>
       </div>
     </section>
   );
