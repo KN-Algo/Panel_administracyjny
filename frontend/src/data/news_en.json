@@ -1,115 +1,110 @@
 [
   {
-      "type": "info",
-      "title": "Lecture on the Fourier Transform",
-      "description": "Make sure to check it out!",
-      "image": "../img/events/Wyklad1.webp",
-      "link": "/pages/events.php#Wyklad1"
-    },
-    {
-      "type": "info",
-      "title": "ALGO at the Wrocław University of Science and Technology Open Days",
-      "description": "This year we presented the SoundControl project and the SteamPhony environment",
-      "image": "../img/events/dni1.webp",
-      "link": "/pages/events.php#Dni_otwarte"
-    },
-    {
-      "type": "info",
-      "title": "ALGO Research Club at WITKoN 2025",
-      "description": "Presentation on the application of Fast Fourier Transform in Minecraft!",
-      "image": "../img/events/witkon1.webp",
-      "link": "/pages/events.php#Witkon"
-    },
-    {
-      "type":"info",
-      "title":"Visit to Mitsubishi Electric",
-      "description":"We had the opportunity to visit Mitsubishi Electric headquarters!",
-      "image":"../img/events/algo_mitsu.webp",
-      "link":"/pages/events.php#Mitsubishi_2"
-    },
-    {
-      "type":"info",
-      "title":"ALGO Research Club at the Lower Silesian Science Festival",
-      "description":"We presented our latest project – 'Checkmate 2.0' ♟️",
-      "image":"../img/events/dfn5.webp",
-      "link":"/pages/events.php#DFN"
-    },
-      {
-      "type": "info",
-      "title": "New Semester – New Opportunities!",
-      "description": "Open recruitment has started – welcome!",
-      "image": "../img/events/algo_rekru.webp",
-      "link": "/pages/events.php#Rekrutacja"
-    },
-    {
-      "type": "info",
-      "title": "Performance at the Faculty Inauguration of the 2025/26 Academic Year",
-      "description":"We had the honor to present our projects and the research club's activities to new students!",
-      "image": "../img/events/inauguracja1.webp",
-      "link": "/pages/events.php#Inauguracja"
-    },
-    {
-      "type": "info",
-      "title": "ALGO Once Again Winner of the Best Booth Competition at DaWIT!",
-      "description":"We are pleased that you appreciated our work!",
-      "image": "../img/events/dawit1.webp",
-      "link": "/pages/events.php#DaWiT2025"
-    },
-    {
-      "type": "info",
-      "title": "Certified Bielik.AI Squadron Trainer in Our Team!",
-      "description": "Great achievement of Jakub Dobrzański - member of ALGO Research Club",
-      "image": "../img/events/bielik.webp",
-      "link": "/pages/events.php#Bielik"
-    },
-    {
-      "type": "info",
-      "title": "DAS 2025 is Behind Us!",
-      "description": "Thank you for your presence!",
-      "image":"../img/events/das2_1.webp",
-      "link": "/pages/events.php#das2025"
-    },
-    {
-      "type": "info",
-      "title": "ALGO at Activity Days at NOT",
-      "description": "We showcased ourselves to high school students!",
-      "image": "../img/events/NOT1.webp",
-      "link":"/pages/events.php#NOT"
-    },
+    "type": "info",
+    "title": "Lecture on the Fourier Transform",
+    "description": "Make sure to check it out!",
+    "image": "../img/events/Wyklad1.webp",
+    "link": "/pages/events.php#Wyklad1"
+  },
+  {
+    "type": "info",
+    "title": "ALGO at the Wrocław University of Science and Technology Open Days",
+    "description": "This year we presented the SoundControl project and the SteamPhony environment",
+    "image": "../img/events/dni1.webp",
+    "link": "/pages/events.php#Dni_otwarte"
+  },
+  {
+    "type": "info",
+    "title": "ALGO Research Club at WITKoN 2025",
+    "description": "Presentation on the application of Fast Fourier Transform in Minecraft!",
+    "image": "../img/events/witkon1.webp",
+    "link": "/pages/events.php#Witkon"
+  },
+  {
+    "type": "info",
+    "title": "Visit to Mitsubishi Electric",
+    "description": "We had the opportunity to visit Mitsubishi Electric headquarters!",
+    "image": "../img/events/algo_mitsu.webp",
+    "link": "/pages/events.php#Mitsubishi_2"
+  },
+  {
+    "type": "info",
+    "title": "ALGO Research Club at the Lower Silesian Science Festival",
+    "description": "We presented our latest project – 'Checkmate 2.0' ♟️",
+    "image": "../img/events/dfn5.webp",
+    "link": "/pages/events.php#DFN"
+  },
+  {
+    "type": "info",
+    "title": "New Semester – New Opportunities!",
+    "description": "Open recruitment has started – welcome!",
+    "image": "../img/events/algo_rekru.webp",
+    "link": "/pages/events.php#Rekrutacja"
+  },
+  {
+    "type": "info",
+    "title": "Performance at the Faculty Inauguration of the 2025/26 Academic Year",
+    "description": "We had the honor to present our projects and the research club's activities to new students!",
+    "image": "../img/events/inauguracja1.webp",
+    "link": "/pages/events.php#Inauguracja"
+  },
+  {
+    "type": "info",
+    "title": "ALGO Once Again Winner of the Best Booth Competition at DaWIT!",
+    "description": "We are pleased that you appreciated our work!",
+    "image": "../img/events/dawit1.webp",
+    "link": "/pages/events.php#DaWiT2025"
+  },
+  {
+    "type": "info",
+    "title": "Certified Bielik.AI Squadron Trainer in Our Team!",
+    "description": "Great achievement of Jakub Dobrzański - member of ALGO Research Club",
+    "image": "../img/events/bielik.webp",
+    "link": "/pages/events.php#Bielik"
+  },
+  {
+    "type": "info",
+    "title": "DAS 2025 is Behind Us!",
+    "description": "Thank you for your presence!",
+    "image": "../img/events/das2_1.webp",
+    "link": "/pages/events.php#das2025"
+  },
+  {
+    "type": "info",
+    "title": "ALGO at Activity Days at NOT",
+    "description": "We showcased ourselves to high school students!",
+    "image": "../img/events/NOT1.webp",
+    "link": "/pages/events.php#NOT"
+  },
 
-    {
-      "type":"info",
-      "title": "We Welcomed New Members of ALGO Research Club!",
-      "description":"We are glad you are with us — we have plenty of ideas, projects, and challenges ahead!",
-      "image":"../img/events/_grupowe_1.webp",
-      "link":"/pages/events.php#nowi"
-    },
-    {
-  "type": "info",
-  "title": "We took part in SynderHacks Wrocław!",
-  "description": "We managed to win 2nd place!",
-  "image": "../img/events/Synder1.webp",
-  "link": "/pages/events.php#synder"
-},
+  {
+    "type": "info",
+    "title": "We Welcomed New Members of ALGO Research Club!",
+    "description": "We are glad you are with us — we have plenty of ideas, projects, and challenges ahead!",
+    "image": "../img/events/_grupowe_1.webp",
+    "link": "/pages/events.php#nowi"
+  },
+  {
+    "type": "info",
+    "title": "We took part in SynderHacks Wrocław!",
+    "description": "We managed to win 2nd place!",
+    "image": "../img/events/Synder1.webp",
+    "link": "/pages/events.php#synder"
+  },
 
-{
-  "type": "info",
-  "title": "KN Algo at Formnext 2025 in Frankfurt!",
-  "description": "One of the largest events in the world dedicated to 3D printing and additive manufacturing!",
-  "image": "../img/events/targi1.webp",
-  "link": "/pages/events.php#targi"
-},
+  {
+    "type": "info",
+    "title": "KN Algo at Formnext 2025 in Frankfurt!",
+    "description": "One of the largest events in the world dedicated to 3D printing and additive manufacturing!",
+    "image": "../img/events/targi1.webp",
+    "link": "/pages/events.php#targi"
+  },
 
-{
-  "type": "info",
-  "title": "We were at BEST Mind Challenge 2025!",
-  "description": "Thank you for the invitation and the time spent together!",
-  "image": "../img/events/best1.webp",
-  "link": "/pages/events.php#best"
-}
-
-
-
-
-  ]
-  
+  {
+    "type": "info",
+    "title": "We were at BEST Mind Challenge 2025!",
+    "description": "Thank you for the invitation and the time spent together!",
+    "image": "../img/events/best1.webp",
+    "link": "/pages/events.php#best"
+  }
+]

@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 ## Czy propozycja dotyczy jakiegoś problemu?
-Jasny i zwięzły opis problemu, który ta funkcjonalność miałaby rozwiązać.  
+Jasny i zwięzły opis problemu, który ta funkcjonalność miałaby rozwiązać.
 Przykład: Zawsze frustruje mnie, gdy [...]
 
 ## Opis proponowanego rozwiązania
