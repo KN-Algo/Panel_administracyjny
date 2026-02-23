@@ -1,0 +1,9 @@
+### Target ###
+target/
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+
+### Application properties ###
+application.properties
