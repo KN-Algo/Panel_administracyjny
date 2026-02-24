@@ -1,3 +1,16 @@
+package algo.controller;
+
+import com.example.posts.dto.TempPostRequestDto;
+import com.example.posts.dto.TempPostResponseDto;
+import com.example.posts.module.PostType;
+import com.example.posts.service.TempPostService;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*
+
+
 @RestController
 @RequestMapping("/api/temp-posts")
 public class TempPostController {
