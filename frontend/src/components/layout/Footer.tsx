@@ -1,5 +1,5 @@
-import { Facebook, Instagram, Linkedin, Github, Mail } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Facebook, Instagram, Linkedin, Github, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left side - Social media */}
           <div className="text-center md:text-left">
-            <p className="mb-3 text-brand-light">{t('footer.follow_us')}</p>
+            <p className="mb-3 text-brand-light">{t("footer.follow_us")}</p>
             <div className="flex justify-center md:justify-start gap-4 mb-3">
               <a
                 href="https://www.facebook.com/kolo.naukowe.algo"
@@ -30,7 +30,7 @@ export default function Footer() {
               >
                 <Instagram size={24} />
               </a>
-              
+
               <a
                 href="https://linkedin.com/company/koło-naukowe-algo"
                 target="_blank"
@@ -40,7 +40,7 @@ export default function Footer() {
               >
                 <Linkedin size={24} />
               </a>
-              
+
               <a
                 href="https://github.com/KN-Algo"
                 target="_blank"
@@ -60,9 +60,11 @@ export default function Footer() {
           {/* Right side - Copyright */}
           <div className="text-center md:text-right">
             <p className="mb-1 text-brand-light">
-              &copy; {new Date().getFullYear()} {t('footer.copyright')}
+              &copy; {new Date().getFullYear()} {t("footer.copyright")}
             </p>
-            <small className="text-sm text-brand-light">{t('footer.tagline')}</small>
+            <small className="text-sm text-brand-light">
+              {t("footer.tagline")}
+            </small>
           </div>
         </div>
       </div>

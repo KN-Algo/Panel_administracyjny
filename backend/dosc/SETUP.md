@@ -1,7 +1,7 @@
 # Getting Started
 
 **Requirements:**
-* Java JDK 23 
+* Java JDK 23
 * Docker & Docker Compose
 * IntelliJ IDEA (or other IDE which support Maven)
 
@@ -10,7 +10,7 @@
 * Set your database credentials (`spring.datasource.username`, `spring.datasource.password`).
 * Ensure your local PostgreSQL container is running before starting the app.
 
-## API Testing 
+## API Testing
 
 The application uses session-based Spring Security. Postman will automatically store and send the `JSESSIONID` cookie after a successful login.
 

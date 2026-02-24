@@ -1,6 +1,6 @@
-import HeroSection from './HeroSection';
-import AboutSection from './AboutSection';
-import NewsSection from './NewsSection';
+import HeroSection from "./HeroSection";
+import AboutSection from "./AboutSection";
+import NewsSection from "./NewsSection";
 
 export default function HomePage() {
   return (

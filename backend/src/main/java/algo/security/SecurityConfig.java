@@ -39,7 +39,7 @@ public class SecurityConfig implements WebMvcConfigurer {
   /** Config injected via Lombok constructor to save line length. */
   private final ObjectMapper objectMapper;
 
-    /**
+  /**
    * Configures the main security filter chain.
    *
    * @param http HttpSecurity builder (short name for formatting)
@@ -152,26 +152,26 @@ public class SecurityConfig implements WebMvcConfigurer {
     return authConfig.getAuthenticationManager();
   }
 
-    /**
-     * Defines the password encoder bean.
-     *
-     * @return BCryptPasswordEncoder
-     */
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  /**
+   * Defines the password encoder bean.
+   *
+   * @return BCryptPasswordEncoder
+   */
+  @Bean
+  public BCryptPasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    /**
-     * Configures DAO auth provider.
-     *
-     * @return DaoAuthenticationProvider
-     */
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(userService);
-        return provider;
-    }
+  /**
+   * Configures DAO auth provider.
+   *
+   * @return DaoAuthenticationProvider
+   */
+  @Bean
+  public DaoAuthenticationProvider daoAuthenticationProvider() {
+    final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    provider.setPasswordEncoder(passwordEncoder());
+    provider.setUserDetailsService(userService);
+    return provider;
+  }
 }

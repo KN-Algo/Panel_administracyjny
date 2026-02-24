@@ -2,14 +2,16 @@ import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 // Helper function to get CSS variable value
 const getThemeColor = (variableName: string): string => {
-  if (typeof window === 'undefined') return '#f8e9e5'; // fallback for SSR
-  return getComputedStyle(document.documentElement)
-    .getPropertyValue(variableName)
-    .trim() || '#f8e9e5';
+  if (typeof window === "undefined") return "#f8e9e5"; // fallback for SSR
+  return (
+    getComputedStyle(document.documentElement)
+      .getPropertyValue(variableName)
+      .trim() || "#f8e9e5"
+  );
 };
 
 export default function HeroSection() {
@@ -33,10 +35,10 @@ export default function HeroSection() {
       fpsLimit: 120,
       particles: {
         color: {
-          value: getThemeColor('--color-brand-light'),
+          value: getThemeColor("--color-brand-light"),
         },
         links: {
-          color: getThemeColor('--color-brand-light'),
+          color: getThemeColor("--color-brand-light"),
           distance: 120,
           enable: true,
           opacity: 0.4,
@@ -67,7 +69,7 @@ export default function HeroSection() {
       },
       detectRetina: true,
     }),
-    []
+    [],
   );
 
   return (
@@ -82,10 +84,10 @@ export default function HeroSection() {
       )}
       <div className="container mx-auto px-4 relative z-10 text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-brand-light">
-          {t('home.title')}
+          {t("home.title")}
         </h1>
         <p className="text-xl md:text-2xl text-brand-light">
-          {t('home.motto')}
+          {t("home.motto")}
         </p>
       </div>
     </section>
