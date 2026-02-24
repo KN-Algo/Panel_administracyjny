@@ -1,4 +1,4 @@
-package algo.module;
+package algo.repository;
 
 import com.example.posts.module.Post;
 import com.example.posts.module.PostType;
