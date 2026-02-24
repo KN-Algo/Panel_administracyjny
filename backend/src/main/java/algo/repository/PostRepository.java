@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public  interface PostRepository extends JpaRepository<Post, Long> {
 
-    @EntityGraph(attributesPaths = "translations")
+    @EntityGraph(attributePaths = "translations")
     Optional<Post> findWithTranslationsById(Long Id);
 
-    Page<Post> fingAllByPostTypeIN(Collection<PostType> types, Pageable pageable);
+    Page<Post> findAllByPostTypeIN(Collection<PostType> types, Pageable pageable);
 
     @Query("""
             select p from Post p
@@ -26,5 +26,5 @@ public  interface PostRepository extends JpaRepository<Post, Long> {
             and (p.starts.at is null or p.startsAt <= :now)
             and (p.end.At is null or p.end.At >= :now)
             """)
-    Page<Post> finActiveTempPosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
+    Page<Post> findActiveTempPosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
 }
