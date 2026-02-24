@@ -1,4 +1,4 @@
-package algo.module;
+package algo.dto;
 
 
 import com.example.posts.module.PostType;
