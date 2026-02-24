@@ -9,6 +9,10 @@ public record TempPostResponseDto(
         Long id,
         PostType postType,
         LocalDateTime eventDate,
-        LocalDateTime startsat
-) {
-}
+        LocalDateTime startsAt,
+        LocalDateTime expiresAt,
+        String thumbnailUrl,
+        String imageUrls, // int imageId
+        String externalLink,
+        List<PostTranslationDto> translations
+) { }
