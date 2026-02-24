@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -9,11 +9,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/team', label: t('nav.team') },
-    { path: '/projects', label: t('nav.projects') },
-    { path: '/events', label: t('nav.events') },
-    { path: '/contact', label: t('nav.contact') },
+    { path: "/", label: t("nav.home") },
+    { path: "/team", label: t("nav.team") },
+    { path: "/projects", label: t("nav.projects") },
+    { path: "/events", label: t("nav.events") },
   ];
 
   return (
@@ -46,17 +45,21 @@ export default function Navbar() {
 
           {/* Language Switcher */}
           <div className="flex gap-3">
-            {['pl', 'en', 'de'].map((lang) => (
+            {["pl", "en", "de"].map((lang) => (
               <button
                 key={lang}
                 onClick={() => changeLanguage(lang)}
                 className={`px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
                   i18n.language === lang
-                    ? 'bg-[#f8e9e5] text-[#000424] shadow-lg shadow-[#f8e9e5]/30 scale-105'
-                    : 'bg-transparent text-[#f8e9e5] border-2 border-[#f8e9e5]/40 hover:border-[#f8e9e5] hover:shadow-md hover:shadow-[#f8e9e5]/20 hover:scale-105'
+                    ? "bg-[#f8e9e5] text-[#000424] shadow-lg shadow-[#f8e9e5]/30 scale-105"
+                    : "bg-transparent text-[#f8e9e5] border-2 border-[#f8e9e5]/40 hover:border-[#f8e9e5] hover:shadow-md hover:shadow-[#f8e9e5]/20 hover:scale-105"
                 }`}
                 aria-label={
-                  lang === 'pl' ? 'Polski' : lang === 'en' ? 'English' : 'Deutsch'
+                  lang === "pl"
+                    ? "Polski"
+                    : lang === "en"
+                      ? "English"
+                      : "Deutsch"
                 }
               >
                 {lang}

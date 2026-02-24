@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import teamData from '@/data/team.json';
-import type { TeamMember } from '@/types';
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import teamData from "@/data/team.json";
+import type { TeamMember } from "@/types";
 
 export default function TeamPage() {
   const { t } = useTranslation();
@@ -22,11 +22,9 @@ export default function TeamPage() {
       <section className="py-14 text-center bg-gray-100">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            {t('team.page_title')}
+            {t("team.page_title")}
           </h1>
-          <p className="text-base text-gray-600">
-            {t('team.page_subtitle')}
-          </p>
+          <p className="text-base text-gray-600">{t("team.page_subtitle")}</p>
         </div>
       </section>
 
@@ -47,7 +45,7 @@ export default function TeamPage() {
       <section className="py-14">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-14 text-gray-900">
-            {t('team.supervisors_title')}
+            {t("team.supervisors_title")}
           </h2>
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -60,11 +58,13 @@ export default function TeamPage() {
               </div>
               <div className="md:w-1/2 space-y-4 text-gray-700">
                 <p
-                  dangerouslySetInnerHTML={{ __html: t('team.supervisors_intro') }}
+                  dangerouslySetInnerHTML={{
+                    __html: t("team.supervisors_intro"),
+                  }}
                   className="text-base leading-relaxed"
                 />
                 <p className="text-base leading-relaxed">
-                  {t('team.supervisors_intro_p2')}
+                  {t("team.supervisors_collaboration")}
                 </p>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function TeamPage() {
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 items-start">
               {/* Marta Lampasiak */}
-              <div 
+              <div
                 className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                 onClick={() => setMartaExpanded(!martaExpanded)}
               >
@@ -95,17 +95,17 @@ export default function TeamPage() {
                     <ChevronDown
                       size={24}
                       className={`transition-transform duration-300 ${
-                        martaExpanded ? 'rotate-180' : ''
+                        martaExpanded ? "rotate-180" : ""
                       }`}
                     />
                   </div>
                   <div
                     className={`overflow-hidden transition-all duration-500 ${
-                      martaExpanded ? 'max-h-500 mt-4' : 'max-h-0'
+                      martaExpanded ? "max-h-500 mt-4" : "max-h-0"
                     }`}
                   >
                     <p
-                      dangerouslySetInnerHTML={{ __html: t('team.marta_bio') }}
+                      dangerouslySetInnerHTML={{ __html: t("team.marta_bio") }}
                       className="text-gray-700 text-sm leading-relaxed text-left"
                     />
                   </div>
@@ -113,7 +113,7 @@ export default function TeamPage() {
               </div>
 
               {/* Jacek Jagodziński */}
-              <div 
+              <div
                 className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                 onClick={() => setJacekExpanded(!jacekExpanded)}
               >
@@ -130,17 +130,17 @@ export default function TeamPage() {
                     <ChevronDown
                       size={24}
                       className={`transition-transform duration-300 ${
-                        jacekExpanded ? 'rotate-180' : ''
+                        jacekExpanded ? "rotate-180" : ""
                       }`}
                     />
                   </div>
                   <div
                     className={`overflow-hidden transition-all duration-500 ${
-                      jacekExpanded ? 'max-h-500 mt-4' : 'max-h-0'
+                      jacekExpanded ? "max-h-500 mt-4" : "max-h-0"
                     }`}
                   >
                     <p
-                      dangerouslySetInnerHTML={{ __html: t('team.jacek_bio') }}
+                      dangerouslySetInnerHTML={{ __html: t("team.jacek_bio") }}
                       className="text-gray-700 text-sm leading-relaxed text-left"
                     />
                   </div>
@@ -155,7 +155,7 @@ export default function TeamPage() {
       <section className="py-14 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-14 text-gray-900">
-            {t('team.members_title')}
+            {t("team.members_title")}
           </h2>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
@@ -167,7 +167,7 @@ export default function TeamPage() {
                   <div className="py-5 px-5 flex flex-col items-center">
                     <div className="mb-0">
                       <img
-                        src={member.image.replace('../img/', '/img/')}
+                        src={member.image.replace("../img/", "/img/")}
                         alt={`${member.firstName} ${member.lastName}`}
                         className="w-67.5 h-87.5 object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
                       />
