@@ -23,6 +23,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.http.HttpMethod;
 
 /** Main security config class. Handles auth and sessions. */
 @Configuration
@@ -54,6 +55,17 @@ public class SecurityConfig implements WebMvcConfigurer {
             auth -> {
               auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
               auth.anyRequest().authenticated();
+
+              auth.requestMatchers(HttpMethod.GET, "/api/temp-posts/**").permitAll();
+
+              auth.requestMatchers(HttpMethod.POST, "/api/temp-posts/**").hasRole("ADMIN");
+              auth.requestMatchers(HttpMethod.PUT, "/api/temp-posts/**").hasRole("ADMIN");
+              auth.requestMatchers(HttpMethod.DELETE, "/api/temp-posts/**").hasRole("ADMIN");
+
+              auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
+
+              auth.anyRequest().authenticated();
+
             })
         .csrf(csrf -> csrf.disable())
         .formLogin(
