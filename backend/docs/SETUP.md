@@ -4,6 +4,25 @@
 * Java JDK 23 
 * Docker & Docker Compose
 * IntelliJ IDEA (or other IDE which support Maven)
+* PostgreSQL
+
+---
+
+## Project Structure
+
+This repository is part of a larger project consisting of a separate frontend and backend. Below is the directory structure for the **backend** application:
+
+```text
+backend/
+├── docs/                    # Backend documentation
+├── src/
+│   └── main/
+│       ├── java/algo/       # Main application code (controllers, services, DTOs)
+│       └── resources/       # Configuration files (e.g., application.properties)
+├── .gitignore               # Git ignored files
+├── docker-compose.yml       # Docker configuration for the local database
+└── pom.xml                  # Maven build configuration
+```
 
 ---
 
