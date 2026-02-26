@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -23,7 +24,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.http.HttpMethod;
 
 /** Main security config class. Handles auth and sessions. */
 @Configuration
@@ -56,16 +56,11 @@ public class SecurityConfig implements WebMvcConfigurer {
               auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
               auth.anyRequest().authenticated();
 
-              auth.requestMatchers(HttpMethod.GET, "/api/temp-posts/**").permitAll();
-
               auth.requestMatchers(HttpMethod.POST, "/api/temp-posts/**").hasRole("ADMIN");
               auth.requestMatchers(HttpMethod.PUT, "/api/temp-posts/**").hasRole("ADMIN");
               auth.requestMatchers(HttpMethod.DELETE, "/api/temp-posts/**").hasRole("ADMIN");
 
               auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
-
-              auth.anyRequest().authenticated();
-
             })
         .csrf(csrf -> csrf.disable())
         .formLogin(
