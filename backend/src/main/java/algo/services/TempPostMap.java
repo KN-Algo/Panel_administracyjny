@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 /** Maps temporary post DTOs to and from the Posts entity. */
 @Component
-public class TempPostMapper {
+public class TempPostMap {
   /** Default no-arg constructor required by Spring for dependency injection. */
-  public TempPostMapper() {
+  public TempPostMap() {
     // Intentionally empty constructor required by Spring DI
   }
 
