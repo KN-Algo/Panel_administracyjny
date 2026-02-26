@@ -2,144 +2,114 @@ package algo.controller;
 
 import algo.dto.TempPostRequestDto;
 import algo.dto.TempPostResponseDto;
-import algo.dto.PostTranslationDto;
-import algo.module.Post;
-import algo.module.PostTranslation;
 import algo.module.PostType;
+import algo.module.Posts;
+import algo.services.TempPostMap;
 import algo.services.TempPostService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/** REST controller for managing temporary posts. */
 @RestController
 @RequestMapping("/api/temp-posts")
 public class TempPostController {
 
-    private final TempPostService service;
+  /** Service for handling temporary post business logic. */
+  private final TempPostService service;
 
-    public TempPostController(TempPostService service) {
-        this.service = service;
-    }
+  /** Mapper for converting between Post entities and DTOs. */
+  private final TempPostMap mapper;
 
-    @PostMapping
-    public ResponseEntity<TempPostResponseDto> create(@Valid @RequestBody TempPostRequestDto dto) {
-        Post entity = Mapper.toEntity(dto);
-        Post saved = service.save(entity);
-        return ResponseEntity.ok(Mapper.toResponse(saved));
-    }
+  /**
+   * Constructs a TempPostController with required dependencies.
+   *
+   * @param pServ temporary post service
+   * @param pMap temporary post mapper
+   */
+  public TempPostController(final TempPostService pServ, final TempPostMap pMap) {
+    this.service = pServ;
+    this.mapper = pMap;
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<TempPostResponseDto> update(
-            @PathVariable Long id,
-            @Valid @RequestBody TempPostRequestDto dto
-    ) {
-        Post existing = service.getOne(id);
-        Mapper.updateEntity(existing, dto);
-        Post saved = service.update(id, existing);
-        return ResponseEntity.ok(Mapper.toResponse(saved));
-    }
+  /**
+   * Creates a new temporary post.
+   *
+   * @param dto the post creation request data
+   * @return response entity containing the created post
+   */
+  @PostMapping
+  public ResponseEntity<TempPostResponseDto> create(
+      @Valid @RequestBody final TempPostRequestDto dto) {
+    final Posts entity = mapper.toEntity(dto);
+    final Posts saved = service.save(entity);
+    return ResponseEntity.ok(mapper.toResponse(saved));
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TempPostResponseDto> get(@PathVariable Long id) {
-        Post entity = service.getOne(id);
-        return ResponseEntity.ok(Mapper.toResponse(entity));
-    }
+  /**
+   * Updates an existing temporary post.
+   *
+   * @param postId the ID of the post to update
+   * @param dto the post update request data
+   * @return response entity containing the updated post
+   */
+  @PutMapping("/{id}")
+  public ResponseEntity<TempPostResponseDto> update(
+      @PathVariable("id") final Long postId, @Valid @RequestBody final TempPostRequestDto dto) {
+    final Posts existing = service.getOne(postId);
+    mapper.applyToEntity(existing, dto);
+    final Posts saved = service.update(postId, existing);
+    return ResponseEntity.ok(mapper.toResponse(saved));
+  }
 
-    @GetMapping
-    public ResponseEntity<Page<TempPostResponseDto>> list(
-            Pageable pageable,
-            @RequestParam(value = "type", required = false) PostType type,
-            @RequestParam(value = "active", defaultValue = "false") boolean onlyActive
-    ) {
-        Page<Post> page = service.list(pageable, type, onlyActive);
-        return ResponseEntity.ok(page.map(Mapper::toResponse));
-    }
+  /**
+   * Retrieves a temporary post by ID.
+   *
+   * @param postId the post ID to retrieve
+   * @return response entity containing the post
+   */
+  @GetMapping("/{id}")
+  public ResponseEntity<TempPostResponseDto> get(@PathVariable("id") final Long postId) {
+    final Posts entity = service.getOne(postId);
+    return ResponseEntity.ok(mapper.toResponse(entity));
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+  /**
+   * Lists temporary posts with optional filtering.
+   *
+   * @param pageable pagination information
+   * @param type optional post type filter
+   * @param onlyActive whether to show only active posts
+   * @return response entity containing page of posts
+   */
+  @GetMapping
+  public ResponseEntity<Page<TempPostResponseDto>> list(
+      final Pageable pageable,
+      @RequestParam(value = "type", required = false) final PostType type,
+      @RequestParam(value = "active", defaultValue = "false") final boolean onlyActive) {
+    final Page<Posts> page = service.list(pageable, type, onlyActive);
+    return ResponseEntity.ok(page.map(mapper::toResponse));
+  }
 
-    private static class Mapper {
-
-        static Post toEntity(TempPostRequestDto dto) {
-            Post p = new Post();
-            p.setPostType(dto.postType());
-            p.setEventDate(dto.eventDate());
-            p.setStartsAt(dto.startsAt());
-            p.setExpiresAt(dto.expiresAt());
-            p.setThumbnailUrl(dto.thumbnailUrl());
-            p.setImageUrls(dto.imageUrls());
-            p.setExternalLink(dto.externalLink());
-
-            if (dto.translations() != null) {
-                for (PostTranslationDto t : dto.translations()) {
-                    PostTranslation pt = new PostTranslation();
-                    pt.setLanguageCode(t.languageCode());
-                    pt.setTitle(t.title());
-                    pt.setShortDescription(t.shortDescription());
-                    pt.setFullDescription(t.fullDescription());
-                    p.addTranslation(pt);
-                }
-            }
-
-            return p;
-        }
-
-        static void updateEntity(Post target, TempPostRequestDto dto) {
-            target.setPostType(dto.postType());
-            target.setEventDate(dto.eventDate());
-            target.setStartsAt(dto.startsAt());
-            target.setExpiresAt(dto.expiresAt());
-            target.setThumbnailUrl(dto.thumbnailUrl());
-            target.setImageUrls(dto.imageUrls());
-            target.setExternalLink(dto.externalLink());
-
-            target.getTranslations().clear();
-            if (dto.translations() != null) {
-                for (PostTranslationDto t : dto.translations()) {
-                    PostTranslation pt = new PostTranslation();
-                    pt.setLanguageCode(t.languageCode());
-                    pt.setTitle(t.title());
-                    pt.setShortDescription(t.shortDescription());
-                    pt.setFullDescription(t.fullDescription());
-                    target.addTranslation(pt);
-                }
-            }
-        }
-
-        static TempPostResponseDto toResponse(Post entity) {
-            List<PostTranslationDto> translations = new ArrayList<>();
-
-            if (entity.getTranslations() != null) {
-                for (PostTranslation t : entity.getTranslations()) {
-                    translations.add(new PostTranslationDto(
-                            t.getId(),
-                            t.getLanguageCode(),
-                            t.getTitle(),
-                            t.getShortDescription(),
-                            t.getFullDescription()
-                    ));
-                }
-            }
-
-            return new TempPostResponseDto(
-                    entity.getId(),
-                    entity.getPostType(),
-                    entity.getEventDate(),
-                    entity.getStartsAt(),
-                    entity.getExpiresAt(),
-                    entity.getThumbnailUrl(),
-                    entity.getImageUrls(),
-                    entity.getExternalLink(),
-                    translations
-            );
-        }
-    }
+  /**
+   * Deletes a temporary post by ID.
+   *
+   * @param postId the post ID to delete
+   * @return response entity with no content
+   */
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable("id") final Long postId) {
+    service.delete(postId);
+    return ResponseEntity.noContent().build();
+  }
 }
