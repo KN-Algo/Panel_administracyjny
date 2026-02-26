@@ -1,30 +1,48 @@
 package algo.repository;
 
-import com.example.posts.module.Post;
-import com.example.posts.module.PostType;
+import algo.module.PostType;
+import algo.module.Posts;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Optional;
+/** Repository for Post entity with basic CRUD operations. */
+public interface PostRepository extends JpaRepository<Posts, Long> {
+  /**
+   * Loads a post with its translations to avoid N+1 queries.
+   *
+   * @param postId id of the post
+   * @return optional post with initialized translations
+   */
+  @EntityGraph(attributePaths = "translations")
+  Optional<Posts> findWithTranslationsById(Long postId);
 
+  /**
+   * Returns posts whose type is in the provided list.
+   *
+   * @param types allowed post types
+   * @param pageable paging configuration
+   * @return page of posts matching the given types
+   */
+  Page<Posts> findAllByPostTypeIn(Collection<PostType> types, Pageable pageable);
 
-public  interface PostRepository extends JpaRepository<Post, Long> {
-
-    @EntityGraph(attributePaths = "translations")
-    Optional<Post> findWithTranslationsById(Long Id);
-
-    Page<Post> findAllByPostTypeIN(Collection<PostType> types, Pageable pageable);
-
-    @Query("""
-            select p from Post p
-            where p.postType in :types
-            and (p.starts.at is null or p.startsAt <= :now)
-            and (p.end.At is null or p.end.At >= :now)
-            """)
-    Page<Post> findActiveTempPosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
+  /**
+   * @param types allowed post types
+   * @param now reference time used to check activity window
+   * @param pageable paging configuration
+   * @return page of active temporary posts
+   */
+  @Query(
+      """
+      select p from Posts p
+      where p.postType in :types
+      and (p.starts.at is null or p.startsAt <= :now)
+      and (p.end.at is null or p.expiresAt >= :now)
+      """)
+  Page<Posts> findActiveTempPosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
 }
