@@ -44,7 +44,7 @@ public class PostService {
   public PostResponseDto getPostById(final Long postId) {
     final PostEntity postEntity =
         postRepository
-            .findWithTranslationsById(postId)
+            .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> new RuntimeException("Post nie znaleziony: " + postId));
     return toResponse(postEntity);
   }

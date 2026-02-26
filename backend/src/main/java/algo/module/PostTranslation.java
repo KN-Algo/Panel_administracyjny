@@ -44,7 +44,7 @@ public class PostTranslation {
   /** The post this translation belongs to. */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false)
-  private PostEntity postEntity;
+  private PostEntity post;
 
   /** Language code of the translation. */
   @Column(name = "language_code", nullable = false, length = LANG_CODE_LENGTH)

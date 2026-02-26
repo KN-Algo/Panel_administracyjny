@@ -82,6 +82,6 @@ public class PostEntity {
    */
   public void addTranslation(final PostTranslation translation) {
     translations.add(translation);
-    translation.setPostEntity(this);
+    translation.setPost(this);
   }
 }

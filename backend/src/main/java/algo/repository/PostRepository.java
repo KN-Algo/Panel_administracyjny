@@ -20,7 +20,7 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
    * @return optional post with translations
    */
   @EntityGraph(attributePaths = "translations")
-  Optional<PostEntity> findWithTranslationsById(Long postId);
+  Optional<PostEntity> findWithTranslationsByPostId(Long postId);
 
   /**
    * Finds all posts by post type.
