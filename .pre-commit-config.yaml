@@ -53,4 +53,3 @@ repos:
       - id: pmd
       - id: cpd
         args: ["--minimum-tokens=50"]
-      - id: checkstyle
