@@ -1,0 +1,102 @@
+package algo.services;
+
+import algo.dto.PostTranslationDto;
+import algo.dto.TempPostRequestDto;
+import algo.dto.TempPostResponseDto;
+import algo.module.PostTranslation;
+import algo.module.Posts;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.stereotype.Component;
+
+/** Maps temporary post DTOs to and from the Posts entity. */
+@Component
+public class TempPostMapper {
+  /** Default no-arg constructor required by Spring for dependency injection. */
+  public TempPostMapper() {
+    // Intentionally empty constructor required by Spring DI
+  }
+
+  /**
+   * Maps request DTO to a new {@link Posts} entity.
+   *
+   * @param dto request payload
+   * @return new post entity filled with request values
+   */
+  public Posts toEntity(final TempPostRequestDto dto) {
+    final Posts post = new Posts();
+    applyToEntity(post, dto);
+    return post;
+  }
+
+  /**
+   * Applies DTO values to an existing {@link Posts} entity.
+   *
+   * @param target entity to update
+   * @param dto source DTO with updated values
+   */
+  public void applyToEntity(final Posts target, final TempPostRequestDto dto) {
+    target.setPostType(dto.postType());
+    target.setEventDate(dto.eventDate());
+    target.setStartsAt(dto.startsAt());
+    target.setExpiresAt(dto.expiresAt());
+    target.setThumbnailUrl(dto.thumbnailUrl());
+    target.setImageUrls(dto.imageUrls());
+    target.setExternalLink(dto.externalLink());
+
+    target.clearTranslations();
+    if (dto.translations() != null) {
+      for (final PostTranslationDto translationDto : dto.translations()) {
+        final PostTranslation postTranslation = createPostTranslation(translationDto);
+        target.addTranslation(postTranslation);
+      }
+    }
+  }
+
+  /**
+   * Creates a PostTranslation entity from a PostTranslationDto.
+   *
+   * @param dto the translation DTO
+   * @return the created PostTranslation entity
+   */
+  private PostTranslation createPostTranslation(final PostTranslationDto dto) {
+    final PostTranslation postTranslation = new PostTranslation();
+    postTranslation.setLanguageCode(dto.languageCode());
+    postTranslation.setTitle(dto.title());
+    postTranslation.setShortDescription(dto.shortDescription());
+    postTranslation.setFullDescription(dto.fullDescription());
+    return postTranslation;
+  }
+
+  /**
+   * Maps a {@link Posts} entity to a {@link TempPostResponseDto}.
+   *
+   * @param entity source post entity
+   * @return mapped response DTO
+   */
+  public TempPostResponseDto toResponse(final Posts entity) {
+    final List<PostTranslationDto> translations = new ArrayList<>();
+    if (entity.getTranslations() != null) {
+      for (final PostTranslation postTranslation : entity.getTranslations()) {
+        translations.add(
+            new PostTranslationDto(
+                postTranslation.getId(),
+                postTranslation.getLanguageCode(),
+                postTranslation.getTitle(),
+                postTranslation.getShortDescription(),
+                postTranslation.getFullDescription()));
+      }
+    }
+
+    return new TempPostResponseDto(
+        entity.getPostId(),
+        entity.getPostType(),
+        entity.getEventDate(),
+        entity.getStartsAt(),
+        entity.getExpiresAt(),
+        entity.getThumbnailUrl(),
+        entity.getImageUrls(),
+        entity.getExternalLink(),
+        translations);
+  }
+}
