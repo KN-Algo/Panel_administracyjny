@@ -3,10 +3,10 @@ version: '3.8'
 services:
   db:
     image: postgres:16-alpine
-    container_name: bazaStronyKNAlgo
+    container_name: kn-algo
     restart: always
     environment:
-      POSTGRES_DB: stronaKNAlgo
+      POSTGRES_DB: algo-db
       POSTGRES_USER:
       POSTGRES_PASSWORD:
     ports:
