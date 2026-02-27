@@ -20,7 +20,7 @@ public interface PostRepository extends JpaRepository<Posts, Long> {
    * @return optional post with initialized translations
    */
   @EntityGraph(attributePaths = "translations")
-  Optional<Posts> findWithTranslationsById(Long postId);
+  Optional<Posts> findWithTranslationsByPostId(Long postId);
 
   /**
    * Returns posts whose type is in the provided list.
@@ -41,8 +41,8 @@ public interface PostRepository extends JpaRepository<Posts, Long> {
       """
       select p from Posts p
       where p.postType in :types
-      and (p.starts.at is null or p.startsAt <= :now)
-      and (p.end.at is null or p.expiresAt >= :now)
+      and (p.startsAt is null or p.startsAt <= :now)
+      and (p.expiresAt is null or p.expiresAt >= :now)
       """)
   Page<Posts> findActiveTempPosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
 }
