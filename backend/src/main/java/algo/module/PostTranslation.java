@@ -32,7 +32,7 @@ public class PostTranslation {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   @EqualsAndHashCode.Include
-  private Long postId;
+  private Long id;
 
   /** Parent Post entity this translation belongs to. */
   @ManyToOne(fetch = FetchType.LAZY)
