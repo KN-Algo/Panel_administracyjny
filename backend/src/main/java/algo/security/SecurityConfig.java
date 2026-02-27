@@ -3,6 +3,7 @@ package algo.security;
 import algo.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /** Main security config class. Handles auth and sessions. */
@@ -53,15 +57,17 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     http.authorizeHttpRequests(
             auth -> {
+              auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
               auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
-              auth.anyRequest().authenticated();
 
               auth.requestMatchers(HttpMethod.POST, "/api/temp-posts/**").hasRole("ADMIN");
               auth.requestMatchers(HttpMethod.PUT, "/api/temp-posts/**").hasRole("ADMIN");
               auth.requestMatchers(HttpMethod.DELETE, "/api/temp-posts/**").hasRole("ADMIN");
 
               auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
+              auth.anyRequest().authenticated();
             })
+        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .csrf(csrf -> csrf.disable())
         .formLogin(
             form -> {
@@ -180,5 +186,23 @@ public class SecurityConfig implements WebMvcConfigurer {
     provider.setPasswordEncoder(passwordEncoder());
     provider.setUserDetailsService(userService);
     return provider;
+  }
+
+  /**
+   * Allows browser preflight and credentialed requests from frontend apps.
+   *
+   * @return CORS configuration source
+   */
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    final CorsConfiguration conf = new CorsConfiguration();
+    conf.setAllowedOriginPatterns(List.of("*"));
+    conf.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    conf.setAllowedHeaders(List.of("*"));
+    conf.setAllowCredentials(true);
+
+    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", conf);
+    return source;
   }
 }
