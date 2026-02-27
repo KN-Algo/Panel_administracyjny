@@ -66,9 +66,8 @@ public class TempPostController {
   @PutMapping("/{id}")
   public ResponseEntity<TempPostResponseDto> update(
       @PathVariable("id") final Long postId, @Valid @RequestBody final TempPostRequestDto dto) {
-    final Posts existing = service.getOne(postId);
-    mapper.applyToEntity(existing, dto);
-    final Posts saved = service.update(postId, existing);
+    final Posts mergedEntity = mapper.toEntity(dto);
+    final Posts saved = service.update(postId, mergedEntity);
     return ResponseEntity.ok(mapper.toResponse(saved));
   }
 
