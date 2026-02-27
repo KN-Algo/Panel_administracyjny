@@ -6,7 +6,9 @@ import algo.dto.TempPostResponseDto;
 import algo.module.PostTranslation;
 import algo.module.Posts;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Component;
 
 /** Maps temporary post DTOs to and from the Posts entity. */
@@ -44,10 +46,18 @@ public class TempPostMap {
     target.setImageUrls(dto.imageUrls());
     target.setExternalLink(dto.externalLink());
 
+    final Map<String, Long> existingIdsByLang = new HashMap<>();
+    if (target.getTranslations() != null) {
+      for (final PostTranslation existingTranslation : target.getTranslations()) {
+        existingIdsByLang.put(existingTranslation.getLanguageCode(), existingTranslation.getId());
+      }
+    }
+
     target.clearTranslations();
     if (dto.translations() != null) {
       for (final PostTranslationDto translationDto : dto.translations()) {
-        final PostTranslation postTranslation = createPostTranslation(translationDto);
+        final PostTranslation postTranslation =
+            createPostTranslation(translationDto, existingIdsByLang);
         target.addTranslation(postTranslation);
       }
     }
@@ -59,8 +69,14 @@ public class TempPostMap {
    * @param dto the translation DTO
    * @return the created PostTranslation entity
    */
-  private PostTranslation createPostTranslation(final PostTranslationDto dto) {
+  private PostTranslation createPostTranslation(
+      final PostTranslationDto dto, final Map<String, Long> existingIdsByLang) {
     final PostTranslation postTranslation = new PostTranslation();
+    if (dto.postId() != null) {
+      postTranslation.setId(dto.postId());
+    } else if (existingIdsByLang.containsKey(dto.languageCode())) {
+      postTranslation.setId(existingIdsByLang.get(dto.languageCode()));
+    }
     postTranslation.setLanguageCode(dto.languageCode());
     postTranslation.setTitle(dto.title());
     postTranslation.setShortDescription(dto.shortDescription());
