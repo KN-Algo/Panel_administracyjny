@@ -1,12 +1,15 @@
 package algo.services;
 
 import algo.module.PostType;
+import algo.module.PostTranslation;
 import algo.module.Posts;
 import algo.repository.PostRepository;
 import jakarta.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,26 +26,15 @@ public class TempPostService {
   private final PostRepository postRepository;
 
   /** Time source used for evaluating active windows. */
-  private final Clock clock;
+  private final Clock clock = Clock.systemDefaultZone();
 
   /**
-   * Creates service with default system clock.
+   * Creates service with required repository dependency.
    *
    * @param repository post repository
    */
   public TempPostService(final PostRepository repository) {
-    this(repository, Clock.systemDefaultZone());
-  }
-
-  /**
-   * Creates service with explicit clock.
-   *
-   * @param repository post repository
-   * @param timeSource clock used for current time
-   */
-  public TempPostService(final PostRepository repository, final Clock timeSource) {
     this.postRepository = repository;
-    this.clock = timeSource;
   }
 
   /**
@@ -68,13 +60,42 @@ public class TempPostService {
   @Transactional
   public Posts update(final Long postId, final Posts mergedEntity) {
     final Posts existing =
-        postRepository.findWithTranslationsById(postId).orElseThrow(() -> postNotFound(postId));
+        postRepository
+            .findWithTranslationsByPostId(postId)
+            .orElseThrow(() -> postNotFound(postId));
 
     ensureTemp(existing.getPostType());
+    ensureTemp(mergedEntity.getPostType());
     validateTempDates(mergedEntity);
 
-    mergedEntity.setPostId(postId);
-    return postRepository.save(mergedEntity);
+    existing.setPostType(mergedEntity.getPostType());
+    existing.setEventDate(mergedEntity.getEventDate());
+    existing.setStartsAt(mergedEntity.getStartsAt());
+    existing.setExpiresAt(mergedEntity.getExpiresAt());
+    existing.setThumbnailUrl(mergedEntity.getThumbnailUrl());
+    existing.setImageUrls(mergedEntity.getImageUrls());
+    existing.setExternalLink(mergedEntity.getExternalLink());
+
+    final Map<String, Long> existingIdsByLang = new HashMap<>();
+    for (final PostTranslation translation : existing.getTranslations()) {
+      existingIdsByLang.put(translation.getLanguageCode(), translation.getId());
+    }
+
+    existing.clearTranslations();
+    for (final PostTranslation incoming : mergedEntity.getTranslations()) {
+      final PostTranslation copy = new PostTranslation();
+      final Long existingId = existingIdsByLang.get(incoming.getLanguageCode());
+      if (existingId != null) {
+        copy.setId(existingId);
+      }
+      copy.setLanguageCode(incoming.getLanguageCode());
+      copy.setTitle(incoming.getTitle());
+      copy.setShortDescription(incoming.getShortDescription());
+      copy.setFullDescription(incoming.getFullDescription());
+      existing.addTranslation(copy);
+    }
+
+    return postRepository.save(existing);
   }
 
   /**
@@ -86,7 +107,9 @@ public class TempPostService {
   @Transactional
   public Posts getOne(final Long postId) {
     final Posts entity =
-        postRepository.findWithTranslationsById(postId).orElseThrow(() -> postNotFound(postId));
+        postRepository
+            .findWithTranslationsByPostId(postId)
+            .orElseThrow(() -> postNotFound(postId));
 
     ensureTemp(entity.getPostType());
     return entity;
