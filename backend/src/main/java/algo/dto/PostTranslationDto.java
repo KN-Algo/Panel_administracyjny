@@ -4,14 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 /**
- * @param postId id of translated record
+ * @param translationId id of translated record
  * @param languageCode language translated code
  * @param title translated title
  * @param shortDescription short translated description
  * @param fullDescription full translated description
  */
 public record PostTranslationDto(
-    Long postId,
+    Long translationId,
     @NotBlank @Size(max = LANG_CODE_LENGTH) String languageCode,
     @NotBlank @Size(max = TITLE_LENGTH) String title,
     @NotBlank @Size(max = SHORT_DESC_LENGTH) String shortDescription,
