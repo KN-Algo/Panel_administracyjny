@@ -72,8 +72,8 @@ public class TempPostMap {
   private PostTranslation createPostTranslation(
       final PostTranslationDto dto, final Map<String, Long> existingIdsByLang) {
     final PostTranslation postTranslation = new PostTranslation();
-    if (dto.postId() != null) {
-      postTranslation.setId(dto.postId());
+    if (dto.translationId() != null) {
+      postTranslation.setId(dto.translationId());
     } else if (existingIdsByLang.containsKey(dto.languageCode())) {
       postTranslation.setId(existingIdsByLang.get(dto.languageCode()));
     }
