@@ -53,8 +53,8 @@ Before you can test the API and log in, you need to create at least one user in 
 *(Note: The BCrypt hash below corresponds to the raw password `password`)*:
 
 ```sql
-INSERT INTO users (username, password, role) 
-VALUES ('admin', '$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW', 'ROLE_ADMIN');
+INSERT INTO users (username, email, password, role) 
+VALUES ('admin', 'admin@example.com', '$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW', 'ROLE_ADMIN');
 ```
 ---
 
@@ -95,7 +95,7 @@ Postman will automatically store and send the `JSESSIONID` cookie after a succes
 **2. Get User Info**
 * **Request:** `GET http://localhost:8080/me`
 * **Auth:** `No Auth`
-  *(Note: Requires `ROLE_ADMIN` authority).*
+  *(Note: Requires `ROLE_ADMIN`).*
 
 **3. Logout**
 * **Request:** `GET http://localhost:8080/logout`
