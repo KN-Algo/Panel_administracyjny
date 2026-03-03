@@ -1,7 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
-import ScrollToTop from './components/ScrollToTop';
-import AppRouter from './routes';
-import './i18n/config';
+import { BrowserRouter } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import AppRouter from "./routes";
 
 function App() {
   return (
@@ -12,4 +11,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

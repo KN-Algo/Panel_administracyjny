@@ -1,114 +1,111 @@
 [
   {
-      "type": "info",
-      "title": "Wykład o Transformacie Fouriera",
-      "description": "Koniecznie sprawdź!",
-      "image": "../img/events/Wyklad1.webp",
-      "link": "/pages/events.php#Wyklad1"
-    },
-    {
-      "type": "info",
-      "title": "ALGO na Dniach Otwartych Politechniki Wrocławskiej",
-      "description": "W tym roku zaprezentowaliśmy projekty SoundControl oraz środowisko SteamPhony",
-      "image": "../img/events/dni1.webp",
-      "link": "/pages/events.php#Dni_otwarte"
-    },
-    {
-      "type": "info",
-      "title": "KN ALGO na WITKoN 2025",
-      "description": "Prelekcja o zastosowaniu szybkiej transformaty Fouriera w Minecraft!",
-      "image": "../img/events/witkon1.webp",
-      "link": "/pages/events.php#Witkon"
-    },
-    {
-      "type":"info",
-      "title":"Wizyta w Mitsubishi Electric",
-      "description":"Mieliśmy okazję odwiedzić siedzibę Mitsubishi Electric!",
-      "image":"../img/events/algo_mitsu.webp",
-      "link":"/pages/events.php#Mitsubishi_2"
-    },
-    {
-      "type":"info",
-      "title":"KN Algo na Dolnośląskim Festiwalu Nauki",
-      "description":"Zaprezentowaliśmy nasz najnowszy projekt – „Szach-Mat 2.0” ♟️",
-      "image":"../img/events/dfn5.webp",
-      "link":"/pages/events.php#DFN"
-    },
-      {
-      "type": "info",
-      "title": "Nowy semestr – nowe możliwości!",
-      "description": "Ruszyła otwarta rekrutacja - zapraszamy!",
-      "image": "../img/events/algo_rekru.webp",
-      "link": "/pages/events.php#Rekrutacja"
-    },
-    {
-      "type": "info",
-      "title": "Występ na Inauguracji Wydziałowej roku akademickiego 2025/26",
-      "description":"Mieliśmy zaszczyt zaprezentować nasze projekty oraz działalność koła naukowego przed nowymi studentami!",
-      "image": "../img/events/inauguracja1.webp",
-      "link": "/pages/events.php#Inauguracja"
-    },
-    {
-      "type": "info",
-      "title": "ALGO ponownie zwycięzcą konkursu na najlepsze stoisko na DaWIT!",
-      "description":"Cieszymy się, że doceniliście naszą pracę!",
-      "image": "../img/events/dawit1.webp",
-      "link": "/pages/events.php#DaWiT2025"
-    },
-    {
-      "type": "info",
-      "title": "Certyfikowany trener eskadry Bielik.AI w naszym zespole!",
-      "description": "Wielkie osiągnięcie Jakuba Dobrzańskiego - członka KN Algo",
-      "image": "../img/events/bielik.webp",
-      "link": "/pages/events.php#Bielik"
-    },
-    {
-      "type": "info",
-      "title": "DAS 2025 za nami!",
-      "description": "Dziękujemy za Waszą obecność!",
-      "image":"../img/events/das2_1.webp",
-      "link": "/pages/events.php#das2025"
-    },
-    {
-      "type": "info",
-      "title": "Algo na Dniach Aktywności w NOT",
-      "description": "Pokazaliśmy się uczniom szkół średnich!",
-      "image": "../img/events/NOT1.webp",
-      "link":"/pages/events.php#NOT"
-    },
+    "type": "info",
+    "title": "Wykład o Transformacie Fouriera",
+    "description": "Koniecznie sprawdź!",
+    "image": "../img/events/Wyklad1.webp",
+    "link": "/pages/events.php#Wyklad1"
+  },
+  {
+    "type": "info",
+    "title": "ALGO na Dniach Otwartych Politechniki Wrocławskiej",
+    "description": "W tym roku zaprezentowaliśmy projekty SoundControl oraz środowisko SteamPhony",
+    "image": "../img/events/dni1.webp",
+    "link": "/pages/events.php#Dni_otwarte"
+  },
+  {
+    "type": "info",
+    "title": "KN ALGO na WITKoN 2025",
+    "description": "Prelekcja o zastosowaniu szybkiej transformaty Fouriera w Minecraft!",
+    "image": "../img/events/witkon1.webp",
+    "link": "/pages/events.php#Witkon"
+  },
+  {
+    "type": "info",
+    "title": "Wizyta w Mitsubishi Electric",
+    "description": "Mieliśmy okazję odwiedzić siedzibę Mitsubishi Electric!",
+    "image": "../img/events/algo_mitsu.webp",
+    "link": "/pages/events.php#Mitsubishi_2"
+  },
+  {
+    "type": "info",
+    "title": "KN Algo na Dolnośląskim Festiwalu Nauki",
+    "description": "Zaprezentowaliśmy nasz najnowszy projekt – „Szach-Mat 2.0” ♟️",
+    "image": "../img/events/dfn5.webp",
+    "link": "/pages/events.php#DFN"
+  },
+  {
+    "type": "info",
+    "title": "Nowy semestr – nowe możliwości!",
+    "description": "Ruszyła otwarta rekrutacja - zapraszamy!",
+    "image": "../img/events/algo_rekru.webp",
+    "link": "/pages/events.php#Rekrutacja"
+  },
+  {
+    "type": "info",
+    "title": "Występ na Inauguracji Wydziałowej roku akademickiego 2025/26",
+    "description": "Mieliśmy zaszczyt zaprezentować nasze projekty oraz działalność koła naukowego przed nowymi studentami!",
+    "image": "../img/events/inauguracja1.webp",
+    "link": "/pages/events.php#Inauguracja"
+  },
+  {
+    "type": "info",
+    "title": "ALGO ponownie zwycięzcą konkursu na najlepsze stoisko na DaWIT!",
+    "description": "Cieszymy się, że doceniliście naszą pracę!",
+    "image": "../img/events/dawit1.webp",
+    "link": "/pages/events.php#DaWiT2025"
+  },
+  {
+    "type": "info",
+    "title": "Certyfikowany trener eskadry Bielik.AI w naszym zespole!",
+    "description": "Wielkie osiągnięcie Jakuba Dobrzańskiego - członka KN Algo",
+    "image": "../img/events/bielik.webp",
+    "link": "/pages/events.php#Bielik"
+  },
+  {
+    "type": "info",
+    "title": "DAS 2025 za nami!",
+    "description": "Dziękujemy za Waszą obecność!",
+    "image": "../img/events/das2_1.webp",
+    "link": "/pages/events.php#das2025"
+  },
+  {
+    "type": "info",
+    "title": "Algo na Dniach Aktywności w NOT",
+    "description": "Pokazaliśmy się uczniom szkół średnich!",
+    "image": "../img/events/NOT1.webp",
+    "link": "/pages/events.php#NOT"
+  },
 
-    {
-      "type":"info",
-      "title": "Powitaliśmy nowych członków KN Algo!",
-      "description":"Cieszymy się, że jesteście z nami — przed nami mnóstwo pomysłów, projektów i wspólnych wyzwań!",
-      "image":"../img/events/_grupowe_1.webp",
-      "link":"/pages/events.php#nowi"
-    },
+  {
+    "type": "info",
+    "title": "Powitaliśmy nowych członków KN Algo!",
+    "description": "Cieszymy się, że jesteście z nami — przed nami mnóstwo pomysłów, projektów i wspólnych wyzwań!",
+    "image": "../img/events/_grupowe_1.webp",
+    "link": "/pages/events.php#nowi"
+  },
 
-    {
-      "type": "info",
-      "title": "Wzięliśmy udział w SynderHacks Wrocław!",
-      "description": "Udało nam się zająć 2 miejsce!",
-      "image": "../img/events/Synder1.webp",
-      "link": "/pages/events.php#synder"
-    },
+  {
+    "type": "info",
+    "title": "Wzięliśmy udział w SynderHacks Wrocław!",
+    "description": "Udało nam się zająć 2 miejsce!",
+    "image": "../img/events/Synder1.webp",
+    "link": "/pages/events.php#synder"
+  },
 
-     {
-      "type": "info",
-      "title": "KN Algo na Formnext 2025 we Frankfurcie!",
-      "description": "To jedne z największych wydarzeń na świecie dotyczących druku 3D i technologii addytywnych!",
-      "image": "../img/events/targi1.webp",
-      "link": "/pages/events.php#targi"
-    },
+  {
+    "type": "info",
+    "title": "KN Algo na Formnext 2025 we Frankfurcie!",
+    "description": "To jedne z największych wydarzeń na świecie dotyczących druku 3D i technologii addytywnych!",
+    "image": "../img/events/targi1.webp",
+    "link": "/pages/events.php#targi"
+  },
 
-    {
-      "type": "info",
-      "title": "Byliśmy na BEST Mind Challenge 2025!",
-      "description": "Dziękujemy za zaproszenie oraz wspólnie spędzony czas!",
-      "image": "../img/events/best1.webp",
-      "link": "/pages/events.php#best"
-    }
-
-
-  ]
-  
+  {
+    "type": "info",
+    "title": "Byliśmy na BEST Mind Challenge 2025!",
+    "description": "Dziękujemy za zaproszenie oraz wspólnie spędzony czas!",
+    "image": "../img/events/best1.webp",
+    "link": "/pages/events.php#best"
+  }
+]
