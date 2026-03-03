@@ -37,6 +37,12 @@ public class TempAnnouncementModule {
   private String imageUrl;
 
   /**
+   * @param isActive variable returns is the announcement is active currently
+   */
+  @Column(name = "is_active", nullable = false)
+  private boolean isActive;
+
+  /**
    * @param startsDate the day that announcement starts
    */
   @Column(name = "starts_date", nullable = false)
