@@ -36,13 +36,6 @@
   },
   {
     "type": "info",
-    "title": "Neues Semester – neue Möglichkeiten!",
-    "description": "Die offene Rekrutierung hat begonnen – wir laden Sie herzlich ein!",
-    "image": "../img/events/algo_rekru.webp",
-    "link": "/pages/events.php#Rekrutacja"
-  },
-  {
-    "type": "info",
     "title": "Auftritt bei der Fakultätseröffnung des akademischen Jahres 2025/26",
     "description": "Wir hatten die Ehre, unsere Projekte und die Aktivitäten des wissenschaftlichen Vereins vor neuen Studierenden zu präsentieren!",
     "image": "../img/events/inauguracja1.webp",

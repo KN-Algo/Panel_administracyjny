@@ -85,7 +85,7 @@
   {
     "id": "das2025",
     "title": "Die Tage der Studentischen Aktivität sind vorüber!",
-    "date": "05.11.2025",
+    "date": "2025-11-05",
     "thumbnail": "../img/events/das2_1.webp",
     "description": "🎉 <b>DAS 2025 ist vorüber!</b> 🎉<br>Es war ein Tag voller Energie, Gespräche und Inspiration! 💬✨<br><br>Während der <b>Tage der Studentischen Aktivität</b> hatten wir die Gelegenheit, die Aktivitäten des Studentischen Vereins Algo zu präsentieren – nicht nur Studierenden unserer Fakultät für Informatik und Telekommunikation der TU Breslau, sondern auch vielen Besuchern aus anderen Fachrichtungen der gesamten Technischen Universität Breslau 🔥<br><br>Unser Stand mit dem Projekt Schach-Matt 2.0 ♟️⚙️ zog viele interessierte Personen an – wir danken allen, die stehen geblieben sind, um mit uns zu sprechen, das Projekt in Aktion zu sehen und ihre Ideen zu teilen 🙌<br><br>Die Atmosphäre war fantastisch, und eure Reaktionen haben uns daran erinnert, warum wir so sehr lieben, was wir tun 💡💙<br><br><b>Wir sehen uns bei den nächsten Veranstaltungen – das ist erst der Anfang!</b> 🚀",
     "images": [
@@ -129,7 +129,7 @@
   {
     "id": "Inauguracja",
     "title": "SK Algo bei der Fakultätsinauguration des akademischen Jahres 2025/26",
-    "date": "17.10.2025",
+    "date": "2025-10-17",
     "thumbnail": "../img/events/inauguracja1.webp",
     "description": "🎓 <b>SK Algo bei der Fakultätsinauguration des akademischen Jahres 2025/26</b>🎓<br>Am Mittwoch, dem 15. Oktober, hatten wir das Vergnügen, während der <b>Inauguration der Fakultät für Informatik und Telekommunikation der Technischen Universität Breslau</b> aufzutreten 💙<br>Unser Verein wurde von <b>Vorsitzendem Jakub Barczyński</b> und <b>Stellvertretendem Vorsitzenden Adrian Goral</b> präsentiert. Sie berichteten darüber, womit wir uns bei Algo beschäftigen – von Algorithmen bis zu kreativen Projekten, die Informatik mit Praxis verbinden 🔍⚙️<br>Wir danken für die Einladung und die Möglichkeit, bei einer so wichtigen Veranstaltung aufzutreten ✨<br><br><b>💬 Und an alle neuen Studierenden – willkommen an Bord der TU Breslau 🚀</b><br>Wir hoffen, dass es uns gelungen ist, euch zumindest ein wenig zu inspirieren… denn wenn ja, dann stehen die Türen zum SK Algo offen! Kommt vorbei, um zu sehen, wie wir arbeiten, und vielleicht… um länger bei uns zu bleiben 👀<br><br>📷 Foto: Kamil Winiarz (Abteilung für Promotion FIT)",
     "images": [
@@ -143,10 +143,10 @@
   {
     "id": "Rekrutacja",
     "title": "Neues Semester – neue Möglichkeiten!",
-    "date": "13.10.2025",
-    "thumbnail": "../img/events/algo_rekru.webp",
+    "date": "2025-10-13",
+    "thumbnail": "../img/events/Rekrutacja1.webp",
     "description": "Wir beginnen ein weiteres Semester der Aktivität des <b>Studentischen Vereins Algo</b> und können es kaum erwarten, noch aktiver als zuvor zu sein!<br><br>Wenn du dich für Algorithmik, Programmierung interessierst oder einfach deine Fähigkeiten in einem eingeschworenen Team von Technologie-Enthusiasten entwickeln möchtest – <b>dies ist der perfekte Zeitpunkt, um uns beizutreten!</b><br><br>Die Rekrutierung für unseren Verein läuft gerade.</b><br> Fülle das Rekrutierungsformular aus und stelle dich vor – <b>wir warten auf dich!</b><br><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdrH77bBYWOwYfHsaS_MdbeBNQkQLhAsgrdQtlPtBoWAfq72g/viewform?usp=header\" target=\"_blank\" rel=\"noopener noreferrer\">Rekrutierungsformular</a><br><br>Gemeinsam können wir Projekte schaffen, die die Welt zum Besseren verändern!<br><b>Wir sehen uns bei den Treffen!</b>",
-    "images": ["../img/events/algo_rekru.webp"]
+    "images": ["../img/events/Rekrutacja1.webp"]
   },
   {
     "id": "DFN",
@@ -164,7 +164,7 @@
   {
     "id": "Mitsubishi_2",
     "title": "Besuch bei Mitsubishi Electric",
-    "date": "03.06.2025",
+    "date": "2025-06-03",
     "thumbnail": "../img/events/algo_mitsu.webp",
     "description": "Am 4. Juni hatten wir die Gelegenheit, den Hauptsitz von Mitsubishi Electric zu besuchen, wo wir uns mit ausgewählten in der Industrie verwendeten Lösungen vertraut machten. 🏭<br>Wir konnten eine Anwendung zur Bilderkennung testen 📷 sowie Werkzeuge zur Unterstützung der Netzwerkverwaltung kennenlernen 🌐.<br>Wir sahen auch Industriecomputer 💻 und andere Beispiele für in der Automatisierung eingesetzte Geräte.<br>Wir freuen uns, dass wir unser Wissen erweitern 📚 und aus nächster Nähe sehen konnten, wie in der Praxis eingesetzte Technologien aussehen!",
     "images": [
@@ -175,7 +175,7 @@
   {
     "id": "Witkon",
     "title": "SK ALGO auf der WITKoN 2025",
-    "date": "15.04.2025",
+    "date": "2025-04-15",
     "thumbnail": "../img/events/witkon1.webp",
     "description": "Am 15. April 2025 hatte unser Studentischer Verein Algo die Ehre, an der zweiten Ausgabe der WITKoN - der Konferenz der Studentischen Vereine und Aktiven Studierenden - teilzunehmen, die von der Studentenvertretung der FIT sowie den Studentischen Vereinen Solvro und TK Games organisiert wurde. Die Veranstaltung fand an der Fakultät für Informatik und Telekommunikation der Technischen Universität Breslau statt.<br><br>Während der Konferenz präsentierten wir einen Vortrag mit dem Titel \"Wie man Minecraft mit schneller Fourier-Transformation spielt\", der von Adrian Goral, dem derzeitigen stellvertretenden Vorsitzenden unseres Vereins, gehalten wurde. Im Verlauf des Vortrags wurde erörtert, wie fortgeschrittene mathematische Algorithmen wie die schnelle Fourier-Transformation (FFT) im Spiel Minecraft eingesetzt werden können, wobei Theorie mit Praxis in einer virtuellen Umgebung verbunden wurde.<br><br>Die Teilnahme an der WITKoN war für uns eine ausgezeichnete Gelegenheit, unsere Aktivitäten zu präsentieren, Kontakte mit anderen Studentischen Vereinen zu knüpfen und Erfahrungen auszutauschen. Wir danken den Organisatoren dafür, einen Raum für Integration und Zusammenarbeit zwischen Studierenden geschaffen zu haben.",
     "images": [
@@ -193,7 +193,7 @@
   {
     "id": "Dni_otwarte",
     "title": "ALGO beim Tag der offenen Tür der Technischen Universität Breslau!",
-    "date": "11.04.2025",
+    "date": "2025-04-11",
     "thumbnail": "../img/events/dni1.webp",
     "description": "Am 11. April 2025 nahm unser Studentischer Verein am Tag der offenen Tür der Technischen Universität Breslau teil. Unser Stand stieß sowohl bei diesjährigen Abiturienten als auch bei aktuellen Studierenden auf großes Interesse. In diesem Jahr präsentierten wir die Projekte: <b>SoundControl sowie die SteamPhony-Umgebung</b><br><br>Während der Veranstaltung hatten wir die Gelegenheit, viele interessante Gespräche zu führen. Wir erzählten von den Aktivitäten unseres Vereins, den Projekten, an denen wir beteiligt sind, sowie von den Entwicklungsmöglichkeiten, die ein Studium an der Technischen Universität Breslau bietet.<br><br>Wir freuen uns, dass wir unsere Leidenschaft teilen konnten. Wir hoffen, dass unsere Gespräche den Abiturienten bei wichtigen Entscheidungen bezüglich ihrer Bildungszukunft geholfen haben.<br><br>Wir danken allen herzlich für den Besuch unseres Standes und das gezeigte Interesse. Wir wünschen viel Erfolg bei den bevorstehenden Abiturprüfungen und hoffen auf ein Wiedersehen mit euch als Studierende der Technischen Universität Breslau.",
     "images": [
@@ -214,7 +214,7 @@
   {
     "id": "Wyklad1",
     "title": "Vorlesung über die Fourier-Transformation",
-    "date": "18.12.2024",
+    "date": "2024-12-18",
     "thumbnail": "../img/events/Wyklad1.webp",
     "description": "Im Rahmen unseres Projekts <b>SoundControl</b> hat <i><u><b>Dr.-Ing. Jacek Jagodziński</b></u></i> eine spezielle Vorlesung über die <b>Fourier-Transformation</b> vorbereitet – ein Werkzeug, ohne das es keine Audioanalyse, Datenkompression oder Signalverarbeitung gäbe!<br>Wenn du erfahren möchtest:<br>– wie man ein Signal in Frequenzen zerlegt,<br>– warum Sinus- und Kosinusfunktionen die Welt der Signale beherrschen,<br>– sowie wie wir all dies im Projekt SoundControl nutzen<br><center><b>dann schaue dir unbedingt diese Vorlesung an!</b></center><br> Den Link zum Material findest du <a href=\"https://www.youtube.com/watch?v=WgS0eSEAfhU&amp;t=3045s\" target=\"_blank\" rel=\"noopener noreferrer\">HIER</a>",
     "images": []
@@ -222,7 +222,7 @@
   {
     "id": "Beckhoff",
     "title": "Besuch des SK Algo bei der Firma Beckhoff",
-    "date": "16.12.2024",
+    "date": "2024-12-16",
     "thumbnail": "../img/events/beckhoff1.webp",
     "description": "Unser Studentischer Verein hatte die Möglichkeit, an einer von der Firma Beckhoff organisierten Präsentation teilzunehmen. Wir hatten die Chance, das <b>XPlanar</b>-System in Aktion zu sehen und die Arbeit levitierender Module zu beobachten.<br> <b>XPlanar</b> ist ein innovatives, berührungsloses Transportsystem, das magnetische Levitation zum Bewegen von Produkten nutzt. Es ermöglicht eine fließende und freie Bewegung, einschließlich Rotation, bei gleichzeitiger hoher Flexibilität in Konfiguration und Steuerung.<br>Darüber hinaus lernten wir im praktischen Teil, der der Technologie gewidmet war, die Grundlagen des Schreibens von Code zur Steuerung dieses innovativen Systems kennen. <br><br><center>Der Besuch bei Beckhoff war eine entwickelnde Erfahrung, die uns lange in Erinnerung bleiben wird.</center><br> <b><center>Wir danken der Firma Beckhoff herzlich für die interessante Präsentation und die Möglichkeit, uns mit der Technologie vertraut zu machen!</center></b>",
     "images": [
@@ -237,7 +237,7 @@
   {
     "id": "Mitsubishi",
     "title": "Besuch des SK Algo bei Mitsubishi Electric!",
-    "date": "22.05.2024",
+    "date": "2024-05-22",
     "thumbnail": "../img/events/algo.webp",
     "description": "Am 22. Mai 2024 nahmen dank der Freundlichkeit der <b>Firma Mitsubishi Electronics</b> Mitglieder unseres Vereins an einer Präsentation der neuesten Lösungen des Unternehmens teil.<br>Während der Präsentation machten wir uns mit folgenden Programmen vertraut: <br><b>Iconics</b> - Fortgeschrittene SCADA- und Visualisierungsumgebung für industrielle Prozesse.<br> <b>Mailab</b> - Innovative maschinelle Lernlösungen für industrielle Anwendungen.<br> <b>Vixio</b> - Software zur Bilderkennung, die neue Möglichkeiten in der Automatisierung eröffnet.<br><br> <center>Es war eine äußerst interessante und entwickelnde Erfahrung, die uns ein Bild davon gab, wie die Industrie der Zukunft aussehen kann.</center> <br><center><b>Wir danken Mitsubishi Electronics herzlich für die Gastfreundschaft und die faszinierende Präsentation!</b></center>",
     "images": ["../img/events/Mitsubishi.webp"]

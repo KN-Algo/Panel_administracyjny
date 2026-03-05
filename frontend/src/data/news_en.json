@@ -36,13 +36,6 @@
   },
   {
     "type": "info",
-    "title": "New Semester – New Opportunities!",
-    "description": "Open recruitment has started – welcome!",
-    "image": "../img/events/algo_rekru.webp",
-    "link": "/pages/events.php#Rekrutacja"
-  },
-  {
-    "type": "info",
     "title": "Performance at the Faculty Inauguration of the 2025/26 Academic Year",
     "description": "We had the honor to present our projects and the research club's activities to new students!",
     "image": "../img/events/inauguracja1.webp",

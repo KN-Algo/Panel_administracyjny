@@ -85,42 +85,52 @@ export default function NewsSection() {
           </button>
 
           {/* Cards */}
-          <div
-            className={`flex flex-wrap justify-center gap-8 px-4 transition-opacity duration-300 ${
-              isTransitioning ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            {displayedNews.map((news, index) => (
-              <div
-                key={currentSlide * itemsPerSlide + index}
-                className="w-full max-w-sm"
-              >
-                <Link
-                  to="/events"
-                  state={{ eventId: news.link?.split("#")[1] }}
-                  className="block bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl h-[580px] flex flex-col group"
+          <div className="min-h-[620px] flex items-center justify-center">
+            <div
+              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 w-full max-w-7xl transition-all duration-300 ease-in-out ${
+                isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
+              }`}
+              style={{
+                gridTemplateColumns:
+                  displayedNews.length === 2
+                    ? "repeat(2, minmax(0, 400px))"
+                    : undefined,
+                justifyContent:
+                  displayedNews.length === 2 ? "center" : undefined,
+              }}
+            >
+              {displayedNews.map((news, index) => (
+                <div
+                  key={currentSlide * itemsPerSlide + index}
+                  className="w-full max-w-sm mx-auto"
                 >
-                  <img
-                    src={news.image}
-                    alt={news.title}
-                    className="w-full h-64 object-contain bg-neutral-lightest flex-shrink-0"
-                  />
-                  <div className="p-6 bg-neutral-lighter flex-grow flex flex-col justify-between">
-                    <div className="flex-grow">
-                      <h3 className="font-semibold text-xl mb-2 text-black line-clamp-2 group-hover:text-brand-dark transition-colors">
-                        {news.title}
-                      </h3>
-                      <p className="text-gray-700 text-base mb-4 line-clamp-4">
-                        {news.description}
-                      </p>
+                  <Link
+                    to="/events"
+                    state={{ eventId: news.link?.split("#")[1] }}
+                    className="block bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl h-[580px] flex flex-col group"
+                  >
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-64 object-contain bg-neutral-lightest flex-shrink-0"
+                    />
+                    <div className="p-6 bg-neutral-lighter flex-grow flex flex-col justify-between">
+                      <div className="flex-grow">
+                        <h3 className="font-semibold text-xl mb-2 text-black line-clamp-2 group-hover:text-brand-dark transition-colors">
+                          {news.title}
+                        </h3>
+                        <p className="text-gray-700 text-base mb-4 line-clamp-4">
+                          {news.description}
+                        </p>
+                      </div>
+                      <span className="inline-block bg-brand-dark text-white px-4 py-2 rounded-lg font-medium transition-colors group-hover:bg-brand-dark-hover text-center mt-auto">
+                        {t("home.read_more")}
+                      </span>
                     </div>
-                    <span className="inline-block bg-brand-dark text-white px-4 py-2 rounded-lg font-medium transition-colors group-hover:bg-brand-dark-hover text-center mt-auto">
-                      {t("home.read_more")}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Next Button */}

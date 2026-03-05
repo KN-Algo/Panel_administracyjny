@@ -36,13 +36,6 @@
   },
   {
     "type": "info",
-    "title": "Nowy semestr – nowe możliwości!",
-    "description": "Ruszyła otwarta rekrutacja - zapraszamy!",
-    "image": "../img/events/algo_rekru.webp",
-    "link": "/pages/events.php#Rekrutacja"
-  },
-  {
-    "type": "info",
     "title": "Występ na Inauguracji Wydziałowej roku akademickiego 2025/26",
     "description": "Mieliśmy zaszczyt zaprezentować nasze projekty oraz działalność koła naukowego przed nowymi studentami!",
     "image": "../img/events/inauguracja1.webp",
