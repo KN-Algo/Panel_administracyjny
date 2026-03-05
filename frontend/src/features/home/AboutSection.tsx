@@ -15,13 +15,13 @@ export default function AboutSection() {
         <div className="w-16 h-1 bg-[#eeded9] my-4 mx-auto rounded-full transition-transform duration-400"></div>
 
         <p className="text-lg mb-4 leading-relaxed text-gray-800">
-          {t("home.about_p1")}
+          {t("home.about_who_we_are")}
         </p>
         <p className="text-lg mb-4 leading-relaxed text-gray-800">
-          {t("home.about_p2")}
+          {t("home.about_our_goal")}
         </p>
         <p className="text-lg leading-relaxed text-gray-800">
-          {t("home.about_p3")}
+          {t("home.about_our_impact")}
         </p>
       </section>
     </div>

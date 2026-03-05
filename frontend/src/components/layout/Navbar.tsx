@@ -13,7 +13,6 @@ export default function Navbar() {
     { path: "/team", label: t("nav.team") },
     { path: "/projects", label: t("nav.projects") },
     { path: "/events", label: t("nav.events") },
-    { path: "/contact", label: t("nav.contact") },
   ];
 
   return (

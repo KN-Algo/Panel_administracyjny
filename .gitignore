@@ -1,6 +1,18 @@
 /vendor/
 .env
 composer.lock
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+.vite/
+
 # Devenv
 .devenv*
 devenv.local.nix

@@ -64,7 +64,7 @@ export default function TeamPage() {
                   className="text-base leading-relaxed"
                 />
                 <p className="text-base leading-relaxed">
-                  {t("team.supervisors_intro_p2")}
+                  {t("team.supervisors_collaboration")}
                 </p>
               </div>
             </div>

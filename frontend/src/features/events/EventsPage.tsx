@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import eventsDataPl from "@/data/events_pl.json";
@@ -17,6 +17,10 @@ export default function EventsPage() {
   const [isGalleryAnimating, setIsGalleryAnimating] = useState(false);
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
   const [currentGallerySlide, setCurrentGallerySlide] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<"left" | "right">(
+    "right",
+  );
+  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
   const hasOpenedFromState = useRef(false);
 
   const events = useMemo(() => {
@@ -26,30 +30,31 @@ export default function EventsPage() {
     return eventsDataPl as Event[];
   }, [i18n.language]);
 
-  const openEventModal = (event: Event) => {
+  const openEventModal = useCallback((event: Event) => {
     setSelectedEvent(event);
     setTimeout(() => setIsModalAnimating(true), 10);
-  };
+  }, []);
 
-  // Auto-open event if eventId is passed via state (only once)
+  const closeEventModal = useCallback(() => {
+    setIsModalAnimating(false);
+    setTimeout(() => setSelectedEvent(null), 300);
+  }, []);
+
   useEffect(() => {
     const state = location.state as { eventId?: string } | null;
     if (state?.eventId && !hasOpenedFromState.current) {
       const event = events.find((e) => e.id === state.eventId);
       if (event) {
         hasOpenedFromState.current = true;
+        setTimeout(() => {
+          setSelectedEvent(event);
+          setIsModalAnimating(true);
+        }, 10);
         // Clear state to prevent reopening
         navigate(location.pathname, { replace: true, state: {} });
-        // setTimeout avoids calling setState synchronously inside effect
-        setTimeout(() => openEventModal(event), 0);
       }
     }
   }, [location.state, events, location.pathname, navigate]);
-
-  const closeEventModal = () => {
-    setIsModalAnimating(false);
-    setTimeout(() => setSelectedEvent(null), 300);
-  };
 
   const openGallery = (images: string[], startIndex: number = 0) => {
     const processedImages = images.map((img) =>
@@ -67,24 +72,74 @@ export default function EventsPage() {
       setGalleryOpen(false);
       setGalleryImages([]);
       setCurrentGallerySlide(0);
+      setIsImageTransitioning(false);
     }, 300);
   };
 
-  const handleGallerySlideChange = (direction: "next" | "prev") => {
-    if (direction === "next") {
-      setCurrentGallerySlide((currentGallerySlide + 1) % galleryImages.length);
-    } else {
-      setCurrentGallerySlide(
-        currentGallerySlide === 0
-          ? galleryImages.length - 1
-          : currentGallerySlide - 1,
-      );
-    }
-  };
+  const handleGallerySlideChange = useCallback(
+    (direction: "next" | "prev") => {
+      if (isImageTransitioning) return; // Prevent rapid clicking
+
+      setSlideDirection(direction === "next" ? "right" : "left");
+      setIsImageTransitioning(true);
+
+      setTimeout(() => {
+        setCurrentGallerySlide((prev) => {
+          const newSlide =
+            direction === "next"
+              ? (prev + 1) % galleryImages.length
+              : prev === 0
+                ? galleryImages.length - 1
+                : prev - 1;
+          return newSlide;
+        });
+        setIsImageTransitioning(false);
+      }, 300);
+    },
+    [isImageTransitioning, galleryImages.length],
+  );
+
+  // Keyboard navigation for gallery
+  useEffect(() => {
+    if (!galleryOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeGallery();
+      } else if (e.key === "ArrowLeft") {
+        handleGallerySlideChange("prev");
+      } else if (e.key === "ArrowRight") {
+        handleGallerySlideChange("next");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [galleryOpen, handleGallerySlideChange]);
+
+  // Keyboard navigation for event modal (only when gallery is closed)
+  useEffect(() => {
+    if (!selectedEvent || galleryOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeEventModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedEvent, galleryOpen, closeEventModal]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("pl-PL", {
+    const locale =
+      i18n.language === "en"
+        ? "en-US"
+        : i18n.language === "de"
+          ? "de-DE"
+          : "pl-PL";
+    return date.toLocaleDateString(locale, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -126,8 +181,8 @@ export default function EventsPage() {
                   <p className="text-sm text-gray-600 mb-4">
                     {formatDate(event.date)}
                   </p>
-                  <button className="text-[#000424] font-semibold hover:underline">
-                    Zobacz więcej →
+                  <button className="text-brand-dark font-semibold hover:underline">
+                    {t("events.read_more")} →
                   </button>
                 </div>
               </div>
@@ -155,7 +210,7 @@ export default function EventsPage() {
               </h2>
               <button
                 onClick={closeEventModal}
-                className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors shrink-0"
+                className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors flex-shrink-0"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -196,7 +251,7 @@ export default function EventsPage() {
       {/* Full Image Gallery Modal */}
       {galleryOpen && (
         <div
-          className={`fixed inset-0 bg-black/95 z-60 flex items-center justify-center transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-black/95 z-[60] flex items-center justify-center transition-opacity duration-300 ${
             isGalleryAnimating ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -208,26 +263,30 @@ export default function EventsPage() {
             <X className="w-8 h-8" />
           </button>
 
-          {/* Image carousel */}
-          <div
-            className={`relative w-full h-full flex items-center justify-center p-8 transition-all duration-300 ${
-              isGalleryAnimating
-                ? "scale-100 opacity-100"
-                : "scale-95 opacity-0"
-            }`}
-          >
-            <img
-              src={galleryImages[currentGallerySlide]}
-              alt={`Gallery image ${currentGallerySlide + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
+          {/* Image carousel with animation */}
+          <div className="relative w-full h-full flex items-center justify-center p-8 overflow-hidden">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <img
+                key={currentGallerySlide}
+                src={galleryImages[currentGallerySlide]}
+                alt={`Gallery image ${currentGallerySlide + 1}`}
+                className={`max-w-full max-h-full object-contain rounded-lg transition-all duration-500 ease-out ${
+                  isImageTransitioning
+                    ? slideDirection === "right"
+                      ? "opacity-0 translate-x-20"
+                      : "opacity-0 -translate-x-20"
+                    : "opacity-100 translate-x-0"
+                }`}
+              />
+            </div>
 
             {galleryImages.length > 1 && (
               <>
                 {/* Left arrow */}
                 <button
                   onClick={() => handleGallerySlideChange("prev")}
-                  className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-4 shadow-lg transition-all hover:scale-110"
+                  disabled={isImageTransitioning}
+                  className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-4 shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft className="w-8 h-8" />
                 </button>
@@ -235,7 +294,8 @@ export default function EventsPage() {
                 {/* Right arrow */}
                 <button
                   onClick={() => handleGallerySlideChange("next")}
-                  className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-4 shadow-lg transition-all hover:scale-110"
+                  disabled={isImageTransitioning}
+                  className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-4 shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ChevronRight className="w-8 h-8" />
                 </button>
