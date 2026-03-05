@@ -22,9 +22,11 @@ public class UserService implements UserDetailsService {
   /** Regex part 3 - domain extension. */
   private static final String MAIL_PT3 = "\\.[A-Za-z]{2,64}$";
 
+  /** Full email regex pattern. */
+  private static final String MAIL_REGEX = MAIL_PT1 + MAIL_PT2 + MAIL_PT3;
+
   /** Compiled email regex. */
-  private static final Pattern MAIL_PAT =
-      Pattern.compile(MAIL_PT1 + MAIL_PT2 + MAIL_PT3);
+  private static final Pattern MAIL_PAT = Pattern.compile(MAIL_REGEX);
 
   /** User repository. */
   private final UserRepository userRepository;
