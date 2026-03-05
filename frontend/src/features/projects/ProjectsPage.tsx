@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react";
+import DOMPurify from "dompurify";
 import projectsDataPl from "@/data/projects_pl.json";
 import projectsDataEn from "@/data/projects_en.json";
 import projectsDataDe from "@/data/projects_de.json";
@@ -197,7 +198,7 @@ export default function ProjectsPage() {
               }`}
             >
               <div
-                dangerouslySetInnerHTML={{ __html: project.description }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.description) }}
                 className="text-gray-700 leading-relaxed mb-6"
               />
 

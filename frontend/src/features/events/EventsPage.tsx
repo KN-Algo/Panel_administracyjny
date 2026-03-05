@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import DOMPurify from "dompurify";
 import eventsDataPl from "@/data/events_pl.json";
 import eventsDataEn from "@/data/events_en.json";
 import eventsDataDe from "@/data/events_de.json";
@@ -132,7 +133,7 @@ export default function EventsPage() {
   }, [selectedEvent, galleryOpen, closeEventModal]);
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+    const date = new Date(dateString + "T00:00:00");
     const locale =
       i18n.language === "en"
         ? "en-US"
@@ -219,7 +220,7 @@ export default function EventsPage() {
             {/* Modal Body */}
             <div className="p-6">
               <div
-                dangerouslySetInnerHTML={{ __html: selectedEvent.description }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedEvent.description) }}
                 className="text-gray-700 leading-relaxed mb-6"
               />
 
