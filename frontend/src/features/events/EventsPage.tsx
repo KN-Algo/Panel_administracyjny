@@ -220,7 +220,9 @@ export default function EventsPage() {
             {/* Modal Body */}
             <div className="p-6">
               <div
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedEvent.description) }}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(selectedEvent.description),
+                }}
                 className="text-gray-700 leading-relaxed mb-6"
               />
 

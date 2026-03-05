@@ -198,7 +198,9 @@ export default function ProjectsPage() {
               }`}
             >
               <div
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(project.description) }}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(project.description),
+                }}
                 className="text-gray-700 leading-relaxed mb-6"
               />
 
