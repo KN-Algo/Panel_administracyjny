@@ -37,7 +37,7 @@ export default function Navbar() {
                   className="relative text-[#f8e9e5] transition-colors hover:text-white group"
                 >
                   {link.label}
-                  <span className="absolute left-0 -bottom-0.75 w-0 h-0.5 bg-[#f8e9e5] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 -bottom-[3px] w-0 h-0.5 bg-[#f8e9e5] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
             ))}
