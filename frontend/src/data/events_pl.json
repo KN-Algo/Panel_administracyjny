@@ -1,0 +1,245 @@
+[
+  {
+    "id": "best",
+    "title": "Byliśmy na BEST Mind Challenge 2025!",
+    "date": "2025-11-25",
+    "thumbnail": "../img/events/best1.webp",
+    "description": "✨ <b>Byliśmy na BEST Mind Challenge 2025!</b> ✨<br><br>18 listopada, ekipa Koła Naukowego Algo miała ogromną przyjemność pojawić się na BEST Mind Challenge 2025 – inżynierskim konkursie tworzonym przez Organizację Studencką BEST Wrocław 🤝💡<br><br>W trakcie części networkingowej uczestnicy mogli wpaść do naszego stanowiska, pogadać o algorytmach, projektach i studenckim życiu, a także dowiedzieć się, czym na co dzień zajmujemy się w Algo 🚀✨<br><br>Było mnóstwo inspirujących rozmów, świeżych pomysłów i energii, która tylko potwierdza, że społeczność techniczna na PWr ma się świetnie 💙🤍<br><br>Serdeczne podziękowania dla organizatorów za zaproszenie oraz dla uczestników za wspólnie spędzony czas 😉<br><br>Do zobaczenia 💻💙",
+    "images": ["../img/events/best1.webp", "../img/events/best2.webp"]
+  },
+  {
+    "id": "targi",
+    "title": "KN Algo na Formnext 2025!",
+    "date": "2025-11-24",
+    "thumbnail": "../img/events/targi1.webp",
+    "description": "<center><b>⭐ KN Algo na Formnext 2025! ⭐</center></b><br><br>W dniach 20–21 listopada byliśmy we Frankfurcie na targach Formnext 2025. <b>To jedne z największych wydarzeń na świecie dotyczących druku 3D i technologii addytywnych,</b> gdzie swoje rozwiązania prezentują firmy z wielu krajów. Dziękujemy wszystkim firmom i osobom, z którymi mogliśmy porozmawiać — wracamy z nową motywacją i pomysłami do dalszej pracy.<br><br><b>Do zobaczenia na kolejnych wydarzeniach! 💙</b>",
+    "images": [
+      "../img/events/targi1.webp",
+      "../img/events/targi2.webp",
+      "../img/events/targi3.webp",
+      "../img/events/targi4.webp",
+      "../img/events/targi5.webp",
+      "../img/events/targi6.webp",
+      "../img/events/targi7.webp",
+      "../img/events/targi8.webp",
+      "../img/events/targi9.webp",
+      "../img/events/targi10.webp",
+      "../img/events/targi11.webp",
+      "../img/events/targi12.webp",
+      "../img/events/targi13.webp",
+      "../img/events/targi14.webp",
+      "../img/events/targi15.webp"
+    ]
+  },
+  {
+    "id": "synder",
+    "title": "Zajęliśmy 2 miejsce na SynderHacks Wrocław!",
+    "date": "2025-11-18",
+    "thumbnail": "../img/events/Synder1.webp",
+    "description": "💥 <b>2 miejsce na SynderHacks Wrocław!</b> 💥<br><br>Nasze koło wzięło udział w SynderHacks Wrocław – 24h AI Hackathonie, podczas którego przez całą dobę tworzyliśmy innowacyjne rozwiązania oparte na sztucznej inteligencji 🤖<br><br>Na wydarzenie wystawiliśmy dwa zespoły:<br>💡 <b>Algo-7</b> – złożony z członków 7. semestru<br>⚡ <b>Algo-3</b> – reprezentujący młodsze roczniki z 3. semestru<br><br>Tematem hackathonu było zaprojektowanie w 24 godziny aplikacji biznesowej dla małych firm, wspierającej zarządzanie sklepem internetowym – od integracji z zewnętrznymi platformami sprzedażowymi, przez kontrolę stanów magazynowych, aż po analizę kosztów i fakturowanie 💼<br><br>🔹 <b>Zespół Algo-7</b> opracował aplikację „SellHub\", której głównym założeniem było analizowanie przyczyn zwrotów i podsumowywanie zysków przy użyciu sztucznej inteligencji 🤖 Ich rozwiązanie pozwalało nie tylko identyfikować powody zwrotów i rekomendować czynności, które by je ograniczyły, ale także wizualizować zysk netto ze sprzedaży w formie interaktywnych wykresów.<br><br>🔹 <b>Zespół Algo-3</b> zaprojektował „Sales Optimizer Platform” – narzędzie do dynamicznej optymalizacji cen produktów. Ich agent AI analizował rynek, trendy oraz zapasy magazynowe, by automatycznie proponować najlepsze strategie cenowe, sugerując zniżki czy zestawy promocyjne, a przy okazji aktualizując to na zewnętrznych sklepach internetowych jednym kliknięciem 📊<br><br>Były to 24 godziny intensywnej pracy, kreatywności i walki ze snem 😅 Ale zdecydowanie było warto!<br><br>🏆 <b>Drużyna Algo-7 zajęła 2 miejsce oraz zdobyła wyróżnienie od jury</b> za pomysłowość, podejmując się wyzwania, którego nikt inny nie chciał się podjąć – ogromne gratulacje! 👏🔥<br><br>To był niesamowity weekend pełen inspiracji, nowych doświadczeń i współpracy. Mamy nadzieję, że to dopiero początek naszej przygody z hackathonami – do zobaczenia na kolejnych! 🚀",
+    "images": [
+      "../img/events/Synder1.webp",
+      "../img/events/Synder2.webp",
+      "../img/events/Synder3.webp",
+      "../img/events/Synder4.webp",
+      "../img/events/Synder5.webp",
+      "../img/events/Synder6.webp",
+      "../img/events/Synder7.webp",
+      "../img/events/Synder8.webp",
+      "../img/events/Synder9.webp",
+      "../img/events/Synder10.webp",
+      "../img/events/Synder11.webp",
+      "../img/events/Synder12.webp",
+      "../img/events/Synder13.webp",
+      "../img/events/Synder14.webp",
+      "../img/events/Synder15.webp",
+      "../img/events/Synder16.webp",
+      "../img/events/Synder17.webp",
+      "../img/events/Synder18.webp",
+      "../img/events/Synder19.webp"
+    ]
+  },
+
+  {
+    "id": "nowi",
+    "title": "Witamy nowych członków KN Algo! ",
+    "date": "2025-11-12",
+    "thumbnail": "../img/events/_grupowe_1.webp",
+    "description": "💙 <b>Witamy nowych członków KN Algo!</b> 💙<br>W środę 12.11.2025 odbyło się nasze specjalne spotkanie dla nowych osób, podczas którego <b>oficjalnie wprowadziliśmy ich w szeregi Algo</b> 🤝✨<br><br>Rekrutację pozytywnie przeszło aż 19 osób, co… podwoiło liczbę członków naszego koła! 😍<br><br><b>Cieszymy się, że jesteście z nami — przed nami mnóstwo pomysłów, projektów i wspólnych wyzwań </b>💻⚡♟️<br><br>Dzięki Wam będziemy mogli działać jeszcze intensywniej, kreatywniej i z jeszcze większą pasją! 🚀<br><br><center><b><u>Witamy na pokładzie Algo — teraz to dopiero się zacznie</u></b> 🔥</center>",
+    "images": ["../img/events/_grupowe_1.webp", "../img/events/_grupowe_3.webp"]
+  },
+
+  {
+    "id": "NOT",
+    "title": "Udział w Dniach Aktywności w NOT",
+    "date": "2025-11-10",
+    "thumbnail": "../img/events/NOT1.webp",
+    "description": "🎓 <b>Algo na Dniach Aktywności w NOT!</b> 🎓<br>Mieliśmy przyjemność wziąć udział w Dniach Aktywności organizowanych przez <b>Naczelną Organizację Techniczną (NOT)</b>, gdzie zaprezentowaliśmy uczniom szkół średnich działalność naszego Koła 💼✨<br><br>Ogromne zainteresowanie wzbudził nasz najnowszy projekt – Szach-Mat 2.0, czyli inteligentna, interaktywna szachownica, która łączy elektronikę, programowanie i algorytmikę. Opowiedzieliśmy o procesie jej tworzenia, technologii, z jakiej korzysta, oraz o tym, jak wygląda współpraca między członkami zespołu 🤖♟️<br><br>Cieszymy się, że mogliśmy przybliżyć młodszym pasjonatom świat algorytmów i nowych technologii oraz pokazać, że studiowanie na Politechnice Wrocławskiej to nie tylko nauka, ale też okazja do realizacji ambitnych projektów i współpracy w inspirującym środowisku akademickim 💙<br><br><b>Dziękujemy organizatorom za zaproszenie i możliwość zaprezentowania naszej pracy!</b> 🙌<br><br><br>🐍 Wąż na zdjęciach jest od skn_zywienia_zwierzat",
+    "images": [
+      "../img/events/NOT1.webp",
+      "../img/events/NOT2.webp",
+      "../img/events/NOT3.webp",
+      "../img/events/NOT4.webp"
+    ]
+  },
+  {
+    "id": "das2025",
+    "title": "Dni Aktywności Studneckiej za nami!",
+    "date": "2025-11-05",
+    "thumbnail": "../img/events/das2_1.webp",
+    "description": "🎉 <b>DAS 2025 za nami!</b> 🎉<br>To był dzień pełen energii, rozmów i inspiracji! 💬✨<br><br>Podczas <b>Dni Aktywności Studenckiej</b> mieliśmy okazję zaprezentować działalność Koła Naukowego Algo — nie tylko studentom z naszego wydziału Wydział Informatyki i Telekomunikacji PWr, ale też wielu odwiedzającym z innych kierunków z całej Politechnika Wrocławska🔥<br><br>Nasze stoisko z projektem Szach-Mat 2.0 ♟️⚙️ przyciągało mnóstwo ciekawych osób — dziękujemy wszystkim, którzy zatrzymali się, żeby z nami porozmawiać, zobaczyć projekt w akcji i podzielić się swoimi pomysłami 🙌<br><br>Atmosfera była fantastyczna, a Wasze reakcje przypomniały nam, dlaczego tak bardzo lubimy to, co robimy 💡💙<br><br><b>Do zobaczenia na kolejnych wydarzeniach — to dopiero początek!</b> 🚀",
+    "images": [
+      "../img/events/das2_1.webp",
+      "../img/events/das2_2.webp",
+      "../img/events/das2_3.webp",
+      "../img/events/das2_4.webp",
+      "../img/events/das2_5.webp",
+      "../img/events/das2_6.webp",
+      "../img/events/das2_7.webp",
+      "../img/events/das2_8.webp"
+    ]
+  },
+
+  {
+    "id": "Bielik",
+    "title": "Jakub Dobrzański certyfikowanym trenerem eskadry Bielik.AI",
+    "date": "2025-11-02",
+    "thumbnail": "../img/events/bielik.webp",
+    "description": " 🔥 Wielkie wieści z Algo! 🔥<br>Z ogromną dumą ogłaszamy, że <b>Jakub Dobrzański</b> – członek naszego koła naukowego Algo – został <b>certyfikowanym trenerem eskadry Bielik.AI!</b> 🦅💥<br><br>💬 Bielik.AI to nowoczesny, polski model językowy, rozwijany przez Fundację SpeakLeash i Cyfronet AGH — otwarty, bezpieczny i stworzony z myślą o języku polskim 🇵🇱🤖<br><br>👏 <b>Gratulacje</b>, Kuba! Jesteśmy niesamowicie dumni z Twojego osiągnięcia — to ogromny krok naprzód nie tylko dla Ciebie, ale i całego naszego zespołu 💪<br><br>A może już niedługo… 👀<br>warsztaty z Bielik.AI, prowadzone właśnie przez naszego trenera? 🔥<br><br><b>Zostańcie z nami — będzie się działo!</b> 🚀",
+    "images": ["../img/events/bielik.webp"]
+  },
+
+  {
+    "id": "DaWiT2025",
+    "title": "ALGO ponownie zwycięzcą konkursu na najlepsze stoisko na DaWIT!",
+    "date": "2025-10-24",
+    "thumbnail": "../img/events/dawit1.webp",
+    "description": "🎉<b>🥇 KN Algo ponownie zwycięzcą konkursu na najlepsze stoisko na DaWIT!</b><br>We wtorek, 21 października mieliśmy okazję przedstawić Wam <b>Szach-Mat 2.0</b> ♟️ Projekt ten powstał dzięki ogromnej pracy i poświęceniu wielu osób działających w naszym kole, którzy pozostali zdeterminowani pomimo niedużego zespołu 💪<br><br>Cieszymy się, że dzieliliście z nami tę chwilę - razem patrzyliśmy, jak nasze autonomicznie działające szachy nabierają prędkości ☄️<br><br>Liczymy na kolejne sukcesy w przyszłym roku 🤞<br>Bo jak to się mówi - do trzech razy sztuka! 🏆🎉<br><br><b>Dziękujemy wszystkim, którzy odwiedzili nasze stoisko i docenili naszą pracę! 🙏</b>",
+    "images": [
+      "../img/events/dawit1.webp",
+      "../img/events/dawit2.webp",
+      "../img/events/dawit3.webp",
+      "../img/events/dawit4.webp",
+      "../img/events/dawit5.webp",
+      "../img/events/dawit6.webp",
+      "../img/events/dawit7.webp",
+      "../img/events/dawit8.webp"
+    ]
+  },
+  {
+    "id": "Inauguracja",
+    "title": "KN Algo na Inauguracji Wydziałowej roku akademickiego 2025/26",
+    "date": "2025-10-17",
+    "thumbnail": "../img/events/inauguracja1.webp",
+    "description": "🎓 <b>KN Algo na Inauguracji Wydziałowej roku akademickiego 2025/26</b>🎓<br>W środę, 15 października, mieliśmy przyjemność wystąpić podczas <b>Inauguracji Wydziału Informatyki i Telekomunikacji Politechniki Wrocławskiej</b> 💙<br>Nasze Koło mieli przyjemność zaprezentować <b>Prezes Jakub Barczyński</b> oraz <b>Wiceprezes Adrian Goral</b>. Opowiedzieli o tym, czym zajmujemy się w Algo – od algorytmów po kreatywne projekty łączące informatykę z praktyką 🔍⚙️<br>Dziękujemy za zaproszenie i możliwość wystąpienia na tak ważnym wydarzeniu ✨<br><br><b>💬 A do wszystkich nowych studentów – witamy na pokładzie PWr 🚀</b><br>Mamy nadzieję, że udało nam się Was choć trochę zainspirować… bo jeśli tak, to drzwi do KN Algo są otwarte! Wpadnijcie pogadać, zobaczyć jak działamy i może… zostać z nami na dłużej 👀<br><br>📷 fot. Kamil Winiarz (Dział Promocji WIT)",
+    "images": [
+      "../img/events/inauguracja1.webp",
+      "../img/events/inauguracja2.webp",
+      "../img/events/inauguracja3.webp",
+      "../img/events/inauguracja4.webp"
+    ]
+  },
+
+  {
+    "id": "Rekrutacja",
+    "title": "Nowy semestr – nowe możliwości!",
+    "date": "2025-10-13",
+    "thumbnail": "../img/events/Rekrutacja1.webp",
+    "description": "Rozpoczynamy kolejny semestr działalności <b>Koła Naukowego Algo</b> i nie możemy się doczekać, żeby działać jeszcze prężniej niż wcześniej!<br><br>Jeśli interesujesz się algorytmiką, programowaniem albo po prostu chcesz rozwijać swoje umiejętności w zgranym zespole pasjonatów technologii — <b>to idealny moment, żeby do nas dołączyć!</b><br><br>Właśnie trwa rekrutacja do naszego Koła.</b><br> Wypełnij formularz rekrutacyjny i daj się poznać — <b>czekamy na Ciebie!</b><br><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdrH77bBYWOwYfHsaS_MdbeBNQkQLhAsgrdQtlPtBoWAfq72g/viewform?usp=header\" target=\"_blank\" rel=\"noopener noreferrer\">Formularz rekrutacyjny</a><br><br>Razem możemy tworzyć projekty, które zmienią świat na lepsze!<br><b>Do zobaczenia na spotkaniach!</b>",
+    "images": ["../img/events/Rekrutacja1.webp"]
+  },
+  {
+    "id": "DFN",
+    "title": "KN Algo na Dolnośląskim Festiwalu Nauki",
+    "date": "2025-09-01",
+    "thumbnail": "../img/events/dfn5.webp",
+    "description": "🎓 <b>KN Algo na Dolnośląskim Festiwalu Nauki</b><br>18 września mieliśmy przyjemność uczestniczyć w Dolnośląskim Festiwalu Nauki, gdzie zaprezentowaliśmy nasz najnowszy projekt – „Szach-Mat 2.0” ♟️<br>To wyjątkowe połączenie klasycznej gry w szachy z nowoczesną technologią. Nasza fizyczna szachownica została wyposażona w mechanizm CoreXY oraz system elektromagnesów, dzięki którym pionki mogą poruszać się automatycznie. Co więcej – grę można prowadzić na dwa sposoby:<br>♟️ poprzez aplikację webową<br>♟️ lub tradycyjnie – przesuwając pionki ręką, które dzięki czujnikom magnetycznym są natychmiast wykrywane.<br><b>Szach-Mat 2.0</b> nie jest zwykłą planszą, a prawdziwym interaktywnym systemem, który łączy w sobie elementy informatyki, automatyki, mechatroniki i algorytmiki 🤖<br>Podczas warsztatów każdy mógł rywalizować z naszym autorskim silnikiem szachowym. Były emocje, radość i dużo dobrej zabawy – zarówno dzieci, jak i dorośli chętnie podejmowali wyzwanie💪<br>Najlepsi gracze zostali nagrodzeni gadżetami naszego koła, a my mieliśmy ogromną satysfakcję widząc, jak wiele radości sprawił nasz projekt.<br>🙏 Serdecznie dziękujemy wszystkim, którzy do nas dołączyli. Cieszymy się, że mogliśmy podzielić się z Wami efektem naszej pracy – to właśnie takie chwile motywują nas do dalszego działania.<br>⚡ <b>A to dopiero początek! Już w październiku będzie można zobaczyć ulepszoną wersję Szach-Mat 2.0 podczas wydarzeń:</b><br>📍 DaWiT – 21.10 (budynek C1, Politechnika Wrocławska)<br>📍 DAS – 29.10 (budynek C3, Politechnika Wrocławska)<br><b>Do zobaczenia przy szachownicy! ♟️✨</b>",
+    "images": [
+      "../img/events/dfn1.webp",
+      "../img/events/dfn2.webp",
+      "../img/events/dfn3.webp",
+      "../img/events/dfn4.webp"
+    ]
+  },
+  {
+    "id": "Mitsubishi_2",
+    "title": "Wizyta w Mitsubishi Electric",
+    "date": "2025-06-03",
+    "thumbnail": "../img/events/algo_mitsu.webp",
+    "description": "4 czerwca mieliśmy okazję odwiedzić siedzibę Mitsubishi Electric, gdzie zapoznaliśmy się z wybranymi rozwiązaniami wykorzystywanymi w przemyśle. 🏭<br>Mogliśmy przetestować aplikację do rozpoznawania obrazów 📷 oraz poznać narzędzia wspomagające zarządzanie sieciami 🌐.<br>Zobaczyliśmy również przemysłowe komputery 💻 i inne przykłady sprzętu stosowanego w automatyce.<br>Cieszymy się, że mogliśmy poszerzyć naszą wiedzę 📚 i zobaczyć z bliska, jak wyglądają technologie wykorzystywane w praktyce!",
+    "images": [
+      "../img/events/algo_mitsu1.webp",
+      "../img/events/algo_mitsu2.webp"
+    ]
+  },
+  {
+    "id": "Witkon",
+    "title": "KN ALGO na WITKoN 2025",
+    "date": "2025-04-15",
+    "thumbnail": "../img/events/witkon1.webp",
+    "description": "15 kwietnia 2025 r. nasze Koło Naukowe Algo miało zaszczyt uczestniczyć w drugiej edycji WITKoN – Konferencji Kół Naukowych i Aktywnych Studentów, zorganizowanej przez Samorząd WITa oraz koła naukowe Solvro i TK Games. Wydarzenie odbyło się na Wydziale Informatyki i Telekomunikacji Politechniki Wrocławskiej.<br><br>Podczas konferencji zaprezentowaliśmy prelekcję pt. „Jak zagrać w Minecraft szybką transformatą Fouriera”, którą wygłosił Adrian Goral, obecny wiceprzewodniczący naszego koła. W trakcie wystąpienia omówiono, w jaki sposób zaawansowane algorytmy matematyczne, takie jak szybka transformata Fouriera (FFT), mogą być wykorzystane w grze Minecraft, łącząc teorię z praktyką w środowisku wirtualnym.<br><br>Udział w WITKoN był dla nas doskonałą okazją do zaprezentowania naszych działań, nawiązania kontaktów z innymi kołami naukowymi oraz wymiany doświadczeń. Dziękujemy organizatorom za stworzenie przestrzeni do integracji i współpracy między studentami.",
+    "images": [
+      "../img/events/witkon1.webp",
+      "../img/events/witkon2.webp",
+      "../img/events/witkon3.webp",
+      "../img/events/witkon4.webp",
+      "../img/events/witkon5.webp",
+      "../img/events/witkon6.webp",
+      "../img/events/witkon7.webp",
+      "../img/events/witkon8.webp",
+      "../img/events/witkon9.webp"
+    ]
+  },
+  {
+    "id": "Dni_otwarte",
+    "title": "ALGO na Dniach Otwartych Politechniki Wrocławskiej!",
+    "date": "2025-04-11",
+    "thumbnail": "../img/events/dni1.webp",
+    "description": "Dnia 11 kwietnia 2025r. Nasze koło naukowe uczestniczyło w dniach otwartych Politechniki Wrocławskiej. Nasze stoisko cieszyło się dużym zainteresowaniem zarówno ze strony tegorocznych maturzystów, jak i obecnych studentów. W tym roku zaprezentowaliśmy projekty: <b>SoundControl oraz środowisko SteamPhony</b><br><br>Podczas wydarzenia mieliśmy okazję przeprowadzić wiele ciekawych rozmów. Opowiadaliśmy o działalności naszego koła, projektach, w które jesteśmy zaangażowani, oraz o możliwościach rozwoju, jakie oferuje studiowanie na Politechnice Wrocławskiej.<br><br>Cieszymy się, że mogliśmy podzielić się naszą pasją. Mamy nadzieję, że nasze rozmowy pomogły maturzystom w podjęciu ważnych decyzji dotyczących ich przyszłości edukacyjnej.<br><br>Serdecznie dziękujemy wszystkim za odwiedzenie naszego stoiska i okazaną ciekawość. Życzymy powodzenia na zbliżających się egzaminach maturalnych i mamy nadzieję na spotkanie z Wami już jako studenci Politechniki Wrocławskiej.",
+    "images": [
+      "../img/events/dni1.webp",
+      "../img/events/dni2.webp",
+      "../img/events/dni3.webp",
+      "../img/events/dni4.webp",
+      "../img/events/dni5.webp",
+      "../img/events/dni6.webp",
+      "../img/events/dni7.webp",
+      "../img/events/dni8.webp",
+      "../img/events/dni9.webp",
+      "../img/events/dni10.webp",
+      "../img/events/dni11.webp",
+      "../img/events/dni12.webp"
+    ]
+  },
+  {
+    "id": "Wyklad1",
+    "title": "Wykład o Transformacie Fouriera",
+    "date": "2024-12-18",
+    "thumbnail": "../img/events/Wyklad1.webp",
+    "description": "W ramach naszego projektu <b>SoundControl</b>,<i><u><b>dr. inż. Jacek Jagodziński</b></u></i> przygotował specjalny wykład o <b>Transformacie Fouriera</b> – narzędziu, bez którego nie byłoby analizy dźwięku, kompresji danych czy przetwarzania sygnałów!<br>Jeśli chcesz dowiedzieć się:<br>– jak rozkładać sygnał na częstotliwości,<br>– dlaczego sinusy i cosinusy rządzą światem sygnałów,<br>– oraz jak wykorzystujemy to wszystko w projekcie SoundControl<br><center><b>to koniecznie sprawdź ten wykład!</b></center><br> Link do materiału znajdziesz <a href=\"https://www.youtube.com/watch?v=WgS0eSEAfhU&amp;t=3045s\" target=\"_blank\" rel=\"noopener noreferrer\">TUTAJ</a>",
+    "images": []
+  },
+  {
+    "id": "Beckhoff",
+    "title": "Wizyta KN Algo w firmie Beckhoff",
+    "date": "2024-12-16",
+    "thumbnail": "../img/events/beckhoff1.webp",
+    "description": "Nasze koło naukowe miało możliwość uczestnictwa w prezentacji zorganizowanej przez firmę Beckhoff. Mieliśmy szansę zobaczyć system <b>XPlanar</b> w akcji, obserwując pracę lewitujących modułów.<br> <b>XPlanar</b> to innowacyjny, bezkontaktowy system transportowy, który wykorzystuje lewitację magnetyczną do przemieszczania produktów. Pozwala on na płynny i swobodny ruch, łącznie z rotacją, przy zachowaniu dużej elastyczności w konfiguracji i kontroli.<br>Co więcej,  w części poświęconej praktycznemu aspektowi technologii, poznaliśmy podstawy pisania kodu sterującego tym innowacyjnym systemem. <br><br><center>Wizyta w Beckhoff była rozwijającym doświadczeniem, które na długo pozostanie w naszej pamięci.</center><br> <b><center>Serdecznie dziękujemy firmie Beckhoff za ciekawą prezentację oraz możliwość zapoznania się z technologią!</center></b>",
+    "images": [
+      "../img/events/beckhoff1.webp",
+      "../img/events/beckhoff2.webp",
+      "../img/events/beckhoff3.webp",
+      "../img/events/beckhoff4.webp",
+      "../img/events/beckhoff5.webp"
+    ]
+  },
+
+  {
+    "id": "Mitsubishi",
+    "title": "Wizyta KN Algo w Mitsubishi Electric!",
+    "date": "2024-05-22",
+    "thumbnail": "../img/events/algo.webp",
+    "description": "Dnia 22 maja 2024r. dzięki uprzejmości <b>firmy Mitsubishi Electronics</b> członkowie naszego koła uczestniczyli w prezentacji najnowszych rozwiązań firmy.<br>Podczas prezentacji zapoznaliśmy się z programami: <br><b>Iconics</b> - Zaawansowane środowisko SCADA i wizualizacji dla procesów przemysłowych.<br> <b>Mailab</b> - Innowacyjne rozwiązania uczenia maszynowego dla zastosowań przemysłowych.<br> <b>Vixio</b> - Oprogramowanie do rozpoznawania obrazów, które otwiera nowe możliwości w automatyzacji.<br><br> <center>Było to niezwykle ciekawe oraz rozwijające doświadczenie, które dało nam obraz tego jak może wyglądać przemysł przyszłości.</center> <br><center><b>Serdecznie dziękujemy Mitsubishi Electronics za gościnność i fascynującą prezentację!</b></center>",
+    "images": ["../img/events/Mitsubishi.webp"]
+  }
+]
