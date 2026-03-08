@@ -7,6 +7,8 @@ import algo.module.Posts;
 import algo.services.TempPostMap;
 import algo.services.TempPostService;
 import jakarta.validation.Valid;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -92,12 +94,28 @@ public class TempPostController {
    * @return response entity containing page of posts
    */
   @GetMapping
-  public ResponseEntity<Page<TempPostResponseDto>> list(
+  public ResponseEntity<Map<String, Object>> list(
       final Pageable pageable,
       @RequestParam(value = "type", required = false) final PostType type,
       @RequestParam(value = "active", defaultValue = "false") final boolean onlyActive) {
     final Page<Posts> page = service.list(pageable, type, onlyActive);
-    return ResponseEntity.ok(page.map(mapper::toResponse));
+    final Page<TempPostResponseDto> mapped = page.map(mapper::toResponse);
+
+    final Map<String, Object> response = new LinkedHashMap<>();
+    response.put("items", mapped.getContent());
+
+    if (!mapped.isEmpty()) {
+      final Map<String, Object> pageInfo = new LinkedHashMap<>();
+      pageInfo.put("page", mapped.getNumber());
+      pageInfo.put("size", mapped.getSize());
+      pageInfo.put("totalElements", mapped.getTotalElements());
+      pageInfo.put("totalPages", mapped.getTotalPages());
+      pageInfo.put("first", mapped.isFirst());
+      pageInfo.put("last", mapped.isLast());
+      response.put("page", pageInfo);
+    }
+
+    return ResponseEntity.ok(response);
   }
 
   /**
