@@ -4,6 +4,9 @@ import algo.module.PostType;
 import algo.module.PostTranslation;
 import algo.module.Posts;
 import algo.repository.PostRepository;
+import algo.services.exceptions.InvalidTempPostDatesException;
+import algo.services.exceptions.InvalidTempPostTypeException;
+import algo.services.exceptions.TempPostNotFoundException;
 import jakarta.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -162,7 +165,7 @@ public class TempPostService {
    */
   private void ensureTemp(final PostType type) {
     if (!TEMP_TYPES.contains(type)) {
-      throw new IllegalArgumentException("Only TEMP posts are allowed here.");
+      throw new InvalidTempPostTypeException(type, TEMP_TYPES);
     }
   }
 
@@ -173,10 +176,14 @@ public class TempPostService {
    */
   private void validateTempDates(final Posts entity) {
     if (entity.getStartsAt() == null || entity.getExpiresAt() == null) {
-      throw new IllegalArgumentException("TEMP posts must have startsAt and expiresAt dates.");
+      throw new InvalidTempPostDatesException(
+          "TEMP posts must have startsAt and expiresAt dates.",
+          entity.getStartsAt(),
+          entity.getExpiresAt());
     }
     if (entity.getExpiresAt().isBefore(entity.getStartsAt())) {
-      throw new IllegalArgumentException("expiresAt must be >= startsAt.");
+      throw new InvalidTempPostDatesException(
+          "expiresAt must be >= startsAt.", entity.getStartsAt(), entity.getExpiresAt());
     }
   }
 
@@ -186,7 +193,7 @@ public class TempPostService {
    * @param postId post identity
    * @return exception instance with formatted message
    */
-  private IllegalArgumentException postNotFound(final Long postId) {
-    return new IllegalArgumentException("Post not found: " + postId);
+  private TempPostNotFoundException postNotFound(final Long postId) {
+    return new TempPostNotFoundException(postId);
   }
 }
