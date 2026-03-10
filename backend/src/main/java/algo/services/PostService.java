@@ -3,9 +3,11 @@ package algo.services;
 import algo.dto.PostRequestDto;
 import algo.dto.PostResponseDto;
 import algo.dto.PostTranslationDto;
+import algo.exceptions.PostNotFoundException;
 import algo.module.PostEntity;
 import algo.module.PostTranslation;
 import algo.repository.PostRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -45,7 +47,7 @@ public class PostService {
     final PostEntity postEntity =
         postRepository
             .findWithTranslationsByPostId(postId)
-            .orElseThrow(() -> new RuntimeException("Post nie znaleziony: " + postId));
+            .orElseThrow(() -> new PostNotFoundException(postId));
     return toResponse(postEntity);
   }
 
@@ -57,6 +59,48 @@ public class PostService {
    */
   public PostResponseDto createPost(final PostRequestDto request) {
     final PostEntity postEntity = new PostEntity();
+    applyRequest(postEntity, request);
+    return toResponse(postRepository.save(postEntity));
+  }
+
+  /**
+   * Updates an existing post.
+   *
+   * @param postId the ID of the post to update
+   * @param request the updated post data
+   * @return the updated post
+   */
+  @Transactional
+  public PostResponseDto updatePost(final Long postId, final PostRequestDto request) {
+    final PostEntity postEntity =
+        postRepository
+            .findWithTranslationsByPostId(postId)
+            .orElseThrow(() -> new PostNotFoundException(postId));
+    postEntity.getTranslations().clear();
+    postRepository.saveAndFlush(postEntity);
+    applyRequest(postEntity, request);
+    return toResponse(postRepository.save(postEntity));
+  }
+
+  /**
+   * Deletes a post by ID.
+   *
+   * @param postId the ID of the post to delete
+   */
+  public void deletePost(final Long postId) {
+    if (!postRepository.existsById(postId)) {
+      throw new PostNotFoundException(postId);
+    }
+    postRepository.deleteById(postId);
+  }
+
+  /**
+   * Applies request data to a post entity.
+   *
+   * @param postEntity the post entity
+   * @param request the request data
+   */
+  private void applyRequest(final PostEntity postEntity, final PostRequestDto request) {
     postEntity.setPostType(request.postType());
     postEntity.setEventDate(request.eventDate());
     postEntity.setThumbnailUrl(request.thumbnailUrl());
@@ -67,17 +111,15 @@ public class PostService {
       request
           .translations()
           .forEach(
-              translationDto -> {
+              dto -> {
                 final PostTranslation translation = new PostTranslation();
-                translation.setLanguageCode(translationDto.languageCode());
-                translation.setTitle(translationDto.title());
-                translation.setShortDescription(translationDto.shortDescription());
-                translation.setFullDescription(translationDto.fullDescription());
+                translation.setLanguageCode(dto.languageCode());
+                translation.setTitle(dto.title());
+                translation.setShortDescription(dto.shortDescription());
+                translation.setFullDescription(dto.fullDescription());
                 postEntity.addTranslation(translation);
               });
     }
-
-    return toResponse(postRepository.save(postEntity));
   }
 
   /**
@@ -90,13 +132,13 @@ public class PostService {
     final List<PostTranslationDto> translations =
         postEntity.getTranslations().stream()
             .map(
-                translation ->
+                t ->
                     new PostTranslationDto(
-                        translation.getTranslationId(),
-                        translation.getLanguageCode(),
-                        translation.getTitle(),
-                        translation.getShortDescription(),
-                        translation.getFullDescription()))
+                        t.getTranslationId(),
+                        t.getLanguageCode(),
+                        t.getTitle(),
+                        t.getShortDescription(),
+                        t.getFullDescription()))
             .collect(Collectors.toList());
 
     return new PostResponseDto(

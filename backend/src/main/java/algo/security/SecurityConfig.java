@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -29,6 +30,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig implements WebMvcConfigurer {
+  /** API posts path matcher. */
+  private static final String API_POSTS = "/api/posts/**";
 
   /** Service for loading user data. */
   private final UserService userService;
@@ -52,7 +55,12 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     http.authorizeHttpRequests(
             auth -> {
-              auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
+              auth.requestMatchers("/swagger-ui/**").permitAll();
+              auth.requestMatchers("/v3/api-docs/**").permitAll();
+              auth.requestMatchers(HttpMethod.GET, API_POSTS).permitAll();
+              auth.requestMatchers(HttpMethod.POST, API_POSTS).hasRole("ADMIN");
+              auth.requestMatchers(HttpMethod.PUT, API_POSTS).hasRole("ADMIN");
+              auth.requestMatchers(HttpMethod.DELETE, API_POSTS).hasRole("ADMIN");
               auth.anyRequest().authenticated();
             })
         .csrf(csrf -> csrf.disable())
