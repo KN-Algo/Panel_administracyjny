@@ -28,7 +28,9 @@ backend/
 
 ## 🗄️ Database Setup (Docker)
 
-The easiest way to run the database locally is using Docker. Run the following command in the root directory: 
+The easiest way to run the database locally is using Docker. Before running the command, make sure to check the `docker-compose.yml` file and update the database credentials (username, password) or ports if necessary.
+
+Run the following command in the root directory:
 
 ```bash
 docker-compose up -d
