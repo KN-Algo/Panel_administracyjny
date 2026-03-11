@@ -11,8 +11,12 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.beans.TypeMismatchException;
+import org.springframework.core.convert.ConversionFailedException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -72,19 +76,36 @@ public final class GlobalExceptionHandler {
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   public ResponseEntity<ApiErrorResponse> handleTypeMismatch(
       final MethodArgumentTypeMismatchException ex, final HttpServletRequest request) {
-    final String paramName = ex.getName();
-    final String message;
-    if (ex.getRequiredType() == PostType.class) {
-      message =
-          "Invalid value for parameter '"
-              + paramName
-              + "'. Allowed: "
-              + toCsv(Arrays.asList(PostType.values()))
-              + ".";
-    } else {
-      message = "Invalid value for parameter '" + paramName + "'.";
+    return buildTypeMismatchError(ex.getName(), ex.getRequiredType(), request);
+  }
+
+  @ExceptionHandler({TypeMismatchException.class, ConversionFailedException.class})
+  public ResponseEntity<ApiErrorResponse> handleConversionMismatch(
+      final Exception ex, final HttpServletRequest request) {
+    if (ex instanceof final TypeMismatchException mismatch) {
+      return buildTypeMismatchError(mismatch.getPropertyName(), mismatch.getRequiredType(), request);
     }
-    return buildError(HttpStatus.BAD_REQUEST, message, request.getRequestURI(), null);
+    if (ex instanceof final ConversionFailedException conversion
+        && conversion.getTargetType() != null) {
+      return buildTypeMismatchError(
+          null, conversion.getTargetType().getType(), request);
+    }
+    return buildError(
+        HttpStatus.BAD_REQUEST, "Invalid parameter value.", request.getRequestURI(), null);
+  }
+
+  @ExceptionHandler(HttpMessageNotReadableException.class)
+  public ResponseEntity<ApiErrorResponse> handleUnreadable(
+      final HttpMessageNotReadableException ex, final HttpServletRequest request) {
+    return buildError(
+        HttpStatus.BAD_REQUEST, "Malformed request body.", request.getRequestURI(), null);
+  }
+
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  public ResponseEntity<ApiErrorResponse> handleDataIntegrityViolation(
+      final DataIntegrityViolationException ex, final HttpServletRequest request) {
+    return buildError(
+        HttpStatus.BAD_REQUEST, "Request validation failed.", request.getRequestURI(), null);
   }
 
   @ExceptionHandler({
@@ -121,6 +142,23 @@ public final class GlobalExceptionHandler {
             path,
             (validationErrors == null || validationErrors.isEmpty()) ? null : validationErrors);
     return ResponseEntity.status(status).body(body);
+  }
+
+  private ResponseEntity<ApiErrorResponse> buildTypeMismatchError(
+      final String paramName, final Class<?> requiredType, final HttpServletRequest request) {
+    final String safeName = (paramName == null || paramName.isBlank()) ? "parameter" : paramName;
+    final String message;
+    if (requiredType == PostType.class) {
+      message =
+          "Invalid value for parameter '"
+              + safeName
+              + "'. Allowed: "
+              + toCsv(Arrays.asList(PostType.values()))
+              + ".";
+    } else {
+      message = "Invalid value for parameter '" + safeName + "'.";
+    }
+    return buildError(HttpStatus.BAD_REQUEST, message, request.getRequestURI(), null);
   }
 
   private String toCsv(final Iterable<PostType> types) {
