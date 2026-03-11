@@ -3,10 +3,12 @@ package algo.controller;
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
 import algo.services.exceptions.InvalidTempPostDatesException;
+import algo.services.exceptions.InvalidTempPostRequestException;
 import algo.services.exceptions.InvalidTempPostTypeException;
 import algo.services.exceptions.TempPostNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
@@ -60,9 +62,33 @@ public final class GlobalExceptionHandler {
         validationErrors);
   }
 
+  @ExceptionHandler(InvalidTempPostRequestException.class)
+  public ResponseEntity<ApiErrorResponse> handleInvalidTempPostRequest(
+      final InvalidTempPostRequestException ex, final HttpServletRequest request) {
+    return buildError(
+        HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), ex.getValidationErrors());
+  }
+
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  public ResponseEntity<ApiErrorResponse> handleTypeMismatch(
+      final MethodArgumentTypeMismatchException ex, final HttpServletRequest request) {
+    final String paramName = ex.getName();
+    final String message;
+    if (ex.getRequiredType() == PostType.class) {
+      message =
+          "Invalid value for parameter '"
+              + paramName
+              + "'. Allowed: "
+              + toCsv(Arrays.asList(PostType.values()))
+              + ".";
+    } else {
+      message = "Invalid value for parameter '" + paramName + "'.";
+    }
+    return buildError(HttpStatus.BAD_REQUEST, message, request.getRequestURI(), null);
+  }
+
   @ExceptionHandler({
     BindException.class,
-    MethodArgumentTypeMismatchException.class,
     MissingServletRequestParameterException.class,
     IllegalArgumentException.class
   })
