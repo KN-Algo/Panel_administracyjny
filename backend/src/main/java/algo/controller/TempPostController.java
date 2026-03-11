@@ -6,12 +6,15 @@ import algo.module.PostType;
 import algo.module.Posts;
 import algo.services.TempPostMap;
 import algo.services.TempPostService;
+import algo.services.exceptions.InvalidTempPostRequestException;
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +56,7 @@ public class TempPostController {
   @PostMapping
   public ResponseEntity<TempPostResponseDto> create(
       @Valid @RequestBody final TempPostRequestDto dto) {
+    validateRequest(dto);
     final Posts entity = mapper.toEntity(dto);
     final Posts saved = service.save(entity);
     return ResponseEntity.ok(mapper.toResponse(saved));
@@ -68,6 +72,7 @@ public class TempPostController {
   @PutMapping("/{id}")
   public ResponseEntity<TempPostResponseDto> update(
       @PathVariable("id") final Long postId, @Valid @RequestBody final TempPostRequestDto dto) {
+    validateRequest(dto);
     final Posts mergedEntity = mapper.toEntity(dto);
     final Posts saved = service.update(postId, mergedEntity);
     return ResponseEntity.ok(mapper.toResponse(saved));
@@ -128,5 +133,62 @@ public class TempPostController {
   public ResponseEntity<Void> delete(@PathVariable("id") final Long postId) {
     service.delete(postId);
     return ResponseEntity.noContent().build();
+  }
+
+  private void validateRequest(final TempPostRequestDto dto) {
+    final Map<String, String> errors = new LinkedHashMap<>();
+
+    if (dto.postType() == null) {
+      errors.put("postType", "must not be null");
+    }
+    if (dto.eventDate() == null) {
+      errors.put("eventDate", "must not be null");
+    }
+    if (dto.startsAt() == null) {
+      errors.put("startsAt", "must not be null");
+    }
+    if (dto.expiresAt() == null) {
+      errors.put("expiresAt", "must not be null");
+    }
+    if (!hasText(dto.thumbnailUrl())) {
+      errors.put("thumbnailUrl", "must not be blank");
+    }
+    if (!hasText(dto.externalLink())) {
+      errors.put("externalLink", "must not be blank");
+    }
+
+    final List<algo.dto.PostTranslationDto> translations = dto.translations();
+    if (translations == null || translations.isEmpty()) {
+      errors.put("translations", "must not be empty");
+    } else {
+      for (int i = 0; i < translations.size(); i++) {
+        final var translation = translations.get(i);
+        final String prefix = "translations[" + i + "]";
+        if (translation == null) {
+          errors.put(prefix, "must not be null");
+          continue;
+        }
+        if (!hasText(translation.languageCode())) {
+          errors.put(prefix + ".languageCode", "must not be blank");
+        }
+        if (!hasText(translation.title())) {
+          errors.put(prefix + ".title", "must not be blank");
+        }
+        if (!hasText(translation.shortDescription())) {
+          errors.put(prefix + ".shortDescription", "must not be blank");
+        }
+        if (!hasText(translation.fullDescription())) {
+          errors.put(prefix + ".fullDescription", "must not be blank");
+        }
+      }
+    }
+
+    if (!errors.isEmpty()) {
+      throw new InvalidTempPostRequestException("Request validation failed.", errors);
+    }
+  }
+
+  private boolean hasText(final String value) {
+    return StringUtils.hasText(value);
   }
 }
