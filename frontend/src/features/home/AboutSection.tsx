@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
+import type { ReactNode } from "react";
 import { Code, Lightbulb, FlaskConical } from "lucide-react";
 
 interface TileProps {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   description: string;
   gradient: string;
