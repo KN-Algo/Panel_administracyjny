@@ -98,8 +98,8 @@ export default function AboutSection() {
 
         {/* Animated Tiles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {tiles.map((tile, index) => (
-            <AnimatedTile key={index} {...tile} />
+          {tiles.map((tile) => (
+            <AnimatedTile key={tile.title} {...tile} />
           ))}
         </div>
 
