@@ -19,7 +19,7 @@ function AnimatedTile({
   return (
     <div
       className="group relative bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
-      style={{ animationDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Gradient background on hover */}
       <div
