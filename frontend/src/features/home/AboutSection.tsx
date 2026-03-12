@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Code, Lightbulb, FlaskConical, ArrowRight } from "lucide-react";
+import { Code, Lightbulb, FlaskConical } from "lucide-react";
 
 interface TileProps {
   icon: React.ReactNode;
@@ -41,11 +41,6 @@ function AnimatedTile({
         <p className="text-gray-700 group-hover:text-white/90 leading-relaxed transition-colors duration-300">
           {description}
         </p>
-
-        {/* Arrow indicator */}
-        <div className="mt-6 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <ArrowRight className="w-5 h-5 text-white animate-pulse" />
-        </div>
       </div>
 
       {/* Decorative element */}
@@ -91,18 +86,18 @@ export default function AboutSection() {
     <div className="relative w-full py-20 bg-gradient-to-b from-gray-50 to-white z-10">
       <div className="max-w-7xl mx-auto px-5">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-16 group cursor-default">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 tracking-tight transition-all duration-300 group-hover:scale-[1.02]">
             {t("home.about_title")}
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 mx-auto rounded-full mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <div className="w-32 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 mx-auto rounded-full mb-6 shadow-sm transition-all duration-500 group-hover:w-48 group-hover:shadow-md"></div>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
             {t("home.about_subtitle")}
           </p>
         </div>
 
         {/* Animated Tiles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {tiles.map((tile, index) => (
             <AnimatedTile key={index} {...tile} />
           ))}
@@ -110,9 +105,11 @@ export default function AboutSection() {
 
         {/* Bottom text */}
         <div className="text-center max-w-4xl mx-auto">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            {t("home.about_footer_text")}
-          </p>
+          <div className="px-8 py-6 rounded-2xl bg-gray-50/50 border border-gray-100 transition-all duration-300 hover:bg-gray-100/50 hover:border-gray-200 hover:shadow-md hover:-translate-y-1 cursor-default">
+            <p className="text-lg text-gray-700 leading-relaxed">
+              {t("home.about_footer_text")}
+            </p>
+          </div>
         </div>
       </div>
     </div>
