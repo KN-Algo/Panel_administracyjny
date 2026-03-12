@@ -2,18 +2,35 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import teamData from "@/data/team.json";
-import type { TeamMember } from "@/types";
+import teamDetailsData from "@/data/teamDetails.json";
+import type { TeamMember, TeamMemberDetails } from "@/types";
+import TeamMemberModal from "@/components/TeamMemberModal";
 
 export default function TeamPage() {
   const { t } = useTranslation();
   const [martaExpanded, setMartaExpanded] = useState(false);
   const [jacekExpanded, setJacekExpanded] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const members = teamData as TeamMember[];
+  const teamDetails = teamDetailsData as TeamMemberDetails[];
 
   const getPositionLabel = (position?: string) => {
     if (!position) return null;
     return t(`team.${position}`);
+  };
+
+  const getMemberDetails = (memberId: number): TeamMemberDetails | null => {
+    return teamDetails.find((detail) => detail.id === memberId) || null;
+  };
+
+  const handleMemberClick = (member: TeamMember) => {
+    const details = getMemberDetails(member.id);
+    if (details) {
+      setSelectedMember(member);
+      setIsModalOpen(true);
+    }
   };
 
   return (
@@ -159,34 +176,50 @@ export default function TeamPage() {
           </h2>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
-              {members.map((member, index) => (
-                <div
-                  key={index}
-                  className="bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2"
-                >
-                  <div className="py-5 px-5 flex flex-col items-center">
-                    <div className="mb-0">
-                      <img
-                        src={member.image.replace("../img/", "/img/")}
-                        alt={`${member.firstName} ${member.lastName}`}
-                        className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
-                      />
+              {members.map((member) => {
+                const hasDetails = !!getMemberDetails(member.id);
+                return (
+                  <div
+                    key={member.id}
+                    onClick={() => handleMemberClick(member)}
+                    className={`bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 ${
+                      hasDetails ? "cursor-pointer" : ""
+                    }`}
+                  >
+                    <div className="py-5 px-5 flex flex-col items-center">
+                      <div className="mb-0">
+                        <img
+                          src={member.image.replace("../img/", "/img/")}
+                          alt={`${member.firstName} ${member.lastName}`}
+                          className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
+                        />
+                      </div>
+                      <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
+                        {member.firstName} {member.lastName}
+                      </h3>
+                      {member.position && (
+                        <p className="text-white text-sm font-bold">
+                          {getPositionLabel(member.position)}
+                        </p>
+                      )}
                     </div>
-                    <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
-                      {member.firstName} {member.lastName}
-                    </h3>
-                    {member.position && (
-                      <p className="text-white text-sm font-bold">
-                        {getPositionLabel(member.position)}
-                      </p>
-                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Modal */}
+      {selectedMember && (
+        <TeamMemberModal
+          member={selectedMember}
+          details={getMemberDetails(selectedMember.id)}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 }
