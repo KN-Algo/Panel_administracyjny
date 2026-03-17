@@ -7,6 +7,7 @@ import algo.module.Posts;
 import algo.services.TempPostMap;
 import algo.services.TempPostService;
 import algo.services.exceptions.InvalidTempPostRequestException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/temp-posts")
 public class TempPostController {
+
+  private static final int MAX_PAGE_SIZE = 100;
 
   /** Service for handling temporary post business logic. */
   private final TempPostService service;
@@ -100,9 +103,11 @@ public class TempPostController {
    */
   @GetMapping
   public ResponseEntity<Map<String, Object>> list(
+      final HttpServletRequest request,
       final Pageable pageable,
       @RequestParam(value = "type", required = false) final PostType type,
       @RequestParam(value = "active", defaultValue = "false") final boolean onlyActive) {
+    validatePageable(request, pageable);
     final Page<Posts> page = service.list(pageable, type, onlyActive);
     final Page<TempPostResponseDto> mapped = page.map(mapper::toResponse);
 
@@ -190,5 +195,32 @@ public class TempPostController {
 
   private boolean hasText(final String value) {
     return StringUtils.hasText(value);
+  }
+
+  private void validatePageable(final HttpServletRequest request, final Pageable pageable) {
+    final String rawPage = request.getParameter("page");
+    if (hasText(rawPage)) {
+      final int parsedPage = Integer.parseInt(rawPage);
+      if (parsedPage < 0) {
+        throw new IllegalArgumentException("Parameter 'page' must be >= 0.");
+      }
+    }
+    final String rawSize = request.getParameter("size");
+    if (hasText(rawSize)) {
+      final int parsedSize = Integer.parseInt(rawSize);
+      if (parsedSize <= 0 || parsedSize > MAX_PAGE_SIZE) {
+        throw new IllegalArgumentException(
+            "Parameter 'size' must be between 1 and " + MAX_PAGE_SIZE + ".");
+      }
+    }
+    final int page = pageable.getPageNumber();
+    final int size = pageable.getPageSize();
+    if (page < 0) {
+      throw new IllegalArgumentException("Parameter 'page' must be >= 0.");
+    }
+    if (size <= 0 || size > MAX_PAGE_SIZE) {
+      throw new IllegalArgumentException(
+          "Parameter 'size' must be between 1 and " + MAX_PAGE_SIZE + ".");
+    }
   }
 }
