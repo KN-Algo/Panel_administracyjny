@@ -20,7 +20,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -69,6 +71,12 @@ public class SecurityConfig implements WebMvcConfigurer {
             })
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .csrf(csrf -> csrf.disable())
+        .exceptionHandling(
+            ex -> {
+              final AntPathRequestMatcher apiMatcher = new AntPathRequestMatcher("/api/**");
+              ex.defaultAuthenticationEntryPointFor(apiAuthenticationEntryPoint(), apiMatcher);
+              ex.defaultAccessDeniedHandlerFor(apiAccessDeniedHandler(), apiMatcher);
+            })
         .formLogin(
             form -> {
               form.permitAll();
@@ -150,6 +158,32 @@ public class SecurityConfig implements WebMvcConfigurer {
       final Map<String, String> errorBody = Map.of("error", msg);
 
       objectMapper.writeValue(response.getWriter(), errorBody);
+    };
+  }
+
+  private AuthenticationEntryPoint apiAuthenticationEntryPoint() {
+    return (request, response, ex) -> {
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      response.setContentType("application/json");
+      response.setCharacterEncoding("UTF-8");
+      final Map<String, Object> body = new ConcurrentHashMap<>();
+      body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+      body.put("message", "Unauthorized");
+      body.put("path", request.getRequestURI());
+      objectMapper.writeValue(response.getWriter(), body);
+    };
+  }
+
+  private AccessDeniedHandler apiAccessDeniedHandler() {
+    return (request, response, ex) -> {
+      response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+      response.setContentType("application/json");
+      response.setCharacterEncoding("UTF-8");
+      final Map<String, Object> body = new ConcurrentHashMap<>();
+      body.put("status", HttpServletResponse.SC_FORBIDDEN);
+      body.put("message", "Forbidden");
+      body.put("path", request.getRequestURI());
+      objectMapper.writeValue(response.getWriter(), body);
     };
   }
 
