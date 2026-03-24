@@ -1,7 +1,6 @@
 import { X, Instagram, Linkedin, Github, Globe } from "lucide-react";
 import type { TeamMember, TeamMemberDetails } from "@/types";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
 
 interface TeamMemberModalProps {
   member: TeamMember;
@@ -50,15 +49,14 @@ export default function TeamMemberModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Przycisk zamknięcia */}
-        <Button
+        <button
           onClick={onClose}
-          size="icon"
-          variant="ghost"
-          className="absolute top-6 right-6 z-10 bg-white/90 backdrop-blur-md hover:bg-white hover:rotate-90 transition-all duration-300 shadow-lg"
+          type="button"
+          className="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-[#000424]/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-[#000424] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#000424] focus-visible:ring-offset-2 md:right-5 md:top-5"
           aria-label="Zamknij"
         >
-          <X size={22} className="text-gray-700 hover:text-gray-900" />
-        </Button>
+          <X size={20} className="stroke-[2.75]" />
+        </button>
 
         <div className="flex flex-col md:flex-row max-h-[90vh]">
           {/* Lewa strona - Zdjęcie */}
