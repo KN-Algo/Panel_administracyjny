@@ -35,9 +35,7 @@ export default function TeamMemberModal({
   // Jeśli nie ma szczegółów, nie wyświetlaj modala
   if (!details) return null;
 
-  // Debug - sprawdź ścieżkę obrazu
   const imagePath = member.image.replace("../img/", "/img/");
-  console.log("Image path:", imagePath, "Original:", member.image);
 
   return (
     <div

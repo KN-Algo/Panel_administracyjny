@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import teamData from "@/data/team.json";
 import teamDetailsData from "@/data/teamDetails.json";
 import type { TeamMember, TeamMemberDetails } from "@/types";
@@ -182,10 +182,15 @@ export default function TeamPage() {
                   <div
                     key={member.id}
                     onClick={() => handleMemberClick(member)}
-                    className={`bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 ${
-                      hasDetails ? "cursor-pointer" : ""
+                    className={`relative bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 ${
+                      hasDetails ? "cursor-pointer group" : ""
                     }`}
                   >
+                    {hasDetails && (
+                      <div className="absolute bottom-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-white/16 group-hover:text-white">
+                        <ArrowRight size={14} />
+                      </div>
+                    )}
                     <div className="py-5 px-5 flex flex-col items-center">
                       <div className="mb-0">
                         <img
