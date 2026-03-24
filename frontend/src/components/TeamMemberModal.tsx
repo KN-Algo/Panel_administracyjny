@@ -48,7 +48,7 @@ export default function TeamMemberModal({
       aria-hidden={!isOpen}
     >
       <div
-        className={`relative bg-white rounded-[2rem] shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden transition-all ${
+        className={`relative bg-white rounded-[2rem] shadow-2xl max-w-5xl w-full max-h-[88vh] sm:max-h-[90vh] overflow-y-auto md:overflow-hidden transition-all ${
           isOpen
             ? "animate-in zoom-in-95 duration-300"
             : "animate-out zoom-out-95 duration-200"
@@ -59,21 +59,21 @@ export default function TeamMemberModal({
         <button
           onClick={onClose}
           type="button"
-          className="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-[#000424]/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-[#000424] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#000424] focus-visible:ring-offset-2 md:right-5 md:top-5"
+          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-[#000424]/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-[#000424] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#000424] focus-visible:ring-offset-2 md:right-5 md:top-5 md:h-11 md:w-11"
           aria-label="Zamknij"
         >
-          <X size={20} className="stroke-[2.75]" />
+          <X size={18} className="stroke-[2.75] md:h-5 md:w-5" />
         </button>
 
         <div className="flex flex-col md:flex-row max-h-[90vh]">
           {/* Lewa strona - Zdjęcie */}
-          <div className="md:w-2/5 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 flex items-center justify-center p-10 relative overflow-hidden">
+          <div className="md:w-2/5 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 flex items-center justify-center p-4 sm:p-6 md:p-10 relative overflow-hidden">
             {/* Dekoracyjne elementy tła */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#000424]/5 to-[#000530]/5"></div>
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#000424]/8 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#000530]/8 rounded-full blur-3xl"></div>
+            <div className="hidden md:block absolute -top-20 -right-20 w-40 h-40 bg-[#000424]/8 rounded-full blur-3xl"></div>
+            <div className="hidden md:block absolute -bottom-20 -left-20 w-40 h-40 bg-[#000530]/8 rounded-full blur-3xl"></div>
 
-            <div className="w-full max-w-xs relative z-10">
+            <div className="w-full max-w-[170px] sm:max-w-[210px] md:max-w-xs relative z-10">
               <div className="relative group">
                 <img
                   src={imagePath}
@@ -91,10 +91,10 @@ export default function TeamMemberModal({
           </div>
 
           {/* Prawa strona - Treść */}
-          <div className="md:w-3/5 overflow-y-auto p-10 bg-white">
+          <div className="md:w-3/5 overflow-visible md:overflow-y-auto p-5 sm:p-6 md:p-10 bg-white">
             {/* Nagłówek */}
-            <div className="mb-8">
-              <h2 className="text-4xl font-bold text-gray-900 mb-3 tracking-tight">
+            <div className="mb-5 sm:mb-6 md:mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight">
                 {member.firstName} {member.lastName}
               </h2>
               {member.position && (
@@ -114,12 +114,12 @@ export default function TeamMemberModal({
 
             {/* Bio */}
             {details.bio && (
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+              <div className="mb-5 sm:mb-6 md:mb-8">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 flex items-center gap-2">
                   <span className="w-1 h-6 bg-[#000424] rounded-full"></span>O
                   mnie
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-base pl-3">
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base pl-3">
                   {details.bio}
                 </p>
               </div>
@@ -127,12 +127,12 @@ export default function TeamMemberModal({
 
             {/* Zainteresowania */}
             {details.interests && (
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+              <div className="mb-5 sm:mb-6 md:mb-8">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 flex items-center gap-2">
                   <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
                   Zainteresowania
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-base pl-3">
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base pl-3">
                   {details.interests}
                 </p>
               </div>
@@ -142,7 +142,7 @@ export default function TeamMemberModal({
             {details.socialMedia &&
               Object.keys(details.socialMedia).length > 0 && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 flex items-center gap-2">
                     <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
                     Social Media
                   </h3>
