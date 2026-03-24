@@ -17,20 +17,20 @@ export default function TeamMemberModal({
 }: TeamMemberModalProps) {
   // Zamknij modal przy naciśnięciu ESC
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    if (isOpen) {
-      window.addEventListener("keydown", handleEsc);
-      document.body.style.overflow = "hidden";
-    }
+
+    window.addEventListener("keydown", handleEsc);
+    document.body.style.overflow = "hidden";
+
     return () => {
       window.removeEventListener("keydown", handleEsc);
       document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
 
   // Jeśli nie ma szczegółów, nie wyświetlaj modala
   if (!details) return null;
@@ -41,11 +41,20 @@ export default function TeamMemberModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity duration-200 ${
+        isOpen
+          ? "pointer-events-auto animate-in fade-in opacity-100"
+          : "pointer-events-none animate-out fade-out opacity-0"
+      }`}
       onClick={onClose}
+      aria-hidden={!isOpen}
     >
       <div
-        className="relative bg-white rounded-[2rem] shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden animate-in zoom-in-95 duration-300"
+        className={`relative bg-white rounded-[2rem] shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden transition-all ${
+          isOpen
+            ? "animate-in zoom-in-95 duration-300"
+            : "animate-out zoom-out-95 duration-200"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Przycisk zamknięcia */}
