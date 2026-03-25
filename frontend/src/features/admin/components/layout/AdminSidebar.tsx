@@ -26,7 +26,7 @@ export function AdminSidebar() {
   const location = useLocation();
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar collapsible="icon">
       <SidebarHeader className="border-b px-3 py-4">
         <SidebarMenu>
           <SidebarMenuItem>

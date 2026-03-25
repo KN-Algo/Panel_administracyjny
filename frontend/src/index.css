@@ -139,6 +139,11 @@
   }
 }
 
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+
 /* Custom Scrollbar - Glowing Navy Design */
 * {
   /* Firefox */
