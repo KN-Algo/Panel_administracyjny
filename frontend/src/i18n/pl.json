@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "team": "Zespół",
+    "projects": "Projekty",
+    "events": "Wydarzenia",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "title": "Koło Naukowe Algo",
+    "motto": "Piękno teorii, siła praktyki!",
+    "about_title": "Poznajmy się!",
+    "about_subtitle": "Koło Naukowe Algo to miejsce, gdzie pasja do algorytmiki spotyka się z praktycznym zastosowaniem technologii. Poznaj nasze obszary działalności.",
+    "about_tile1_title": "Algorytmika i Teoria",
+    "about_tile1_desc": "Zgłębiamy fundamenty informatyki – struktury danych, projektowanie algorytmów i analiza złożoności. Teoria napędza naszą praktykę.",
+    "about_tile2_title": "Innowacje i Projekty",
+    "about_tile2_desc": "Od algorytmów do elektroniki – realizujemy projekty łączące software z hardware. Tworzymy aplikacje webowe, systemy embedded, inteligentne urządzenia IoT i innowacyjne rozwiązania automatyki.",
+    "about_tile3_title": "Badania i Rozwój",
+    "about_tile3_desc": "Prowadzimy badania naukowe, uczestniczymy w konferencjach i rozwijamy wiedzę w obszarze matematyki, automatyki i sztucznej inteligencji.",
+    "about_footer_text": "Poprzez współpracę i wymianę doświadczeń tworzymy środowisko, w którym każdy może rozwijać swoje umiejętności i realizować ambitne projekty.",
+    "news_title": "Aktualności",
+    "read_more": "Czytaj więcej"
+  },
+  "team": {
+    "page_title": "Poznaj nasz zespół",
+    "page_subtitle": "Ludzie, którzy tworzą Koło Naukowe Algo",
+    "supervisors_title": "Opiekunowie",
+    "president": "Prezes",
+    "vice_president": "Wiceprezes",
+    "secretary": "Sekretarz",
+    "board_member": "Członek zarządu",
+    "supervisors_intro": "<strong>Dr. inż. Jacek Jagodziński i mgr inż. Marta Lampasiak</strong> to zgrany duet, który łączy pasję do algorytmiki z doświadczeniem dydaktycznym. Inspirują studentów do zgłębiania świata informatyki i automatyki – od struktur danych, przez systemy dynamiczne, aż po projektowanie i analizę algorytmów.",
+    "supervisors_collaboration": "Ich współpraca to coś więcej niż tylko prowadzenie koła. To również wspólna organizacja wydarzeń, tworzenie projektów badawczych i prac naukowych. Razem budują środowisko, w którym nauka łączy się z praktyką, a pomysły przeradzają się w realne działania.",
+    "marta_bio": "Mgr inż. Marta Lampasiak w 2022 ukończyła kierunek Automatyka i Robotyka na Wydziale Elektroniki. Pracę na Wydziale Informatyki i Telekomunikacji na Politechnice Wrocławskiej podjęła jeszcze w tym samym roku.<br> Prowadzi głównie przedmioty związane z programowaniem i technologiami informatycznymi, jednakże jej obszar zainteresowań badawczych obejmuje: modelowanie i identyfikacja systemów dynamicznych, projektowanie układów sterowania i badania symulacyjne. Aktualnie pracuje nad doktoratem i prowadzi badania naukowe, a ich efekty często prezentuje na międzynarodowych konferencjach naukowych. Praca na PWr pozwala jej na łączenie dwóch aspektów, bez których nie wyobraża sobie swojego życia: zdobywania wiedzy i przekazywania jej innym. Dla mgr inż. Marty Lampasiak praca dydaktyczna, a w tym atmosfera na jej zajęciach, ma równie ważne znaczenie co praca naukowa, o czym świadczy chociażby tytuł laureata w Programie Quintus, w którym to studenci wybierają prowadzących wyróżniających się swoim zaangażowaniem i sposobem prowadzenia zajęć.",
+    "jacek_bio": "Dr inż. Jacek Jagodziński ukończył studia na kierunku Automatyka i Robotyka na Wydziale Elektroniki, na Politechnice Wrocławskiej uzyskał również tytuł doktora, a pracę na wspomnianej uczelni rozpoczął w 2017 roku. Prowadzi przedmioty związane z szeroko pojętą automatyką przemysłową, IoT, przetwarzaniem sygnałów i wiele innych. Warto również nadmienić, że jego praca doktorska dotyczyła zagadnień związanych z robotyką. Natomiast w swojej pracy naukowej skupia się głównie na tworzeniu modeli systemów (nie tylko tych związanych z automatyką), ich identyfikacji oraz na ogólnie pojętej estymacji. Dr inż. Jacek Jagodziński jest opiekunem Laboratorium urządzeń i układów automatyki, a jeśli chodzi o jego pracę dydaktyczną najlepszym dowodem jego zaangażowania, a także i pomysłowości dotyczącej wymyślania coraz to nowszych tematów projektów do realizacji, są absolwenci, zarówno studiów inżynierskich, jak i magisterskich, których miał przyjemność być promotorem. Dodatkowo należy nadmienić, że posiada on duże doświadczenie związane z pracą w projektach badawczych.",
+    "members_title": "Członkowie koła"
+  },
+  "projects": {
+    "page_title": "Nasze projekty",
+    "upcoming_title": "Nadchodzące projekty"
+  },
+  "events": {
+    "page_title": "Wydarzenia",
+    "read_more": "Zobacz więcej"
+  },
+  "contact": {
+    "page_title": "Skontaktuj się z nami!",
+    "page_subtitle": "Jesteśmy otwarci na nowe współprace.",
+    "form_header": "Wyślij wiadomość",
+    "form_name": "Imię i Nazwisko",
+    "form_email": "Adres e-mail",
+    "form_subject": "Temat",
+    "form_message": "Wiadomość",
+    "form_submit": "Wyślij wiadomość",
+    "placeholder_name": "Jan Kowalski",
+    "placeholder_email": "jan.kowalski@example.com",
+    "placeholder_subject": "Współpraca / Pytanie / Inne",
+    "placeholder_message": "Twoja wiadomość...",
+    "info_header": "Informacje kontaktowe",
+    "info_email_label": "Email",
+    "info_follow_label": "Śledź nas",
+    "info_tip_title": "Wskazówka:",
+    "info_tip_text": "Odpowiadamy na wiadomości w ciągu 24-48 godzin w dni robocze.",
+    "alert_wait": "Proszę czekać...",
+    "alert_sending": "Wysyłanie wiadomości...",
+    "alert_robot_title": "Chwila!",
+    "alert_robot_text": "Robotom wstęp wzbroniony!",
+    "alert_robot_footer": "Test reCAPTCHA nie powiódł się."
+  },
+  "common": {
+    "close": "Zamknij",
+    "previous": "Poprzednie",
+    "next": "Następne"
+  },
+  "footer": {
+    "follow_us": "Bądź na bieżąco – obserwuj nas:",
+    "copyright": "Koło Naukowe Algo",
+    "tagline": "Z pasji do algorytmów | Made with ❤️"
+  }
+}

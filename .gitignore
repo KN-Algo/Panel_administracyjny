@@ -1,0 +1,30 @@
+/vendor/
+node_modules/
+.env
+composer.lock
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+devenv.nix
+devenv.yaml
+devenv.lock
+.envrc
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

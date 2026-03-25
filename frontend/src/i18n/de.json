@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "team": "Team",
+    "projects": "Projekte",
+    "events": "Veranstaltungen",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "title": "Algo Wissenschaftlicher Verein",
+    "motto": "Schönheit der Theorie, Kraft der Praxis!",
+    "about_title": "Lernen wir uns kennen!",
+    "about_subtitle": "Der Algo Wissenschaftliche Verein ist ein Ort, an dem die Leidenschaft für Algorithmen auf praktische Anwendung von Technologie trifft. Entdecken Sie unsere Tätigkeitsbereiche.",
+    "about_tile1_title": "Algorithmik & Theorie",
+    "about_tile1_desc": "Wir erforschen die Grundlagen der Informatik – Datenstrukturen, Algorithmendesign und Komplexitätsanalyse. Theorie treibt unsere Praxis an.",
+    "about_tile2_title": "Innovation & Projekte",
+    "about_tile2_desc": "Von Algorithmen bis Elektronik – wir realisieren Projekte, die Software mit Hardware verbinden. Wir entwickeln Webanwendungen, Embedded-Systeme, intelligente IoT-Geräte und innovative Automatisierungslösungen.",
+    "about_tile3_title": "Forschung & Entwicklung",
+    "about_tile3_desc": "Wir führen wissenschaftliche Forschung durch, nehmen an Konferenzen teil und entwickeln Wissen in Mathematik, Automatisierung und künstlicher Intelligenz.",
+    "about_footer_text": "Durch Zusammenarbeit und Wissensaustausch schaffen wir ein Umfeld, in dem jeder seine Fähigkeiten entwickeln und ehrgeizige Projekte verwirklichen kann.",
+    "news_title": "Neuigkeiten",
+    "read_more": "Mehr lesen"
+  },
+  "team": {
+    "page_title": "Lernen Sie unser Team kennen",
+    "page_subtitle": "Menschen, die den Algo Wissenschaftlichen Verein gestalten",
+    "supervisors_title": "Betreuer",
+    "president": "Präsident",
+    "vice_president": "Vizepräsident",
+    "secretary": "Sekretär",
+    "board_member": "Vorstandsmitglied",
+    "supervisors_intro": "<strong>Dr. Jacek Jagodziński und Marta Lampasiak, M.Sc.</strong> sind ein gut aufeinander abgestimmtes Duo, das Leidenschaft für Algorithmik mit Lehrerfahrung verbindet. Sie inspirieren Studenten, die Welt der Informatik und Automatisierung zu erkunden – von Datenstrukturen über dynamische Systeme bis hin zu Algorithmendesign und -analyse.",
+    "supervisors_collaboration": "Ihre Zusammenarbeit ist mehr als nur die Leitung des Vereins. Es umfasst auch die gemeinsame Organisation von Veranstaltungen, die Erstellung von Forschungsprojekten und wissenschaftlichen Arbeiten. Gemeinsam schaffen sie ein Umfeld, in dem Wissenschaft auf Praxis trifft und Ideen zu realen Handlungen werden.",
+    "marta_bio": "Marta Lampasiak, M.Sc., absolvierte 2022 ihr Studium der Automatisierung und Robotik an der Fakultät für Elektronik. Sie begann ihre Arbeit an der Fakultät für Informatik und Telekommunikation der Technischen Universität Wrocław im selben Jahr.<br> Sie unterrichtet hauptsächlich Fächer im Zusammenhang mit Programmierung und Informationstechnologien, ihre Forschungsinteressen umfassen jedoch: Modellierung und Identifikation dynamischer Systeme, Entwurf von Steuerungssystemen und Simulationsstudien. Derzeit arbeitet sie an ihrer Promotion und führt wissenschaftliche Forschungen durch, deren Ergebnisse sie oft auf internationalen wissenschaftlichen Konferenzen präsentiert. Die Arbeit an der TU Wrocław ermöglicht es ihr, zwei Aspekte zu verbinden, ohne die sie sich ihr Leben nicht vorstellen kann: Wissen erwerben und es an andere weitergeben. Für Marta Lampasiak, M.Sc., ist die didaktische Arbeit, einschließlich der Atmosphäre in ihren Kursen, ebenso wichtig wie die wissenschaftliche Arbeit, was durch den Titel der Preisträgerin im Quintus-Programm belegt wird, in dem Studenten Lehrer wählen, die sich durch ihr Engagement und ihre Lehrmethoden auszeichnen.",
+    "jacek_bio": "Jacek Jagodziński, PhD, absolvierte sein Studium der Automatisierung und Robotik an der Fakultät für Elektronik, erhielt seinen Doktortitel an der Technischen Universität Wrocław und begann 2017 dort zu arbeiten. Er unterrichtet Fächer im Zusammenhang mit breit verstandener industrieller Automatisierung, IoT, Signalverarbeitung und vielem mehr. Es ist auch erwähnenswert, dass sich seine Doktorarbeit mit Themen im Zusammenhang mit Robotik befasste. In seiner wissenschaftlichen Arbeit konzentriert er sich hauptsächlich auf die Erstellung von Systemmodellen (nicht nur solchen im Zusammenhang mit Automatisierung), deren Identifikation und allgemein verstandene Schätzung. Jacek Jagodziński, PhD, ist der Betreuer des Labors für Automatisierungsgeräte und -systeme, und was seine didaktische Arbeit betrifft, ist der beste Beweis für sein Engagement und seinen Einfallsreichtum bei der Entwicklung neuer Projektthemen die Absolventen, sowohl von Ingenieur- als auch von Masterstudiengängen, bei denen er das Vergnügen hatte, Betreuer zu sein. Darüber hinaus sollte erwähnt werden, dass er über umfangreiche Erfahrung in der Arbeit an Forschungsprojekten verfügt.",
+    "members_title": "Vereinsmitglieder"
+  },
+  "projects": {
+    "page_title": "Unsere Projekte",
+    "upcoming_title": "Kommende Projekte"
+  },
+  "events": {
+    "page_title": "Veranstaltungen",
+    "read_more": "Mehr erfahren"
+  },
+  "contact": {
+    "page_title": "Kontaktieren Sie uns!",
+    "page_subtitle": "Wir sind offen für neue Kooperationen.",
+    "form_header": "Nachricht senden",
+    "form_name": "Vor- und Nachname",
+    "form_email": "E-Mail-Adresse",
+    "form_subject": "Betreff",
+    "form_message": "Nachricht",
+    "form_submit": "Nachricht senden",
+    "placeholder_name": "Max Mustermann",
+    "placeholder_email": "max.mustermann@example.com",
+    "placeholder_subject": "Zusammenarbeit / Frage / Andere",
+    "placeholder_message": "Ihre Nachricht...",
+    "info_header": "Kontaktinformationen",
+    "info_email_label": "E-Mail",
+    "info_follow_label": "Folgen Sie uns",
+    "info_tip_title": "Hinweis:",
+    "info_tip_text": "Wir antworten auf Nachrichten innerhalb von 24-48 Stunden an Werktagen.",
+    "alert_wait": "Bitte warten...",
+    "alert_sending": "Nachricht wird gesendet...",
+    "alert_robot_title": "Moment!",
+    "alert_robot_text": "Roboter haben keinen Zutritt!",
+    "alert_robot_footer": "reCAPTCHA-Test fehlgeschlagen."
+  },
+  "common": {
+    "close": "Schließen",
+    "previous": "Vorherige",
+    "next": "Nächste"
+  },
+  "footer": {
+    "follow_us": "Bleiben Sie auf dem Laufenden – folgen Sie uns:",
+    "copyright": "Algo Wissenschaftlicher Verein",
+    "tagline": "Leidenschaft für Algorithmen | Made with ❤️"
+  }
+}

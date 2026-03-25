@@ -3,11 +3,13 @@ package algo.security;
 import algo.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -18,10 +20,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /** Main security config class. Handles auth and sessions. */
@@ -39,7 +46,7 @@ public class SecurityConfig implements WebMvcConfigurer {
   /** Config injected via Lombok constructor to save line length. */
   private final ObjectMapper objectMapper;
 
-    /**
+  /**
    * Configures the main security filter chain.
    *
    * @param http HttpSecurity builder (short name for formatting)
@@ -52,10 +59,24 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     http.authorizeHttpRequests(
             auth -> {
+              auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+              auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
+
+              auth.requestMatchers(HttpMethod.POST, "/api/temp-posts/**").hasRole("ADMIN");
+              auth.requestMatchers(HttpMethod.PUT, "/api/temp-posts/**").hasRole("ADMIN");
+              auth.requestMatchers(HttpMethod.DELETE, "/api/temp-posts/**").hasRole("ADMIN");
+
               auth.requestMatchers("/me").hasAuthority("ROLE_ADMIN");
               auth.anyRequest().authenticated();
             })
+        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .csrf(csrf -> csrf.disable())
+        .exceptionHandling(
+            ex -> {
+              final AntPathRequestMatcher apiMatcher = new AntPathRequestMatcher("/api/**");
+              ex.defaultAuthenticationEntryPointFor(apiAuthenticationEntryPoint(), apiMatcher);
+              ex.defaultAccessDeniedHandlerFor(apiAccessDeniedHandler(), apiMatcher);
+            })
         .formLogin(
             form -> {
               form.permitAll();
@@ -140,6 +161,32 @@ public class SecurityConfig implements WebMvcConfigurer {
     };
   }
 
+  private AuthenticationEntryPoint apiAuthenticationEntryPoint() {
+    return (request, response, ex) -> {
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      response.setContentType("application/json");
+      response.setCharacterEncoding("UTF-8");
+      final Map<String, Object> body = new ConcurrentHashMap<>();
+      body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+      body.put("message", "Unauthorized");
+      body.put("path", request.getRequestURI());
+      objectMapper.writeValue(response.getWriter(), body);
+    };
+  }
+
+  private AccessDeniedHandler apiAccessDeniedHandler() {
+    return (request, response, ex) -> {
+      response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+      response.setContentType("application/json");
+      response.setCharacterEncoding("UTF-8");
+      final Map<String, Object> body = new ConcurrentHashMap<>();
+      body.put("status", HttpServletResponse.SC_FORBIDDEN);
+      body.put("message", "Forbidden");
+      body.put("path", request.getRequestURI());
+      objectMapper.writeValue(response.getWriter(), body);
+    };
+  }
+
   /**
    * Exposes AuthenticationManager as bean.
    *
@@ -152,26 +199,44 @@ public class SecurityConfig implements WebMvcConfigurer {
     return authConfig.getAuthenticationManager();
   }
 
-    /**
-     * Defines the password encoder bean.
-     *
-     * @return BCryptPasswordEncoder
-     */
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  /**
+   * Defines the password encoder bean.
+   *
+   * @return BCryptPasswordEncoder
+   */
+  @Bean
+  public BCryptPasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    /**
-     * Configures DAO auth provider.
-     *
-     * @return DaoAuthenticationProvider
-     */
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(userService);
-        return provider;
-    }
+  /**
+   * Configures DAO auth provider.
+   *
+   * @return DaoAuthenticationProvider
+   */
+  @Bean
+  public DaoAuthenticationProvider daoAuthenticationProvider() {
+    final DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    provider.setPasswordEncoder(passwordEncoder());
+    provider.setUserDetailsService(userService);
+    return provider;
+  }
+
+  /**
+   * Allows browser preflight and credentialed requests from frontend apps.
+   *
+   * @return CORS configuration source
+   */
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    final CorsConfiguration conf = new CorsConfiguration();
+    conf.setAllowedOriginPatterns(List.of("*"));
+    conf.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    conf.setAllowedHeaders(List.of("*"));
+    conf.setAllowCredentials(true);
+
+    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", conf);
+    return source;
+  }
 }
