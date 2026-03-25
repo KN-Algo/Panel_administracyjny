@@ -2,9 +2,11 @@ package algo.controller;
 
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
+import algo.module.ProjectType;
 import algo.services.exceptions.InvalidTempPostDatesException;
 import algo.services.exceptions.InvalidTempPostRequestException;
 import algo.services.exceptions.InvalidTempPostTypeException;
+import algo.services.exceptions.ProjectNotFoundException;
 import algo.services.exceptions.TempPostNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -31,6 +33,12 @@ public final class GlobalExceptionHandler {
   @ExceptionHandler(TempPostNotFoundException.class)
   public ResponseEntity<ApiErrorResponse> handleTempPostNotFound(
       final TempPostNotFoundException ex, final HttpServletRequest request) {
+    return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
+  }
+
+  @ExceptionHandler(ProjectNotFoundException.class)
+  public ResponseEntity<ApiErrorResponse> handleProjectNotFound(
+      final ProjectNotFoundException ex, final HttpServletRequest request) {
     return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
   }
 
@@ -155,19 +163,26 @@ public final class GlobalExceptionHandler {
               + "'. Allowed: "
               + toCsv(Arrays.asList(PostType.values()))
               + ".";
+    } else if (requiredType == ProjectType.class) {
+      message =
+          "Invalid value for parameter '"
+              + safeName
+              + "'. Allowed: "
+              + toCsv(Arrays.asList(ProjectType.values()))
+              + ".";
     } else {
       message = "Invalid value for parameter '" + safeName + "'.";
     }
     return buildError(HttpStatus.BAD_REQUEST, message, request.getRequestURI(), null);
   }
 
-  private String toCsv(final Iterable<PostType> types) {
+  private String toCsv(final Iterable<?> values) {
     final StringBuilder csv = new StringBuilder();
-    for (final PostType type : types) {
+    for (final Object value : values) {
       if (!csv.isEmpty()) {
         csv.append(", ");
       }
-      csv.append(type);
+      csv.append(value);
     }
     return csv.toString();
   }
