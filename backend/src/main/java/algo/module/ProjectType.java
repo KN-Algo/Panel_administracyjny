@@ -1,14 +1,10 @@
 package algo.module;
-/**
- * Defines avaiable project type
- */
+
+/** Project status used for splitting projects into sections on the frontend. */
 public enum ProjectType {
-    /**
-     * FINISHED project type
-     */
-    FINISHED,
-    /**
-     * INCOMMING project type
-     */
-    INCOMMING
+  /** Finished/completed project. */
+  COMPLETED,
+  /** Upcoming/in-progress project. */
+  UPCOMING
 }
+
