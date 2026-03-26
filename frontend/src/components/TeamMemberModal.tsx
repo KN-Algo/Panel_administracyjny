@@ -1,6 +1,7 @@
 import { X, Instagram, Linkedin, Github, Globe } from "lucide-react";
 import type { TeamMember, TeamMemberDetails } from "@/types";
-import { useEffect } from "react";
+import { useEffect, useId, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 interface TeamMemberModalProps {
   member: TeamMember;
@@ -15,12 +16,44 @@ export default function TeamMemberModal({
   isOpen,
   onClose,
 }: TeamMemberModalProps) {
+  const { t } = useTranslation();
+  const dialogTitleId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
   // Zamknij modal przy naciśnięciu ESC
   useEffect(() => {
     if (!isOpen) return;
 
+    const previousOverflow = document.body.style.overflow;
+
+    closeButtonRef.current?.focus();
+
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (e.key !== "Tab") return;
+
+      const focusableElements =
+        dialogRef.current?.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+
+      if (!focusableElements || focusableElements.length === 0) return;
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
 
     window.addEventListener("keydown", handleEsc);
@@ -28,7 +61,7 @@ export default function TeamMemberModal({
 
     return () => {
       window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
     };
   }, [isOpen, onClose]);
 
@@ -48,6 +81,10 @@ export default function TeamMemberModal({
       aria-hidden={!isOpen}
     >
       <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={dialogTitleId}
         className={`relative bg-white rounded-[2rem] shadow-2xl max-w-5xl w-full max-h-[88vh] sm:max-h-[90vh] overflow-y-auto md:overflow-hidden transition-all ${
           isOpen
             ? "animate-in zoom-in-95 duration-300"
@@ -57,10 +94,11 @@ export default function TeamMemberModal({
       >
         {/* Przycisk zamknięcia */}
         <button
+          ref={closeButtonRef}
           onClick={onClose}
           type="button"
           className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-[#000424]/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-[#000424] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#000424] focus-visible:ring-offset-2 md:right-5 md:top-5 md:h-11 md:w-11"
-          aria-label="Zamknij"
+          aria-label={t("common.close")}
         >
           <X size={18} className="stroke-[2.75] md:h-5 md:w-5" />
         </button>
@@ -80,7 +118,6 @@ export default function TeamMemberModal({
                   alt={`${member.firstName} ${member.lastName}`}
                   className="w-full aspect-[3/4] object-cover rounded-3xl shadow-2xl ring-4 ring-[#000424]/20 transition-transform duration-500 group-hover:scale-[1.02]"
                   onError={(e) => {
-                    console.error("Image failed to load:", imagePath);
                     e.currentTarget.src = "/img/members/temp.webp";
                   }}
                 />
@@ -94,20 +131,17 @@ export default function TeamMemberModal({
           <div className="md:w-3/5 overflow-visible md:overflow-y-auto p-5 sm:p-6 md:p-10 bg-white">
             {/* Nagłówek */}
             <div className="mb-5 sm:mb-6 md:mb-8">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight">
+              <h2
+                id={dialogTitleId}
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight"
+              >
                 {member.firstName} {member.lastName}
               </h2>
               {member.position && (
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-[#000424] to-[#000530] text-white text-sm font-semibold shadow-md">
-                  {member.position === "president"
-                    ? "Prezes"
-                    : member.position === "vice_president"
-                      ? "Wiceprezes"
-                      : member.position === "secretary"
-                        ? "Sekretarz"
-                        : member.position === "board_member"
-                          ? "Członek Zarządu"
-                          : member.position}
+                  {t(`team.${member.position}`, {
+                    defaultValue: member.position,
+                  })}
                 </div>
               )}
             </div>
@@ -116,8 +150,8 @@ export default function TeamMemberModal({
             {details.bio && (
               <div className="mb-5 sm:mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 flex items-center gap-2">
-                  <span className="w-1 h-6 bg-[#000424] rounded-full"></span>O
-                  mnie
+                  <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
+                  {t("team.about_me")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base pl-3">
                   {details.bio}
@@ -130,7 +164,7 @@ export default function TeamMemberModal({
               <div className="mb-5 sm:mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 flex items-center gap-2">
                   <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
-                  Zainteresowania
+                  {t("team.interests")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base pl-3">
                   {details.interests}
@@ -144,7 +178,7 @@ export default function TeamMemberModal({
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 flex items-center gap-2">
                     <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
-                    Social Media
+                    {t("team.social_media")}
                   </h3>
                   <div className="flex gap-3 flex-wrap pl-3">
                     {details.socialMedia.instagram && (
@@ -195,7 +229,7 @@ export default function TeamMemberModal({
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-[#000424] to-[#000638] text-white rounded-md hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 hover:scale-110"
-                        aria-label="Strona osobista"
+                        aria-label={t("team.personal_website")}
                       >
                         <Globe
                           size={20}

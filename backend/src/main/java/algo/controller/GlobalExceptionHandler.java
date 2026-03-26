@@ -83,12 +83,12 @@ public final class GlobalExceptionHandler {
   public ResponseEntity<ApiErrorResponse> handleConversionMismatch(
       final Exception ex, final HttpServletRequest request) {
     if (ex instanceof final TypeMismatchException mismatch) {
-      return buildTypeMismatchError(mismatch.getPropertyName(), mismatch.getRequiredType(), request);
+      return buildTypeMismatchError(
+          mismatch.getPropertyName(), mismatch.getRequiredType(), request);
     }
     if (ex instanceof final ConversionFailedException conversion
         && conversion.getTargetType() != null) {
-      return buildTypeMismatchError(
-          null, conversion.getTargetType().getType(), request);
+      return buildTypeMismatchError(null, conversion.getTargetType().getType(), request);
     }
     return buildError(
         HttpStatus.BAD_REQUEST, "Invalid parameter value.", request.getRequestURI(), null);
