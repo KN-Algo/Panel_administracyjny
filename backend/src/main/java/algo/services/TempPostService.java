@@ -4,6 +4,7 @@ import algo.module.PostType;
 import algo.module.PostTranslation;
 import algo.module.Posts;
 import algo.repository.PostRepository;
+import algo.security.HtmlSanitizer;
 import algo.services.exceptions.InvalidTempPostDatesException;
 import algo.services.exceptions.InvalidTempPostTypeException;
 import algo.services.exceptions.TempPostNotFoundException;
@@ -50,6 +51,14 @@ public class TempPostService {
   public Posts save(final Posts entity) {
     ensureTemp(entity.getPostType());
     validateTempDates(entity);
+
+    if (entity.getTranslations() != null) {
+        for (PostTranslation translation : entity.getTranslations()) {
+            translation.setFullDescription(HtmlSanitizer.sanitize(translation.getFullDescription()));
+            translation.setShortDescription(HtmlSanitizer.sanitize(translation.getShortDescription()));
+        }
+    }
+
     return postRepository.save(entity);
   }
 
@@ -93,8 +102,8 @@ public class TempPostService {
       }
       copy.setLanguageCode(incoming.getLanguageCode());
       copy.setTitle(incoming.getTitle());
-      copy.setShortDescription(incoming.getShortDescription());
-      copy.setFullDescription(incoming.getFullDescription());
+      copy.setShortDescription(HtmlSanitizer.sanitize(incoming.getShortDescription()));
+      copy.setFullDescription(HtmlSanitizer.sanitize(incoming.getFullDescription()));
       existing.addTranslation(copy);
     }
 
