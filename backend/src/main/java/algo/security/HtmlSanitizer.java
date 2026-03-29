@@ -9,7 +9,8 @@ public class HtmlSanitizer {
             .addAttributes("p", "style", "class")
             .addAttributes("span", "style", "class")
             .addEnforcedAttribute("a", "target", "_blank")
-            .addEnforcedAttribute("a", "rel", "noopener noreferrer");
+            .addEnforcedAttribute("a", "rel", "noopener noreferrer")
+            .addProtocols("a", "href", "http", "https", "mailto");
 
     public static String sanitize(String untrustedHtml) {
         if (untrustedHtml == null || untrustedHtml.isBlank()) {
