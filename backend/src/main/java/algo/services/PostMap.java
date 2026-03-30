@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 
-/** Maps temporary post DTOs to and from the Posts entity. */
+/** Maps post DTOs to and from the Posts entity. */
 @Component
 public class PostMap {
   /** Default no-arg constructor required by Spring for dependency injection. */

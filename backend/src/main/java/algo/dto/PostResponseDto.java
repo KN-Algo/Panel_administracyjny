@@ -11,6 +11,6 @@ public record PostResponseDto(
     LocalDateTime startsAt,
     LocalDateTime expiresAt,
     String thumbnailUrl,
-    String imageUrls, // int imageId
+    String imageUrls,
     String externalLink,
     List<PostTranslationDto> translations) {}

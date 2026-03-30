@@ -26,24 +26,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** REST controller for managing temporary posts. */
+/** REST controller for managing posts. */
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
 
   private static final int MAX_PAGE_SIZE = 100;
 
-  /** Service for handling temporary post business logic. */
+  /** Service for handling post business logic. */
   private final PostService service;
 
   /** Mapper for converting between Post entities and DTOs. */
   private final PostMap mapper;
 
   /**
-   * Constructs a TempPostController with required dependencies.
+   * Constructs a PostController with required dependencies.
    *
-   * @param pServ temporary post service
-   * @param pMap temporary post mapper
+   * @param pServ post service
+   * @param pMap post mapper
    */
   public PostController(final PostService pServ, final PostMap pMap) {
     this.service = pServ;
@@ -51,7 +51,7 @@ public class PostController {
   }
 
   /**
-   * Creates a new temporary post.
+   * Creates a new post.
    *
    * @param dto the post creation request data
    * @return response entity containing the created post
@@ -66,7 +66,7 @@ public class PostController {
   }
 
   /**
-   * Updates an existing temporary post.
+   * Updates an existing post.
    *
    * @param postId the ID of the post to update
    * @param dto the post update request data
@@ -82,7 +82,7 @@ public class PostController {
   }
 
   /**
-   * Retrieves a temporary post by ID.
+   * Retrieves a post by ID.
    *
    * @param postId the post ID to retrieve
    * @return response entity containing the post
@@ -94,7 +94,7 @@ public class PostController {
   }
 
   /**
-   * Lists temporary posts with optional filtering.
+   * Lists posts with optional filtering.
    *
    * @param pageable pagination information
    * @param type optional post type filter
@@ -129,7 +129,7 @@ public class PostController {
   }
 
   /**
-   * Deletes a temporary post by ID.
+   * Deletes a post by ID.
    *
    * @param postId the post ID to delete
    * @return response entity with no content

@@ -13,17 +13,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Service for managing temporary posts. */
+/** Service for managing posts. */
 @Service
 public class PostService {
-
-  /** Allowed temporary post types handled by this service. */
-  private static final List<PostType> TEMP_TYPES =
-      List.of(PostType.TEMP_STANDARD, PostType.TEMP_NEWS);
 
   /** Repository for Post persistence operations. */
   private final PostRepository postRepository;
@@ -41,7 +38,7 @@ public class PostService {
   }
 
   /**
-   * Persists a TEMP post after validation.
+   * Persists a post after validation.
    *
    * @param entity post entity to save
    * @return persisted post entity
@@ -53,7 +50,7 @@ public class PostService {
   }
 
   /**
-   * Updates a TEMP post by id with merged data.
+   * Updates a post by id with merged data.
    *
    * @param postId id of post to update
    * @param mergedEntity updated post entity
@@ -137,7 +134,9 @@ public class PostService {
   @Transactional
   public Page<Posts> list(final Pageable pageable, final PostType type, final boolean onlyActive) {
 
-    final List<PostType> types = (type == null) ? TEMP_TYPES : List.of(type);
+    final List<PostType> types = (type == null)
+            ? Arrays.asList(PostType.values())
+            : List.of(type);
 
     final Page<Posts> result;
     if (onlyActive) {

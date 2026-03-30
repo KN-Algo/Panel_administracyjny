@@ -35,7 +35,7 @@ public interface PostRepository extends JpaRepository<Posts, Long> {
    * @param types allowed post types
    * @param now reference time used to check activity window
    * @param pageable paging configuration
-   * @return page of active temporary posts
+   * @return page of active posts
    */
   @Query(
       """
