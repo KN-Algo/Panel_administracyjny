@@ -1,21 +1,21 @@
 package algo.services;
 
-import algo.module.PostType;
 import algo.module.PostTranslation;
+import algo.module.PostType;
 import algo.module.Posts;
 import algo.repository.PostRepository;
-import algo.services.exceptions.InvalidTempPostDatesException;
-import algo.services.exceptions.InvalidTempPostTypeException;
-import algo.services.exceptions.TempPostNotFoundException;
+import algo.services.exceptions.InvalidPostDatesException;
+import algo.services.exceptions.PostNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 /** Service for managing temporary posts. */
 @Service
@@ -48,7 +48,6 @@ public class PostService {
    */
   @Transactional
   public Posts save(final Posts entity) {
-    ensureTemp(entity.getPostType());
     validateTempDates(entity);
     return postRepository.save(entity);
   }
@@ -67,8 +66,6 @@ public class PostService {
             .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(existing.getPostType());
-    ensureTemp(mergedEntity.getPostType());
     validateTempDates(mergedEntity);
 
     existing.setPostType(mergedEntity.getPostType());
@@ -114,7 +111,6 @@ public class PostService {
             .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(entity.getPostType());
     return entity;
   }
 
@@ -127,7 +123,6 @@ public class PostService {
   public void delete(final Long postId) {
     final Posts entity = postRepository.findById(postId).orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(entity.getPostType());
     postRepository.delete(entity);
   }
 
@@ -142,10 +137,6 @@ public class PostService {
   @Transactional
   public Page<Posts> list(final Pageable pageable, final PostType type, final boolean onlyActive) {
 
-    if (type != null) {
-      ensureTemp(type);
-    }
-
     final List<PostType> types = (type == null) ? TEMP_TYPES : List.of(type);
 
     final Page<Posts> result;
@@ -159,30 +150,19 @@ public class PostService {
   }
 
   /**
-   * Ensures the given type is one of the TEMP types.
-   *
-   * @param type post type to validate
-   */
-  private void ensureTemp(final PostType type) {
-    if (!TEMP_TYPES.contains(type)) {
-      throw new InvalidTempPostTypeException(type, TEMP_TYPES);
-    }
-  }
-
-  /**
    * Validates TEMP post start and end dates.
    *
    * @param entity post entity to validate
    */
   private void validateTempDates(final Posts entity) {
     if (entity.getStartsAt() == null || entity.getExpiresAt() == null) {
-      throw new InvalidTempPostDatesException(
+      throw new InvalidPostDatesException(
           "TEMP posts must have startsAt and expiresAt dates.",
           entity.getStartsAt(),
           entity.getExpiresAt());
     }
     if (entity.getExpiresAt().isBefore(entity.getStartsAt())) {
-      throw new InvalidTempPostDatesException(
+      throw new InvalidPostDatesException(
           "expiresAt must be >= startsAt.", entity.getStartsAt(), entity.getExpiresAt());
     }
   }
@@ -193,7 +173,7 @@ public class PostService {
    * @param postId post identity
    * @return exception instance with formatted message
    */
-  private TempPostNotFoundException postNotFound(final Long postId) {
-    return new TempPostNotFoundException(postId);
+  private PostNotFoundException postNotFound(final Long postId) {
+    return new PostNotFoundException(postId);
   }
 }

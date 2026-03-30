@@ -2,15 +2,10 @@ package algo.controller;
 
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
-import algo.services.exceptions.InvalidTempPostDatesException;
-import algo.services.exceptions.InvalidTempPostRequestException;
-import algo.services.exceptions.InvalidTempPostTypeException;
-import algo.services.exceptions.TempPostNotFoundException;
+import algo.services.exceptions.InvalidPostDatesException;
+import algo.services.exceptions.InvalidPostRequestException;
+import algo.services.exceptions.PostNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -24,28 +19,24 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /** Global REST exception mapping for consistent API error responses. */
 @RestControllerAdvice
 public final class GlobalExceptionHandler {
 
-  @ExceptionHandler(TempPostNotFoundException.class)
+  @ExceptionHandler(PostNotFoundException.class)
   public ResponseEntity<ApiErrorResponse> handleTempPostNotFound(
-      final TempPostNotFoundException ex, final HttpServletRequest request) {
+          final PostNotFoundException ex, final HttpServletRequest request) {
     return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
   }
 
-  @ExceptionHandler(InvalidTempPostTypeException.class)
-  public ResponseEntity<ApiErrorResponse> handleInvalidTempType(
-      final InvalidTempPostTypeException ex, final HttpServletRequest request) {
-    final Map<String, String> details = new LinkedHashMap<>();
-    details.put("providedType", String.valueOf(ex.getProvidedType()));
-    details.put("allowedTypes", toCsv(ex.getAllowedTypes()));
-    return buildError(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), details);
-  }
-
-  @ExceptionHandler(InvalidTempPostDatesException.class)
+  @ExceptionHandler(InvalidPostDatesException.class)
   public ResponseEntity<ApiErrorResponse> handleInvalidTempDates(
-      final InvalidTempPostDatesException ex, final HttpServletRequest request) {
+          final InvalidPostDatesException ex, final HttpServletRequest request) {
     final Map<String, String> details = new LinkedHashMap<>();
     details.put("startsAt", String.valueOf(ex.getStartsAt()));
     details.put("expiresAt", String.valueOf(ex.getExpiresAt()));
@@ -66,9 +57,9 @@ public final class GlobalExceptionHandler {
         validationErrors);
   }
 
-  @ExceptionHandler(InvalidTempPostRequestException.class)
+  @ExceptionHandler(InvalidPostRequestException.class)
   public ResponseEntity<ApiErrorResponse> handleInvalidTempPostRequest(
-      final InvalidTempPostRequestException ex, final HttpServletRequest request) {
+          final InvalidPostRequestException ex, final HttpServletRequest request) {
     return buildError(
         HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), ex.getValidationErrors());
   }

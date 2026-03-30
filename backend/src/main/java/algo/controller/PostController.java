@@ -6,7 +6,7 @@ import algo.module.PostType;
 import algo.module.Posts;
 import algo.services.PostMap;
 import algo.services.PostService;
-import algo.services.exceptions.InvalidTempPostRequestException;
+import algo.services.exceptions.InvalidPostRequestException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
@@ -189,7 +189,7 @@ public class PostController {
     }
 
     if (!errors.isEmpty()) {
-      throw new InvalidTempPostRequestException("Request validation failed.", errors);
+      throw new InvalidPostRequestException("Request validation failed.", errors);
     }
   }
 

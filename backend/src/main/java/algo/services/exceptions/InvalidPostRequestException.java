@@ -3,11 +3,11 @@ package algo.services.exceptions;
 import java.util.Map;
 
 /** Exception for invalid TEMP post request payloads. */
-public final class InvalidTempPostRequestException extends RuntimeException {
+public final class InvalidPostRequestException extends RuntimeException {
 
   private final Map<String, String> validationErrors;
 
-  public InvalidTempPostRequestException(
+  public InvalidPostRequestException(
       final String message, final Map<String, String> validationErrors) {
     super(message);
     this.validationErrors = validationErrors;
