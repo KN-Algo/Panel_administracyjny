@@ -149,18 +149,6 @@ public class PostController {
     if (dto.eventDate() == null) {
       errors.put("eventDate", "must not be null");
     }
-    if (dto.startsAt() == null) {
-      errors.put("startsAt", "must not be null");
-    }
-    if (dto.expiresAt() == null) {
-      errors.put("expiresAt", "must not be null");
-    }
-    if (!hasText(dto.thumbnailUrl())) {
-      errors.put("thumbnailUrl", "must not be blank");
-    }
-    if (!hasText(dto.externalLink())) {
-      errors.put("externalLink", "must not be blank");
-    }
 
     final List<algo.dto.PostTranslationDto> translations = dto.translations();
     if (translations == null || translations.isEmpty()) {

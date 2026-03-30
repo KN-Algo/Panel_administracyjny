@@ -22,11 +22,11 @@ import java.util.List;
 public record PostRequestDto(
     @NotNull PostType postType,
     @NotNull LocalDateTime eventDate,
-    @NotNull LocalDateTime startsAt,
-    @NotNull LocalDateTime expiresAt,
-    @NotBlank @Size(max = THUMBNAIL_URL_L) String thumbnailUrl,
+    LocalDateTime startsAt,
+    LocalDateTime expiresAt,
+    @Size(max = THUMBNAIL_URL_L) String thumbnailUrl,
     @Size(max = IMAGE_URLS_L) String imageUrls,
-    @NotBlank @Size(max = EXTERNAL_LINK_L) String externalLink,
+    @Size(max = EXTERNAL_LINK_L) String externalLink,
     @NotEmpty List<@Valid PostTranslationDto> translations) {
 
   /** Max length of thumbnail URL. */
