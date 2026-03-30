@@ -1,14 +1,10 @@
 package algo.services;
 
-import algo.module.PostType;
 import algo.module.PostTranslation;
 import algo.module.PostType;
 import algo.module.Posts;
 import algo.repository.PostRepository;
 import algo.security.HtmlSanitizer;
-import algo.services.exceptions.InvalidTempPostDatesException;
-import algo.services.exceptions.InvalidTempPostTypeException;
-import algo.services.exceptions.TempPostNotFoundException;
 import algo.services.exceptions.InvalidPostDatesException;
 import algo.services.exceptions.PostNotFoundException;
 import jakarta.transaction.Transactional;
@@ -22,9 +18,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 /** Service for managing posts. */
 @Service
@@ -53,8 +46,13 @@ public class PostService {
    */
   @Transactional
   public Posts save(final Posts entity) {
-    ensureTemp(entity.getPostType());
-    validateTempDates(entity);
+      validatePostData(entity);
+
+    for (PostTranslation translation : entity.getTranslations()) {
+      translation.setShortDescription(HtmlSanitizer.sanitize(translation.getShortDescription()));
+      translation.setFullDescription(HtmlSanitizer.sanitize(translation.getFullDescription()));
+    }
+
     return postRepository.save(entity);
   }
 
@@ -72,9 +70,7 @@ public class PostService {
             .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(existing.getPostType());
-    ensureTemp(mergedEntity.getPostType());
-    validateTempDates(mergedEntity);
+    validatePostData(mergedEntity);
 
     existing.setPostType(mergedEntity.getPostType());
     existing.setEventDate(mergedEntity.getEventDate());
@@ -119,7 +115,6 @@ public class PostService {
             .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(entity.getPostType());
     return entity;
   }
 
@@ -131,8 +126,6 @@ public class PostService {
   @Transactional
   public void delete(final Long postId) {
     final Posts entity = postRepository.findById(postId).orElseThrow(() -> postNotFound(postId));
-
-    ensureTemp(entity.getPostType());
     postRepository.delete(entity);
   }
 
@@ -154,7 +147,7 @@ public class PostService {
     final Page<Posts> result;
     if (onlyActive) {
       final LocalDateTime now = LocalDateTime.now(clock);
-      result = postRepository.findActiveTempPosts(types, now, pageable);
+      result = postRepository.findActivePosts(types, now, pageable);
     } else {
       result = postRepository.findAllByPostTypeIn(types, pageable);
     }
@@ -162,32 +155,26 @@ public class PostService {
   }
 
   /**
-   * Ensures the given type is one of the TEMP types.
-   *
-   * @param type post type to validate
-   */
-  private void ensureTemp(final PostType type) {
-    if (!TEMP_TYPES.contains(type)) {
-      throw new InvalidTempPostTypeException(type, TEMP_TYPES);
-    }
-  }
-
-  /**
-   * Validates TEMP post start and end dates.
+   /**
+   * Validates post start and end dates based on its type.
    *
    * @param entity post entity to validate
    */
-  private void validateTempDates(final Posts entity) {
-    if (entity.getStartsAt() == null || entity.getExpiresAt() == null) {
-      throw new InvalidPostDatesException(
-          "TEMP posts must have startsAt and expiresAt dates.",
-          entity.getStartsAt(),
-          entity.getExpiresAt());
-    }
-    if (entity.getExpiresAt().isBefore(entity.getStartsAt())) {
-      throw new InvalidPostDatesException(
-          "expiresAt must be >= startsAt.", entity.getStartsAt(), entity.getExpiresAt());
-    }
+  private void validatePostData(final Posts entity) {
+      PostType type = entity.getPostType();
+
+      if (type != null && type.name().startsWith("TEMP")) {
+          if (entity.getStartsAt() == null || entity.getExpiresAt() == null) {
+              throw new InvalidPostDatesException(
+                      "TEMP posts must have startsAt and expiresAt dates.",
+                      entity.getStartsAt(),
+                      entity.getExpiresAt());
+          }
+          if (entity.getExpiresAt().isBefore(entity.getStartsAt())) {
+              throw new InvalidPostDatesException(
+                      "expiresAt must be >= startsAt.", entity.getStartsAt(), entity.getExpiresAt());
+          }
+      }
   }
 
   /**

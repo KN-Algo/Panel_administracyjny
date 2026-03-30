@@ -44,5 +44,5 @@ public interface PostRepository extends JpaRepository<Posts, Long> {
       and (p.startsAt is null or p.startsAt <= :now)
       and (p.expiresAt is null or p.expiresAt >= :now)
       """)
-  Page<Posts> findActiveTempPosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
+  Page<Posts> findActivePosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
 }
