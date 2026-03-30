@@ -4,7 +4,7 @@ import algo.module.PostType;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record TempPostResponseDto(
+public record PostResponseDto(
     Long postId,
     PostType postType,
     LocalDateTime eventDate,

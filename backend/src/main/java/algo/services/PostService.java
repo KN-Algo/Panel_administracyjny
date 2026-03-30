@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 /** Service for managing temporary posts. */
 @Service
-public class TempPostService {
+public class PostService {
 
   /** Allowed temporary post types handled by this service. */
   private static final List<PostType> TEMP_TYPES =
@@ -36,7 +36,7 @@ public class TempPostService {
    *
    * @param repository post repository
    */
-  public TempPostService(final PostRepository repository) {
+  public PostService(final PostRepository repository) {
     this.postRepository = repository;
   }
 

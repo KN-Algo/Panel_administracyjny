@@ -19,7 +19,7 @@ import java.util.List;
  * @param externalLink external link for the post
  * @param translations localized post translations
  */
-public record TempPostRequestDto(
+public record PostRequestDto(
     @NotNull PostType postType,
     @NotNull LocalDateTime eventDate,
     @NotNull LocalDateTime startsAt,

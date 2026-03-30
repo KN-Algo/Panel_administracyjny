@@ -1,11 +1,11 @@
 package algo.controller;
 
-import algo.dto.TempPostRequestDto;
-import algo.dto.TempPostResponseDto;
+import algo.dto.PostRequestDto;
+import algo.dto.PostResponseDto;
 import algo.module.PostType;
 import algo.module.Posts;
-import algo.services.TempPostMap;
-import algo.services.TempPostService;
+import algo.services.PostMap;
+import algo.services.PostService;
 import algo.services.exceptions.InvalidTempPostRequestException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -28,16 +28,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** REST controller for managing temporary posts. */
 @RestController
-@RequestMapping("/api/temp-posts")
-public class TempPostController {
+@RequestMapping("/api/posts")
+public class PostController {
 
   private static final int MAX_PAGE_SIZE = 100;
 
   /** Service for handling temporary post business logic. */
-  private final TempPostService service;
+  private final PostService service;
 
   /** Mapper for converting between Post entities and DTOs. */
-  private final TempPostMap mapper;
+  private final PostMap mapper;
 
   /**
    * Constructs a TempPostController with required dependencies.
@@ -45,7 +45,7 @@ public class TempPostController {
    * @param pServ temporary post service
    * @param pMap temporary post mapper
    */
-  public TempPostController(final TempPostService pServ, final TempPostMap pMap) {
+  public PostController(final PostService pServ, final PostMap pMap) {
     this.service = pServ;
     this.mapper = pMap;
   }
@@ -57,8 +57,8 @@ public class TempPostController {
    * @return response entity containing the created post
    */
   @PostMapping
-  public ResponseEntity<TempPostResponseDto> create(
-      @Valid @RequestBody final TempPostRequestDto dto) {
+  public ResponseEntity<PostResponseDto> create(
+      @Valid @RequestBody final PostRequestDto dto) {
     validateRequest(dto);
     final Posts entity = mapper.toEntity(dto);
     final Posts saved = service.save(entity);
@@ -73,8 +73,8 @@ public class TempPostController {
    * @return response entity containing the updated post
    */
   @PutMapping("/{id}")
-  public ResponseEntity<TempPostResponseDto> update(
-      @PathVariable("id") final Long postId, @Valid @RequestBody final TempPostRequestDto dto) {
+  public ResponseEntity<PostResponseDto> update(
+      @PathVariable("id") final Long postId, @Valid @RequestBody final PostRequestDto dto) {
     validateRequest(dto);
     final Posts mergedEntity = mapper.toEntity(dto);
     final Posts saved = service.update(postId, mergedEntity);
@@ -88,7 +88,7 @@ public class TempPostController {
    * @return response entity containing the post
    */
   @GetMapping("/{id}")
-  public ResponseEntity<TempPostResponseDto> get(@PathVariable("id") final Long postId) {
+  public ResponseEntity<PostResponseDto> get(@PathVariable("id") final Long postId) {
     final Posts entity = service.getOne(postId);
     return ResponseEntity.ok(mapper.toResponse(entity));
   }
@@ -109,7 +109,7 @@ public class TempPostController {
       @RequestParam(value = "active", defaultValue = "false") final boolean onlyActive) {
     validatePageable(request, pageable);
     final Page<Posts> page = service.list(pageable, type, onlyActive);
-    final Page<TempPostResponseDto> mapped = page.map(mapper::toResponse);
+    final Page<PostResponseDto> mapped = page.map(mapper::toResponse);
 
     final Map<String, Object> response = new LinkedHashMap<>();
     response.put("items", mapped.getContent());
@@ -140,7 +140,7 @@ public class TempPostController {
     return ResponseEntity.noContent().build();
   }
 
-  private void validateRequest(final TempPostRequestDto dto) {
+  private void validateRequest(final PostRequestDto dto) {
     final Map<String, String> errors = new LinkedHashMap<>();
 
     if (dto.postType() == null) {

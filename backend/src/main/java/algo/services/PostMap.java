@@ -1,8 +1,8 @@
 package algo.services;
 
 import algo.dto.PostTranslationDto;
-import algo.dto.TempPostRequestDto;
-import algo.dto.TempPostResponseDto;
+import algo.dto.PostRequestDto;
+import algo.dto.PostResponseDto;
 import algo.module.PostTranslation;
 import algo.module.Posts;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 
 /** Maps temporary post DTOs to and from the Posts entity. */
 @Component
-public class TempPostMap {
+public class PostMap {
   /** Default no-arg constructor required by Spring for dependency injection. */
-  public TempPostMap() {
+  public PostMap() {
     // Intentionally empty constructor required by Spring DI
   }
 
@@ -25,7 +25,7 @@ public class TempPostMap {
    * @param dto request payload
    * @return new post entity filled with request values
    */
-  public Posts toEntity(final TempPostRequestDto dto) {
+  public Posts toEntity(final PostRequestDto dto) {
     final Posts post = new Posts();
     applyToEntity(post, dto);
     return post;
@@ -37,7 +37,7 @@ public class TempPostMap {
    * @param target entity to update
    * @param dto source DTO with updated values
    */
-  public void applyToEntity(final Posts target, final TempPostRequestDto dto) {
+  public void applyToEntity(final Posts target, final PostRequestDto dto) {
     target.setPostType(dto.postType());
     target.setEventDate(dto.eventDate());
     target.setStartsAt(dto.startsAt());
@@ -85,12 +85,12 @@ public class TempPostMap {
   }
 
   /**
-   * Maps a {@link Posts} entity to a {@link TempPostResponseDto}.
+   * Maps a {@link Posts} entity to a {@link PostResponseDto}.
    *
    * @param entity source post entity
    * @return mapped response DTO
    */
-  public TempPostResponseDto toResponse(final Posts entity) {
+  public PostResponseDto toResponse(final Posts entity) {
     final List<PostTranslationDto> translations = new ArrayList<>();
     if (entity.getTranslations() != null) {
       for (final PostTranslation postTranslation : entity.getTranslations()) {
@@ -104,7 +104,7 @@ public class TempPostMap {
       }
     }
 
-    return new TempPostResponseDto(
+    return new PostResponseDto(
         entity.getPostId(),
         entity.getPostType(),
         entity.getEventDate(),
