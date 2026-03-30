@@ -1,9 +1,14 @@
 package algo.services;
 
+import algo.module.PostType;
 import algo.module.PostTranslation;
 import algo.module.PostType;
 import algo.module.Posts;
 import algo.repository.PostRepository;
+import algo.security.HtmlSanitizer;
+import algo.services.exceptions.InvalidTempPostDatesException;
+import algo.services.exceptions.InvalidTempPostTypeException;
+import algo.services.exceptions.TempPostNotFoundException;
 import algo.services.exceptions.InvalidPostDatesException;
 import algo.services.exceptions.PostNotFoundException;
 import jakarta.transaction.Transactional;
@@ -17,6 +22,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 /** Service for managing posts. */
 @Service
@@ -45,6 +53,7 @@ public class PostService {
    */
   @Transactional
   public Posts save(final Posts entity) {
+    ensureTemp(entity.getPostType());
     validateTempDates(entity);
     return postRepository.save(entity);
   }
@@ -63,6 +72,8 @@ public class PostService {
             .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> postNotFound(postId));
 
+    ensureTemp(existing.getPostType());
+    ensureTemp(mergedEntity.getPostType());
     validateTempDates(mergedEntity);
 
     existing.setPostType(mergedEntity.getPostType());
@@ -87,8 +98,8 @@ public class PostService {
       }
       copy.setLanguageCode(incoming.getLanguageCode());
       copy.setTitle(incoming.getTitle());
-      copy.setShortDescription(incoming.getShortDescription());
-      copy.setFullDescription(incoming.getFullDescription());
+      copy.setShortDescription(HtmlSanitizer.sanitize(incoming.getShortDescription()));
+      copy.setFullDescription(HtmlSanitizer.sanitize(incoming.getFullDescription()));
       existing.addTranslation(copy);
     }
 
@@ -108,6 +119,7 @@ public class PostService {
             .findWithTranslationsByPostId(postId)
             .orElseThrow(() -> postNotFound(postId));
 
+    ensureTemp(entity.getPostType());
     return entity;
   }
 
@@ -120,6 +132,7 @@ public class PostService {
   public void delete(final Long postId) {
     final Posts entity = postRepository.findById(postId).orElseThrow(() -> postNotFound(postId));
 
+    ensureTemp(entity.getPostType());
     postRepository.delete(entity);
   }
 
@@ -146,6 +159,17 @@ public class PostService {
       result = postRepository.findAllByPostTypeIn(types, pageable);
     }
     return result;
+  }
+
+  /**
+   * Ensures the given type is one of the TEMP types.
+   *
+   * @param type post type to validate
+   */
+  private void ensureTemp(final PostType type) {
+    if (!TEMP_TYPES.contains(type)) {
+      throw new InvalidTempPostTypeException(type, TEMP_TYPES);
+    }
   }
 
   /**
