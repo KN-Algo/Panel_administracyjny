@@ -9,5 +9,7 @@ public enum PostType {
   /** Temporary standard post type. */
   TEMP_STANDARD,
   /** Temporary news post type. */
-  TEMP_NEWS
+  TEMP_NEWS,
+  /** Temporary post type */
+  TEMP
 }
