@@ -5,6 +5,7 @@ import algo.module.PostType;
 import algo.services.exceptions.InvalidPostDatesException;
 import algo.services.exceptions.InvalidPostRequestException;
 import algo.services.exceptions.PostNotFoundException;
+import algo.services.exceptions.PostValidationException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.core.convert.ConversionFailedException;
@@ -32,15 +33,6 @@ public final class GlobalExceptionHandler {
   public ResponseEntity<ApiErrorResponse> handleTempPostNotFound(
           final PostNotFoundException ex, final HttpServletRequest request) {
     return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
-  }
-
-  @ExceptionHandler(InvalidPostDatesException.class)
-  public ResponseEntity<ApiErrorResponse> handleInvalidTempDates(
-          final InvalidPostDatesException ex, final HttpServletRequest request) {
-    final Map<String, String> details = new LinkedHashMap<>();
-    details.put("startsAt", String.valueOf(ex.getStartsAt()));
-    details.put("expiresAt", String.valueOf(ex.getExpiresAt()));
-    return buildError(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), details);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -151,6 +143,28 @@ public final class GlobalExceptionHandler {
     }
     return buildError(HttpStatus.BAD_REQUEST, message, request.getRequestURI(), null);
   }
+
+    /**
+     * Handles custom post validation exceptions and formats them.
+     *
+     * @param ex the validation exception containing field errors
+     * @param req the current HTTP request
+     * @return response entity with bad request status and error details
+     */
+    @ExceptionHandler(PostValidationException.class)
+    public ResponseEntity<Map<String, Object>> handlePostValidationException(
+            final PostValidationException ex, final HttpServletRequest req) {
+
+        final Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now().toString());
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+        body.put("message", ex.getMessage());
+        body.put("path", req.getRequestURI());
+        body.put("validationErrors", ex.getErrors());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
 
   private String toCsv(final Iterable<PostType> types) {
     final StringBuilder csv = new StringBuilder();
