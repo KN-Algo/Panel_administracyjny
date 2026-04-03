@@ -50,7 +50,6 @@ public class PostTranslation {
   /** Short translated description. */
   @Column(
       name = "short_description",
-      nullable = false,
       length = PostTranslationDto.SHORT_DESC_LENGTH)
   private String shortDescription;
 

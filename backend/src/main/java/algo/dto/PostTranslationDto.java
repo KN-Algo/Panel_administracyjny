@@ -14,7 +14,7 @@ public record PostTranslationDto(
     Long translationId,
     @NotBlank @Size(max = LANG_CODE_LENGTH) String languageCode,
     @NotBlank @Size(max = TITLE_LENGTH) String title,
-    @NotBlank @Size(max = SHORT_DESC_LENGTH) String shortDescription,
+    @Size(max = SHORT_DESC_LENGTH) String shortDescription,
     @NotBlank String fullDescription) {
 
   /** Max length of language code column. */

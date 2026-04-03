@@ -167,9 +167,6 @@ public class PostController {
         if (!hasText(translation.title())) {
           errors.put(prefix + ".title", "must not be blank");
         }
-        if (!hasText(translation.shortDescription())) {
-          errors.put(prefix + ".shortDescription", "must not be blank");
-        }
         if (!hasText(translation.fullDescription())) {
           errors.put(prefix + ".fullDescription", "must not be blank");
         }
