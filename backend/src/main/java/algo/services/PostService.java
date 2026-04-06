@@ -5,7 +5,6 @@ import algo.module.PostType;
 import algo.module.Posts;
 import algo.repository.PostRepository;
 import algo.security.HtmlSanitizer;
-import algo.services.exceptions.InvalidPostDatesException;
 import algo.services.exceptions.PostNotFoundException;
 import algo.services.exceptions.PostValidationException;
 import jakarta.transaction.Transactional;
@@ -15,10 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /** Service for managing posts. */
 @Service
@@ -29,6 +25,10 @@ public class PostService {
 
   /** Time source used for evaluating active windows. */
   private final Clock clock = Clock.systemDefaultZone();
+
+  /** List of post types that function as temporary modals or pop-ups. */
+  private static final List<PostType> TEMP_TYPES = List.of(
+    PostType.TEMP, PostType.TEMP_STANDARD, PostType.TEMP_NEWS);
 
   /**
    * Creates service with required repository dependency.
@@ -308,6 +308,34 @@ public class PostService {
         if (value == null || value.trim().isEmpty()) {
             errs.put(fieldName, "Field cannot be blank for this type.");
         }
+    }
+
+    /** Returns all posts that are NOT modals (Standard and News). */
+    @Transactional()
+    public List<Posts> getNonTempPosts() {
+        return postRepository.findAllByPostTypeNotIn(TEMP_TYPES);
+    }
+
+    /** Returns only news articles (excluding temp news). */
+    @Transactional()
+    public List<Posts> getNewsOnly() {
+        return postRepository.findAllByPostTypeIn(List.of(PostType.NEWS));
+    }
+
+    /** Returns all modal-type posts (active and planned). */
+    @Transactional()
+    public List<Posts> getAllTempPosts() {
+        return postRepository.findAllByPostTypeIn(TEMP_TYPES);
+    }
+
+    /** Returns the single most relevant active modal. */
+    @Transactional()
+    public Optional<Posts> getActiveModal() {
+        final LocalDateTime now = LocalDateTime.now();
+        return postRepository.findAllByPostTypeIn(TEMP_TYPES).stream()
+                .filter(p -> p.getStartsAt() != null && !p.getStartsAt().isAfter(now))
+                .filter(p -> p.getExpiresAt() != null && p.getExpiresAt().isAfter(now))
+                .max(Comparator.comparing(Posts::getStartsAt));
     }
 
   /**

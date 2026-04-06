@@ -4,12 +4,14 @@ import algo.module.PostType;
 import algo.module.Posts;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /** Repository for Post entity with basic CRUD operations. */
 public interface PostRepository extends JpaRepository<Posts, Long> {
@@ -45,4 +47,22 @@ public interface PostRepository extends JpaRepository<Posts, Long> {
       and (p.expiresAt is null or p.expiresAt >= :now)
       """)
   Page<Posts> findActivePosts(Collection<PostType> types, LocalDateTime now, Pageable pageable);
+
+    /**
+     * Finds posts with types included in the provided list.
+     *
+     * @param types list of types to include
+     * @return list of matching posts
+     */
+    @Query("SELECT p FROM Posts p WHERE p.postType IN :types")
+    List<Posts> findAllByPostTypeIn(@Param("types") List<PostType> types);
+
+    /**
+     * Finds posts with types not included in the provided list.
+     *
+     * @param types list of types to exclude
+     * @return list of matching posts
+     */
+    @Query("SELECT p FROM Posts p WHERE p.postType NOT IN :types")
+    List<Posts> findAllByPostTypeNotIn(@Param("types") List<PostType> types);
 }

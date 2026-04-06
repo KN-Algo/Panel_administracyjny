@@ -81,6 +81,36 @@ public class PostController {
     return ResponseEntity.ok(mapper.toResponse(saved));
   }
 
+    /** Returns all posts excluding temporary modals. */
+    @GetMapping("/content")
+    public ResponseEntity<List<PostResponseDto>> getRegularContent() {
+        return ResponseEntity.ok(service.getNonTempPosts().stream()
+                .map(mapper::toResponse).toList());
+    }
+
+    /** Returns only news articles. */
+    @GetMapping("/news")
+    public ResponseEntity<List<PostResponseDto>> getNews() {
+        return ResponseEntity.ok(service.getNewsOnly().stream()
+                .map(mapper::toResponse).toList());
+    }
+
+    /** Returns all temporary/modal posts. */
+    @GetMapping("/modals")
+    public ResponseEntity<List<PostResponseDto>> getAllModals() {
+        return ResponseEntity.ok(service.getAllTempPosts().stream()
+                .map(mapper::toResponse).toList());
+    }
+
+    /** Returns the currently active homepage modal, if any. */
+    @GetMapping("/active-modal")
+    public ResponseEntity<PostResponseDto> getActiveModal() {
+        return service.getActiveModal()
+                .map(mapper::toResponse)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.noContent().build());
+    }
+
   /**
    * Retrieves a post by ID.
    *
