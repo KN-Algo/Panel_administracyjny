@@ -161,7 +161,7 @@ public class PostService {
   /** Returns only news articles (excluding temp news). */
   @Transactional()
   public List<Posts> getNewsOnly() {
-    return postRepository.findAllByPostTypeIn(List.of(PostType.NEWS));
+    return postRepository.findAllByPostTypeIn(List.of(PostType.NEWS, PostType.TEMP_NEWS));
   }
 
   /** Returns all modal-type posts (active and planned). */
