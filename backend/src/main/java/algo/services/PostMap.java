@@ -1,14 +1,13 @@
 package algo.services;
 
-import algo.dto.PostTranslationDto;
 import algo.dto.PostRequestDto;
 import algo.dto.PostResponseDto;
+import algo.dto.PostTranslationDto;
 import algo.module.PostTranslation;
 import algo.module.Posts;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
+
 import org.springframework.stereotype.Component;
 
 /** Maps post DTOs to and from the Posts entity. */
@@ -43,8 +42,13 @@ public class PostMap {
     target.setStartsAt(dto.startsAt());
     target.setExpiresAt(dto.expiresAt());
     target.setThumbnailUrl(dto.thumbnailUrl());
-    target.setImageUrls(dto.imageUrls());
     target.setExternalLink(dto.externalLink());
+
+    if (dto.imageUrls() != null && !dto.imageUrls().isEmpty()) {
+      target.setImageUrls(String.join(",", dto.imageUrls()));
+    } else {
+      target.setImageUrls(null);
+    }
 
     final Map<String, Long> existingIdsByLang = new HashMap<>();
     if (target.getTranslations() != null) {
@@ -111,8 +115,21 @@ public class PostMap {
         entity.getStartsAt(),
         entity.getExpiresAt(),
         entity.getThumbnailUrl(),
-        entity.getImageUrls(),
+        parseImageUrls(entity.getImageUrls()),
         entity.getExternalLink(),
         translations);
   }
+
+    /**
+     * Safely splits a comma-separated string into a list of URLs.
+     */
+    private List<String> parseImageUrls(final String urlsString) {
+        if (urlsString == null || urlsString.isBlank()) {
+            return Collections.emptyList();
+        }
+        return Arrays.stream(urlsString.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isBlank())
+                .toList();
+    }
 }
