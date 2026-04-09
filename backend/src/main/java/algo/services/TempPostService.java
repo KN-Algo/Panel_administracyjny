@@ -1,7 +1,7 @@
 package algo.services;
 
-import algo.module.PostType;
 import algo.module.PostTranslation;
+import algo.module.PostType;
 import algo.module.Posts;
 import algo.repository.PostRepository;
 import algo.security.HtmlSanitizer;
@@ -72,9 +72,7 @@ public class TempPostService {
   @Transactional
   public Posts update(final Long postId, final Posts mergedEntity) {
     final Posts existing =
-        postRepository
-            .findWithTranslationsByPostId(postId)
-            .orElseThrow(() -> postNotFound(postId));
+        postRepository.findWithTranslationsByPostId(postId).orElseThrow(() -> postNotFound(postId));
 
     ensureTemp(existing.getPostType());
     ensureTemp(mergedEntity.getPostType());
@@ -119,9 +117,7 @@ public class TempPostService {
   @Transactional
   public Posts getOne(final Long postId) {
     final Posts entity =
-        postRepository
-            .findWithTranslationsByPostId(postId)
-            .orElseThrow(() -> postNotFound(postId));
+        postRepository.findWithTranslationsByPostId(postId).orElseThrow(() -> postNotFound(postId));
 
     ensureTemp(entity.getPostType());
     return entity;

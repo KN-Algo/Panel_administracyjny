@@ -1,20 +1,42 @@
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { useCallback, useState } from "react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import teamData from "@/data/team.json";
-import type { TeamMember } from "@/types";
+import teamDetailsData from "@/data/teamDetails.json";
+import type { TeamMember, TeamMemberDetails } from "@/types";
+import TeamMemberModal from "@/components/TeamMemberModal";
 
 export default function TeamPage() {
   const { t } = useTranslation();
   const [martaExpanded, setMartaExpanded] = useState(false);
   const [jacekExpanded, setJacekExpanded] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const members = teamData as TeamMember[];
+  const teamDetails = teamDetailsData as TeamMemberDetails[];
 
   const getPositionLabel = (position?: string) => {
     if (!position) return null;
     return t(`team.${position}`);
   };
+
+  const getMemberDetails = (memberId: number): TeamMemberDetails | null => {
+    return teamDetails.find((detail) => detail.id === memberId) || null;
+  };
+
+  const handleMemberClick = (member: TeamMember) => {
+    const details = getMemberDetails(member.id);
+    if (details) {
+      setSelectedMember(member);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = useCallback(() => {
+    setIsModalOpen(false);
+    setSelectedMember(null);
+  }, []);
 
   return (
     <div className="w-full bg-white">
@@ -159,34 +181,76 @@ export default function TeamPage() {
           </h2>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
-              {members.map((member, index) => (
-                <div
-                  key={index}
-                  className="bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2"
-                >
-                  <div className="py-5 px-5 flex flex-col items-center">
-                    <div className="mb-0">
-                      <img
-                        src={member.image.replace("../img/", "/img/")}
-                        alt={`${member.firstName} ${member.lastName}`}
-                        className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
-                      {member.firstName} {member.lastName}
-                    </h3>
-                    {member.position && (
-                      <p className="text-white text-sm font-bold">
-                        {getPositionLabel(member.position)}
-                      </p>
+              {members.map((member) => {
+                const hasDetails = !!getMemberDetails(member.id);
+                return (
+                  <div key={member.id}>
+                    {hasDetails ? (
+                      <button
+                        type="button"
+                        onClick={() => handleMemberClick(member)}
+                        className="relative w-full bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer group text-left"
+                        aria-label={`${member.firstName} ${member.lastName}`}
+                      >
+                        <div className="absolute bottom-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-white/16 group-hover:text-white">
+                          <ArrowRight size={14} />
+                        </div>
+                        <div className="py-5 px-5 flex flex-col items-center">
+                          <div className="mb-0">
+                            <img
+                              src={member.image.replace("../img/", "/img/")}
+                              alt={`${member.firstName} ${member.lastName}`}
+                              className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
+                            />
+                          </div>
+                          <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
+                            {member.firstName} {member.lastName}
+                          </h3>
+                          {member.position && (
+                            <p className="text-white text-sm font-bold">
+                              {getPositionLabel(member.position)}
+                            </p>
+                          )}
+                        </div>
+                      </button>
+                    ) : (
+                      <div className="relative bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                        <div className="py-5 px-5 flex flex-col items-center">
+                          <div className="mb-0">
+                            <img
+                              src={member.image.replace("../img/", "/img/")}
+                              alt={`${member.firstName} ${member.lastName}`}
+                              className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
+                            />
+                          </div>
+                          <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
+                            {member.firstName} {member.lastName}
+                          </h3>
+                          {member.position && (
+                            <p className="text-white text-sm font-bold">
+                              {getPositionLabel(member.position)}
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Modal */}
+      {selectedMember && (
+        <TeamMemberModal
+          member={selectedMember}
+          details={getMemberDetails(selectedMember.id)}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function Navbar() {
             <img
               src="/img/favicos/favicon.svg"
               alt="Logo"
-              className="w-28 h-28"
+              className="h-14 w-14 md:h-20 md:w-20"
             />
           </Link>
 
