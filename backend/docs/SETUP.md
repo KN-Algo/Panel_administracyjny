@@ -1,7 +1,7 @@
 # Getting Started
 
 **Requirements:**
-* Java JDK 23 
+* Java JDK 23
 * Docker & Docker Compose
 * IntelliJ IDEA (or other IDE which support Maven)
 * PostgreSQL
@@ -55,7 +55,7 @@ Before you can test the API and log in, you need to create at least one user in 
 *(Note: The BCrypt hash below corresponds to the raw password `password`)*:
 
 ```sql
-INSERT INTO users (username, email, password, role) 
+INSERT INTO users (username, email, password, role)
 VALUES ('admin', 'admin@example.com', '$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW', 'ROLE_ADMIN');
 ```
 ---

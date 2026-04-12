@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "bio": "Prezes Koła Naukowego Algorytmicznego. Pasjonat programowania i algorytmów. Studiuje informatykę na Politechnice Wrocławskiej.",
+    "interests": "Algorytmy, programowanie konkurencyjne, szachy, fotografia",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/krystian-bury",
+      "github": "https://github.com/krystianbury",
+      "instagram": "https://instagram.com/krystian.bury"
+    }
+  },
+  {
+    "id": 2,
+    "bio": "Wiceprezes KN Algo. Zainteresowany rozwojem oprogramowania i technologiami webowymi.",
+    "interests": "Web development, UI/UX design, open source",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/adrian-goral",
+      "github": "https://github.com/adriangoral",
+      "instagram": "https://instagram.com/adrian.goral"
+    }
+  },
+  {
+    "id": 3,
+    "bio": "Sekretarz Koła Naukowego Algorytmicznego. Odpowiada za organizację wydarzeń i komunikację wewnętrzną.",
+    "interests": "Zarządzanie projektami, data science, machine learning",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/paulina-szulc"
+    }
+  }
+]

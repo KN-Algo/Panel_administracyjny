@@ -51,6 +51,9 @@ repos:
     rev: v0.6.35
     hooks:
       - id: pmd
+        files: ^backend/.*\.java$
       - id: cpd
         args: ["--minimum-tokens=50"]
+        files: ^backend/.*\.java$
       - id: checkstyle
+        files: ^backend/.*\.java$

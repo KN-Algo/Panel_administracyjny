@@ -81,8 +81,7 @@ export default function AdminEventsPage() {
 
     if (sortDir) {
       result.sort((a, b) => {
-        const diff =
-          new Date(a.date).getTime() - new Date(b.date).getTime();
+        const diff = new Date(a.date).getTime() - new Date(b.date).getTime();
         return sortDir === "asc" ? diff : -diff;
       });
     }
@@ -154,72 +153,72 @@ export default function AdminEventsPage() {
 
         {/* Toolbar: filters + bulk actions */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          {/* Select all */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleAll}
-          >
-            <Checkbox
-              checked={allSelected ? true : someSelected ? "indeterminate" : false}
-              className="pointer-events-none"
-              aria-hidden
-            />
-            {allSelected ? "Odznacz wszystkie" : "Zaznacz wszystkie"}
-          </Button>
-
-          {/* Author filter */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm">
-                {authorFilter ? `Autor: ${authorFilter}` : "Filtruj po autorze"}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem onClick={() => setAuthorFilter(null)}>
-                Wszyscy autorzy
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              {authors.map((author) => (
-                <DropdownMenuItem
-                  key={author}
-                  onClick={() => setAuthorFilter(author)}
-                >
-                  {author}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {authorFilter && (
-            <Button
-              variant="ghost"
-              size="xs"
-              onClick={() => setAuthorFilter(null)}
-            >
-              Wyczyść filtr
+          <div className="flex items-center gap-2">
+            {/* Select all */}
+            <Button variant="outline" size="sm" onClick={toggleAll}>
+              <Checkbox
+                checked={
+                  allSelected ? true : someSelected ? "indeterminate" : false
+                }
+                className="pointer-events-none"
+                aria-hidden
+              />
+              {allSelected ? "Odznacz wszystkie" : "Zaznacz wszystkie"}
             </Button>
+
+            {/* Author filter */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm">
+                  {authorFilter
+                    ? `Autor: ${authorFilter}`
+                    : "Filtruj po autorze"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem onClick={() => setAuthorFilter(null)}>
+                  Wszyscy autorzy
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                {authors.map((author) => (
+                  <DropdownMenuItem
+                    key={author}
+                    onClick={() => setAuthorFilter(author)}
+                  >
+                    {author}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {authorFilter && (
+              <Button
+                variant="ghost"
+                size="xs"
+                onClick={() => setAuthorFilter(null)}
+              >
+                Wyczyść filtr
+              </Button>
+            )}
+          </div>
+
+          {/* Bulk actions */}
+          {someSelected && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">
+                Zaznaczono: {selected.size}
+              </span>
+              <Button variant="outline" size="sm" disabled>
+                <Power className="size-3.5" />
+                Zmień status
+              </Button>
+              <Button variant="destructive" size="sm" disabled>
+                <Trash2 className="size-3.5" />
+                Usuń
+              </Button>
+            </div>
           )}
         </div>
-
-        {/* Bulk actions */}
-        {someSelected && (
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
-              Zaznaczono: {selected.size}
-            </span>
-            <Button variant="outline" size="sm" disabled>
-              <Power className="size-3.5" />
-              Zmień status
-            </Button>
-            <Button variant="destructive" size="sm" disabled>
-              <Trash2 className="size-3.5" />
-              Usuń
-            </Button>
-          </div>
-        )}
-      </div>
       </div>
 
       {/* Table */}
@@ -229,7 +228,9 @@ export default function AdminEventsPage() {
             <TableRow>
               <TableHead className="w-10">
                 <Checkbox
-                  checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                  checked={
+                    allSelected ? true : someSelected ? "indeterminate" : false
+                  }
                   onCheckedChange={toggleAll}
                   aria-label="Zaznacz wszystkie"
                 />
@@ -304,11 +305,7 @@ export default function AdminEventsPage() {
 
                   <TableCell>
                     <div className="flex items-center justify-center gap-1">
-                      <Button
-                        variant="ghost"
-                        size="icon-xs"
-                        asChild
-                      >
+                      <Button variant="ghost" size="icon-xs" asChild>
                         <a
                           href={`/events#${event.id}`}
                           target="_blank"
