@@ -66,7 +66,7 @@ public class SecurityConfig implements WebMvcConfigurer {
               auth.requestMatchers(HttpMethod.PUT, "/api/temp-posts/**").hasRole("ADMIN");
               auth.requestMatchers(HttpMethod.DELETE, "/api/temp-posts/**").hasRole("ADMIN");
 
-              auth.requestMatchers("/api/admin/projects/**").hasRole("ADMIN");
+              auth.requestMatchers("/api/projects/**").hasRole("ADMIN");
 
               auth.anyRequest().authenticated();
             })
