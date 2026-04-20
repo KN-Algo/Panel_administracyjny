@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** Admin REST controller for managing projects (create/update/delete). */
 @RestController
-@RequestMapping("/api/admin/projects")
+@RequestMapping("/api/projects")
 public class ProjectController {
 
   private final ProjectService service;
@@ -72,4 +72,3 @@ public class ProjectController {
     return ResponseEntity.noContent().build();
   }
 }
-
