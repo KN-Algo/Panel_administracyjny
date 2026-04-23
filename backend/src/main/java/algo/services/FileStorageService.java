@@ -43,25 +43,32 @@ public class FileStorageService {
     }
   }
 
-  /**
-   * Validates, sanitizes, and stores the uploaded file on the file system.
-   *
-   * @param file the multipart file uploaded by the user.
-   * @return the generated, unique, and safe filename.
-   * @throws IllegalArgumentException if the file is empty.
-   * @throws RuntimeException if the file type is invalid, a path traversal attempt is detected, or
-   *     an I/O error occurs.
-   */
-  public String store(MultipartFile file) {
-    try {
-      String extension = validateAndGetExtension(file);
-      String safeFilename = generateSafeFilename(extension, file.getOriginalFilename());
-      Path destinationFile =
-          this.rootLocation.resolve(Paths.get(safeFilename)).normalize().toAbsolutePath();
+    /**
+     * Validates, sanitizes, and stores the uploaded file on the file system.
+     *
+     * @param file the multipart file uploaded by the user.
+     * @return the generated, unique, and safe filename.
+     * @throws IllegalArgumentException if the file is empty.
+     * @throws RuntimeException if the file type is invalid, a path traversal
+     * attempt is detected, or an I/O error occurs.
+     */
+    public String store(MultipartFile file) {
+        try {
+            String extension = validateAndGetExtension(file);
+            String safeFilename = generateSafeFilename(
+                    extension, file.getOriginalFilename());
 
-      if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
-        throw new RuntimeException("Error: Attempt to save file outside the allowed directory.");
-      }
+            Path destinationFile = this.rootLocation
+                    .resolve(Paths.get(safeFilename))
+                    .normalize()
+                    .toAbsolutePath();
+
+            if (!destinationFile.getParent()
+                    .equals(this.rootLocation.toAbsolutePath())) {
+                throw new RuntimeException(
+                        "Error: Attempt to save file outside the allowed " +
+                                "directory.");
+            }
 
       try (InputStream inputStream = file.getInputStream()) {
         Files.copy(inputStream, destinationFile);
@@ -74,29 +81,29 @@ public class FileStorageService {
     }
   }
 
-  /**
-   * Validates if the file is not empty and has an allowed MIME type. Extracts and normalizes the
-   * file extension.
-   *
-   * @param file the uploaded file to validate.
-   * @return the safe, normalized file extension (e.g., "jpg", "png").
-   * @throws IllegalArgumentException if the file is empty.
-   * @throws RuntimeException if the MIME type is not allowed.
-   */
-  private String validateAndGetExtension(MultipartFile file) {
-    if (file.isEmpty()) {
-      throw new IllegalArgumentException("Error: File is empty.");
+    /**
+     * Validates if the file is not empty and has an allowed MIME type.
+     * Extracts and normalizes the file extension.
+     *
+     * @param file the uploaded file to validate.
+     * @return the safe, normalized file extension (e.g., "jpg", "png").
+     * @throws IllegalArgumentException if the file is empty or if the MIME
+     * type is not allowed.
+     */
+    private String validateAndGetExtension(MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new IllegalArgumentException("Error: File is empty.");
+        }
+
+        String contentType = file.getContentType();
+        if (contentType == null || !ALLOWED_TYPES.contains(contentType)) {
+            throw new IllegalArgumentException(
+                    "Error: Invalid file type. " +
+                            "Allowed: JPG, JPEG, PNG, WebP, GIF.");
+        }
+
+        return contentType.substring(contentType.indexOf("/") + 1);
     }
-
-    String contentType = file.getContentType();
-    if (contentType == null || !ALLOWED_TYPES.contains(contentType)) {
-      throw new RuntimeException("Error: Incorrect file type. Allowed: JPG, PNG, WebP, GIF.");
-    }
-
-    String extension = contentType.substring(contentType.indexOf("/") + 1);
-
-    return extension.equals("jpeg") ? "jpg" : extension;
-  }
 
   /**
    * Generates a unique and secure filename while preserving a sanitized version of the original
