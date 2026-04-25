@@ -9,14 +9,19 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 /**
- * Validator for Posts entity business rules. Ensures that post data meets all required constraints
- * depending on its specific PostType.
+ * Validator for Posts entity business rules. Ensures post data meets all constraints based on
+ * PostType.
  */
 @Component
 public class PostEntityValidator {
 
+  /** Default constructor required by PMD rules and Spring framework. */
+  public PostEntityValidator() {
+    // Default constructor
+  }
+
   /**
-   * Validates post data based on its type and throws an exception if the data is invalid.
+   * Validates post data based on its type. Throws an exception if the data is invalid.
    *
    * @param entity the post entity to validate.
    * @throws IllegalArgumentException if PostType is null.
@@ -35,6 +40,24 @@ public class PostEntityValidator {
       validateTempDates(entity, errs);
     }
 
+    routeValidationByType(type, entity, errs);
+
+    if (!errs.isEmpty()) {
+      throw new PostValidationException(errs);
+    }
+  }
+
+  /**
+   * Routes the validation logic based on the specific post type. Extracted to reduce cyclomatic
+   * complexity.
+   *
+   * @param type the post type.
+   * @param entity the post entity to validate.
+   * @param errs the map to collect validation errors.
+   */
+  private void routeValidationByType(
+      final PostType type, final Posts entity, final Map<String, String> errs) {
+
     switch (type) {
       case STANDARD, NEWS, TEMP_STANDARD, TEMP_NEWS -> {
         validateStandardFields(entity, errs);
@@ -47,10 +70,6 @@ public class PostEntityValidator {
       default -> {
         // Ignored to satisfy NonExhaustiveSwitch for future types
       }
-    }
-
-    if (!errs.isEmpty()) {
-      throw new PostValidationException(errs);
     }
   }
 
@@ -86,26 +105,23 @@ public class PostEntityValidator {
   }
 
   /**
-   * Validates basic translation fields (title and full description) typically required for simple
-   * temporary posts.
+   * Validates basic translations (title and full description). Required for simple temporary posts.
    *
    * @param entity the post entity to validate.
    * @param errs the map to collect validation errors.
    */
   private void validateBasicTranslations(final Posts entity, final Map<String, String> errs) {
 
-    if (!checkTranslationsExist(entity, errs)) {
-      return;
-    }
+    if (checkTranslationsExist(entity, errs)) {
+      for (final PostTranslation t : entity.getTranslations()) {
+        final boolean hasCode = t.getLanguageCode() != null && !t.getLanguageCode().isBlank();
 
-    for (final PostTranslation t : entity.getTranslations()) {
-      boolean hasCode = t.getLanguageCode() != null && !t.getLanguageCode().isBlank();
+        final String langCode = hasCode ? t.getLanguageCode().toUpperCase() : "UNKNOWN";
 
-      final String langCode = hasCode ? t.getLanguageCode().toUpperCase() : "UNKNOWN";
-
-      final String pfx = "translations[" + langCode + "].";
-      requireNotBlank(t.getTitle(), pfx + "title", errs);
-      requireNotBlank(t.getFullDescription(), pfx + "fullDesc", errs);
+        final String pfx = "translations[" + langCode + "].";
+        requireNotBlank(t.getTitle(), pfx + "title", errs);
+        requireNotBlank(t.getFullDescription(), pfx + "fullDesc", errs);
+      }
     }
   }
 
@@ -118,19 +134,17 @@ public class PostEntityValidator {
    */
   private void validateFullTranslations(final Posts entity, final Map<String, String> errs) {
 
-    if (!checkTranslationsExist(entity, errs)) {
-      return;
-    }
+    if (checkTranslationsExist(entity, errs)) {
+      for (final PostTranslation t : entity.getTranslations()) {
+        final boolean hasCode = t.getLanguageCode() != null && !t.getLanguageCode().isBlank();
 
-    for (final PostTranslation t : entity.getTranslations()) {
-      boolean hasCode = t.getLanguageCode() != null && !t.getLanguageCode().isBlank();
+        final String langCode = hasCode ? t.getLanguageCode().toUpperCase() : "UNKNOWN";
 
-      final String langCode = hasCode ? t.getLanguageCode().toUpperCase() : "UNKNOWN";
-
-      final String pfx = "translations[" + langCode + "].";
-      requireNotBlank(t.getTitle(), pfx + "title", errs);
-      requireNotBlank(t.getFullDescription(), pfx + "fullDesc", errs);
-      requireNotBlank(t.getShortDescription(), pfx + "shortDesc", errs);
+        final String pfx = "translations[" + langCode + "].";
+        requireNotBlank(t.getTitle(), pfx + "title", errs);
+        requireNotBlank(t.getFullDescription(), pfx + "fullDesc", errs);
+        requireNotBlank(t.getShortDescription(), pfx + "shortDesc", errs);
+      }
     }
   }
 
@@ -143,11 +157,14 @@ public class PostEntityValidator {
    */
   private boolean checkTranslationsExist(final Posts entity, final Map<String, String> errs) {
 
+    final boolean exists;
     if (entity.getTranslations() == null || entity.getTranslations().isEmpty()) {
       errs.put("translations", "At least one translation required.");
-      return false;
+      exists = false;
+    } else {
+      exists = true;
     }
-    return true;
+    return exists;
   }
 
   /**
