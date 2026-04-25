@@ -1,21 +1,25 @@
 package algo.controller;
 
 import algo.services.FileStorageService;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * REST controller responsible for handling file upload requests. It acts as an entry point for
- * clients to upload files and receive accessible URLs to the stored resources.
+ * REST controller for handling file upload requests. Returns accessible URLs to the stored
+ * resources.
  */
 @RestController
 @RequestMapping("/api/files")
 public class FileUploadController {
 
+  /** The service handling file storage operations. */
   private final FileStorageService storageService;
 
   /**
@@ -23,71 +27,57 @@ public class FileUploadController {
    *
    * @param storageService the service used to validate and store files.
    */
-  public FileUploadController(FileStorageService storageService) {
+  public FileUploadController(final FileStorageService storageService) {
     this.storageService = storageService;
   }
 
   /**
-   * Handles HTTP POST requests for uploading a single file. Saves the file using the underlying
-   * storage service and constructs a relative URL that the frontend can use to access the image.
+   * Handles single file uploads and returns its relative URL.
    *
    * @param file the multipart file sent by the client in the request.
-   * @return a response containing a JSON object with the "url" key mapping to the relative path of
-   *     the uploaded file.
+   * @return a response containing a JSON object with the "url" key.
    */
   @PostMapping("/upload")
   public ResponseEntity<Map<String, String>> handleFileUpload(
-      @RequestParam("file") MultipartFile file) {
+      @RequestParam("file") final MultipartFile file) {
 
-    String filename = storageService.store(file);
-    String relativeUrl = "/img/" + filename;
+    final String filename = storageService.store(file);
 
-    Map<String, String> response = new HashMap<>();
-    response.put("url", relativeUrl);
-
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(Map.of("url", "/img/" + filename));
   }
 
-    /**
-     * Handles batch file uploads with partial success processing.
-     * Iterates through files, storing valid ones and catching errors
-     * for invalid ones, returning a detailed report for the frontend.
-     *
-     * @param files the list of multipart files sent by the client.
-     * @return a response containing lists of successes and errors.
-     */
-    @PostMapping("/upload/batch")
-    public ResponseEntity<Map<String, Object>> handleBatchUpload(
-            @RequestParam("files") List<MultipartFile> files) {
+  /**
+   * Handles batch file uploads with partial success processing. Returns a detailed report of
+   * successful and failed uploads.
+   *
+   * @param files the list of multipart files sent by the client.
+   * @return a response containing lists of successes and errors.
+   */
+  @PostMapping("/upload/batch")
+  public ResponseEntity<Map<String, Object>> handleBatchUpload(
+      @RequestParam("files") final List<MultipartFile> files) {
 
-        List<Map<String, String>> successes = new java.util.ArrayList<>();
-        List<Map<String, String>> errors = new java.util.ArrayList<>();
+    final List<Map<String, String>> successes = new ArrayList<>();
+    final List<Map<String, String>> errors = new ArrayList<>();
 
-        for (MultipartFile file : files) {
-            String originalName = file.getOriginalFilename() != null
-                    ? file.getOriginalFilename() : "unknown";
+    for (final MultipartFile file : files) {
+      final String originalName =
+          file.getOriginalFilename() != null ? file.getOriginalFilename() : "unknown";
 
-            try {
-                String filename = storageService.store(file);
+      try {
+        final String filename = storageService.store(file);
 
-                Map<String, String> successData = new HashMap<>();
-                successData.put("filename", originalName);
-                successData.put("url", "/img/" + filename);
-                successes.add(successData);
+        successes.add(Map.of("filename", originalName, "url", "/img/" + filename));
 
-            } catch (Exception e) {
-                Map<String, String> errorData = new HashMap<>();
-                errorData.put("filename", originalName);
-                errorData.put("error", e.getMessage());
-                errors.add(errorData);
-            }
-        }
+      } catch (IllegalArgumentException | IllegalStateException | SecurityException e) {
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("successes", successes);
-        response.put("errors", errors);
-
-        return ResponseEntity.ok(response);
+        errors.add(Map.of("filename", originalName, "error", e.getMessage()));
+      }
     }
 
+    return ResponseEntity.ok(
+        Map.of(
+            "successes", successes,
+            "errors", errors));
+  }
 }
