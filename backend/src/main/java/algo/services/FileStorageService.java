@@ -5,132 +5,116 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Service responsible for securely storing uploaded files on the local file system. It handles file
- * validation, filename sanitization, and protection against common vulnerabilities such as path
- * traversal and double extension attacks.
+ * Service for securely storing uploaded files locally. Handles validation, sanitization, and path
+ * traversal protection.
  */
 @Service
 public class FileStorageService {
 
+  /** The root directory path for safely storing files. */
   private final Path rootLocation;
 
-  /** List of allowed MIME types for file uploads. Currently restricted to common image formats. */
+  /** Allowed MIME types for uploads. Restricted to images. */
   private static final List<String> ALLOWED_TYPES =
       List.of("image/jpeg", "image/png", "image/webp", "image/gif");
 
   /**
-   * Initializes the storage service and creates the target directory if it does not exist.
+   * Initializes storage service and creates target directory.
    *
-   * @param uploadDir the physical path to the upload directory, injected from application
-   *     properties.
-   * @throws RuntimeException if the directory cannot be created.
+   * @param uploadDir physical path to upload directory.
    */
-  public FileStorageService(@Value("${app.upload.dir}") String uploadDir) {
-    this.rootLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
+  public FileStorageService(@Value("${app.upload.dir}") final String uploadDir) {
+
+    this.rootLocation = Paths.get(uploadDir);
     try {
       Files.createDirectories(this.rootLocation);
     } catch (IOException e) {
-      throw new RuntimeException("Could not create the upload directory.", e);
+      throw new IllegalStateException("Could not create upload dir.", e);
     }
   }
 
-    /**
-     * Validates, sanitizes, and stores the uploaded file on the file system.
-     *
-     * @param file the multipart file uploaded by the user.
-     * @return the generated, unique, and safe filename.
-     * @throws IllegalArgumentException if the file is empty.
-     * @throws RuntimeException if the file type is invalid, a path traversal
-     * attempt is detected, or an I/O error occurs.
-     */
-    public String store(MultipartFile file) {
-        try {
-            String extension = validateAndGetExtension(file);
-            String safeFilename = generateSafeFilename(
-                    extension, file.getOriginalFilename());
+  /**
+   * Validates, sanitizes, and securely stores the uploaded file.
+   *
+   * @param file the multipart file to store.
+   * @return the generated, secure filename.
+   */
+  public String store(final MultipartFile file) {
+    try {
+      final String extension = validateAndGetExtension(file);
+      final String originalName = file.getOriginalFilename();
+      final String safeFilename = generateSafeFilename(extension, originalName);
 
-            Path destinationFile = this.rootLocation
-                    .resolve(Paths.get(safeFilename))
-                    .normalize()
-                    .toAbsolutePath();
+      final Path destinationFile =
+          this.rootLocation.resolve(Paths.get(safeFilename)).normalize().toAbsolutePath();
 
-            if (!destinationFile.getParent()
-                    .equals(this.rootLocation.toAbsolutePath())) {
-                throw new RuntimeException(
-                        "Error: Attempt to save file outside the allowed " +
-                                "directory.");
-            }
-
-      try (InputStream inputStream = file.getInputStream()) {
-        Files.copy(inputStream, destinationFile);
+      if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
+        throw new SecurityException("Error: Attempt to save file outside allowed dir.");
       }
 
+      try (InputStream inputStream = file.getInputStream()) {
+        Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
+      }
       return safeFilename;
 
     } catch (IOException e) {
-      throw new RuntimeException("Error during file save.", e);
+      throw new IllegalStateException("Error during file save.", e);
     }
   }
 
-    /**
-     * Validates if the file is not empty and has an allowed MIME type.
-     * Extracts and normalizes the file extension.
-     *
-     * @param file the uploaded file to validate.
-     * @return the safe, normalized file extension (e.g., "jpg", "png").
-     * @throws IllegalArgumentException if the file is empty or if the MIME
-     * type is not allowed.
-     */
-    private String validateAndGetExtension(MultipartFile file) {
-        if (file.isEmpty()) {
-            throw new IllegalArgumentException("Error: File is empty.");
-        }
-
-        String contentType = file.getContentType();
-        if (contentType == null || !ALLOWED_TYPES.contains(contentType)) {
-            throw new IllegalArgumentException(
-                    "Error: Invalid file type. " +
-                            "Allowed: JPG, JPEG, PNG, WebP, GIF.");
-        }
-
-        return contentType.substring(contentType.indexOf("/") + 1);
+  /**
+   * Validates file MIME type and extracts its extension.
+   *
+   * @param file the file to validate.
+   * @return normalized file extension.
+   */
+  private String validateAndGetExtension(final MultipartFile file) {
+    if (file.isEmpty()) {
+      throw new IllegalArgumentException("Error: File is empty.");
     }
+
+    final String contentType = file.getContentType();
+    if (contentType == null || !ALLOWED_TYPES.contains(contentType)) {
+      throw new IllegalArgumentException(
+          "Error: Invalid file type. " + "Allowed: JPG, JPEG, PNG, WebP, GIF.");
+    }
+
+    return contentType.substring(contentType.indexOf('/') + 1);
+  }
 
   /**
-   * Generates a unique and secure filename while preserving a sanitized version of the original
-   * filename for readability. Format: YYYYMMDD_HHMMSS_UUID_originalName.extension
+   * Generates a unique, secure filename based on the original name.
    *
-   * @param extension the validated file extension.
-   * @param originalFilename the original name of the uploaded file.
-   * @return a safe and unique filename.
+   * @param extension the validated extension.
+   * @param filename the original filename from request.
+   * @return a safe filename string.
    */
-  private String generateSafeFilename(String extension, String originalFilename) {
+  private String generateSafeFilename(final String extension, final String filename) {
 
-    String rawOriginalName =
-        originalFilename != null
-            ? org.springframework.util.StringUtils.cleanPath(originalFilename)
-            : "file";
-    int dotIndex = rawOriginalName.lastIndexOf(".");
-    String nameWithoutExtension =
-        (dotIndex == -1) ? rawOriginalName : rawOriginalName.substring(0, dotIndex);
-    String safeOriginalName = nameWithoutExtension.replaceAll("[^a-zA-Z0-9\\-_]", "");
+    final String rawOriginalName = filename != null ? StringUtils.cleanPath(filename) : "unknown";
 
-    if (safeOriginalName.isEmpty()) {
-      safeOriginalName = "file";
-    }
+    final int dotIndex = rawOriginalName.lastIndexOf('.');
+    final String baseName =
+        dotIndex == -1 ? rawOriginalName : rawOriginalName.substring(0, dotIndex);
 
-    String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-    String shortId = UUID.randomUUID().toString().substring(0, 4);
+    final String cleanName = baseName.replaceAll("[^a-zA-Z0-9\\-_]", "");
 
-    return timestamp + "_" + shortId + "_" + safeOriginalName + "." + extension;
+    final String timestamp =
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+
+    final String shortId = UUID.randomUUID().toString().substring(0, 4);
+
+    return timestamp + "_" + shortId + "_" + cleanName + "." + extension;
   }
 }
