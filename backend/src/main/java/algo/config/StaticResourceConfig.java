@@ -6,40 +6,39 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Configuration class for serving static resources from the local file
- * system. Maps external URL requests to the physical directory where
- * uploaded files are safely stored.
+ * Configuration class for serving static resources. Maps external URLs to the physical upload
+ * directory.
  */
 @Configuration
 public class StaticResourceConfig implements WebMvcConfigurer {
 
-    /**
-     * The physical directory path where uploaded files are stored.
-     * Injected directly from the application properties.
-     */
-    @Value("${app.upload.dir}")
-    private String uploadDir;
+  /** The physical directory path where uploaded files are stored. */
+  private final String uploadDir;
 
-    /**
-     * Registers resource handlers to serve static files.
-     * Ensures the directory path is properly formatted with a "file:"
-     * prefix and a trailing slash for Spring's internal resource loader.
-     *
-     * @param registry the resource handler registry to configure.
-     */
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+  /**
+   * Constructs the configuration with the required upload directory.
+   *
+   * @param uploadDir the physical path injected from properties.
+   */
+  public StaticResourceConfig(@Value("${app.upload.dir}") final String uploadDir) {
+    this.uploadDir = uploadDir;
+  }
 
-        String resourceLocation = uploadDir.startsWith("file:")
-                ? uploadDir
-                : "file:" + uploadDir;
+  /**
+   * Registers resource handlers to serve static files. Ensures the path has a "file:" prefix and
+   * trailing slash.
+   *
+   * @param registry the resource handler registry to configure.
+   */
+  @Override
+  public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 
-        if (!resourceLocation.endsWith("/")
-                && !resourceLocation.endsWith("\\")) {
-            resourceLocation += "/";
-        }
+    final String prefix = uploadDir.startsWith("file:") ? "" : "file:";
 
-        registry.addResourceHandler("/img/**")
-                .addResourceLocations(resourceLocation);
-    }
+    final String suffix = uploadDir.endsWith("/") || uploadDir.endsWith("\\") ? "" : "/";
+
+    final String resourceLocation = prefix + uploadDir + suffix;
+
+    registry.addResourceHandler("/img/**").addResourceLocations(resourceLocation);
+  }
 }
