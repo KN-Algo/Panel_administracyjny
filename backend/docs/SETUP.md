@@ -18,11 +18,16 @@ backend/
 ├── src/
 │   └── main/
 │       ├── java/algo/       # Main application code (controllers, services, DTOs)
-│       └── resources/       # Configuration files (e.g., application.properties)
+│       └── resources/       # Configuration and static assets
+│           ├── static/      # Static resources served by the server
+│           │   └── assets/     # Application images (e.g., KN logo)
+│           └── application.properties # Main configuration file
 ├── .gitignore               # Git ignored files
 ├── docker-compose.yml       # Docker configuration for the local database
 └── pom.xml                  # Maven build configuration
 ```
+
+**Note**: Dynamic user uploads are stored outside the source tree in a directory defined by the `app.upload.dir` property to ensure persistence across builds. Static internal resources are served from `src/main/resources/static/assets/`.
 
 ---
 
