@@ -2,11 +2,14 @@ package algo.controller;
 
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
-import algo.services.exceptions.InvalidPostDatesException;
 import algo.services.exceptions.InvalidPostRequestException;
 import algo.services.exceptions.PostNotFoundException;
 import algo.services.exceptions.PostValidationException;
 import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,11 +22,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /** Global REST exception mapping for consistent API error responses. */
 @RestControllerAdvice
@@ -31,7 +30,7 @@ public final class GlobalExceptionHandler {
 
   @ExceptionHandler(PostNotFoundException.class)
   public ResponseEntity<ApiErrorResponse> handleTempPostNotFound(
-          final PostNotFoundException ex, final HttpServletRequest request) {
+      final PostNotFoundException ex, final HttpServletRequest request) {
     return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
   }
 
@@ -51,7 +50,7 @@ public final class GlobalExceptionHandler {
 
   @ExceptionHandler(InvalidPostRequestException.class)
   public ResponseEntity<ApiErrorResponse> handleInvalidTempPostRequest(
-          final InvalidPostRequestException ex, final HttpServletRequest request) {
+      final InvalidPostRequestException ex, final HttpServletRequest request) {
     return buildError(
         HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), ex.getValidationErrors());
   }
@@ -164,6 +163,26 @@ public final class GlobalExceptionHandler {
         body.put("validationErrors", ex.getErrors());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    /**
+     * Handles requests for static resources that do not exist (e.g., missing images).
+     *
+     * @param req the current HTTP request
+     * @return response entity with not found status
+     */
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNoResourceFoundException(final HttpServletRequest req) {
+
+        final Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now().toString());
+        body.put("status", HttpStatus.NOT_FOUND.value());
+        body.put("error", HttpStatus.NOT_FOUND.getReasonPhrase());
+        body.put("message", "Resource not found.");
+        body.put("path", req.getRequestURI());
+        body.put("validationErrors", null);
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
   private String toCsv(final Iterable<PostType> types) {
