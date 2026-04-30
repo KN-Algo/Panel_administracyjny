@@ -5,7 +5,11 @@ import algo.module.PostType;
 import algo.module.Posts;
 import algo.services.exceptions.PostValidationException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,6 +18,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PostEntityValidator {
+
+  /** List of language required on page */
+  private static final Set<String> REQUIRED_LANGS = Set.of("PL", "EN", "DE");
 
   /** Default constructor required by PMD rules and Spring framework. */
   public PostEntityValidator() {
@@ -148,24 +155,35 @@ public class PostEntityValidator {
     }
   }
 
-  /**
-   * Checks if the translations list exists and is not empty.
-   *
-   * @param entity the post entity to check.
-   * @param errs the map to collect validation errors.
-   * @return true if translations exist, false otherwise.
-   */
-  private boolean checkTranslationsExist(final Posts entity, final Map<String, String> errs) {
+    /**
+     * Checks if the translations list contains all required language codes.
+     *
+     * @param entity the post entity to check.
+     * @param errs the map to collect validation errors.
+     * @return true if all required translations exist, false otherwise.
+     */
+    private boolean checkTranslationsExist(final Posts entity, final Map<String, String> errs) {
 
-    final boolean exists;
-    if (entity.getTranslations() == null || entity.getTranslations().isEmpty()) {
-      errs.put("translations", "At least one translation required.");
-      exists = false;
-    } else {
-      exists = true;
+        if (entity.getTranslations() == null) {
+            errs.put("translations", "Translations list cannot be null.");
+            return false;
+        }
+
+        final Set<String> providedLangs = entity.getTranslations().stream()
+                .map(t -> t.getLanguageCode() != null ? t.getLanguageCode().toUpperCase() : "")
+                .collect(Collectors.toSet());
+
+        final List<String> missingLangs = REQUIRED_LANGS.stream()
+                .filter(lang -> !providedLangs.contains(lang))
+                .toList();
+
+        if (!missingLangs.isEmpty()) {
+            errs.put("translations", "Missing required translations for languages: " + String.join(", ", missingLangs));
+            return false;
+        }
+
+        return true;
     }
-    return exists;
-  }
 
   /**
    * Helper method to validate that an object is not null.
