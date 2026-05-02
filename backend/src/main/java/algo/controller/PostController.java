@@ -1,12 +1,12 @@
 package algo.controller;
 
-import algo.dto.TempPostRequestDto;
-import algo.dto.TempPostResponseDto;
+import algo.dto.PostRequestDto;
+import algo.dto.PostResponseDto;
 import algo.module.PostType;
 import algo.module.Posts;
-import algo.services.TempPostMap;
-import algo.services.TempPostService;
-import algo.services.exceptions.InvalidTempPostRequestException;
+import algo.services.PostMap;
+import algo.services.PostService;
+import algo.services.exceptions.PostValidationException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
@@ -26,39 +26,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** REST controller for managing temporary posts. */
+/** REST controller for managing posts. */
 @RestController
-@RequestMapping("/api/temp-posts")
-public class TempPostController {
+@RequestMapping("/api/posts")
+public class PostController {
 
+  /** Maximum allowed page size for pagination. */
   private static final int MAX_PAGE_SIZE = 100;
 
-  /** Service for handling temporary post business logic. */
-  private final TempPostService service;
+  /** Service for handling post business logic. */
+  private final PostService service;
 
   /** Mapper for converting between Post entities and DTOs. */
-  private final TempPostMap mapper;
+  private final PostMap mapper;
 
   /**
-   * Constructs a TempPostController with required dependencies.
+   * Constructs a PostController with required dependencies.
    *
-   * @param pServ temporary post service
-   * @param pMap temporary post mapper
+   * @param pServ post service
+   * @param pMap post mapper
    */
-  public TempPostController(final TempPostService pServ, final TempPostMap pMap) {
+  public PostController(final PostService pServ, final PostMap pMap) {
     this.service = pServ;
     this.mapper = pMap;
   }
 
   /**
-   * Creates a new temporary post.
+   * Creates a new post.
    *
    * @param dto the post creation request data
    * @return response entity containing the created post
    */
   @PostMapping
-  public ResponseEntity<TempPostResponseDto> create(
-      @Valid @RequestBody final TempPostRequestDto dto) {
+  public ResponseEntity<PostResponseDto> create(@Valid @RequestBody final PostRequestDto dto) {
     validateRequest(dto);
     final Posts entity = mapper.toEntity(dto);
     final Posts saved = service.save(entity);
@@ -66,35 +66,63 @@ public class TempPostController {
   }
 
   /**
-   * Updates an existing temporary post.
+   * Updates an existing post.
    *
    * @param postId the ID of the post to update
    * @param dto the post update request data
    * @return response entity containing the updated post
    */
   @PutMapping("/{id}")
-  public ResponseEntity<TempPostResponseDto> update(
-      @PathVariable("id") final Long postId, @Valid @RequestBody final TempPostRequestDto dto) {
+  public ResponseEntity<PostResponseDto> update(
+      @PathVariable("id") final Long postId, @Valid @RequestBody final PostRequestDto dto) {
     validateRequest(dto);
     final Posts mergedEntity = mapper.toEntity(dto);
     final Posts saved = service.update(postId, mergedEntity);
     return ResponseEntity.ok(mapper.toResponse(saved));
   }
 
+  /** Returns all posts excluding temporary modals. */
+  @GetMapping("/content")
+  public ResponseEntity<List<PostResponseDto>> getRegularContent() {
+    return ResponseEntity.ok(service.getNonTempPosts().stream().map(mapper::toResponse).toList());
+  }
+
+  /** Returns only news articles. */
+  @GetMapping("/news")
+  public ResponseEntity<List<PostResponseDto>> getNews() {
+    return ResponseEntity.ok(service.getNewsOnly().stream().map(mapper::toResponse).toList());
+  }
+
+  /** Returns all temporary/modal posts. */
+  @GetMapping("/modals")
+  public ResponseEntity<List<PostResponseDto>> getAllModals() {
+    return ResponseEntity.ok(service.getAllTempPosts().stream().map(mapper::toResponse).toList());
+  }
+
+  /** Returns the currently active homepage modal, if any. */
+  @GetMapping("/active-modal")
+  public ResponseEntity<PostResponseDto> getActiveModal() {
+    return service
+        .getActiveModal()
+        .map(mapper::toResponse)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.noContent().build());
+  }
+
   /**
-   * Retrieves a temporary post by ID.
+   * Retrieves a post by ID.
    *
    * @param postId the post ID to retrieve
    * @return response entity containing the post
    */
   @GetMapping("/{id}")
-  public ResponseEntity<TempPostResponseDto> get(@PathVariable("id") final Long postId) {
+  public ResponseEntity<PostResponseDto> get(@PathVariable("id") final Long postId) {
     final Posts entity = service.getOne(postId);
     return ResponseEntity.ok(mapper.toResponse(entity));
   }
 
   /**
-   * Lists temporary posts with optional filtering.
+   * Lists posts with optional filtering.
    *
    * @param pageable pagination information
    * @param type optional post type filter
@@ -109,7 +137,7 @@ public class TempPostController {
       @RequestParam(value = "active", defaultValue = "false") final boolean onlyActive) {
     validatePageable(request, pageable);
     final Page<Posts> page = service.list(pageable, type, onlyActive);
-    final Page<TempPostResponseDto> mapped = page.map(mapper::toResponse);
+    final Page<PostResponseDto> mapped = page.map(mapper::toResponse);
 
     final Map<String, Object> response = new LinkedHashMap<>();
     response.put("items", mapped.getContent());
@@ -129,7 +157,7 @@ public class TempPostController {
   }
 
   /**
-   * Deletes a temporary post by ID.
+   * Deletes a post by ID.
    *
    * @param postId the post ID to delete
    * @return response entity with no content
@@ -140,56 +168,59 @@ public class TempPostController {
     return ResponseEntity.noContent().build();
   }
 
-  private void validateRequest(final TempPostRequestDto dto) {
+  private void validateRequest(final PostRequestDto dto) {
     final Map<String, String> errors = new LinkedHashMap<>();
 
+    validateCoreFields(dto, errors);
+    validateTranslations(dto.translations(), errors);
+
+    if (!errors.isEmpty()) {
+      throw new PostValidationException(errors);
+    }
+  }
+
+  private void validateCoreFields(final PostRequestDto dto, final Map<String, String> errors) {
     if (dto.postType() == null) {
       errors.put("postType", "must not be null");
     }
     if (dto.eventDate() == null) {
       errors.put("eventDate", "must not be null");
     }
-    if (dto.startsAt() == null) {
-      errors.put("startsAt", "must not be null");
-    }
-    if (dto.expiresAt() == null) {
-      errors.put("expiresAt", "must not be null");
-    }
-    if (!hasText(dto.thumbnailUrl())) {
-      errors.put("thumbnailUrl", "must not be blank");
-    }
-    if (!hasText(dto.externalLink())) {
-      errors.put("externalLink", "must not be blank");
-    }
+  }
 
-    final List<algo.dto.PostTranslationDto> translations = dto.translations();
+  private void validateTranslations(
+      final List<algo.dto.PostTranslationDto> translations, final Map<String, String> errors) {
+
     if (translations == null || translations.isEmpty()) {
       errors.put("translations", "must not be empty");
-    } else {
-      for (int i = 0; i < translations.size(); i++) {
-        final var translation = translations.get(i);
-        final String prefix = "translations[" + i + "]";
-        if (translation == null) {
-          errors.put(prefix, "must not be null");
-          continue;
-        }
-        if (!hasText(translation.languageCode())) {
-          errors.put(prefix + ".languageCode", "must not be blank");
-        }
-        if (!hasText(translation.title())) {
-          errors.put(prefix + ".title", "must not be blank");
-        }
-        if (!hasText(translation.shortDescription())) {
-          errors.put(prefix + ".shortDescription", "must not be blank");
-        }
-        if (!hasText(translation.fullDescription())) {
-          errors.put(prefix + ".fullDescription", "must not be blank");
-        }
-      }
+      return;
     }
 
-    if (!errors.isEmpty()) {
-      throw new InvalidTempPostRequestException("Request validation failed.", errors);
+    for (int i = 0; i < translations.size(); i++) {
+      validateSingleTranslation(translations.get(i), i, errors);
+    }
+  }
+
+  private void validateSingleTranslation(
+      final algo.dto.PostTranslationDto translation,
+      final int index,
+      final Map<String, String> errors) {
+
+    final String prefix = "translations[" + index + "]";
+
+    if (translation == null) {
+      errors.put(prefix, "must not be null");
+      return;
+    }
+
+    if (!hasText(translation.languageCode())) {
+      errors.put(prefix + ".languageCode", "must not be blank");
+    }
+    if (!hasText(translation.title())) {
+      errors.put(prefix + ".title", "must not be blank");
+    }
+    if (!hasText(translation.fullDescription())) {
+      errors.put(prefix + ".fullDescription", "must not be blank");
     }
   }
 

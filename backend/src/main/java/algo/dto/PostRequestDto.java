@@ -2,7 +2,6 @@ package algo.dto;
 
 import algo.module.PostType;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -19,14 +18,14 @@ import java.util.List;
  * @param externalLink external link for the post
  * @param translations localized post translations
  */
-public record TempPostRequestDto(
+public record PostRequestDto(
     @NotNull PostType postType,
     @NotNull LocalDateTime eventDate,
-    @NotNull LocalDateTime startsAt,
-    @NotNull LocalDateTime expiresAt,
-    @NotBlank @Size(max = THUMBNAIL_URL_L) String thumbnailUrl,
-    @Size(max = IMAGE_URLS_L) String imageUrls,
-    @NotBlank @Size(max = EXTERNAL_LINK_L) String externalLink,
+    LocalDateTime startsAt,
+    LocalDateTime expiresAt,
+    @Size(max = THUMBNAIL_URL_L) String thumbnailUrl,
+    @Size(max = IMAGE_URLS_L) List<String> imageUrls,
+    @Size(max = EXTERNAL_LINK_L) String externalLink,
     @NotEmpty List<@Valid PostTranslationDto> translations) {
 
   /** Max length of thumbnail URL. */

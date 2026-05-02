@@ -5,65 +5,63 @@ import algo.module.PostType;
 import algo.module.Posts;
 import algo.repository.PostRepository;
 import algo.security.HtmlSanitizer;
-import algo.services.exceptions.InvalidTempPostDatesException;
-import algo.services.exceptions.InvalidTempPostTypeException;
-import algo.services.exceptions.TempPostNotFoundException;
+import algo.services.exceptions.PostNotFoundException;
+import algo.validation.PostEntityValidator;
 import jakarta.transaction.Transactional;
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-/** Service for managing temporary posts. */
+/** Service for managing posts. */
 @Service
-public class TempPostService {
-
-  /** Allowed temporary post types handled by this service. */
-  private static final List<PostType> TEMP_TYPES =
-      List.of(PostType.TEMP_STANDARD, PostType.TEMP_NEWS);
+public class PostService {
 
   /** Repository for Post persistence operations. */
   private final PostRepository postRepository;
 
+  /** Class for Post validation operations. */
+  private final PostEntityValidator validator;
+
   /** Time source used for evaluating active windows. */
   private final Clock clock = Clock.systemDefaultZone();
+
+  /** List of post types that function as temporary modals or pop-ups. */
+  private static final List<PostType> TEMP_TYPES =
+      List.of(PostType.TEMP, PostType.TEMP_STANDARD, PostType.TEMP_NEWS);
 
   /**
    * Creates service with required repository dependency.
    *
    * @param repository post repository
    */
-  public TempPostService(final PostRepository repository) {
+  public PostService(final PostRepository repository, PostEntityValidator validator) {
     this.postRepository = repository;
+    this.validator = validator;
   }
 
   /**
-   * Persists a TEMP post after validation.
+   * Persists a post after validation.
    *
    * @param entity post entity to save
    * @return persisted post entity
    */
   @Transactional
   public Posts save(final Posts entity) {
-    ensureTemp(entity.getPostType());
-    validateTempDates(entity);
+    validator.validatePostData(entity);
 
-    if (entity.getTranslations() != null) {
-        for (PostTranslation translation : entity.getTranslations()) {
-            translation.setFullDescription(HtmlSanitizer.sanitize(translation.getFullDescription()));
-            translation.setShortDescription(HtmlSanitizer.sanitize(translation.getShortDescription()));
-        }
+    for (PostTranslation translation : entity.getTranslations()) {
+      translation.setShortDescription(HtmlSanitizer.sanitize(translation.getShortDescription()));
+      translation.setFullDescription(HtmlSanitizer.sanitize(translation.getFullDescription()));
     }
 
     return postRepository.save(entity);
   }
 
   /**
-   * Updates a TEMP post by id with merged data.
+   * Updates a post by id with merged data.
    *
    * @param postId id of post to update
    * @param mergedEntity updated post entity
@@ -74,9 +72,7 @@ public class TempPostService {
     final Posts existing =
         postRepository.findWithTranslationsByPostId(postId).orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(existing.getPostType());
-    ensureTemp(mergedEntity.getPostType());
-    validateTempDates(mergedEntity);
+    validator.validatePostData(mergedEntity);
 
     existing.setPostType(mergedEntity.getPostType());
     existing.setEventDate(mergedEntity.getEventDate());
@@ -119,7 +115,6 @@ public class TempPostService {
     final Posts entity =
         postRepository.findWithTranslationsByPostId(postId).orElseThrow(() -> postNotFound(postId));
 
-    ensureTemp(entity.getPostType());
     return entity;
   }
 
@@ -131,8 +126,6 @@ public class TempPostService {
   @Transactional
   public void delete(final Long postId) {
     final Posts entity = postRepository.findById(postId).orElseThrow(() -> postNotFound(postId));
-
-    ensureTemp(entity.getPostType());
     postRepository.delete(entity);
   }
 
@@ -147,49 +140,44 @@ public class TempPostService {
   @Transactional
   public Page<Posts> list(final Pageable pageable, final PostType type, final boolean onlyActive) {
 
-    if (type != null) {
-      ensureTemp(type);
-    }
-
-    final List<PostType> types = (type == null) ? TEMP_TYPES : List.of(type);
+    final List<PostType> types = (type == null) ? Arrays.asList(PostType.values()) : List.of(type);
 
     final Page<Posts> result;
     if (onlyActive) {
       final LocalDateTime now = LocalDateTime.now(clock);
-      result = postRepository.findActiveTempPosts(types, now, pageable);
+      result = postRepository.findActivePosts(types, now, pageable);
     } else {
       result = postRepository.findAllByPostTypeIn(types, pageable);
     }
     return result;
   }
 
-  /**
-   * Ensures the given type is one of the TEMP types.
-   *
-   * @param type post type to validate
-   */
-  private void ensureTemp(final PostType type) {
-    if (!TEMP_TYPES.contains(type)) {
-      throw new InvalidTempPostTypeException(type, TEMP_TYPES);
-    }
+  /** Returns all posts that are NOT modals (Standard and News). */
+  @Transactional()
+  public List<Posts> getNonTempPosts() {
+    return postRepository.findAllByPostTypeNotIn(TEMP_TYPES);
   }
 
-  /**
-   * Validates TEMP post start and end dates.
-   *
-   * @param entity post entity to validate
-   */
-  private void validateTempDates(final Posts entity) {
-    if (entity.getStartsAt() == null || entity.getExpiresAt() == null) {
-      throw new InvalidTempPostDatesException(
-          "TEMP posts must have startsAt and expiresAt dates.",
-          entity.getStartsAt(),
-          entity.getExpiresAt());
-    }
-    if (entity.getExpiresAt().isBefore(entity.getStartsAt())) {
-      throw new InvalidTempPostDatesException(
-          "expiresAt must be >= startsAt.", entity.getStartsAt(), entity.getExpiresAt());
-    }
+  /** Returns only news articles (excluding temp news). */
+  @Transactional()
+  public List<Posts> getNewsOnly() {
+    return postRepository.findAllByPostTypeIn(List.of(PostType.NEWS, PostType.TEMP_NEWS));
+  }
+
+  /** Returns all modal-type posts (active and planned). */
+  @Transactional()
+  public List<Posts> getAllTempPosts() {
+    return postRepository.findAllByPostTypeIn(TEMP_TYPES);
+  }
+
+  /** Returns the single most relevant active modal. */
+  @Transactional()
+  public Optional<Posts> getActiveModal() {
+    final LocalDateTime now = LocalDateTime.now();
+    return postRepository.findAllByPostTypeIn(TEMP_TYPES).stream()
+        .filter(p -> p.getStartsAt() != null && !p.getStartsAt().isAfter(now))
+        .filter(p -> p.getExpiresAt() != null && p.getExpiresAt().isAfter(now))
+        .max(Comparator.comparing(Posts::getStartsAt));
   }
 
   /**
@@ -198,7 +186,7 @@ public class TempPostService {
    * @param postId post identity
    * @return exception instance with formatted message
    */
-  private TempPostNotFoundException postNotFound(final Long postId) {
-    return new TempPostNotFoundException(postId);
+  private PostNotFoundException postNotFound(final Long postId) {
+    return new PostNotFoundException(postId);
   }
 }

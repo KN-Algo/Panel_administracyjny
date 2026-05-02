@@ -1,6 +1,6 @@
 package algo.module;
 
-import algo.dto.TempPostRequestDto;
+import algo.dto.PostRequestDto;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,15 +55,15 @@ public class Posts {
   private LocalDateTime expiresAt;
 
   /** URL of the thumbnail image. */
-  @Column(name = "thumbnail_url", nullable = false, length = TempPostRequestDto.THUMBNAIL_URL_L)
+  @Column(name = "thumbnail_url", length = PostRequestDto.THUMBNAIL_URL_L)
   private String thumbnailUrl;
 
   /** Comma-separated list of image URLs (if applicable). */
-  @Column(name = "image_urls", length = TempPostRequestDto.IMAGE_URLS_L)
+  @Column(name = "image_urls", length = PostRequestDto.IMAGE_URLS_L)
   private String imageUrls;
 
   /** External link related to the post content. */
-  @Column(name = "external_link", nullable = false, length = TempPostRequestDto.EXTERNAL_LINK_L)
+  @Column(name = "external_link", length = PostRequestDto.EXTERNAL_LINK_L)
   private String externalLink;
 
   /** Localized translations of this post. */
