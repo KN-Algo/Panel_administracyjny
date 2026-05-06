@@ -27,15 +27,15 @@ export function AdminSidebar() {
 
   return (
     <Sidebar collapsible="icon" variant="inset">
-      <SidebarHeader className="border-b px-3 py-4">
+      <SidebarHeader className="border-b px-3 h-16 justify-center py-0">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
+            <SidebarMenuButton size="lg" asChild className="h-8!">
               <Link to="/panel/admin" className="flex items-center gap-2">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                   <LayoutDashboard className="h-4 w-4" />
                 </div>
-                <div className="flex flex-col gap-0.5 leading-none">
+                <div className="flex flex-col gap-0.5 leading-none whitespace-nowrap">
                   <span className="font-semibold">Admin Panel</span>
                   <span className="text-xs text-muted-foreground">
                     Zarządzanie
