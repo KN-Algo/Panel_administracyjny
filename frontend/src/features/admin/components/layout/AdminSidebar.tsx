@@ -84,11 +84,11 @@ export function AdminSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={location.pathname === "/panel/admin/events"}
+                  isActive={location.pathname === "/panel/admin/posts"}
                 >
-                  <Link to="/panel/admin/events">
+                  <Link to="/panel/admin/posts">
                     <Calendar />
-                    <span>Wydarzenia</span>
+                    <span>Posty</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -114,22 +114,22 @@ export function AdminSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={location.pathname === "/panel/admin/posts"}
+                  isActive={location.pathname === "/panel/admin/add-post"}
                 >
-                  <Link to="/panel/admin/posts">
-                    <FileEdit />
-                    <span>Edycja treści postów</span>
+                  <Link to="/panel/admin/add-post">
+                    <FilePlus />
+                    <span>Dodaj post</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={location.pathname === "/panel/admin/add-post"}
+                  isActive={location.pathname === "/panel/admin/edit-post"}
                 >
-                  <Link to="/panel/admin/add-post">
-                    <FilePlus />
-                    <span>Dodawanie wpisów</span>
+                  <Link to="/panel/admin/edit-post">
+                    <FileEdit />
+                    <span>Edytuj treść posta</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
