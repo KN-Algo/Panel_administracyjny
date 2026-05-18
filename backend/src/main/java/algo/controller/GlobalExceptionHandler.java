@@ -25,14 +25,15 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /** Global REST exception mapping for consistent API error responses. */
 @RestControllerAdvice
 public final class GlobalExceptionHandler {
 
-  @ExceptionHandler(TempPostNotFoundException.class)
+  @ExceptionHandler(PostNotFoundException.class)
   public ResponseEntity<ApiErrorResponse> handleTempPostNotFound(
-      final TempPostNotFoundException ex, final HttpServletRequest request) {
+      final PostNotFoundException ex, final HttpServletRequest request) {
     return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
   }
 
@@ -74,9 +75,9 @@ public final class GlobalExceptionHandler {
         validationErrors);
   }
 
-  @ExceptionHandler(InvalidTempPostRequestException.class)
+  @ExceptionHandler(InvalidPostRequestException.class)
   public ResponseEntity<ApiErrorResponse> handleInvalidTempPostRequest(
-      final InvalidTempPostRequestException ex, final HttpServletRequest request) {
+      final InvalidPostRequestException ex, final HttpServletRequest request) {
     return buildError(
         HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), ex.getValidationErrors());
   }
@@ -91,12 +92,12 @@ public final class GlobalExceptionHandler {
   public ResponseEntity<ApiErrorResponse> handleConversionMismatch(
       final Exception ex, final HttpServletRequest request) {
     if (ex instanceof final TypeMismatchException mismatch) {
-      return buildTypeMismatchError(mismatch.getPropertyName(), mismatch.getRequiredType(), request);
+      return buildTypeMismatchError(
+          mismatch.getPropertyName(), mismatch.getRequiredType(), request);
     }
     if (ex instanceof final ConversionFailedException conversion
         && conversion.getTargetType() != null) {
-      return buildTypeMismatchError(
-          null, conversion.getTargetType().getType(), request);
+      return buildTypeMismatchError(null, conversion.getTargetType().getType(), request);
     }
     return buildError(
         HttpStatus.BAD_REQUEST, "Invalid parameter value.", request.getRequestURI(), null);

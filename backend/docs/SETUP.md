@@ -1,7 +1,7 @@
 # Getting Started
 
 **Requirements:**
-* Java JDK 23 
+* Java JDK 23
 * Docker & Docker Compose
 * IntelliJ IDEA (or other IDE which support Maven)
 * PostgreSQL
@@ -18,11 +18,16 @@ backend/
 ├── src/
 │   └── main/
 │       ├── java/algo/       # Main application code (controllers, services, DTOs)
-│       └── resources/       # Configuration files (e.g., application.properties)
+│       └── resources/       # Configuration and static assets
+│           ├── static/      # Static resources served by the server
+│           │   └── assets/     # Application images (e.g., KN logo)
+│           └── application.properties # Main configuration file
 ├── .gitignore               # Git ignored files
 ├── docker-compose.yml       # Docker configuration for the local database
 └── pom.xml                  # Maven build configuration
 ```
+
+**Note**: Dynamic user uploads are stored outside the source tree in a directory defined by the `app.upload.dir` property to ensure persistence across builds. Static internal resources are served from `src/main/resources/static/assets/`.
 
 ---
 
@@ -55,7 +60,7 @@ Before you can test the API and log in, you need to create at least one user in 
 *(Note: The BCrypt hash below corresponds to the raw password `password`)*:
 
 ```sql
-INSERT INTO users (username, email, password, role) 
+INSERT INTO users (username, email, password, role)
 VALUES ('admin', 'admin@example.com', '$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW', 'ROLE_ADMIN');
 ```
 ---

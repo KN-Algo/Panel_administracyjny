@@ -3,7 +3,7 @@ package algo.services.exceptions;
 import java.time.LocalDateTime;
 
 /** Thrown when TEMP post dates are missing or inconsistent. */
-public final class InvalidTempPostDatesException extends RuntimeException {
+public final class InvalidPostDatesException extends RuntimeException {
 
   /** Provided startsAt date. */
   private final LocalDateTime startsAt;
@@ -18,7 +18,7 @@ public final class InvalidTempPostDatesException extends RuntimeException {
    * @param pStartsAt startsAt value
    * @param pExpiresAt expiresAt value
    */
-  public InvalidTempPostDatesException(
+  public InvalidPostDatesException(
       final String message, final LocalDateTime pStartsAt, final LocalDateTime pExpiresAt) {
     super(message);
     this.startsAt = pStartsAt;
