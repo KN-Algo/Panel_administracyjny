@@ -8,9 +8,6 @@ export default function AdminAddPostPage() {
         <FilePlus className="h-6 w-6 text-muted-foreground" />
         <h2 className="text-2xl font-semibold">Dodaj post</h2>
       </div>
-      <p className="text-sm text-muted-foreground">
-        Tworzenie nowych postów.
-      </p>
       <AdminPostForm />
     </div>
   );
