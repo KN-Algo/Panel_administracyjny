@@ -91,7 +91,7 @@ export function AdminPostForm() {
 
   return (
     <div className="flex items-start gap-6">
-      {/* Main column: translations + actions */}
+      {/* Główna sekcja */}
       <div className="min-w-0 flex-1 space-y-4">
         <div className="rounded-lg border bg-card p-5 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -114,7 +114,7 @@ export function AdminPostForm() {
             )}
           </div>
 
-          {/* Language tabs */}
+          {/* Zakładki z językami*/}
           <div className="flex gap-1 border-b">
             {LANGS.map((lang) => {
               const complete = isTranslationComplete(lang.code);
@@ -176,7 +176,7 @@ export function AdminPostForm() {
 
             <div>
               <label className={labelClass}>
-                Pełny opis{' '}
+                Pełny opis - treść posta{' '}
                 <span className="font-normal text-muted-foreground">
                   ({activeLang.toUpperCase()})
                 </span>
@@ -190,7 +190,7 @@ export function AdminPostForm() {
 
         </div>
 
-        {/* Actions */}
+        {/* Przyciski zapisz post i roboczy podgląd stanu (do usunięcia potem)*/}
         <div className="flex justify-end gap-3">
           <Button
             type="button"
@@ -270,7 +270,7 @@ export function AdminPostForm() {
         </div>
 
         <div className="border-t pt-3">
-          <label className={labelClass}>Zdjęcia galerii</label>
+          <label className={labelClass}>Zdjęcia</label>
           <div className="space-y-1.5">
             {postDraft.imageUrls.map((url, idx) => (
               <div key={idx} className="flex items-center gap-1">
