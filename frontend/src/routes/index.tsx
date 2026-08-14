@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import HomePage from "../features/home/HomePage";
 import TeamPage from "../features/team/TeamPage";
@@ -45,6 +45,7 @@ export default function AppRouter() {
       <Route path="404" element={<Layout showNavbar={false} />}>
         <Route index element={<NotFoundPage />} />
       </Route>
+      <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
   );
 }
