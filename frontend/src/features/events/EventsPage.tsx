@@ -7,6 +7,13 @@ import eventsDataPl from "@/data/events_pl.json";
 import eventsDataEn from "@/data/events_en.json";
 import eventsDataDe from "@/data/events_de.json";
 import type { Event } from "@/types";
+import {
+  Button,
+  ContentContainer,
+  PageHeader,
+  PublicPage,
+  Section,
+} from "@/shared";
 
 export default function EventsPage() {
   const { t, i18n } = useTranslation();
@@ -148,19 +155,12 @@ export default function EventsPage() {
   };
 
   return (
-    <div className="w-full bg-gray-100 min-h-screen">
-      {/* Header Section */}
-      <section className="py-14 text-center bg-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            {t("events.page_title")}
-          </h1>
-        </div>
-      </section>
+    <PublicPage tone="muted" minHeight="screen">
+      <PageHeader title={t("events.page_title")} />
 
       {/* Events Grid */}
-      <section className="py-14">
-        <div className="container mx-auto px-4">
+      <Section>
+        <ContentContainer>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {events.map((event) => (
               <div
@@ -182,15 +182,15 @@ export default function EventsPage() {
                   <p className="text-sm text-gray-600 mb-4">
                     {formatDate(event.date)}
                   </p>
-                  <button className="text-brand-dark font-semibold hover:underline">
+                  <Button appearance="text" size="inline">
                     {t("events.read_more")} →
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Event Detail Modal */}
       {selectedEvent && (
@@ -312,6 +312,6 @@ export default function EventsPage() {
           </div>
         </div>
       )}
-    </div>
+    </PublicPage>
   );
 }

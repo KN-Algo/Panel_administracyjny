@@ -97,7 +97,7 @@ export default function TeamMemberModal({
           ref={closeButtonRef}
           onClick={onClose}
           type="button"
-          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-[#000424]/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-[#000424] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#000424] focus-visible:ring-offset-2 md:right-5 md:top-5 md:h-11 md:w-11"
+          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-brand-dark/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 md:right-5 md:top-5 md:h-11 md:w-11"
           aria-label={t("common.close")}
         >
           <X size={18} className="stroke-[2.75] md:h-5 md:w-5" />
@@ -107,22 +107,22 @@ export default function TeamMemberModal({
           {/* Lewa strona - Zdjęcie */}
           <div className="md:w-2/5 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 flex items-center justify-center p-4 sm:p-6 md:p-10 relative overflow-hidden">
             {/* Dekoracyjne elementy tła */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#000424]/5 to-[#000530]/5"></div>
-            <div className="hidden md:block absolute -top-20 -right-20 w-40 h-40 bg-[#000424]/8 rounded-full blur-3xl"></div>
-            <div className="hidden md:block absolute -bottom-20 -left-20 w-40 h-40 bg-[#000530]/8 rounded-full blur-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-dark/5 to-brand-deep/5"></div>
+            <div className="hidden md:block absolute -top-20 -right-20 w-40 h-40 bg-brand-dark/8 rounded-full blur-3xl"></div>
+            <div className="hidden md:block absolute -bottom-20 -left-20 w-40 h-40 bg-brand-deep/8 rounded-full blur-3xl"></div>
 
             <div className="w-full max-w-[170px] sm:max-w-[210px] md:max-w-xs relative z-10">
               <div className="relative group">
                 <img
                   src={imagePath}
                   alt={`${member.firstName} ${member.lastName}`}
-                  className="w-full aspect-[3/4] object-cover rounded-3xl shadow-2xl ring-4 ring-[#000424]/20 transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full aspect-[3/4] object-cover rounded-3xl shadow-2xl ring-4 ring-brand-dark/20 transition-transform duration-500 group-hover:scale-[1.02]"
                   onError={(e) => {
                     e.currentTarget.src = "/img/members/temp.webp";
                   }}
                 />
                 {/* Gradient overlay na hover */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#000424]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function TeamMemberModal({
                 {member.firstName} {member.lastName}
               </h2>
               {member.position && (
-                <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-[#000424] to-[#000530] text-white text-sm font-semibold shadow-md">
+                <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-dark to-brand-deep text-white text-sm font-semibold shadow-md">
                   {t(`team.${member.position}`, {
                     defaultValue: member.position,
                   })}
@@ -150,7 +150,7 @@ export default function TeamMemberModal({
             {details.bio && (
               <div className="mb-5 sm:mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 flex items-center gap-2">
-                  <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
+                  <span className="w-1 h-6 bg-brand-dark rounded-full"></span>
                   {t("team.about_me")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base pl-3">
@@ -163,7 +163,7 @@ export default function TeamMemberModal({
             {details.interests && (
               <div className="mb-5 sm:mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 flex items-center gap-2">
-                  <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
+                  <span className="w-1 h-6 bg-brand-dark rounded-full"></span>
                   {t("team.interests")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base pl-3">
@@ -177,7 +177,7 @@ export default function TeamMemberModal({
               Object.keys(details.socialMedia).length > 0 && (
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 flex items-center gap-2">
-                    <span className="w-1 h-6 bg-[#000424] rounded-full"></span>
+                    <span className="w-1 h-6 bg-brand-dark rounded-full"></span>
                     {t("team.social_media")}
                   </h3>
                   <div className="flex gap-3 flex-wrap pl-3">
@@ -200,7 +200,7 @@ export default function TeamMemberModal({
                         href={details.socialMedia.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-center w-9 h-9 bg-[#0077B5] text-white rounded-md hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-110"
+                        className="group flex items-center justify-center w-9 h-9 bg-social-linkedin text-white rounded-md hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-110"
                         aria-label="LinkedIn"
                       >
                         <Linkedin
@@ -228,7 +228,7 @@ export default function TeamMemberModal({
                         href={details.socialMedia.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-[#000424] to-[#000638] text-white rounded-md hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 hover:scale-110"
+                        className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-brand-dark to-brand-deeper text-white rounded-md hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 hover:scale-110"
                         aria-label={t("team.personal_website")}
                       >
                         <Globe

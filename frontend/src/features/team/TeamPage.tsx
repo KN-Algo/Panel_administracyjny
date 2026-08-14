@@ -5,6 +5,16 @@ import teamData from "@/data/team.json";
 import teamDetailsData from "@/data/teamDetails.json";
 import type { TeamMember, TeamMemberDetails } from "@/types";
 import TeamMemberModal from "@/components/TeamMemberModal";
+import {
+  ContentContainer,
+  Heading,
+  IconFrame,
+  PageHeader,
+  PublicPage,
+  Section,
+  Surface,
+  Text,
+} from "@/shared";
 
 export default function TeamPage() {
   const { t } = useTranslation();
@@ -39,20 +49,16 @@ export default function TeamPage() {
   }, []);
 
   return (
-    <div className="w-full bg-white">
-      {/* Header Section */}
-      <section className="py-14 text-center bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            {t("team.page_title")}
-          </h1>
-          <p className="text-base text-gray-600">{t("team.page_subtitle")}</p>
-        </div>
-      </section>
+    <PublicPage>
+      <PageHeader
+        title={t("team.page_title")}
+        subtitle={t("team.page_subtitle")}
+        tone="muted"
+      />
 
       {/* Group Photo Section */}
-      <section className="py-14">
-        <div className="container mx-auto px-4 text-center">
+      <Section>
+        <ContentContainer align="center">
           <div className="max-w-3xl mx-auto">
             <img
               src="/img/kn_algo_grupowe1.webp"
@@ -60,15 +66,15 @@ export default function TeamPage() {
               className="w-full rounded-3xl shadow-xl transition-transform duration-300 hover:scale-105"
             />
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Supervisors Introduction Section */}
-      <section className="py-14">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-14 text-gray-900">
+      <Section>
+        <ContentContainer>
+          <Heading level={2} size="section" align="center" spacingBottom="3xl">
             {t("team.supervisors_title")}
-          </h2>
+          </Heading>
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2">
@@ -79,29 +85,34 @@ export default function TeamPage() {
                 />
               </div>
               <div className="md:w-1/2 space-y-4 text-gray-700">
-                <p
+                <Text
                   dangerouslySetInnerHTML={{
                     __html: t("team.supervisors_intro"),
                   }}
-                  className="text-base leading-relaxed"
+                  leading="relaxed"
                 />
-                <p className="text-base leading-relaxed">
+                <Text leading="relaxed">
                   {t("team.supervisors_collaboration")}
-                </p>
+                </Text>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Supervisors Cards Section */}
-      <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <Section tone="subtle">
+        <ContentContainer>
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 items-start">
               {/* Marta Lampasiak */}
-              <div
-                className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+              <Surface
+                tone="white"
+                radius="2xl"
+                shadow="lg"
+                overflow="hidden"
+                cursor="pointer"
+                interaction="scale"
                 onClick={() => setMartaExpanded(!martaExpanded)}
               >
                 <div className="p-5 text-center">
@@ -113,7 +124,7 @@ export default function TeamPage() {
                   <h5 className="text-lg font-semibold mb-4 text-gray-900">
                     mgr inż. Marta Lampasiak
                   </h5>
-                  <div className="flex items-center justify-center gap-2 text-[#000424]">
+                  <div className="flex items-center justify-center gap-2 text-brand-dark">
                     <ChevronDown
                       size={24}
                       className={`transition-transform duration-300 ${
@@ -132,11 +143,16 @@ export default function TeamPage() {
                     />
                   </div>
                 </div>
-              </div>
+              </Surface>
 
               {/* Jacek Jagodziński */}
-              <div
-                className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+              <Surface
+                tone="white"
+                radius="2xl"
+                shadow="lg"
+                overflow="hidden"
+                cursor="pointer"
+                interaction="scale"
                 onClick={() => setJacekExpanded(!jacekExpanded)}
               >
                 <div className="p-5 text-center">
@@ -148,7 +164,7 @@ export default function TeamPage() {
                   <h5 className="text-lg font-semibold mb-3 text-gray-900">
                     dr inż. Jacek Jagodziński
                   </h5>
-                  <div className="flex items-center justify-center gap-2 text-[#000424]">
+                  <div className="flex items-center justify-center gap-2 text-brand-dark">
                     <ChevronDown
                       size={24}
                       className={`transition-transform duration-300 ${
@@ -167,18 +183,18 @@ export default function TeamPage() {
                     />
                   </div>
                 </div>
-              </div>
+              </Surface>
             </div>
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Members Section */}
-      <section className="py-14 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-14 text-gray-900">
+      <Section tone="muted">
+        <ContentContainer>
+          <Heading level={2} size="section" align="center" spacingBottom="3xl">
             {t("team.members_title")}
-          </h2>
+          </Heading>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
               {members.map((member) => {
@@ -186,15 +202,30 @@ export default function TeamPage() {
                 return (
                   <div key={member.id}>
                     {hasDetails ? (
-                      <button
+                      <Surface
+                        as="button"
                         type="button"
                         onClick={() => handleMemberClick(member)}
-                        className="relative w-full bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer group text-left"
+                        tone="brand"
+                        radius="2xl"
+                        shadow="lg"
+                        overflow="hidden"
+                        interaction="rise"
+                        position="relative"
+                        width="full"
+                        cursor="pointer"
+                        textAlign="left"
+                        group
                         aria-label={`${member.firstName} ${member.lastName}`}
                       >
-                        <div className="absolute bottom-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-white/16 group-hover:text-white">
+                        <IconFrame
+                          size="sm"
+                          tone="glass"
+                          placement="cardCorner"
+                          interaction="nudge"
+                        >
                           <ArrowRight size={14} />
-                        </div>
+                        </IconFrame>
                         <div className="py-5 px-5 flex flex-col items-center">
                           <div className="mb-0">
                             <img
@@ -212,9 +243,16 @@ export default function TeamPage() {
                             </p>
                           )}
                         </div>
-                      </button>
+                      </Surface>
                     ) : (
-                      <div className="relative bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+                      <Surface
+                        tone="brand"
+                        radius="2xl"
+                        shadow="lg"
+                        overflow="hidden"
+                        interaction="rise"
+                        position="relative"
+                      >
                         <div className="py-5 px-5 flex flex-col items-center">
                           <div className="mb-0">
                             <img
@@ -232,15 +270,15 @@ export default function TeamPage() {
                             </p>
                           )}
                         </div>
-                      </div>
+                      </Surface>
                     )}
                   </div>
                 );
               })}
             </div>
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Modal */}
       {selectedMember && (
@@ -251,6 +289,6 @@ export default function TeamPage() {
           onClose={handleCloseModal}
         />
       )}
-    </div>
+    </PublicPage>
   );
 }

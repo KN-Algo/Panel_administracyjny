@@ -3,14 +3,16 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 import { useTranslation } from "react-i18next";
+import { ContentContainer, Heading, Text } from "@/shared";
+import { PUBLIC_THEME_FALLBACKS } from "@/shared/styles/theme";
 
 // Helper function to get CSS variable value
 const getThemeColor = (variableName: string): string => {
-  if (typeof window === "undefined") return "#f8e9e5"; // fallback for SSR
+  if (typeof window === "undefined") return PUBLIC_THEME_FALLBACKS.brandLight;
   return (
     getComputedStyle(document.documentElement)
       .getPropertyValue(variableName)
-      .trim() || "#f8e9e5"
+      .trim() || PUBLIC_THEME_FALLBACKS.brandLight
   );
 };
 
@@ -82,14 +84,20 @@ export default function HeroSection() {
           className="absolute inset-0 z-0"
         />
       )}
-      <div className="container mx-auto px-4 relative z-10 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-brand-light">
+      <ContentContainer align="center" className="relative z-10">
+        <Heading
+          level={1}
+          size="display"
+          tone="brandLight"
+          align="center"
+          spacingBottom="md"
+        >
           {t("home.title")}
-        </h1>
-        <p className="text-xl md:text-2xl text-brand-light">
+        </Heading>
+        <Text size="hero" tone="brandLight" align="center">
           {t("home.motto")}
-        </p>
-      </div>
+        </Text>
+      </ContentContainer>
     </section>
   );
 }
