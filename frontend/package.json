@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --project tsconfig.app.json --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
