@@ -9,6 +9,14 @@ import mipProjectsDataPl from "@/data/mip_projects_pl.json";
 import mipProjectsDataEn from "@/data/mip_projects_en.json";
 import mipProjectsDataDe from "@/data/mip_projects_de.json";
 import type { Project } from "@/types";
+import {
+  Button,
+  ContentContainer,
+  Heading,
+  PageHeader,
+  PublicPage,
+  Section,
+} from "@/shared";
 
 export default function ProjectsPage() {
   const { t, i18n } = useTranslation();
@@ -169,9 +177,10 @@ export default function ProjectsPage() {
           projectRefs.current[projectKey] = el;
         }}
       >
-        <button
+        <Button
           onClick={() => toggleFn(index)}
-          className="w-full bg-brand-dark text-white px-6 py-4 rounded-lg flex items-center justify-between hover:bg-brand-dark-hover transition-all duration-300 hover:shadow-lg"
+          appearance="disclosure"
+          size="inline"
         >
           <span className="text-lg font-semibold">{project.title}</span>
           <ChevronDown
@@ -179,7 +188,7 @@ export default function ProjectsPage() {
               isExpanded ? "rotate-180" : ""
             }`}
           />
-        </button>
+        </Button>
 
         <div
           className={`grid transition-all duration-500 ease-in-out ${
@@ -290,19 +299,12 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="w-full bg-gray-100 min-h-screen">
-      {/* Header Section */}
-      <section className="py-14 text-center bg-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            {t("projects.page_title")}
-          </h1>
-        </div>
-      </section>
+    <PublicPage tone="muted" minHeight="screen">
+      <PageHeader title={t("projects.page_title")} />
 
       {/* Current Projects Section */}
-      <section className="py-14">
-        <div className="container mx-auto px-4 max-w-5xl">
+      <Section>
+        <ContentContainer size="content">
           {projects.map((project, index) =>
             renderProjectCard(
               project,
@@ -312,20 +314,20 @@ export default function ProjectsPage() {
               "current",
             ),
           )}
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Divider */}
-      <div className="container mx-auto px-4 max-w-5xl">
+      <ContentContainer size="content">
         <hr className="border-gray-300 my-8" />
-      </div>
+      </ContentContainer>
 
       {/* Upcoming Projects Section */}
-      <section className="py-14">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-gray-900">
+      <Section>
+        <ContentContainer size="content">
+          <Heading level={2} size="section" align="center" spacingBottom="xl">
             {t("projects.upcoming_title")}
-          </h2>
+          </Heading>
           {mipProjects.map((project, index) =>
             renderProjectCard(
               project,
@@ -335,8 +337,8 @@ export default function ProjectsPage() {
               "mip",
             ),
           )}
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
       {/* Full Image Modal */}
       {modalOpen && (
@@ -395,6 +397,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       )}
-    </div>
+    </PublicPage>
   );
 }

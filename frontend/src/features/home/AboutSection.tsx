@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
 import { Code, Lightbulb, FlaskConical } from "lucide-react";
+import { Heading, IconFrame, Surface, Text } from "@/shared";
 
 interface TileProps {
   icon: ReactNode;
@@ -18,8 +19,15 @@ function AnimatedTile({
   delay,
 }: TileProps) {
   return (
-    <div
-      className="group relative bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+    <Surface
+      tone="white"
+      radius="2xl"
+      padding="xl"
+      shadow="md"
+      interaction="liftStrong"
+      overflow="hidden"
+      position="relative"
+      group
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Gradient background on hover */}
@@ -30,23 +38,36 @@ function AnimatedTile({
       {/* Content */}
       <div className="relative z-10">
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 rounded-xl bg-gray-100 group-hover:bg-white/20 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+          <IconFrame
+            size="lg"
+            radius="xl"
+            tone="neutral"
+            interaction="playful"
+          >
             {icon}
-          </div>
+          </IconFrame>
         </div>
 
-        <h3 className="text-xl font-bold mb-4 text-gray-900 group-hover:text-white transition-colors duration-300">
+        <Heading
+          level={3}
+          size="body"
+          spacingBottom="md"
+          className="group-hover:text-white transition-colors duration-300"
+        >
           {title}
-        </h3>
+        </Heading>
 
-        <p className="text-gray-700 group-hover:text-white/90 leading-relaxed transition-colors duration-300">
+        <Text
+          leading="relaxed"
+          className="group-hover:text-white/90 transition-colors duration-300"
+        >
           {description}
-        </p>
+        </Text>
       </div>
 
       {/* Decorative element */}
       <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-    </div>
+    </Surface>
   );
 }
 
@@ -88,13 +109,27 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-5">
         {/* Header */}
         <div className="text-center mb-16 group cursor-default">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 tracking-tight transition-all duration-300 group-hover:scale-[1.02]">
+          <Heading
+            level={2}
+            size="feature"
+            align="center"
+            spacingBottom="lg"
+            tracking="tight"
+            className="transition-all duration-300 group-hover:scale-[1.02]"
+          >
             {t("home.about_title")}
-          </h2>
+          </Heading>
           <div className="w-32 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 mx-auto rounded-full mb-6 shadow-sm transition-all duration-500 group-hover:w-48 group-hover:shadow-md"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+          <Text
+            size="xl"
+            tone="muted"
+            weight="light"
+            align="center"
+            leading="relaxed"
+            className="max-w-3xl mx-auto"
+          >
             {t("home.about_subtitle")}
-          </p>
+          </Text>
         </div>
 
         {/* Animated Tiles Grid */}
@@ -106,11 +141,18 @@ export default function AboutSection() {
 
         {/* Bottom text */}
         <div className="text-center max-w-4xl mx-auto">
-          <div className="px-8 py-6 rounded-2xl bg-gray-50/50 border border-gray-100 transition-all duration-300 hover:bg-gray-100/50 hover:border-gray-200 hover:shadow-md hover:-translate-y-1 cursor-default">
-            <p className="text-lg text-gray-700 leading-relaxed">
+          <Surface
+            tone="subtle"
+            radius="2xl"
+            padding="featured"
+            border="subtle"
+            interaction="liftGentle"
+            cursor="default"
+          >
+            <Text size="lg" leading="relaxed">
               {t("home.about_footer_text")}
-            </p>
-          </div>
+            </Text>
+          </Surface>
         </div>
       </div>
     </div>
