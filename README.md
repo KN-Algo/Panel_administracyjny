@@ -30,7 +30,7 @@ Projekt tworzony jest w celu usprawnienia procesu dodawania i edytowania wpisów
 ### Wymagania wstępne
 
 - **Java 23**
-- **Node**
+- **Node 24.18.0 LTS** 
 - **Docker**
 - **Python** - do pobrania i zainstalowania `pre-commit`
 
@@ -48,6 +48,22 @@ Aby uruchomić i skorzystać z `pre-commit` należy:
 > Pierwsze uruchomienie `pre-commit` może trochę potrwać ze względu na potrzebę pobrania wszystki zależności.
 
 ### Uruchomienie
+
+Frontend korzysta ze stabilnego zestawu Vite 8.2, pluginu React 5.2 i TypeScript 5.9.
+
+```bash
+nvm use
+cd frontend
+npm ci
+npm run dev
+```
+
+Build produkcyjny można przygotować poleceniem:
+
+```bash
+cd frontend
+npm run build
+```
 
 ## 📊 Przykładowe wyniki
 
