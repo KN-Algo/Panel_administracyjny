@@ -76,6 +76,11 @@
     "previous": "Poprzednie",
     "next": "Następne"
   },
+  "not_found": {
+    "error_label": "Błąd strony",
+    "title": "Nasz ALGOrytm zgubił drogę",
+    "description": "Nie przewidział tej strony w swoich obliczeniach.\nSprawdź, czy wpisany adres jest poprawny."
+  },
   "footer": {
     "follow_us": "Bądź na bieżąco – obserwuj nas:",
     "copyright": "Koło Naukowe Algo",

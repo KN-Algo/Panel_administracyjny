@@ -14,6 +14,7 @@ import AdminTeamPage from "../features/admin/pages/AdminTeamPage";
 import AdminPostsPage from "../features/admin/pages/AdminPostsPage";
 import AdminAddPostPage from "../features/admin/pages/AdminAddPostPage";
 import AdminMemberModalsPage from "../features/admin/pages/AdminMemberModalsPage";
+import NotFoundPage from "../features/not-found/NotFoundPage";
 
 export default function AppRouter() {
   return (
@@ -40,6 +41,9 @@ export default function AppRouter() {
         <Route path="team" element={<TeamPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="events" element={<EventsPage />} />
+      </Route>
+      <Route path="404" element={<Layout showNavbar={false} />}>
+        <Route index element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
