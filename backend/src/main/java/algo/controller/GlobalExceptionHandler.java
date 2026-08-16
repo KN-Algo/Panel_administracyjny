@@ -3,11 +3,7 @@ package algo.controller;
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
 import algo.module.ProjectType;
-import algo.services.exceptions.InvalidTempPostDatesException;
-import algo.services.exceptions.InvalidTempPostRequestException;
-import algo.services.exceptions.InvalidTempPostTypeException;
-import algo.services.exceptions.ProjectNotFoundException;
-import algo.services.exceptions.TempPostNotFoundException;
+import algo.services.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -43,22 +39,20 @@ public final class GlobalExceptionHandler {
     return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
   }
 
-  @ExceptionHandler(InvalidTempPostTypeException.class)
-  public ResponseEntity<ApiErrorResponse> handleInvalidTempType(
-      final InvalidTempPostTypeException ex, final HttpServletRequest request) {
-    final Map<String, String> details = new LinkedHashMap<>();
-    details.put("providedType", String.valueOf(ex.getProvidedType()));
-    details.put("allowedTypes", toCsv(ex.getAllowedTypes()));
-    return buildError(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), details);
-  }
+  @ExceptionHandler(PostValidationException.class)
+  public ResponseEntity<ApiErrorResponse> handlePostValidationException(
+          final PostValidationException ex, final HttpServletRequest req) {
 
-  @ExceptionHandler(InvalidTempPostDatesException.class)
-  public ResponseEntity<ApiErrorResponse> handleInvalidTempDates(
-      final InvalidTempPostDatesException ex, final HttpServletRequest request) {
-    final Map<String, String> details = new LinkedHashMap<>();
-    details.put("startsAt", String.valueOf(ex.getStartsAt()));
-    details.put("expiresAt", String.valueOf(ex.getExpiresAt()));
-    return buildError(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), details);
+    final ApiErrorResponse response = new ApiErrorResponse(
+            LocalDateTime.now(),
+            HttpStatus.BAD_REQUEST.value(),
+            HttpStatus.BAD_REQUEST.getReasonPhrase(),
+            "Post validation failed.",
+            req.getRequestURI(),
+            ex.getErrors()
+    );
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
