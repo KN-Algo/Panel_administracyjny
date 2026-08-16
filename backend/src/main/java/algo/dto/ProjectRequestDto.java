@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 /**
@@ -14,6 +16,7 @@ import java.util.List;
  * @param images ordered list of image URLs
  * @param translations localized project translations
  */
+@ResponseBody
 public record ProjectRequestDto(
     @NotNull ProjectType status,
     Integer displayOrder,
