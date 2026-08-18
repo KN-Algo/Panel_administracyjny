@@ -9,17 +9,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import jakarta.transaction.Transactional;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /** Maps project DTOs to and from the Project entity. */
 @Component
+@NoArgsConstructor
 public class ProjectMap {
-
-  /** Default no-arg constructor required by Spring for dependency injection. */
-  public ProjectMap() {
-    // Intentionally empty constructor required by Spring DI
-  }
-
   /**
    * Maps request DTO to a new {@link Project} entity.
    *
@@ -47,27 +45,34 @@ public class ProjectMap {
       target.getImages().addAll(dto.images());
     }
 
-    final Map<String, Long> existingIdsByLang = new HashMap<>();
-    if (target.getTranslations() != null) {
-      for (final ProjectTranslation existingTranslation : target.getTranslations()) {
-        existingIdsByLang.put(existingTranslation.getLanguageCode(), existingTranslation.getId());
-      }
-    }
-
-    target.clearTranslations();
     if (dto.translations() != null) {
-      for (final ProjectTranslationDto translationDto : dto.translations()) {
-        final ProjectTranslation translation = new ProjectTranslation();
-        if (translationDto.translationId() != null) {
-          translation.setId(translationDto.translationId());
-        } else if (existingIdsByLang.containsKey(translationDto.languageCode())) {
-          translation.setId(existingIdsByLang.get(translationDto.languageCode()));
+      final List<String> incomingLangs = dto.translations().stream()
+              .map(t -> t.languageCode().toUpperCase())
+              .toList();
+
+      target.getTranslations().removeIf(existing ->
+              !incomingLangs.contains(existing.getLanguageCode().toUpperCase())
+      );
+
+      for (final ProjectTranslationDto tDto : dto.translations()) {
+        final ProjectTranslation existingTranslation = target.getTranslations().stream()
+                .filter(t -> t.getLanguageCode().equalsIgnoreCase(tDto.languageCode()))
+                .findFirst()
+                .orElse(null);
+
+        if (existingTranslation != null) {
+          existingTranslation.setTitle(tDto.title());
+          existingTranslation.setDescription(tDto.description());
+        } else {
+          final ProjectTranslation newTranslation = new ProjectTranslation();
+          newTranslation.setLanguageCode(tDto.languageCode().toUpperCase());
+          newTranslation.setTitle(tDto.title());
+          newTranslation.setDescription(tDto.description());
+          target.addTranslation(newTranslation);
         }
-        translation.setLanguageCode(translationDto.languageCode());
-        translation.setTitle(translationDto.title());
-        translation.setDescription(translationDto.description());
-        target.addTranslation(translation);
       }
+    } else {
+      target.clearTranslations();
     }
   }
 
