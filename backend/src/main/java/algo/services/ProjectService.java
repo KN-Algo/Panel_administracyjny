@@ -1,11 +1,12 @@
 package algo.services;
 
+import algo.dto.ProjectRequestDto;
 import algo.module.Project;
 import algo.module.ProjectType;
-import algo.module.ProjectTranslation;
 import algo.repository.ProjectRepository;
 import algo.services.exceptions.ProjectNotFoundException;
 import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,13 +17,16 @@ public class ProjectService {
   /** Repository for Project persistence operations. */
   private final ProjectRepository projectRepository;
 
+  private final ProjectMap mapper;
+
   /**
    * Creates service with required repository dependency.
    *
    * @param repository project repository
    */
-  public ProjectService(final ProjectRepository repository) {
+  public ProjectService(final ProjectRepository repository, ProjectMap mapper) {
     this.projectRepository = repository;
+      this.mapper = mapper;
   }
 
   /**
@@ -37,36 +41,20 @@ public class ProjectService {
   }
 
   /**
-   * Updates a project by id with merged data.
+   * Updates a project by id with incoming DTO data.
    *
    * @param projectId id of project to update
-   * @param mergedEntity updated project entity
+   * @param dto DTO with updated values
    * @return updated and persisted project entity
    */
   @Transactional
-  public Project update(final Long projectId, final Project mergedEntity) {
+  public Project update(final Long projectId, final ProjectRequestDto dto) {
     final Project existing =
-        projectRepository
-            .findWithTranslationsByProjectId(projectId)
-            .orElseThrow(() -> new ProjectNotFoundException(projectId));
+            projectRepository
+                    .findWithTranslationsByProjectId(projectId)
+                    .orElseThrow(() -> new ProjectNotFoundException(projectId));
 
-    existing.setStatus(mergedEntity.getStatus());
-    existing.setDisplayOrder(mergedEntity.getDisplayOrder());
-
-    existing.getImages().clear();
-    existing.getImages().addAll(mergedEntity.getImages());
-
-    existing.clearTranslations();
-    for (final ProjectTranslation incoming : mergedEntity.getTranslations()) {
-      final ProjectTranslation copy = new ProjectTranslation();
-      if (incoming.getId() != null) {
-        copy.setId(incoming.getId());
-      }
-      copy.setLanguageCode(incoming.getLanguageCode());
-      copy.setTitle(incoming.getTitle());
-      copy.setDescription(incoming.getDescription());
-      existing.addTranslation(copy);
-    }
+    mapper.applyToEntity(existing, dto);
 
     return projectRepository.save(existing);
   }
