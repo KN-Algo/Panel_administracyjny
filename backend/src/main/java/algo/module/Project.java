@@ -15,7 +15,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -66,7 +69,7 @@ public class Project {
   /** Localized translations of this project. */
   @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
   @Setter(AccessLevel.NONE)
-  private final List<ProjectTranslation> translations = new ArrayList<>();
+  private final Set<ProjectTranslation> translations = new LinkedHashSet<>();
 
   /**
    * Adds a translation and sets the back-reference.
