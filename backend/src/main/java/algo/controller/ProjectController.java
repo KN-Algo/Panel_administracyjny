@@ -43,9 +43,8 @@ public class ProjectController {
 
   @PutMapping("/{id}")
   public ResponseEntity<ProjectResponseDto> update(
-      @PathVariable("id") final Long projectId, @Valid @RequestBody final ProjectRequestDto dto) {
-    final Project merged = mapper.toEntity(dto);
-    final Project saved = service.update(projectId, merged);
+          @PathVariable("id") final Long projectId, @Valid @RequestBody final ProjectRequestDto dto) {
+    final Project saved = service.update(projectId, dto);
     return ResponseEntity.ok(mapper.toAdminResponse(saved));
   }
 
