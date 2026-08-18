@@ -40,6 +40,7 @@ public class ProjectTranslation {
 
   /** Language code like "pl", "en", "de". */
   @Column(name = "language_code", nullable = false, length = ProjectTranslationDto.LANG_CODE_LENGTH)
+  @EqualsAndHashCode.Include
   private String languageCode;
 
   /** Translated title. */
