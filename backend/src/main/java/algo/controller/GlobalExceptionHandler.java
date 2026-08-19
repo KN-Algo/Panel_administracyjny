@@ -55,6 +55,18 @@ public final class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
   }
 
+  @ExceptionHandler(ProjectValidationException.class)
+  public ResponseEntity<Object> handleProjectValidationException(final ProjectValidationException ex) {
+    final Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now().toString());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+    body.put("message", "Request validation failed.");
+    body.put("validationErrors", ex.getErrors());
+
+    return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+  }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ApiErrorResponse> handleValidation(
       final MethodArgumentNotValidException ex, final HttpServletRequest request) {
