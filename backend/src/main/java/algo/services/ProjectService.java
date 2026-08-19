@@ -7,6 +7,7 @@ import algo.repository.ProjectRepository;
 import algo.services.exceptions.ProjectNotFoundException;
 import java.util.List;
 
+import algo.validation.ProjectEntityValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +20,17 @@ public class ProjectService {
 
   private final ProjectMap mapper;
 
+  private final ProjectEntityValidator validator;
+
   /**
    * Creates service with required repository dependency.
    *
    * @param repository project repository
    */
-  public ProjectService(final ProjectRepository repository, ProjectMap mapper) {
+  public ProjectService(final ProjectRepository repository, ProjectMap mapper, ProjectEntityValidator validator) {
     this.projectRepository = repository;
       this.mapper = mapper;
+      this.validator = validator;
   }
 
   /**
@@ -37,6 +41,7 @@ public class ProjectService {
    */
   @Transactional
   public Project save(final Project entity) {
+    validator.validateProjectData(entity);
     return projectRepository.save(entity);
   }
 
@@ -55,6 +60,8 @@ public class ProjectService {
                     .orElseThrow(() -> new ProjectNotFoundException(projectId));
 
     mapper.applyToEntity(existing, dto);
+
+    validator.validateProjectData(existing);
 
     return projectRepository.save(existing);
   }
