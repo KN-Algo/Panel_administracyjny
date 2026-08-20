@@ -21,7 +21,7 @@ public record ProjectRequestDto(
     @NotNull ProjectType status,
     Integer displayOrder,
     @Size(max = MAX_IMAGES) List<@Size(max = Project.IMAGE_URL_L) String> images,
-    @NotEmpty List<@Valid ProjectTranslationDto> translations) {
+    @NotEmpty List<@NotNull @Valid ProjectTranslationDto> translations) {
 
   /** Soft limit for number of images per project to avoid overly large payloads. */
   public static final int MAX_IMAGES = 50;
