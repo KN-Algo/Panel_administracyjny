@@ -30,7 +30,6 @@ public class ProjectTranslation {
   /** Primary key of translation. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @EqualsAndHashCode.Include
   private Long id;
 
   /** Back-reference to project. */
