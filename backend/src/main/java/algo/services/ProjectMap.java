@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import algo.security.HtmlSanitizer;
 import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -60,14 +61,16 @@ public class ProjectMap {
                 .findFirst()
                 .orElse(null);
 
+        final String safeDescription = HtmlSanitizer.sanitize(tDto.description());
+
         if (existingTranslation != null) {
           existingTranslation.setTitle(tDto.title());
-          existingTranslation.setDescription(tDto.description());
+          existingTranslation.setDescription(safeDescription);
         } else {
           final ProjectTranslation newTranslation = new ProjectTranslation();
           newTranslation.setLanguageCode(tDto.languageCode().toUpperCase());
           newTranslation.setTitle(tDto.title());
-          newTranslation.setDescription(tDto.description());
+          newTranslation.setDescription(safeDescription);
           target.addTranslation(newTranslation);
         }
       }
