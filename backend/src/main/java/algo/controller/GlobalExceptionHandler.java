@@ -67,6 +67,26 @@ public final class GlobalExceptionHandler {
     return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
   }
 
+  /**
+   * Handles requests for static resources or endpoints that do not exist.
+   *
+   * @param req the current HTTP request
+   * @return response entity with 404 Not Found status
+   */
+  @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
+  public ResponseEntity<Map<String, Object>> handleNoResourceFoundException(final HttpServletRequest req) {
+
+    final Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now().toString());
+    body.put("status", HttpStatus.NOT_FOUND.value());
+    body.put("error", HttpStatus.NOT_FOUND.getReasonPhrase());
+    body.put("message", "Endpoint or resource not found.");
+    body.put("path", req.getRequestURI());
+    body.put("validationErrors", null);
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+  }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ApiErrorResponse> handleValidation(
       final MethodArgumentNotValidException ex, final HttpServletRequest request) {
