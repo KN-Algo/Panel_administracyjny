@@ -66,3 +66,5 @@ Projekt realizowany przez członków **KN Algo** przy Politechnice Wrocławskiej
 <div align="center">
 Stworzone z ❤️ przez <a href="https://algo.pwr.edu.pl/">KN Algo</a> | Politechnika Wrocławska
 </div>
+
+
