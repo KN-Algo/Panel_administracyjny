@@ -7,7 +7,10 @@ export interface HeroContentProps {
 
 export default function HeroContent({ title, motto }: HeroContentProps) {
   return (
-    <ContentContainer align="center" className="relative z-10">
+    <ContentContainer
+      align="center"
+      className="relative z-10 cursor-default select-none"
+    >
       <Heading
         level={1}
         size="display"

@@ -3,22 +3,32 @@ import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 
-export function useParticlesEngine(): boolean {
+let engineInitialization: Promise<void> | null = null;
+
+const initializeEngine = (): Promise<void> => {
+  engineInitialization ??= initParticlesEngine(async (engine: Engine) => {
+    await loadSlim(engine);
+  });
+
+  return engineInitialization;
+};
+
+export function useParticlesEngine(enabled = true): boolean {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
+    if (!enabled) return;
 
-    initParticlesEngine(async (engine: Engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      if (isMounted) setIsReady(true);
+    let isActive = true;
+
+    initializeEngine().then(() => {
+      if (isActive) setIsReady(true);
     });
 
     return () => {
-      isMounted = false;
+      isActive = false;
     };
-  }, []);
+  }, [enabled]);
 
-  return isReady;
+  return enabled && isReady;
 }

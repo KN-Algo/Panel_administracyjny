@@ -43,6 +43,7 @@ home/
 │       └── NewsCarousel.tsx
 ├── hooks/
 │   ├── useParticlesEngine.ts
+│   ├── useReducedMotion.ts
 │   └── useResponsiveCarousel.ts
 ├── AboutSection.tsx
 ├── HeroSection.tsx
@@ -85,9 +86,26 @@ Nie umieszczaj konfiguracji cząsteczek ani rozbudowanego JSX-a ponownie w
 ### HeroSectionLayout
 
 Odpowiada za element `<section>`, kolor tła, centrowanie, ukrywanie nadmiaru i
-warstwy. Wysokość wynosi `calc(100vh - 120px)`. Wartość `120px` kompensuje
-wysokość publicznego nagłówka. Przed jej zmianą sprawdź zachowanie całego
-`Layout`, a nie tylko samego Hero.
+warstwy. Canvas ma bufor `48px` poza każdym widocznym bokiem Hero:
+
+- `-mt-12` wsuwa górę pod navbar,
+- `-mb-12` wsuwa dół pod sekcję About,
+- `-mx-12` oraz `w-[calc(100%+6rem)]` rozszerzają lewą i prawą granicę poza
+  viewport,
+- `px-12 py-12` kompensuje rozszerzenie i zachowuje wcześniejsze położenie
+  treści.
+
+Publiczny navbar ma wysokość `120px`. Po rozszerzeniu obu pionowych granic
+rzeczywista wysokość Hero wynosi `calc(100vh - 24px)`, ale dwa ujemne marginesy
+sprawiają, że widoczna wysokość strony nadal odpowiada
+`calc(100vh - 120px)` i nie przesuwa sekcji About.
+
+Rozszerzenia są celowymi granicami animacji: cząsteczki są usuwane dopiero w
+zamaskowanych obszarach, zamiast znikać dokładnie na widocznych krawędziach.
+Navbar musi pozostać nad Hero (`z-50`), About nad Hero (`z-10`), a kontener
+`HomePage` musi zachować `overflow-x-hidden`, aby poziomy bufor nie poszerzał
+strony. Przed zmianą tych wartości sprawdź cały `Layout`, pozycję treści,
+wysokość dokumentu oraz brak poziomego scrollbara.
 
 ### HeroContent
 
@@ -99,27 +117,55 @@ Przyjmuje dwa wymagane stringi:
 | `motto` | Tekst pod nagłówkiem |
 
 Komponent korzysta z `ContentContainer`, `Heading` i `Text` z `@/shared`.
-Warstwa treści ma `z-10`, dzięki czemu pozostaje nad animacją.
+Warstwa treści ma `z-10`, dzięki czemu pozostaje nad animacją. Kontener używa
+`cursor-default` i `select-none`, aby tekst nie zmieniał kursora ani nie był
+zaznaczany podczas wielokrotnego wywoływania `push`; nie wyłącza to interakcji
+`grab` ani `push`, ponieważ są nasłuchiwane na `window`.
 
 ### HeroAnimation i useParticlesEngine
 
 `useParticlesEngine` jednorazowo inicjalizuje `@tsparticles/react` przy użyciu
-pakietu `@tsparticles/slim`. Hook zwraca `true`, gdy silnik jest gotowy, i nie
-aktualizuje stanu po odmontowaniu komponentu.
+pakietu `@tsparticles/slim`. Hook przyjmuje flagę `enabled`, zwraca `true`, gdy
+silnik jest gotowy, i nie aktualizuje stanu po odmontowaniu komponentu.
+
+`useReducedMotion` obserwuje systemowe ustawienie
+`prefers-reduced-motion: reduce`. Gdy jest aktywne, silnik nie jest
+inicjalizowany, a canvas cząsteczek nie jest renderowany. Tło i treść Hero są
+niezależne od animacji, dlatego sekcja pozostaje kompletna również przy tym
+ustawieniu albo przy problemie z inicjalizacją silnika.
 
 `HeroAnimation` nie renderuje niczego przed zakończeniem inicjalizacji. Kolor
 cząsteczek i połączeń jest odczytywany z `--color-brand-light`; fallback
 znajduje się w `@/shared/styles/theme`.
 
-Aktualna konfiguracja animacji:
+Aktualna konfiguracja animacji i interakcji:
 
-- limit 120 FPS,
-- 100 okrągłych cząsteczek,
+- limit 60 FPS,
+- 48 cząsteczek poniżej `768px`, 84 poniżej `1024px` i 120 na desktopie,
 - szybkość ruchu `1`,
 - rozmiar od `1` do `3`,
 - opacity od `0.3` do `0.6`,
 - połączenia do odległości `120`, opacity `0.4`, szerokość `1`,
+- tryb `grab` łączy cząsteczki z kursorem w promieniu `140px`,
+- kliknięcie uruchamia `push` i dodaje 4 cząsteczki,
+- użytkownik może wywoływać `push` bez ograniczenia liczby kliknięć, ale liczba
+  cząsteczek renderowanych jednocześnie jest ograniczona do 240 na mobile, 360
+  na tablecie i 1440 na desktopie; po osiągnięciu limitu najstarsze cząsteczki
+  są usuwane,
+- animacja pauzuje w nieaktywnej karcie i poza viewportem,
 - obsługa ekranów Retina.
+
+Limit aktywnych cząsteczek jest celowy. Obliczanie połączeń między nimi staje
+się coraz droższe wraz ze wzrostem populacji, dlatego prawdziwie nieograniczona
+liczba prowadzi do spadków płynności po intensywnym spamowaniu `push`. Nie
+usuwaj limitu bez równoczesnej zmiany algorytmu lub wyłączenia połączeń dla
+dużych populacji.
+
+Interakcje są wykrywane na `window`, natomiast warstwa animacji ma
+`pointer-events-none`. Dzięki temu ruch i kliknięcia nadal ożywiają tło, ale
+canvas nie przechwytuje interakcji przeznaczonych dla treści. Treść ma wyższy
+`z-index` i jest zawsze renderowana — nie istnieje ekran ładowania ani
+obowiązkowe intro blokujące stronę.
 
 Zmiany parametrów wpływają na wygląd i wydajność. Traktuj je jako zmianę
 wizualną wymagającą sprawdzenia desktopu i urządzenia mobilnego.
@@ -293,6 +339,9 @@ Sprawdź także `git diff --check` w katalogu repozytorium oraz ręcznie stronę
 - zmiana języka między polskim, angielskim i niemieckim,
 - link karty otwierający właściwe wydarzenie,
 - hover kart About oraz widoczność treści nad cząsteczkami Hero,
+- reakcja cząsteczek na kursor i dodawanie czterech po kliknięciu Hero,
+- całkowity brak canvasa przy `prefers-reduced-motion: reduce`, przy zachowaniu
+  tła, tytułu i motta Hero,
 - zmiana szerokości okna podczas aktywnego slajdu karuzeli,
 - brak poziomego scrollbara.
 
