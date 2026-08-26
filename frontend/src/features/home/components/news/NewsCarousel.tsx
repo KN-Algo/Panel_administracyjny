@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { NewsItem } from "@/types";
 import NewsCard from "./NewsCard";
-import { useResponsiveCarousel } from "../hooks/useResponsiveCarousel";
+import { useResponsiveCarousel } from "../../hooks/useResponsiveCarousel";
 
 const GRID_PATTERN_SVG =
   "data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff0d' stroke-width='0.5'%3E%3Cpath d='M0 0 L100 0 L100 100 L0 100 Z'/%3E%3Cpath d='M0 20 L100 20 M0 40 L100 40 M0 60 L100 60 M0 80 L100 80'/%3E%3Cpath d='M20 0 L20 100 M40 0 L40 100 M60 0 L60 100 M80 0 L80 100'/%3E%3C/g%3E%3C/svg%3E";

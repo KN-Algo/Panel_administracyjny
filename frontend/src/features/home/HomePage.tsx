@@ -6,7 +6,7 @@ import newsDataPl from "@/data/news_pl.json";
 import type { NewsItem } from "@/types";
 import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
-import NewsCarousel from "./components/NewsCarousel";
+import NewsCarousel from "./components/news/NewsCarousel";
 
 export default function HomePage() {
   const { t, i18n } = useTranslation();

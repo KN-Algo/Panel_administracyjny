@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Code, Lightbulb, FlaskConical } from "lucide-react";
-import type { AboutCardProps } from "./components/AboutCard";
-import AboutCards from "./components/AboutCards";
-import AboutFooter from "./components/AboutFooter";
-import AboutHeader from "./components/AboutHeader";
-import AboutSectionLayout from "./components/AboutSectionLayout";
+import type { AboutCardProps } from "./components/about/AboutCard";
+import AboutCards from "./components/about/AboutCards";
+import AboutFooter from "./components/about/AboutFooter";
+import AboutHeader from "./components/about/AboutHeader";
+import AboutSectionLayout from "./components/about/AboutSectionLayout";
 
 export default function AboutSection() {
   const { t } = useTranslation();
