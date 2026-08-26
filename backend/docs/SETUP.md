@@ -89,7 +89,122 @@ curl -X GET http://localhost:8080/me -b cookies.txt
 curl -X GET http://localhost:8080/logout -b cookies.txt
 ```
 
-### Option B: Testing with Postman
+---
+
+## 📦 Projects API (CRUD)
+
+All endpoints below require an authenticated session with `ROLE_ADMIN` (login first).
+
+### 1. List projects
+
+* **Request:** `GET /api/projects`
+* Optional filter: `?status=COMPLETED|UPCOMING`
+
+```bash
+curl -X GET "http://localhost:8080/api/projects?status=COMPLETED" -b cookies.txt
+
+```
+
+### 2. Get project by id
+
+* **Request:** `GET /api/projects/{id}`
+
+```bash
+curl -X GET "http://localhost:8080/api/projects/1" -b cookies.txt
+
+```
+
+### 3. Create project
+
+* **Request:** `POST /api/projects`
+* **Body:** JSON
+
+Example payload (requires PL, EN, and DE translations):
+
+```bash
+curl -X POST "http://localhost:8080/api/projects" \
+  -H "Content-Type: application/json" \
+  -b cookies.txt \
+  -d '{
+    "status": "UPCOMING",
+    "displayOrder": 10,
+    "images": ["https://example.com/a.webp", "https://example.com/b.webp"],
+    "translations": [
+      {
+        "languageCode": "PL",
+        "title": "Nowy projekt",
+        "description": "<b>Opis</b>"
+      },
+      {
+        "languageCode": "EN",
+        "title": "New project",
+        "description": "<b>Description</b>"
+      },
+      {
+        "languageCode": "DE",
+        "title": "Neues Projekt",
+        "description": "<b>Beschreibung</b>"
+      }
+    ]
+  }'
+
+```
+
+### 4. Update project
+
+* **Request:** `PUT /api/projects/{id}`
+* **Body:** JSON (same as create)
+
+```bash
+curl -X PUT "http://localhost:8080/api/projects/1" \
+  -H "Content-Type: application/json" \
+  -b cookies.txt \
+  -d '{
+    "status": "COMPLETED",
+    "displayOrder": 1,
+    "images": [],
+    "translations": [
+      {
+        "languageCode": "PL",
+        "title": "Zaktualizowany projekt",
+        "description": "Opis po zmianie"
+      },
+      {
+        "languageCode": "EN",
+        "title": "Updated project",
+        "description": "Description after change"
+      },
+      {
+        "languageCode": "DE",
+        "title": "Aktualisiertes Projekt",
+        "description": "Beschreibung nach Änderung"
+      }
+    ]
+  }'
+
+```
+
+### 5. Delete project
+
+* **Request:** `DELETE /api/projects/{id}`
+
+```bash
+curl -X DELETE "http://localhost:8080/api/projects/1" -b cookies.txt
+
+```
+
+### Common errors
+
+* `401 Unauthorized`: not logged in (missing/invalid session cookie).
+* `403 Forbidden`: logged in, but missing `ROLE_ADMIN`.
+* `404 Not Found`: project id does not exist.
+* `400 Bad Request`:
+* invalid JSON body
+* validation failed (`@Valid`), e.g. missing `status`, blank fields, or empty `translations`
+* missing required language translations (must include exactly PL, EN, DE)
+* invalid enum value for `status` (allowed: `COMPLETED`, `UPCOMING`)
+
+## Option B: Testing with Postman
 
 Postman will automatically store and send the `JSESSIONID` cookie after a successful login.
 
