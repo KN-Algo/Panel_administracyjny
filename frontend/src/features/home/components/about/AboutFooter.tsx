@@ -15,7 +15,7 @@ export default function AboutFooter({ text }: AboutFooterProps) {
         interaction="liftGentle"
         cursor="default"
       >
-        <Text size="lg" leading="relaxed">
+        <Text size="lg" align="center" leading="relaxed">
           {text}
         </Text>
       </Surface>

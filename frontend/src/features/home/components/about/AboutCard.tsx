@@ -43,6 +43,7 @@ export default function AboutCard({
       <Heading
         level={3}
         size="body"
+        align="center"
         spacingBottom="md"
         className="group-hover:text-white transition-colors duration-300"
       >
