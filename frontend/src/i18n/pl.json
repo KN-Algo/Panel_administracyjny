@@ -79,7 +79,8 @@
   "not_found": {
     "error_label": "Błąd strony",
     "title": "Nasz ALGOrytm zgubił drogę",
-    "description": "Nie przewidział tej strony w swoich obliczeniach.\nSprawdź, czy wpisany adres jest poprawny."
+    "description": "Nie przewidział tej strony w swoich obliczeniach.\nSprawdź, czy wpisany adres jest poprawny.",
+    "back_home": "Wróć na stronę główną"
   },
   "footer": {
     "follow_us": "Bądź na bieżąco – obserwuj nas:",

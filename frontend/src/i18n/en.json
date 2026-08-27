@@ -79,7 +79,8 @@
   "not_found": {
     "error_label": "Page error",
     "title": "Our ALGO-rithm lost its way",
-    "description": "This page wasn't part of its calculations.\nCheck whether the address you entered is correct."
+    "description": "This page wasn't part of its calculations.\nCheck whether the address you entered is correct.",
+    "back_home": "Back to home page"
   },
   "footer": {
     "follow_us": "Stay updated – follow us:",

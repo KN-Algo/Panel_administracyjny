@@ -79,7 +79,8 @@
   "not_found": {
     "error_label": "Seitenfehler",
     "title": "Unser ALGO-rithmus hat sich verirrt",
-    "description": "Diese Seite war nicht Teil seiner Berechnungen.\nPrüfen Sie, ob die eingegebene Adresse korrekt ist."
+    "description": "Diese Seite war nicht Teil seiner Berechnungen.\nPrüfen Sie, ob die eingegebene Adresse korrekt ist.",
+    "back_home": "Zurück zur Startseite"
   },
   "footer": {
     "follow_us": "Bleiben Sie auf dem Laufenden – folgen Sie uns:",

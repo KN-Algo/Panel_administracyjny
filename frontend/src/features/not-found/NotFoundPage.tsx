@@ -3,6 +3,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 import { useTranslation } from "react-i18next";
+import BackToHomeButton from "./BackToHomeButton";
 
 const getThemeColor = (variableName: string): string => {
   if (typeof window === "undefined") return "#f8e9e5";
@@ -92,6 +93,7 @@ export default function NotFoundPage() {
         <p className="mt-4 max-w-xl whitespace-pre-line text-base leading-relaxed text-brand-light/75 sm:text-lg">
           {t("not_found.description")}
         </p>
+        <BackToHomeButton />
       </div>
     </section>
   );
