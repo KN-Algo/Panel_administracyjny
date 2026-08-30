@@ -26,11 +26,11 @@ export function AdminSidebar() {
   const location = useLocation();
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
-      <SidebarHeader className="border-b px-3 py-4">
+    <Sidebar collapsible="icon">
+      <SidebarHeader className="h-16 border-b px-3 flex items-center group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
+            <SidebarMenuButton size="lg" asChild className="group-data-[collapsible=icon]:mx-auto">
               <Link to="/panel/admin" className="flex items-center gap-2">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                   <LayoutDashboard className="h-4 w-4" />
