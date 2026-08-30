@@ -9,9 +9,9 @@ import ProtectedRoute from "../features/admin/ProtectedRoute";
 import { AdminLayout } from "../features/admin/components/layout/AdminLayout";
 import DashboardPage from "../features/admin/pages/DashboardPage";
 import AdminProjectsPage from "../features/admin/pages/AdminProjectsPage";
-import AdminEventsPage from "../features/admin/pages/AdminEventsPage";
-import AdminTeamPage from "../features/admin/pages/AdminTeamPage";
 import AdminPostsPage from "../features/admin/pages/AdminPostsPage";
+import AdminTeamPage from "../features/admin/pages/AdminTeamPage";
+import AdminEditPostPage from "../features/admin/pages/AdminEditPostPage";
 import AdminAddPostPage from "../features/admin/pages/AdminAddPostPage";
 import AdminMemberModalsPage from "../features/admin/pages/AdminMemberModalsPage";
 
@@ -29,9 +29,9 @@ export default function AppRouter() {
       >
         <Route index element={<DashboardPage />} />
         <Route path="projects" element={<AdminProjectsPage />} />
-        <Route path="events" element={<AdminEventsPage />} />
-        <Route path="team" element={<AdminTeamPage />} />
         <Route path="posts" element={<AdminPostsPage />} />
+        <Route path="team" element={<AdminTeamPage />} />
+        <Route path="edit-post" element={<AdminEditPostPage />} />
         <Route path="add-post" element={<AdminAddPostPage />} />
         <Route path="member-modals" element={<AdminMemberModalsPage />} />
       </Route>
