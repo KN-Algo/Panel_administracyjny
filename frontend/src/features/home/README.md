@@ -42,8 +42,6 @@ home/
 │       ├── NewsCard.tsx
 │       └── NewsCarousel.tsx
 ├── hooks/
-│   ├── useParticlesEngine.ts
-│   ├── useReducedMotion.ts
 │   └── useResponsiveCarousel.ts
 ├── AboutSection.tsx
 ├── HeroSection.tsx
@@ -124,11 +122,12 @@ zaznaczany podczas wielokrotnego wywoływania `push`; nie wyłącza to interakcj
 
 ### HeroAnimation i useParticlesEngine
 
-`useParticlesEngine` jednorazowo inicjalizuje `@tsparticles/react` przy użyciu
-pakietu `@tsparticles/slim`. Hook przyjmuje flagę `enabled`, zwraca `true`, gdy
-silnik jest gotowy, i nie aktualizuje stanu po odmontowaniu komponentu.
+Współdzielony `src/hooks/useParticlesEngine.ts` jednorazowo inicjalizuje
+`@tsparticles/react` przy użyciu pakietu `@tsparticles/slim`. Hook przyjmuje
+flagę `enabled`, zwraca `true`, gdy silnik jest gotowy, i nie aktualizuje stanu
+po odmontowaniu komponentu.
 
-`useReducedMotion` obserwuje systemowe ustawienie
+Współdzielony `src/hooks/useReducedMotion.ts` obserwuje systemowe ustawienie
 `prefers-reduced-motion: reduce`. Gdy jest aktywne, silnik nie jest
 inicjalizowany, a canvas cząsteczek nie jest renderowany. Tło i treść Hero są
 niezależne od animacji, dlatego sekcja pozostaje kompletna również przy tym
