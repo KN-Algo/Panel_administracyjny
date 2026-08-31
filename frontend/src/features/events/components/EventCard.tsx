@@ -25,14 +25,16 @@ export default function EventCard({
       cursor="pointer"
       width="full"
       textAlign="left"
+      group
       onClick={() => onOpen(event)}
       className="transition-all duration-300 hover:shadow-2xl hover:scale-105"
     >
-      <div className="h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
+      <div className="h-64 bg-neutral-lighter flex items-center justify-center overflow-hidden">
         <img
           src={event.thumbnail.replace("../img/", "/img/")}
           alt={event.title}
-          className="w-full h-full object-contain transition-transform duration-300 hover:scale-110"
+          style={{ objectPosition: event.thumbnailPosition ?? "center 35%" }}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <div className="p-6">
