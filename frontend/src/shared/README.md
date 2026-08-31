@@ -29,6 +29,7 @@ Public components must not import from `components/ui`.
 | `PublicPage` | Root surface of a public route | `tone`, `minHeight` |
 | `Section` | Semantic page section and vertical spacing | `spacing`, `tone`, `align`, `as` |
 | `ContentContainer` | Horizontal padding and maximum content width | `size`, `align`, `as` |
+| `FeaturePageHeader` | Branded, animated header for public feature pages | `title`, `subtitle`, `icon` |
 | `PageHeader` | Consistent public page title and optional subtitle | `title`, `subtitle`, `tone` |
 | `Heading` | Semantic headings with responsive typography | `level`, `size`, `tone`, `weight`, `align`, `spacingBottom`, `tracking` |
 | `Text` | Body text formatting without one-off color/weight components | `as`, `size`, `tone`, `weight`, `align`, `leading`, `spacingBottom` |

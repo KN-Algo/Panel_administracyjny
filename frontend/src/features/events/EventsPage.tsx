@@ -1,15 +1,15 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { CalendarDays } from "lucide-react";
 
 import eventsDataDe from "@/data/events_de.json";
 import eventsDataEn from "@/data/events_en.json";
 import eventsDataPl from "@/data/events_pl.json";
-import { PublicPage } from "@/shared";
+import { FeaturePageHeader, PublicPage } from "@/shared";
 import type { Event } from "@/types";
 
 import EventDialog from "./components/EventDialog";
 import EventGrid from "./components/EventGrid";
-import EventHeader from "./components/EventHeader";
 import { useEventDialog } from "./hooks/useEventDialog";
 
 export default function EventsPage() {
@@ -38,9 +38,10 @@ export default function EventsPage() {
 
   return (
     <PublicPage tone="muted" minHeight="screen">
-      <EventHeader
+      <FeaturePageHeader
         title={t("events.page_title")}
         subtitle={t("events.page_subtitle")}
+        icon={<CalendarDays className="h-5 w-5" aria-hidden="true" />}
       />
       <EventGrid
         events={events}

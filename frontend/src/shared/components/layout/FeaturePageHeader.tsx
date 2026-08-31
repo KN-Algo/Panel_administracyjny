@@ -1,13 +1,22 @@
-import { CalendarDays } from "lucide-react";
+import type { ReactNode } from "react";
 
-import { ContentContainer, Heading, IconFrame, Section, Text } from "@/shared";
+import { ContentContainer } from "./ContentContainer";
+import { Section } from "./Section";
+import { IconFrame } from "../display/IconFrame";
+import { Heading } from "../typography/Heading";
+import { Text } from "../typography/Text";
 
-interface EventHeaderProps {
-  title: string;
-  subtitle: string;
+interface FeaturePageHeaderProps {
+  title: ReactNode;
+  subtitle: ReactNode;
+  icon: ReactNode;
 }
 
-export default function EventHeader({ title, subtitle }: EventHeaderProps) {
+export function FeaturePageHeader({
+  title,
+  subtitle,
+  icon,
+}: FeaturePageHeaderProps) {
   return (
     <Section
       as="header"
@@ -37,7 +46,7 @@ export default function EventHeader({ title, subtitle }: EventHeaderProps) {
             tone="glass"
             className="mb-3 animate-in fade-in zoom-in-95 [animation-duration:700ms] transition-transform duration-300 ease-out group-hover/header:-rotate-6 group-hover/header:scale-125 motion-reduce:animate-none motion-reduce:transition-none"
           >
-            <CalendarDays className="h-5 w-5" aria-hidden="true" />
+            {icon}
           </IconFrame>
           <Heading
             level={1}
