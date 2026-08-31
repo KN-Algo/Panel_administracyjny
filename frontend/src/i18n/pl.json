@@ -41,10 +41,12 @@
   },
   "projects": {
     "page_title": "Nasze projekty",
+    "page_subtitle": "Pomysły, które łączą algorytmy, technologię i praktyczne działanie.",
     "upcoming_title": "Nadchodzące projekty"
   },
   "events": {
     "page_title": "Wydarzenia",
+    "page_subtitle": "Spotkania, konferencje i inicjatywy, które tworzymy razem.",
     "read_more": "Zobacz więcej"
   },
   "contact": {
