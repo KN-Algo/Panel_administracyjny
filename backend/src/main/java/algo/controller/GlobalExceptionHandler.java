@@ -2,9 +2,7 @@ package algo.controller;
 
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
-import algo.services.exceptions.InvalidPostRequestException;
-import algo.services.exceptions.PostNotFoundException;
-import algo.services.exceptions.PostValidationException;
+import algo.services.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -88,6 +86,27 @@ public final class GlobalExceptionHandler {
       final DataIntegrityViolationException ex, final HttpServletRequest request) {
     return buildError(
         HttpStatus.BAD_REQUEST, "Request validation failed.", request.getRequestURI(), null);
+  }
+
+  @ExceptionHandler(TeamMemberNotFoundException.class)
+  public ResponseEntity<ApiErrorResponse> handleTeamMemberNotFound(
+          final TeamMemberNotFoundException ex, final HttpServletRequest request) {
+    return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
+  }
+
+  @ExceptionHandler(TeamMemberValidationException.class)
+  public ResponseEntity<Map<String, Object>> handleTeamMemberValidationException(
+          final TeamMemberValidationException ex, final HttpServletRequest req) {
+
+    final Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now().toString());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+    body.put("message", ex.getMessage());
+    body.put("path", req.getRequestURI());
+    body.put("validationErrors", ex.getErrors());
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
   }
 
   @ExceptionHandler({
