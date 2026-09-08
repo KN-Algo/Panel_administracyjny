@@ -8,14 +8,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * REST controller for managing team members in the "Team" tab.
@@ -32,17 +25,11 @@ public class TeamMemberController {
      * Accessible to everyone (public).
      */
     @GetMapping
-    public ResponseEntity<List<TeamMemberResponseDto>> getAllTeamMembers() {
-        return ResponseEntity.ok(teamMemberService.getAllTeamMembers());
-    }
+    public ResponseEntity<List<TeamMemberResponseDto>> getAllTeamMembers(
+            @RequestParam(required = false) final TeamRole role,
+            @RequestParam(required = false) final String search) {
 
-    /**
-     * Retrieves team members filtered by role (e.g., BOARD, SUPERVISOR).
-     * Accessible to everyone (public).
-     */
-    @GetMapping("/role/{role}")
-    public ResponseEntity<List<TeamMemberResponseDto>> getTeamMembersByRole(@PathVariable final TeamRole role) {
-        return ResponseEntity.ok(teamMemberService.getTeamMembersByRole(role));
+        return ResponseEntity.ok(teamMemberService.getAllTeamMembers(role, search));
     }
 
     /**
