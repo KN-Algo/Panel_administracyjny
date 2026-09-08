@@ -12,6 +12,7 @@ public record TeamMemberResponseDto(
         String firstName,
         String lastName,
         TeamRole role,
+        Integer sortOrder,
         List<TeamMemberTranslationDto> translations,
         List<String> imageUrls,
         Map<String, String> socialLinks
