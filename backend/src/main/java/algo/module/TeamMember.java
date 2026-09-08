@@ -43,6 +43,9 @@ public class TeamMember {
     @Column(name = "role", nullable = false, length = ROLE_L)
     private TeamRole role;
 
+    @Column(name = "sort_order", nullable = false)
+    private Integer sortOrder = 999;
+
     @OneToMany(mappedBy = "teamMember", cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true)
     @Setter(lombok.AccessLevel.NONE)
     private final List<TeamMemberTranslation> translations = new java.util.ArrayList<>();
