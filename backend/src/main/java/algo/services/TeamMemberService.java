@@ -10,6 +10,7 @@ import algo.repository.TeamMemberRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import algo.security.HtmlSanitizer;
 import algo.services.exceptions.TeamMemberNotFoundException;
@@ -29,26 +30,17 @@ public class TeamMemberService {
     private final TeamMemberRepository teamMemberRepository;
 
     /**
-     * Retrieves all team members.
-     *
-     * @return a list of all team members mapped to response DTOs
-     */
-    @Transactional(readOnly = true)
-    public List<TeamMemberResponseDto> getAllTeamMembers() {
-        return teamMemberRepository.findAll().stream()
-                .map(this::mapToDto)
-                .toList();
-    }
-
-    /**
      * Retrieves team members filtered by their specific role.
      *
      * @param role the role to filter by
      * @return a list of team members matching the role
      */
     @Transactional(readOnly = true)
-    public List<TeamMemberResponseDto> getTeamMembersByRole(final TeamRole role) {
-        return teamMemberRepository.findAllByRole(role).stream()
+    public List<algo.dto.TeamMemberResponseDto> getAllTeamMembers(final TeamRole role, final String search) {
+
+        final String safeSearch = (search == null || search.isBlank()) ? "" : search.trim();
+
+        return teamMemberRepository.findAllWithFilters(role, safeSearch).stream()
                 .map(this::mapToDto)
                 .toList();
     }
@@ -74,7 +66,7 @@ public class TeamMemberService {
      */
     @Transactional
     public TeamMemberResponseDto createTeamMember(final TeamMemberRequestDto requestDto) {
-        validateRequest(requestDto); // <--- TUTAJ
+        validateRequest(requestDto);
         final TeamMember teamMember = new TeamMember();
         updateEntityFromDto(teamMember, requestDto);
         final TeamMember savedMember = teamMemberRepository.save(teamMember);
@@ -132,8 +124,8 @@ public class TeamMemberService {
 
     /**
      * Validates the list of team member translations.
-     * Ensures that exactly three required languages (PL, EN, DE) are provided
-     * and triggers validation for each individual translation.
+     * Ensures that exactly three required languages (PL, EN, DE) are provided,
+     * rejects unsupported languages, and checks for duplicates.
      *
      * @param translations the list of translations to validate
      * @param errors       the map to collect validation errors
@@ -152,15 +144,30 @@ public class TeamMemberService {
                 .toList();
 
         final List<String> requiredLangs = java.util.List.of("PL", "EN", "DE");
-
         final List<String> missingLangs = requiredLangs.stream()
                 .filter(lang -> !providedLangs.contains(lang))
                 .toList();
 
         if (!missingLangs.isEmpty()) {
-            errors.put("translations", "Missing required translation(s): " + String.join(", ", missingLangs));
-        } else if (translations.size() > 3 || providedLangs.stream().distinct().count() != 3) {
-            errors.put("translations", "Must contain exactly one translation for each required language (PL, EN, DE).");
+            errors.put("translations.missing", "Missing required translation(s): " + String.join(", ", missingLangs));
+        }
+
+        final List<String> unsupportedLangs = providedLangs.stream()
+                .filter(lang -> !requiredLangs.contains(lang))
+                .toList();
+
+        if (!unsupportedLangs.isEmpty()) {
+            errors.put("translations.unsupported", "Unrecognized language(s) provided: " + String.join(", ", unsupportedLangs));
+        }
+
+        final Set<String> uniqueLangs = new java.util.HashSet<>();
+        final List<String> duplicates = providedLangs.stream()
+                .filter(lang -> !uniqueLangs.add(lang))
+                .distinct()
+                .toList();
+
+        if (!duplicates.isEmpty()) {
+            errors.put("translations.duplicates", "Duplicate translations found for language(s): " + String.join(", ", duplicates));
         }
 
         for (int i = 0; i < translations.size(); i++) {
@@ -209,26 +216,50 @@ public class TeamMemberService {
         entity.setFirstName(HtmlSanitizer.sanitizePlainText(dto.firstName()));
         entity.setLastName(HtmlSanitizer.sanitizePlainText(dto.lastName()));
         entity.setRole(dto.role());
+        entity.setSortOrder(dto.sortOrder() != null ? dto.sortOrder() : 999);
 
-        entity.clearTranslations();
         if (dto.translations() != null) {
             for (final TeamMemberTranslationDto translationDto : dto.translations()) {
-                final TeamMemberTranslation translation = new TeamMemberTranslation();
-                translation.setLanguageCode(translationDto.languageCode());
-                translation.setDisplayedTitle(HtmlSanitizer.sanitizePlainText(translationDto.displayedTitle()));
-                translation.setDescription(HtmlSanitizer.sanitize(translationDto.description()));
+                final String lang = translationDto.languageCode().toUpperCase();
 
-                entity.addTranslation(translation);
+                final java.util.Optional<TeamMemberTranslation> existingTranslationOpt = entity.getTranslations().stream()
+                        .filter(t -> t.getLanguageCode().equalsIgnoreCase(lang))
+                        .findFirst();
+
+                if (existingTranslationOpt.isPresent()) {
+                    final TeamMemberTranslation existing = existingTranslationOpt.get();
+                    existing.setDisplayedTitle(HtmlSanitizer.sanitizePlainText(translationDto.displayedTitle()));
+                    existing.setDescription(HtmlSanitizer.sanitize(translationDto.description()));
+                } else {
+                    final TeamMemberTranslation newTranslation = new TeamMemberTranslation();
+                    newTranslation.setLanguageCode(lang);
+                    newTranslation.setDisplayedTitle(HtmlSanitizer.sanitizePlainText(translationDto.displayedTitle()));
+                    newTranslation.setDescription(HtmlSanitizer.sanitize(translationDto.description()));
+
+                    entity.addTranslation(newTranslation);
+                }
             }
         }
 
-        entity.setImageUrlsFromList(dto.imageUrls());
+        if (dto.imageUrls() != null) {
+            final List<String> validUrls = dto.imageUrls().stream()
+                    .filter(org.springframework.util.StringUtils::hasText)
+                    .map(HtmlSanitizer::sanitizePlainText)
+                    .toList();
+            entity.setImageUrlsFromList(validUrls);
+        } else {
+            entity.setImageUrlsFromList(java.util.Collections.emptyList());
+        }
 
         if (dto.socialLinks() != null && !dto.socialLinks().isEmpty()) {
             final Map<String, String> safeLinks = new java.util.HashMap<>();
-            dto.socialLinks().forEach((k, v) ->
-                    safeLinks.put(HtmlSanitizer.sanitizePlainText(k), HtmlSanitizer.sanitizePlainText(v))
-            );
+            dto.socialLinks().forEach((k, v) -> {
+                final String safeKey = HtmlSanitizer.sanitizePlainText(k);
+                final String safeVal = HtmlSanitizer.sanitizePlainText(v);
+                if (org.springframework.util.StringUtils.hasText(safeKey) && org.springframework.util.StringUtils.hasText(safeVal)) {
+                    safeLinks.put(safeKey, safeVal);
+                }
+            });
             entity.setSocialLinks(safeLinks);
         } else {
             entity.setSocialLinks(java.util.Collections.emptyMap());
@@ -256,6 +287,7 @@ public class TeamMemberService {
                 entity.getFirstName(),
                 entity.getLastName(),
                 entity.getRole(),
+                entity.getSortOrder(),
                 translationDtos,
                 entity.getImageUrlsAsList(),
                 entity.getSocialLinks()
