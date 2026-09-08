@@ -11,12 +11,12 @@ import jakarta.validation.constraints.Size;
  */
 public record TeamMemberTranslationDto(
         Long translationId,
-        @NotBlank @Size(max = LANG_CODE_LENGTH) String languageCode,
+        @NotBlank String languageCode,
         @NotBlank @Size(max = DISPLAYED_TITLE_LENGTH) String displayedTitle,
         String description) {
 
     /** Max length of language code column. */
-    public static final int LANG_CODE_LENGTH = 5;
+    public static final int LANG_CODE_LENGTH = 2;
 
     /** Max length of displayed title column. */
     public static final int DISPLAYED_TITLE_LENGTH = 150;
