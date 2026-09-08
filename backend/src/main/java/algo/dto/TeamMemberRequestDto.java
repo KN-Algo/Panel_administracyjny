@@ -32,6 +32,8 @@ public record TeamMemberRequestDto(
         @NotNull(message = "Role must be specified.")
         TeamRole role,
 
+        Integer sortOrder,
+
         @NotEmpty(message = "Translations must not be empty.")
         @Valid
         List<TeamMemberTranslationDto> translations,
