@@ -14,3 +14,5 @@ Użyj tej sekcji by okre
 ## Zgłaszanie podatności
 
 Aby zgłosić wykrytą podatność, napisz do nas poprzez formularz na naszej [stronie kontaktowej](https://algo.pwr.edu.pl/pages/recruitment.php).
+
+
