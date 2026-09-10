@@ -38,16 +38,4 @@ public final class HtmlSanitizer {
 
     return result;
   }
-
-  /**
-   * Strips ALL HTML tags from the input string, leaving only plain text.
-   * Useful for names, titles, and standard inputs.
-   */
-  public static String sanitizePlainText(final String untrustedHtml) {
-    if (untrustedHtml == null || untrustedHtml.isBlank()) {
-      return untrustedHtml;
-    }
-
-    return Jsoup.clean(untrustedHtml, Safelist.none());
-  }
 }
