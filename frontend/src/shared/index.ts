@@ -2,6 +2,7 @@ export { Button } from "./components/actions/Button";
 export { IconFrame } from "./components/display/IconFrame";
 export { Surface } from "./components/display/Surface";
 export { ContentContainer } from "./components/layout/ContentContainer";
+export { FeaturePageHeader } from "./components/layout/FeaturePageHeader";
 export { PageHeader } from "./components/layout/PageHeader";
 export { PublicPage } from "./components/layout/PublicPage";
 export { Section } from "./components/layout/Section";

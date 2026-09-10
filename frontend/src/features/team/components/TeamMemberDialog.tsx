@@ -3,19 +3,19 @@ import type { TeamMember, TeamMemberDetails } from "@/types";
 import { useEffect, useId, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-interface TeamMemberModalProps {
+interface TeamMemberDialogProps {
   member: TeamMember;
   details: TeamMemberDetails | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function TeamMemberModal({
+export default function TeamMemberDialog({
   member,
   details,
   isOpen,
   onClose,
-}: TeamMemberModalProps) {
+}: TeamMemberDialogProps) {
   const { t } = useTranslation();
   const dialogTitleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
