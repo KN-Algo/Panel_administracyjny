@@ -3,6 +3,7 @@ package algo.controller;
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
 import algo.services.exceptions.InvalidPostRequestException;
+import algo.services.exceptions.InvalidRecaptchaException;
 import algo.services.exceptions.PostNotFoundException;
 import algo.services.exceptions.PostValidationException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -108,6 +109,19 @@ public final class GlobalExceptionHandler {
         "Unexpected server error.",
         request.getRequestURI(),
         null);
+  }
+
+  @ExceptionHandler(InvalidRecaptchaException.class)
+  public ResponseEntity<Object> handleInvalidRecaptcha(final InvalidRecaptchaException ex, final HttpServletRequest req) {
+
+    final Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now().toString());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+    body.put("message", ex.getMessage());
+    body.put("path", req.getRequestURI());
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
   }
 
   private ResponseEntity<ApiErrorResponse> buildError(
