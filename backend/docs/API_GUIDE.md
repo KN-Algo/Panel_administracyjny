@@ -1,90 +1,182 @@
-# Dokumentacja wewnętrzna projektu
+# Dokumentacja wewnętrzna projektu API
 
 ---
 
 ## Co nowego
-Zmiana TempPost na Post: Od teraz wszystkie typy postów są obsługiwane przez klasy Posts.
+- **Dodano moduł Team Members**: Wprowadzono pełną obsługę członków zespołu (Zarząd, Członkowie, Opiekunowie, Maskotka). Moduł posiada wbudowaną ochronę przed atakami XSS, inteligentne aktualizowanie relacji oraz system priorytetyzacji wyświetlania.
 
 ---
 
-## Endpointy
+## 1. Moduł: Członkowie Zespołu
 
-Wprowadzone zmiany wymusiły dostosowanie nazw ścieżek, oto one:
-- GET /api/posts/content – Główny feed: Zwraca zwykłe posty i newsy. Odpowiedzią jest gotowa tablica.
-- GET /api/posts/news – Tylko aktualności: Zwraca wyłącznie posty typu NEWS. Gotowa tablica.
-- GET /api/posts/active-modal – Pobranie Popup-u: Zwraca jeden aktywny modal lub pustą odpowiedź, jeśli aktualnie nie ma żadnego do wyświetlenia.
-- GET /api/posts/modals – Zarządzanie: Pobiera wszystkie modale (TEMP, TEMP_NEWS, TEMP_STANDARD) występujące w bazie danych.
-- GET /api/posts/{id} – Widok szczegółów: Zwraca dane pojedynczego posta na podstawie jego ID.
-- GET /api/posts – Zwraca obiekt zawierający klucz items oraz page (wszystkie posty).
-- POST /api/posts – Tworzenie: Tworzy nowy post dowolnego typu. Wymaga pełnego obiektu (body) w ciele zapytania.
-- PUT /api/posts/{id} – Aktualizacja: Nadpisuje istniejący wpis. Wymaga pełnego obiektu (body) w ciele zapytania.
-- DELETE /api/posts/{id} – Usuwanie: Kasuje wpis z bazy danych.
+### Endpointy
+- `GET /api/team-members` – Pobiera listę członków zespołu. Wyniki są zawsze domyślnie **posortowane rosnąco** według pola `sortOrder`.
+  - **Filtrowanie (Opcjonalne Query Params):**
+    - `?role=BOARD` (dostępne wartości Enum: `BOARD`, `MEMBER`, `SUPERVISOR`, `MASCOT`)
+    - `?search=Kowalski` (wyszukuje po fragmencie imienia lub nazwiska, ignoruje wielkość liter)
+    - Można je łączyć: `?role=MEMBER&search=kowal`
+- `GET /api/team-members/{id}` – Zwraca szczegóły pojedynczego członka zespołu na podstawie jego ID. W przypadku braku osoby zwraca `404 Not Found`.
+- `POST /api/team-members` – Tworzy nową osobę w zespole. Wymaga pełnego obiektu (body).
+- `PUT /api/team-members/{id}` – Aktualizuje dane osoby. Backend używa inteligentnej aktualizacji. Wymaga pełnego obiektu, tak jak w przypadku `POST`.
 
----
+### Jakie pola są wymagane w Payloadzie
 
-## Jakie pola są wymagane
+**Wymagane:**
+- `firstName` (max 50 znaków)
+- `lastName` (max 50 znaków)
+- `role` (`BOARD`, `MEMBER`, `SUPERVISOR`, `MASCOT`)
+- `translations` – Tablica **musi** zawierać dokładnie 3 obiekty tłumaczeń dla sztywnych kodów językowych: `PL`, `EN`, `DE`. 
+  - Wewnątrz każdego z nich wymagane są `languageCode` (np. "PL") oraz `displayedTitle` (np. "Wiceprezes").
+  - Pole `description` jest opcjonalne, może zawierać znaczniki HTML.
 
-#### Dla zwykłych postów oraz aktualności (STANDARD, NEWS):
-
-Wymagane:
-- postType
-- translations (Chodzi o dodanie tłumaczenia postu w co najmniej jednym języku, w którym wymagane są pola: languageCode, title, fullDescription)
-
-#### Dla modali oraz ogłoszeń czasowych (TEMP, TEMP_STANDARD, TEMP_NEWS)
-
-Wymagane:
-- postType
-- startsAt
-- expiresAt
-- eventDate
-- translations (languageCode, title, fullDescription)
+**Opcjonalne, ale istotne:**
+- `sortOrder` (Integer) – liczba sterująca kolejnością na froncie (np. `10` dla Prezesa, `20` dla Wiceprezesa). Brak podania tej wartości ustawi domyślnie `999`.
+- `imageUrls` (Array) – tablica linków do zdjęć. Puste stringi i ataki XSS są filtrowane automatycznie.
+- `socialLinks` (Object) – słownik par klucz-wartość. Obsługuje dowolne klucze (np. `"github": "link"`, `"linkedin": "link"`).
 
 ---
 
-## Wgrywanie obrazów
+### Przykłady Żądań i Odpowiedzi (Request & Response)
 
-#### Wgrywanie jednego pliku:
-
-- Endpoint: POST /api/files/upload
-- Format: multipart/form-data
-- Klucz: file (typ: File)
-- Odpowiedź (sukces): {"url": "/img/20260425_foto.jpg"}
-
-#### Wgrywanie wielu plików naraz:
-
-- Endpoint: POST /api/files/upload/batch
-- Format: multipart/form-data
-- Klucz: files (typ: File, użyjcie tego klucza wielokrotnie w jednym requeście dla każdego pliku).
-- Odpowiedź: Dostaniecie obiekt z listą sukcesów i błędów. Musicie wyciągnąć url z listy successes
-
-```JSON
+#### 1. Tworzenie lub Aktualizacja (POST / PUT)
+**Żądanie (Request Body):**
+```json
 {
-  "successes": [ { "filename": "1.jpg", "url": "/img/1.jpg" } ],
-  "errors": [ { "filename": "plik.txt", "error": "Zły format" } ]
-}
-```
-
-## Przykładowy Payload
-
-```JSON
-{
-  "postType": "TEMP",
-  "eventDate": "2026-04-15T18:00:00",
-  "startsAt": "2026-04-01T08:00:00",
-  "expiresAt": "2026-04-16T23:59:59",
-  "thumbnailUrl": "/img/thumb.jpg",
-  "imageUrls": [
-    "/img/galeria1.jpg",
-    "/img/galeria2.jpg"
-  ],
-  "externalLink": "https://facebook.com/events/123",
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "role": "BOARD",
+  "sortOrder": 10,
   "translations": [
     {
-      "languageCode": "pl",
-      "title": "Wielkie spotkanie KN!",
-      "shortDescription": "Wpadajcie na pizzę.",
-      "fullDescription": "Spotykamy się w sali 301. Będzie super, miłego kodowania!"
+      "languageCode": "PL",
+      "displayedTitle": "Prezes KN Algo",
+      "description": "<p>Opis profilowy po polsku.</p>"
+    },
+    {
+      "languageCode": "EN",
+      "displayedTitle": "President of KN Algo",
+      "description": "<p>Profile description in English.</p>"
+    },
+    {
+      "languageCode": "DE",
+      "displayedTitle": "Präsident KN Algo",
+      "description": "<p>Profilbeschreibung auf Deutsch.</p>"
     }
-  ]
+  ],
+  "imageUrls": [
+    "/img/jan_nowy.webp"
+  ],
+  "socialLinks": {
+    "linkedin": "[https://linkedin.com/in/jankowalski](https://linkedin.com/in/jankowalski)",
+    "github": "[https://github.com/jan-kowalski](https://github.com/jan-kowalski)"
+  }
 }
+
+```
+
+**Oczekiwana Odpowiedź (Status 200 OK):**
+Backend zwraca zapisany obiekt, wzbogacony o wygenerowane ID (`memberId` oraz `translationId`).
+
+```json
+{
+  "memberId": 1,
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "role": "BOARD",
+  "sortOrder": 10,
+  "translations": [
+    {
+      "translationId": 1,
+      "languageCode": "PL",
+      "displayedTitle": "Prezes KN Algo",
+      "description": "<p>Opis profilowy po polsku.</p>"
+    },
+    {
+      "translationId": 2,
+      "languageCode": "EN",
+      "displayedTitle": "President of KN Algo",
+      "description": "<p>Profile description in English.</p>"
+    },
+    {
+      "translationId": 3,
+      "languageCode": "DE",
+      "displayedTitle": "Präsident KN Algo",
+      "description": "<p>Profilbeschreibung auf Deutsch.</p>"
+    }
+  ],
+  "imageUrls": [
+    "/img/jan_nowy.webp"
+  ],
+  "socialLinks": {
+    "github": "[https://github.com/jan-kowalski](https://github.com/jan-kowalski)",
+    "linkedin": "[https://linkedin.com/in/jankowalski](https://linkedin.com/in/jankowalski)"
+  }
+}
+
+```
+
+#### 2. Pobieranie z filtrowaniem (GET)
+
+**Żądanie:** `GET /api/team-members?role=BOARD&search=kowal`
+
+**Oczekiwana Odpowiedź (Status 200 OK):**
+Zwraca tablicę dopasowanych członków zespołu.
+
+```json
+{
+  "memberId": 14,
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "role": "BOARD",
+  "sortOrder": 10,
+  "translations": [
+    {
+      "translationId": 42,
+      "languageCode": "PL",
+      "displayedTitle": "Prezes KN Algo",
+      "description": "<p>Opis profilowy po polsku.</p>"
+    },
+    {
+      "translationId": 43,
+      "languageCode": "EN",
+      "displayedTitle": "President of KN Algo",
+      "description": "<p>Profile description in English.</p>"
+    },
+    {
+      "translationId": 44,
+      "languageCode": "DE",
+      "displayedTitle": "Präsident KN Algo",
+      "description": "<p>Profilbeschreibung auf Deutsch.</p>"
+    }
+  ],
+  "imageUrls": [
+    "/img/jan_nowy.webp"
+  ],
+  "socialLinks": {
+    "github": "[https://github.com/jan-kowalski](https://github.com/jan-kowalski)",
+    "linkedin": "[https://linkedin.com/in/jankowalski](https://linkedin.com/in/jankowalski)"
+  }
+}
+
+```
+
+#### 3. Błąd Walidacji - Braki w językach lub nieprawidłowa rola (GET / POST / PUT)
+
+Jeśli frontend wyśle niekompletne dane (np. brakuje tłumaczenia DE, a podano nieobsługiwane FR) lub literówkę w parametrach.
+
+**Oczekiwana Odpowiedź (Status 400 Bad Request):**
+
+```json
+{
+  "timestamp": "2026-09-08T15:47:11.3073358",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Team member validation failed.",
+  "path": "/api/team-members",
+  "validationErrors": {
+    "translations.missing": "Missing required translation(s): DE",
+    "translations.unsupported": "Unrecognized language(s) provided: FR"
+  }
+}
+
 ```
