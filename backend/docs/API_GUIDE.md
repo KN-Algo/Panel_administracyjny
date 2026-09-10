@@ -3,7 +3,8 @@
 ---
 
 ## Co nowego
-Zmiana TempPost na Post: Od teraz wszystkie typy postów są obsługiwane przez klasy Posts.
+- Zmiana TempPost na Post: Od teraz wszystkie typy postów są obsługiwane przez klasy Posts.
+- Projekty: Dodano endpointy do zarządzania zakładką "Projekty" (CRUD + filtrowanie po statusie).
 
 ---
 
@@ -88,3 +89,111 @@ Wymagane:
   ]
 }
 ```
+
+---
+
+## Projekty (zakładka "Projekty")
+
+### Endpointy
+
+* GET /api/projects – Lista projektów. Opcjonalnie filtr: `?status=COMPLETED` lub `?status=UPCOMING`. Wynik to tablica projektów posortowana po `displayOrder` rosnąco, a następnie po `projectId` malejąco.
+* GET /api/projects/{id} – Pobranie jednego projektu (admin view).
+* POST /api/projects – Tworzenie projektu. Wymaga pełnego obiektu (body) w ciele zapytania.
+* PUT /api/projects/{id} – Aktualizacja projektu. Nadpisuje istniejący wpis. Wymaga pełnego obiektu (body) w ciele zapytania.
+* DELETE /api/projects/{id} – Usuwanie projektu. Odpowiedź: `204 No Content`.
+
+### Jakie pola są wymagane
+
+Wymagane:
+
+* status (COMPLETED / UPCOMING)
+* translations (wymagane są dokładnie 3 języki: **PL, EN, DE**; dla każdego języka wymagane są pola: languageCode, title, description; pole translationId jest opcjonalne i przydaje się przy aktualizacji)
+
+Opcjonalne:
+
+* displayOrder (liczba; niższe wartości pojawiają się pierwsze)
+* images (lista URL; max 50; każdy URL max 500 znaków). URL pochodzą z endpointów uploadu z sekcji "Wgrywanie obrazów".
+
+### Pola odpowiedzi (ProjectResponseDto)
+
+* projectId
+* status
+* displayOrder
+* images
+* translations (lista obiektów: translationId, languageCode, title, description)
+
+### Przykładowy Payload (ProjectRequestDto)
+
+```JSON
+{
+  "status": "COMPLETED",
+  "displayOrder": 10,
+  "images": [
+    "/img/projekty/robot1.jpg",
+    "/img/projekty/robot2.jpg"
+  ],
+  "translations": [
+    {
+      "languageCode": "PL",
+      "title": "Nazwa projektu",
+      "description": "<p>Opis projektu (HTML dozwolony).</p>"
+    },
+    {
+      "languageCode": "EN",
+      "title": "Project name",
+      "description": "<p>Project description (HTML allowed).</p>"
+    },
+    {
+      "languageCode": "DE",
+      "title": "Projektname",
+      "description": "<p>Projektbeschreibung (HTML erlaubt).</p>"
+    }
+  ]
+}
+
+```
+
+### Przykładowa Odpowiedź (ProjectResponseDto)
+
+```JSON
+{
+  "projectId": 123,
+  "status": "COMPLETED",
+  "displayOrder": 10,
+  "images": [
+    "/img/projekty/robot1.jpg",
+    "/img/projekty/robot2.jpg"
+  ],
+  "translations": [
+    {
+      "translationId": 456,
+      "languageCode": "PL",
+      "title": "Nazwa projektu",
+      "description": "<p>Opis projektu (HTML dozwolony).</p>"
+    },
+    {
+      "translationId": 457,
+      "languageCode": "EN",
+      "title": "Project name",
+      "description": "<p>Project description (HTML allowed).</p>"
+    },
+    {
+      "translationId": 458,
+      "languageCode": "DE",
+      "title": "Projektname",
+      "description": "<p>Projektbeschreibung (HTML erlaubt).</p>"
+    }
+  ]
+}
+
+```
+
+### Błędy i walidacja
+
+* 400 Bad Request:
+* błąd struktury/walidacji body (np. brak wymaganego pola `status`, puste tytuły/opisy w tłumaczeniach)
+* niepoprawny parametr `status` (dozwolone tylko `COMPLETED` / `UPCOMING`)
+* brak wymaganych tłumaczeń biznesowych (wymagany jest komplet języków: PL, EN, DE).
+
+
+* 404 Not Found: projekt nie istnieje (`Project not found: {id}`).
