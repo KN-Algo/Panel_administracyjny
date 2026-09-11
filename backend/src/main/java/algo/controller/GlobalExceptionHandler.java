@@ -2,10 +2,8 @@ package algo.controller;
 
 import algo.controller.error.ApiErrorResponse;
 import algo.module.PostType;
-import algo.services.exceptions.InvalidPostRequestException;
-import algo.services.exceptions.InvalidRecaptchaException;
-import algo.services.exceptions.PostNotFoundException;
-import algo.services.exceptions.PostValidationException;
+import algo.module.ProjectType;
+import algo.services.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /** Global REST exception mapping for consistent API error responses. */
 @RestControllerAdvice
@@ -67,6 +64,27 @@ public final class GlobalExceptionHandler {
     body.put("validationErrors", ex.getErrors());
 
     return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(TeamMemberNotFoundException.class)
+  public ResponseEntity<ApiErrorResponse> handleTeamMemberNotFound(
+          final TeamMemberNotFoundException ex, final HttpServletRequest request) {
+    return buildError(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null);
+  }
+
+  @ExceptionHandler(TeamMemberValidationException.class)
+  public ResponseEntity<Map<String, Object>> handleTeamMemberValidationException(
+          final TeamMemberValidationException ex, final HttpServletRequest req) {
+
+    final Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now().toString());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+    body.put("message", ex.getMessage());
+    body.put("path", req.getRequestURI());
+    body.put("validationErrors", ex.getErrors());
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
   }
 
   /**
