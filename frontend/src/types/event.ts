@@ -3,6 +3,7 @@ export interface Event {
   title: string;
   date: string;
   thumbnail: string;
+  thumbnailPosition?: string;
   description: string;
   images: string[];
 }

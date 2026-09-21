@@ -1,58 +1,52 @@
 import { useTranslation } from "react-i18next";
-import { useCallback, useState } from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { Users } from "lucide-react";
+
 import teamData from "@/data/team.json";
 import teamDetailsData from "@/data/teamDetails.json";
+import {
+  ContentContainer,
+  FeaturePageHeader,
+  Heading,
+  PublicPage,
+  Section,
+  Text,
+} from "@/shared";
 import type { TeamMember, TeamMemberDetails } from "@/types";
-import TeamMemberModal from "@/components/TeamMemberModal";
+
+import MemberGrid from "./components/MemberGrid";
+import SupervisorCard, {
+  type SupervisorCardProps,
+} from "./components/SupervisorCard";
 
 export default function TeamPage() {
   const { t } = useTranslation();
-  const [martaExpanded, setMartaExpanded] = useState(false);
-  const [jacekExpanded, setJacekExpanded] = useState(false);
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const members = teamData as TeamMember[];
-  const teamDetails = teamDetailsData as TeamMemberDetails[];
-
-  const getPositionLabel = (position?: string) => {
-    if (!position) return null;
-    return t(`team.${position}`);
-  };
-
-  const getMemberDetails = (memberId: number): TeamMemberDetails | null => {
-    return teamDetails.find((detail) => detail.id === memberId) || null;
-  };
-
-  const handleMemberClick = (member: TeamMember) => {
-    const details = getMemberDetails(member.id);
-    if (details) {
-      setSelectedMember(member);
-      setIsModalOpen(true);
-    }
-  };
-
-  const handleCloseModal = useCallback(() => {
-    setIsModalOpen(false);
-    setSelectedMember(null);
-  }, []);
+  const memberDetails = teamDetailsData as TeamMemberDetails[];
+  const supervisors: SupervisorCardProps[] = [
+    {
+      name: "mgr inż. Marta Lampasiak",
+      image: "/img/leaders/martalampasiak.webp",
+      imageAlt: "Marta Lampasiak",
+      biography: t("team.marta_bio"),
+    },
+    {
+      name: "dr inż. Jacek Jagodziński",
+      image: "/img/leaders/jacekjagodzinski.webp",
+      imageAlt: "Jacek Jagodziński",
+      biography: t("team.jacek_bio"),
+    },
+  ];
 
   return (
-    <div className="w-full bg-white">
-      {/* Header Section */}
-      <section className="py-14 text-center bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            {t("team.page_title")}
-          </h1>
-          <p className="text-base text-gray-600">{t("team.page_subtitle")}</p>
-        </div>
-      </section>
+    <PublicPage>
+      <FeaturePageHeader
+        title={t("team.page_title")}
+        subtitle={t("team.page_subtitle")}
+        icon={<Users className="h-5 w-5" aria-hidden="true" />}
+      />
 
-      {/* Group Photo Section */}
-      <section className="py-14">
-        <div className="container mx-auto px-4 text-center">
+      <Section>
+        <ContentContainer align="center">
           <div className="max-w-3xl mx-auto">
             <img
               src="/img/kn_algo_grupowe1.webp"
@@ -60,15 +54,14 @@ export default function TeamPage() {
               className="w-full rounded-3xl shadow-xl transition-transform duration-300 hover:scale-105"
             />
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
-      {/* Supervisors Introduction Section */}
-      <section className="py-14">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-14 text-gray-900">
+      <Section>
+        <ContentContainer>
+          <Heading level={2} size="section" align="center" spacingBottom="3xl">
             {t("team.supervisors_title")}
-          </h2>
+          </Heading>
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2">
@@ -79,178 +72,38 @@ export default function TeamPage() {
                 />
               </div>
               <div className="md:w-1/2 space-y-4 text-gray-700">
-                <p
+                <Text
                   dangerouslySetInnerHTML={{
                     __html: t("team.supervisors_intro"),
                   }}
-                  className="text-base leading-relaxed"
+                  leading="relaxed"
                 />
-                <p className="text-base leading-relaxed">
+                <Text leading="relaxed">
                   {t("team.supervisors_collaboration")}
-                </p>
+                </Text>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
-      {/* Supervisors Cards Section */}
-      <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <Section tone="subtle">
+        <ContentContainer>
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 items-start">
-              {/* Marta Lampasiak */}
-              <div
-                className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
-                onClick={() => setMartaExpanded(!martaExpanded)}
-              >
-                <div className="p-5 text-center">
-                  <img
-                    src="/img/leaders/martalampasiak.webp"
-                    alt="Marta Lampasiak"
-                    className="w-1/2 object-cover rounded-2xl mx-auto mb-4 border-[3px] border-black shadow-lg"
-                  />
-                  <h5 className="text-lg font-semibold mb-4 text-gray-900">
-                    mgr inż. Marta Lampasiak
-                  </h5>
-                  <div className="flex items-center justify-center gap-2 text-[#000424]">
-                    <ChevronDown
-                      size={24}
-                      className={`transition-transform duration-300 ${
-                        martaExpanded ? "rotate-180" : ""
-                      }`}
-                    />
-                  </div>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      martaExpanded ? "max-h-[500px] mt-4" : "max-h-0"
-                    }`}
-                  >
-                    <p
-                      dangerouslySetInnerHTML={{ __html: t("team.marta_bio") }}
-                      className="text-gray-700 text-sm leading-relaxed text-left"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Jacek Jagodziński */}
-              <div
-                className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02]"
-                onClick={() => setJacekExpanded(!jacekExpanded)}
-              >
-                <div className="p-5 text-center">
-                  <img
-                    src="/img/leaders/jacekjagodzinski.webp"
-                    alt="Jacek Jagodziński"
-                    className="w-1/2 object-cover rounded-2xl mx-auto mb-4 border-[3px] border-black shadow-lg"
-                  />
-                  <h5 className="text-lg font-semibold mb-3 text-gray-900">
-                    dr inż. Jacek Jagodziński
-                  </h5>
-                  <div className="flex items-center justify-center gap-2 text-[#000424]">
-                    <ChevronDown
-                      size={24}
-                      className={`transition-transform duration-300 ${
-                        jacekExpanded ? "rotate-180" : ""
-                      }`}
-                    />
-                  </div>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      jacekExpanded ? "max-h-[500px] mt-4" : "max-h-0"
-                    }`}
-                  >
-                    <p
-                      dangerouslySetInnerHTML={{ __html: t("team.jacek_bio") }}
-                      className="text-gray-700 text-sm leading-relaxed text-left"
-                    />
-                  </div>
-                </div>
-              </div>
+              {supervisors.map((supervisor) => (
+                <SupervisorCard key={supervisor.name} {...supervisor} />
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </ContentContainer>
+      </Section>
 
-      {/* Members Section */}
-      <section className="py-14 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-14 text-gray-900">
-            {t("team.members_title")}
-          </h2>
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
-              {members.map((member) => {
-                const hasDetails = !!getMemberDetails(member.id);
-                return (
-                  <div key={member.id}>
-                    {hasDetails ? (
-                      <button
-                        type="button"
-                        onClick={() => handleMemberClick(member)}
-                        className="relative w-full bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer group text-left"
-                        aria-label={`${member.firstName} ${member.lastName}`}
-                      >
-                        <div className="absolute bottom-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-white/16 group-hover:text-white">
-                          <ArrowRight size={14} />
-                        </div>
-                        <div className="py-5 px-5 flex flex-col items-center">
-                          <div className="mb-0">
-                            <img
-                              src={member.image.replace("../img/", "/img/")}
-                              alt={`${member.firstName} ${member.lastName}`}
-                              className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
-                            />
-                          </div>
-                          <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
-                            {member.firstName} {member.lastName}
-                          </h3>
-                          {member.position && (
-                            <p className="text-white text-sm font-bold">
-                              {getPositionLabel(member.position)}
-                            </p>
-                          )}
-                        </div>
-                      </button>
-                    ) : (
-                      <div className="relative bg-[#000424] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
-                        <div className="py-5 px-5 flex flex-col items-center">
-                          <div className="mb-0">
-                            <img
-                              src={member.image.replace("../img/", "/img/")}
-                              alt={`${member.firstName} ${member.lastName}`}
-                              className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
-                            />
-                          </div>
-                          <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
-                            {member.firstName} {member.lastName}
-                          </h3>
-                          {member.position && (
-                            <p className="text-white text-sm font-bold">
-                              {getPositionLabel(member.position)}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Modal */}
-      {selectedMember && (
-        <TeamMemberModal
-          member={selectedMember}
-          details={getMemberDetails(selectedMember.id)}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
-      )}
-    </div>
+      <MemberGrid
+        title={t("team.members_title")}
+        members={members}
+        memberDetails={memberDetails}
+      />
+    </PublicPage>
   );
 }

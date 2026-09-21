@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Button, ContentContainer } from "@/shared";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -16,8 +17,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[#000424] text-white sticky top-0 z-50 shadow-lg h-[120px] flex items-center">
-      <div className="container mx-auto px-4">
+    <nav className="bg-brand-dark text-white sticky top-0 z-50 shadow-lg h-[120px] flex items-center">
+      <ContentContainer>
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -34,10 +35,10 @@ export default function Navbar() {
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className="relative text-[#f8e9e5] transition-colors hover:text-white group"
+                  className="relative text-brand-light transition-colors hover:text-white group"
                 >
                   {link.label}
-                  <span className="absolute left-0 -bottom-[3px] w-0 h-0.5 bg-[#f8e9e5] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 -bottom-[3px] w-0 h-0.5 bg-brand-light transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
             ))}
@@ -46,14 +47,17 @@ export default function Navbar() {
           {/* Language Switcher */}
           <div className="flex gap-3">
             {["pl", "en", "de"].map((lang) => (
-              <button
+              <Button
                 key={lang}
                 onClick={() => changeLanguage(lang)}
-                className={`px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+                appearance={
+                  i18n.language === lang ? "light" : "outlineOnDark"
+                }
+                motion={
                   i18n.language === lang
-                    ? "bg-[#f8e9e5] text-[#000424] shadow-lg shadow-[#f8e9e5]/30 scale-105"
-                    : "bg-transparent text-[#f8e9e5] border-2 border-[#f8e9e5]/40 hover:border-[#f8e9e5] hover:shadow-md hover:shadow-[#f8e9e5]/20 hover:scale-105"
-                }`}
+                    ? "languageActive"
+                    : "languageIdle"
+                }
                 aria-label={
                   lang === "pl"
                     ? "Polski"
@@ -63,11 +67,11 @@ export default function Navbar() {
                 }
               >
                 {lang}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
-      </div>
+      </ContentContainer>
     </nav>
   );
 }

@@ -41,10 +41,12 @@
   },
   "projects": {
     "page_title": "Nasze projekty",
+    "page_subtitle": "Pomysły, które łączą algorytmy, technologię i praktyczne działanie.",
     "upcoming_title": "Nadchodzące projekty"
   },
   "events": {
     "page_title": "Wydarzenia",
+    "page_subtitle": "Spotkania, konferencje i inicjatywy, które tworzymy razem.",
     "read_more": "Zobacz więcej"
   },
   "contact": {
@@ -75,6 +77,12 @@
     "close": "Zamknij",
     "previous": "Poprzednie",
     "next": "Następne"
+  },
+  "not_found": {
+    "error_label": "Błąd strony",
+    "title": "Nasz ALGOrytm zgubił drogę",
+    "description": "Nie przewidział tej strony w swoich obliczeniach.\nSprawdź, czy wpisany adres jest poprawny.",
+    "back_home": "Wróć na stronę główną"
   },
   "footer": {
     "follow_us": "Bądź na bieżąco – obserwuj nas:",

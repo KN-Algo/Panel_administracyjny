@@ -1,12 +1,13 @@
 import { Facebook, Instagram, Linkedin, Github, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { ContentContainer } from "@/shared";
 
 export default function Footer() {
   const { t } = useTranslation();
 
   return (
     <footer className="relative bg-brand-dark text-brand-light py-8 border-t border-white/10 z-10">
-      <div className="container mx-auto px-4">
+      <ContentContainer>
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left side - Social media */}
           <div className="text-center md:text-left">
@@ -67,7 +68,7 @@ export default function Footer() {
             </small>
           </div>
         </div>
-      </div>
+      </ContentContainer>
     </footer>
   );
 }

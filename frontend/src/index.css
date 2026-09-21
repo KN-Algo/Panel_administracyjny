@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./shared/styles/theme.css";
+@import "./shared/styles/scrollbar.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -44,25 +46,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Custom brand colors */
-  --color-brand-darkest: #0b0c2a;
-  --color-brand-dark: #000424;
-  --color-brand-dark-hover: rgb(0 4 36 / 0.9);
-  --color-brand-medium: #1a1b3a;
-  --color-brand-light: #f8e9e5;
-  --color-brand-light-10: rgb(248 233 229 / 0.1);
-  --color-brand-light-20: rgb(248 233 229 / 0.2);
-  --color-brand-light-30: rgb(248 233 229 / 0.3);
-  --color-brand-light-40: rgb(248 233 229 / 0.4);
-  --color-brand-beige: #eeded9;
-  --color-neutral-lightest: #fcfbfb;
-  --color-neutral-lighter: #f3f0f0;
 }
 
 :root {
   --radius: 0.625rem;
-  --main-bg: #000424;
-  --accent-color: #f8e9e5;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -137,62 +124,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-/* Custom Scrollbar - Glowing Navy Design */
-* {
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 4, 36, 0.4) transparent;
-}
-
-/* Webkit browsers (Chrome, Safari, Edge) */
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 4, 36, 0.3) 0%,
-    rgba(26, 27, 58, 0.3) 100%
-  );
-  border-radius: 100px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  opacity: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Scrollbar pojawia się przy interakcji */
-*:hover::-webkit-scrollbar-thumb,
-*:active::-webkit-scrollbar-thumb {
-  opacity: 1;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #000424 0%, #1a1b3a 100%);
-  box-shadow:
-    0 0 10px rgba(0, 4, 36, 0.5),
-    0 0 20px rgba(0, 4, 36, 0.3),
-    inset 0 0 10px rgba(248, 233, 229, 0.1);
-  border: 2px solid rgba(248, 233, 229, 0.2);
-}
-
-*::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(180deg, #000424 0%, #0a0b2f 100%);
-  box-shadow:
-    0 0 15px rgba(0, 4, 36, 0.8),
-    0 0 30px rgba(0, 4, 36, 0.5),
-    inset 0 0 15px rgba(248, 233, 229, 0.2);
-}
-
-/* Corner where scrollbars meet */
-*::-webkit-scrollbar-corner {
-  background: transparent;
 }
