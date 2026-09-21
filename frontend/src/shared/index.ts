@@ -6,5 +6,6 @@ export { FeaturePageHeader } from "./components/layout/FeaturePageHeader";
 export { PageHeader } from "./components/layout/PageHeader";
 export { PublicPage } from "./components/layout/PublicPage";
 export { Section } from "./components/layout/Section";
+export { Dialog } from "./components/overlay/Dialog";
 export { Heading } from "./components/typography/Heading";
 export { Text } from "./components/typography/Text";

@@ -1,7 +1,7 @@
 import { X, Instagram, Linkedin, Github, Globe } from "lucide-react";
 import type { TeamMember, TeamMemberDetails } from "@/types";
-import { useEffect, useId, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { Dialog } from "@/shared";
 
 interface TeamMemberDialogProps {
   member: TeamMember;
@@ -17,93 +17,30 @@ export default function TeamMemberDialog({
   onClose,
 }: TeamMemberDialogProps) {
   const { t } = useTranslation();
-  const dialogTitleId = useId();
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Zamknij modal przy naciśnięciu ESC
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-
-    closeButtonRef.current?.focus();
-
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
-
-      if (e.key !== "Tab") return;
-
-      const focusableElements =
-        dialogRef.current?.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-
-      if (!focusableElements || focusableElements.length === 0) return;
-
-      const first = focusableElements[0];
-      const last = focusableElements[focusableElements.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen, onClose]);
-
-  // Jeśli nie ma szczegółów, nie wyświetlaj modala
   if (!details) return null;
 
   const imagePath = member.image.replace("../img/", "/img/");
+  const memberName = `${member.firstName} ${member.lastName}`;
 
   return (
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity duration-200 ${
-        isOpen
-          ? "pointer-events-auto animate-in fade-in opacity-100"
-          : "pointer-events-none animate-out fade-out opacity-0"
-      }`}
-      onClick={onClose}
-      aria-hidden={!isOpen}
+    <Dialog
+      open={isOpen}
+      onClose={onClose}
+      title={memberName}
+      overlayClassName="backdrop-blur-sm"
+      className="left-1/2 top-1/2 max-h-[88vh] w-[calc(100%-2rem)] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[2rem] bg-white shadow-2xl sm:max-h-[90vh] md:overflow-hidden"
     >
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={dialogTitleId}
-        className={`relative bg-white rounded-[2rem] shadow-2xl max-w-5xl w-full max-h-[88vh] sm:max-h-[90vh] overflow-y-auto md:overflow-hidden transition-all ${
-          isOpen
-            ? "animate-in zoom-in-95 duration-300"
-            : "animate-out zoom-out-95 duration-200"
-        }`}
-        onClick={(e) => e.stopPropagation()}
+      <button
+        onClick={onClose}
+        type="button"
+        className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-brand-dark/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 md:right-5 md:top-5 md:h-11 md:w-11"
+        aria-label={t("common.close")}
       >
-        {/* Przycisk zamknięcia */}
-        <button
-          ref={closeButtonRef}
-          onClick={onClose}
-          type="button"
-          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-brand-dark/90 text-white shadow-lg ring-1 ring-white/45 backdrop-blur-sm transition-colors duration-150 hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 md:right-5 md:top-5 md:h-11 md:w-11"
-          aria-label={t("common.close")}
-        >
-          <X size={18} className="stroke-[2.75] md:h-5 md:w-5" />
-        </button>
+        <X size={18} className="stroke-[2.75] md:h-5 md:w-5" />
+      </button>
 
-        <div className="flex flex-col md:flex-row max-h-[90vh]">
+      <div className="flex flex-col md:flex-row max-h-[90vh]">
           {/* Lewa strona - Zdjęcie */}
           <div className="md:w-2/5 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 flex items-center justify-center p-4 sm:p-6 md:p-10 relative overflow-hidden">
             {/* Dekoracyjne elementy tła */}
@@ -132,7 +69,6 @@ export default function TeamMemberDialog({
             {/* Nagłówek */}
             <div className="mb-5 sm:mb-6 md:mb-8">
               <h2
-                id={dialogTitleId}
                 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight"
               >
                 {member.firstName} {member.lastName}
@@ -241,8 +177,7 @@ export default function TeamMemberDialog({
                 </div>
               )}
           </div>
-        </div>
       </div>
-    </div>
+    </Dialog>
   );
 }

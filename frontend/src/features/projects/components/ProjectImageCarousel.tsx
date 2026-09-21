@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Dialog } from "@/shared";
 
 type SlideDirection = "left" | "right";
 type CarouselDirection = "next" | "prev";
@@ -68,21 +68,27 @@ export default function ProjectImageCarousel({
     if (!isModalOpen) return;
 
     const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
-      if (keyboardEvent.key === "Escape") closeModal();
       if (keyboardEvent.key === "ArrowLeft") changeModalSlide("prev");
       if (keyboardEvent.key === "ArrowRight") changeModalSlide("next");
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [changeModalSlide, closeModal, isModalOpen]);
+  }, [changeModalSlide, isModalOpen]);
 
-  const modal = isModalOpen
-    ? createPortal(
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
+  const modal = (
+    <Dialog
+      open={isModalOpen}
+      onClose={closeModal}
+      title={title}
+      closeOnBackdrop={false}
+      overlayClassName="bg-black/95"
+      className="inset-0 flex items-center justify-center"
+    >
           <button
             type="button"
             onClick={closeModal}
+            aria-label="Close gallery"
             className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 transition-colors z-10"
           >
             <X className="w-8 h-8" />
@@ -110,6 +116,7 @@ export default function ProjectImageCarousel({
                   type="button"
                   onClick={() => changeModalSlide("prev")}
                   disabled={isTransitioning}
+                  aria-label="Previous image"
                   className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-4 shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft className="w-8 h-8" />
@@ -118,6 +125,7 @@ export default function ProjectImageCarousel({
                   type="button"
                   onClick={() => changeModalSlide("next")}
                   disabled={isTransitioning}
+                  aria-label="Next image"
                   className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-4 shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ChevronRight className="w-8 h-8" />
@@ -128,22 +136,24 @@ export default function ProjectImageCarousel({
               </>
             )}
           </div>
-        </div>,
-        document.body,
-      )
-    : null;
+    </Dialog>
+  );
 
   if (images.length === 1) {
     return (
       <>
-        <div className="relative flex justify-center">
+        <button
+          type="button"
+          className="relative flex w-full justify-center"
+          onClick={() => openModal()}
+          aria-label={`Open ${title} image`}
+        >
           <img
             src={getImageSource(images[0])}
             alt={title}
             className="max-w-full max-h-[600px] rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
-            onClick={() => openModal()}
           />
-        </div>
+        </button>
         {modal}
       </>
     );
@@ -153,17 +163,24 @@ export default function ProjectImageCarousel({
     <>
       <div className="relative">
         <div className="flex justify-center items-center h-[500px] bg-gray-50 rounded-2xl">
-          <img
-            src={getImageSource(images[currentSlide])}
-            alt={`${title} - ${currentSlide + 1}`}
-            className="max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+          <button
+            type="button"
+            className="flex h-full w-full items-center justify-center"
             onClick={() => openModal(currentSlide)}
-          />
+            aria-label={`Open ${title} image ${currentSlide + 1}`}
+          >
+            <img
+              src={getImageSource(images[currentSlide])}
+              alt={`${title} - ${currentSlide + 1}`}
+              className="max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+            />
+          </button>
         </div>
 
         <button
           type="button"
           onClick={() => changeSlide("prev")}
+          aria-label="Previous image"
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-dark rounded-full p-3 shadow-lg transition-all hover:scale-110"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -171,6 +188,7 @@ export default function ProjectImageCarousel({
         <button
           type="button"
           onClick={() => changeSlide("next")}
+          aria-label="Next image"
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-dark rounded-full p-3 shadow-lg transition-all hover:scale-110"
         >
           <ChevronRight className="w-6 h-6" />
@@ -182,6 +200,8 @@ export default function ProjectImageCarousel({
               type="button"
               key={index}
               onClick={() => setCurrentSlide(index)}
+              aria-label={`Show image ${index + 1}`}
+              aria-current={index === currentSlide ? "true" : undefined}
               className={`h-2 rounded-full transition-all ${
                 index === currentSlide
                   ? "bg-brand-dark w-8"

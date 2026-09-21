@@ -100,25 +100,13 @@ export function useEventDialog(events: Event[]) {
     if (!isGalleryMounted) return;
 
     const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
-      if (keyboardEvent.key === "Escape") closeGallery();
       if (keyboardEvent.key === "ArrowLeft") changeGallerySlide("prev");
       if (keyboardEvent.key === "ArrowRight") changeGallerySlide("next");
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [changeGallerySlide, closeGallery, isGalleryMounted]);
-
-  useEffect(() => {
-    if (!selectedEvent || isGalleryMounted) return;
-
-    const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
-      if (keyboardEvent.key === "Escape") closeEvent();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeEvent, isGalleryMounted, selectedEvent]);
+  }, [changeGallerySlide, isGalleryMounted]);
 
   const gallery: EventGalleryController = {
     isMounted: isGalleryMounted,
