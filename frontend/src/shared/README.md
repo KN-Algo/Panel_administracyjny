@@ -75,21 +75,31 @@ domain-specific markup and behavior.
 
 `src/components/layout/Navbar.tsx` composes the public header and passes the
 same translated links to desktop navigation and `MobileNavigation.tsx`.
-`MobileNavigation` owns the mobile popup, open state, route/breakpoint dismissal,
-and keyboard/focus handling. It receives the logo ref as a desktop focus target.
+`MobileNavigation` only composes the components in `layout/mobile-navigation/`:
+`MobileNavigationTrigger` owns the button and its ARIA attributes,
+`MobileNavigationPanel` owns the animated panel structure and Tab boundary handling,
+and `MobileNavigationLinks` renders translated links and their active state.
+`useMobileNavigation` owns its
+open state, route/breakpoint dismissal, and keyboard/focus handling. It receives
+the logo ref as a desktop focus target.
 Below `md`
 (768 px), a menu button exposes the home, team, projects, and events links.
 The header controls and menu fit a 320 px viewport; desktop links remain in
 the header. This change does not affect the administrator frontend.
 
-The menu uses the existing Radix Popover dependency directly, without importing
-administrator UI components. Its trigger supplies `aria-expanded` and
+The menu extends the full width of the navbar directly below its bottom edge,
+overlaying page content without shifting it. `mobile-navigation.css` animates
+the panel height in both directions (320 ms) and staggers the link entrances.
+The panel stays mounted for smooth reversal during rapid toggling; closed links
+are immediately inert and hidden from assistive technology. Reduced-motion
+preferences disable the transitions. No portal or floating dialog is used.
+Its trigger supplies `aria-expanded` and
 `aria-controls`. Opening focuses the first link; Escape, selecting a link
 (including the current route), or a route change closes the menu and returns
 focus to the trigger. Outside pointer/focus interactions dismiss it without
 stealing focus from the selected control. Tab after the last link or Shift+Tab
 before the first closes the popup and returns focus to its trigger; this is a
-non-modal navigation popup, not an ARIA application menu.
+navigation disclosure, not an ARIA application menu.
 
 Crossing to the desktop breakpoint closes the popup and moves focus to the
 logo instead of the hidden trigger. The PL/EN/DE language controls remain
@@ -100,7 +110,8 @@ Regression checks: at 320 px, open the menu with keyboard and pointer, follow
 all four links, select the current route, navigate back/forward, dismiss with
 Escape and outside click, Tab out, switch PL/EN/DE with the menu open, and
 resize through 768 px. Check initial/return focus, trigger ARIA attributes,
-and the bounds of the popup and header controls.
+and the bounds of the panel and header controls. Also check opening/closing
+animation, rapid toggling, short viewports (scrollable links), and reduced motion.
 
 ## Adding or changing a shared component
 
