@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const TABLET_BREAKPOINT = 768;
 const DESKTOP_BREAKPOINT = 1024;
-const DEFAULT_TRANSITION_DURATION = 300;
 
 const getItemsPerSlide = (): number => {
   if (typeof window === "undefined") return 3;
@@ -19,36 +18,41 @@ export interface ResponsiveCarouselState {
   nextSlide: () => void;
   previousSlide: () => void;
   goToSlide: (index: number) => void;
+  completeTransition: () => void;
 }
 
 export function useResponsiveCarousel(
   itemCount: number,
-  transitionDuration = DEFAULT_TRANSITION_DURATION,
 ): ResponsiveCarouselState {
   const [itemsPerSlide, setItemsPerSlide] = useState(getItemsPerSlide);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [pendingSlide, setPendingSlide] = useState<number | null>(null);
   const currentSlideRef = useRef(currentSlide);
   const itemsPerSlideRef = useRef(itemsPerSlide);
-  const isTransitioningRef = useRef(isTransitioning);
+  const pendingSlideRef = useRef<number | null>(null);
 
   const totalSlides = Math.ceil(itemCount / itemsPerSlide);
   const visibleSlide = totalSlides > 0 ? Math.min(currentSlide, totalSlides - 1) : 0;
+  const isTransitioning = pendingSlide !== null;
 
   const updateCurrentSlide = useCallback((slide: number) => {
     currentSlideRef.current = slide;
     setCurrentSlide(slide);
   }, []);
 
-  const finishTransition = useCallback(() => {
-    if (transitionTimer.current !== null) {
-      clearTimeout(transitionTimer.current);
-      transitionTimer.current = null;
-    }
-    isTransitioningRef.current = false;
-    setIsTransitioning(false);
+  const cancelTransition = useCallback(() => {
+    pendingSlideRef.current = null;
+    setPendingSlide(null);
   }, []);
+
+  const completeTransition = useCallback(() => {
+    const nextSlide = pendingSlideRef.current;
+    if (nextSlide === null) return;
+
+    updateCurrentSlide(nextSlide);
+    pendingSlideRef.current = null;
+    setPendingSlide(null);
+  }, [updateCurrentSlide]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,7 +65,7 @@ export function useResponsiveCarousel(
         currentSlideRef.current * previousItemsPerSlide;
       const nextSlide = Math.floor(firstVisibleItem / nextItemsPerSlide);
 
-      finishTransition();
+      cancelTransition();
       itemsPerSlideRef.current = nextItemsPerSlide;
       setItemsPerSlide(nextItemsPerSlide);
       updateCurrentSlide(nextSlide);
@@ -69,34 +73,20 @@ export function useResponsiveCarousel(
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [finishTransition, updateCurrentSlide]);
-
-  useEffect(
-    () => () => {
-      if (transitionTimer.current !== null) {
-        clearTimeout(transitionTimer.current);
-      }
-    },
-    [],
-  );
+  }, [cancelTransition, updateCurrentSlide]);
 
   const changeSlide = useCallback(
     (newSlide: number) => {
-      if (isTransitioningRef.current || totalSlides === 0) return;
+      if (pendingSlideRef.current !== null || totalSlides === 0) return;
 
       const normalizedSlide =
         ((newSlide % totalSlides) + totalSlides) % totalSlides;
+      if (normalizedSlide === currentSlideRef.current) return;
 
-      isTransitioningRef.current = true;
-      setIsTransitioning(true);
-      transitionTimer.current = setTimeout(() => {
-        updateCurrentSlide(normalizedSlide);
-        transitionTimer.current = null;
-        isTransitioningRef.current = false;
-        setIsTransitioning(false);
-      }, transitionDuration);
+      pendingSlideRef.current = normalizedSlide;
+      setPendingSlide(normalizedSlide);
     },
-    [totalSlides, transitionDuration, updateCurrentSlide],
+    [totalSlides],
   );
 
   const nextSlide = useCallback(
@@ -117,5 +107,6 @@ export function useResponsiveCarousel(
     nextSlide,
     previousSlide,
     goToSlide: changeSlide,
+    completeTransition,
   };
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import type { Event } from "@/types";
@@ -13,20 +13,24 @@ export interface EventGalleryController {
 export function useEventDialog(events: Event[]) {
   const location = useLocation();
   const navigate = useNavigate();
-  const hasOpenedFromState = useRef(false);
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [isEventOpen, setIsEventOpen] = useState(false);
+  const eventIdFromRoute = (
+    location.state as { eventId?: string } | null
+  )?.eventId;
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(
+    eventIdFromRoute ?? null,
+  );
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
+  const selectedEvent =
+    events.find((event) => event.id === selectedEventId) ?? null;
 
   const openEvent = useCallback((event: Event) => {
-    setSelectedEvent(event);
-    window.setTimeout(() => setIsEventOpen(true), 10);
+    setSelectedEventId(event.id);
   }, []);
 
   const closeEvent = useCallback(() => {
-    setIsEventOpen(false);
-    window.setTimeout(() => setSelectedEvent(null), 300);
+    setIsGalleryOpen(false);
+    setSelectedEventId(null);
   }, []);
 
   const openGallery = useCallback((startIndex = 0) => {
@@ -39,19 +43,9 @@ export function useEventDialog(events: Event[]) {
   }, []);
 
   useEffect(() => {
-    const state = location.state as { eventId?: string } | null;
-    if (!state?.eventId || hasOpenedFromState.current) return;
-
-    const event = events.find((candidate) => candidate.id === state.eventId);
-    if (!event) return;
-
-    hasOpenedFromState.current = true;
-    window.setTimeout(() => {
-      setSelectedEvent(event);
-      setIsEventOpen(true);
-    }, 10);
+    if (!eventIdFromRoute) return;
     navigate(location.pathname, { replace: true, state: {} });
-  }, [events, location.pathname, location.state, navigate]);
+  }, [eventIdFromRoute, location.pathname, navigate]);
 
   const gallery: EventGalleryController = {
     isOpen: isGalleryOpen,
@@ -62,7 +56,7 @@ export function useEventDialog(events: Event[]) {
 
   return {
     selectedEvent,
-    isEventOpen,
+    isEventOpen: selectedEvent !== null,
     openEvent,
     closeEvent,
     gallery,

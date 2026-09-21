@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import DOMPurify from "dompurify";
 import { ChevronDown } from "lucide-react";
 
@@ -20,16 +20,6 @@ export default function ProjectAccordion({
   const rootRef = useRef<HTMLDivElement>(null);
   const images = project.images ?? [];
 
-  useEffect(() => {
-    if (!isExpanded) return;
-
-    const timeout = window.setTimeout(() => {
-      rootRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }, 200);
-
-    return () => window.clearTimeout(timeout);
-  }, [isExpanded]);
-
   return (
     <div ref={rootRef} className="mb-4">
       <Button
@@ -48,6 +38,18 @@ export default function ProjectAccordion({
       </Button>
 
       <div
+        onTransitionEnd={(event) => {
+          if (
+            event.target === event.currentTarget &&
+            event.propertyName === "grid-template-rows" &&
+            isExpanded
+          ) {
+            rootRef.current?.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            });
+          }
+        }}
         className={`grid transition-all duration-500 ease-in-out ${
           isExpanded
             ? "grid-rows-[1fr] mt-4 opacity-100"
