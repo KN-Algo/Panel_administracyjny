@@ -71,6 +71,37 @@ complete literal visible to the Tailwind scanner.
 Feature components may use shared primitives internally while retaining their
 domain-specific markup and behavior.
 
+## Public mobile navigation
+
+`src/components/layout/Navbar.tsx` composes the public header and passes the
+same translated links to desktop navigation and `MobileNavigation.tsx`.
+`MobileNavigation` owns the mobile popup, open state, route/breakpoint dismissal,
+and keyboard/focus handling. It receives the logo ref as a desktop focus target.
+Below `md`
+(768 px), a menu button exposes the home, team, projects, and events links.
+The header controls and menu fit a 320 px viewport; desktop links remain in
+the header. This change does not affect the administrator frontend.
+
+The menu uses the existing Radix Popover dependency directly, without importing
+administrator UI components. Its trigger supplies `aria-expanded` and
+`aria-controls`. Opening focuses the first link; Escape, selecting a link
+(including the current route), or a route change closes the menu and returns
+focus to the trigger. Outside pointer/focus interactions dismiss it without
+stealing focus from the selected control. Tab after the last link or Shift+Tab
+before the first closes the popup and returns focus to its trigger; this is a
+non-modal navigation popup, not an ARIA application menu.
+
+Crossing to the desktop breakpoint closes the popup and moves focus to the
+logo instead of the hidden trigger. The PL/EN/DE language controls remain
+available outside the popup; selecting a language also dismisses it, preserves
+focus on the language button, and updates translated menu labels.
+
+Regression checks: at 320 px, open the menu with keyboard and pointer, follow
+all four links, select the current route, navigate back/forward, dismiss with
+Escape and outside click, Tab out, switch PL/EN/DE with the menu open, and
+resize through 768 px. Check initial/return focus, trigger ARIA attributes,
+and the bounds of the popup and header controls.
+
 ## Adding or changing a shared component
 
 1. Confirm that the pattern occurs in more than one public context or is a
