@@ -36,6 +36,9 @@ Public components must not import from `components/ui`.
 | `Button` | Public button/link appearance with accessible focus styles | `appearance`, `size`, `motion`, `asChild` |
 | `Surface` | Container formatting without long local utility lists | `tone`, `radius`, `padding`, `shadow`, `border`, `interaction` |
 | `IconFrame` | Icon size, centering, background, placement and interaction | `size`, `radius`, `tone`, `placement`, `interaction` |
+| `Dialog` | Accessible modal foundation with focus and scroll management | `open`, `onClose`, `title`, `closeOnBackdrop` |
+| `ImageGalleryDialog` | Full-screen image gallery shared by events and projects | `images`, `initialIndex`, `open`, `onClose`, `title` |
+| `useGalleryNavigation` | Circular previous/next and direct image navigation | `itemCount`, `initialIndex` |
 
 The `className` prop is available for genuinely local decoration or layout
 integration. It must not be used by page composition to recreate a variant
@@ -61,8 +64,6 @@ complete literal visible to the Tailwind scanner.
 | Event cards, grid, and event content | Events feature; owned by the events refactor task |
 | Project accordion, sections, and image carousel | Projects feature; owned by the projects refactor task |
 | Member and supervisor cards | Team feature; owned by the team refactor task |
-| Complete dialog behavior | Separate accessible-dialog task; a style wrapper alone is not sufficient |
-| Complete gallery, carousel arrows, dots, counters, and transitions | Explicitly excluded from this migration |
 | Particles and decorative feature animation | Unique to the home page and the reduced-motion task |
 | JSON selection, sanitization, and translated content | Data and feature responsibility, not presentation primitives |
 | Navbar and Footer composition | Unique application-shell components that already have one owner |

@@ -3,19 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import type { Event } from "@/types";
 
-type GalleryDirection = "next" | "prev";
-type SlideDirection = "left" | "right";
-
 export interface EventGalleryController {
-  isMounted: boolean;
   isOpen: boolean;
-  images: string[];
-  currentSlide: number;
-  slideDirection: SlideDirection;
-  isTransitioning: boolean;
-  open: (images: string[], startIndex?: number) => void;
+  initialIndex: number;
+  open: (startIndex?: number) => void;
   close: () => void;
-  changeSlide: (direction: GalleryDirection) => void;
 }
 
 export function useEventDialog(events: Event[]) {
@@ -24,13 +16,8 @@ export function useEventDialog(events: Event[]) {
   const hasOpenedFromState = useRef(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isEventOpen, setIsEventOpen] = useState(false);
-  const [isGalleryMounted, setIsGalleryMounted] = useState(false);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-  const [galleryImages, setGalleryImages] = useState<string[]>([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [slideDirection, setSlideDirection] =
-    useState<SlideDirection>("right");
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
 
   const openEvent = useCallback((event: Event) => {
     setSelectedEvent(event);
@@ -42,44 +29,14 @@ export function useEventDialog(events: Event[]) {
     window.setTimeout(() => setSelectedEvent(null), 300);
   }, []);
 
-  const openGallery = useCallback((images: string[], startIndex = 0) => {
-    setGalleryImages(
-      images.map((image) => image.replace("../img/", "/img/")),
-    );
-    setCurrentSlide(startIndex);
-    setIsGalleryMounted(true);
-    window.setTimeout(() => setIsGalleryOpen(true), 10);
+  const openGallery = useCallback((startIndex = 0) => {
+    setGalleryInitialIndex(startIndex);
+    setIsGalleryOpen(true);
   }, []);
 
   const closeGallery = useCallback(() => {
     setIsGalleryOpen(false);
-    window.setTimeout(() => {
-      setIsGalleryMounted(false);
-      setGalleryImages([]);
-      setCurrentSlide(0);
-      setIsTransitioning(false);
-    }, 300);
   }, []);
-
-  const changeGallerySlide = useCallback(
-    (direction: GalleryDirection) => {
-      if (isTransitioning) return;
-
-      setSlideDirection(direction === "next" ? "right" : "left");
-      setIsTransitioning(true);
-      window.setTimeout(() => {
-        setCurrentSlide((previousSlide) =>
-          direction === "next"
-            ? (previousSlide + 1) % galleryImages.length
-            : previousSlide === 0
-              ? galleryImages.length - 1
-              : previousSlide - 1,
-        );
-        setIsTransitioning(false);
-      }, 300);
-    },
-    [galleryImages.length, isTransitioning],
-  );
 
   useEffect(() => {
     const state = location.state as { eventId?: string } | null;
@@ -96,28 +53,11 @@ export function useEventDialog(events: Event[]) {
     navigate(location.pathname, { replace: true, state: {} });
   }, [events, location.pathname, location.state, navigate]);
 
-  useEffect(() => {
-    if (!isGalleryMounted) return;
-
-    const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
-      if (keyboardEvent.key === "ArrowLeft") changeGallerySlide("prev");
-      if (keyboardEvent.key === "ArrowRight") changeGallerySlide("next");
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [changeGallerySlide, isGalleryMounted]);
-
   const gallery: EventGalleryController = {
-    isMounted: isGalleryMounted,
     isOpen: isGalleryOpen,
-    images: galleryImages,
-    currentSlide,
-    slideDirection,
-    isTransitioning,
+    initialIndex: galleryInitialIndex,
     open: openGallery,
     close: closeGallery,
-    changeSlide: changeGallerySlide,
   };
 
   return {

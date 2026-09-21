@@ -19,7 +19,7 @@ interface DialogProps
 }
 
 /**
- * Shared modal foundation for both public and administrative frontends.
+ * Shared modal foundation for public frontend features.
  *
  * It owns dialog semantics, focus management, Escape handling and page scroll
  * locking. Feature components only provide their content and visual styling.

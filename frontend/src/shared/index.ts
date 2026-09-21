@@ -1,5 +1,6 @@
 export { Button } from "./components/actions/Button";
 export { IconFrame } from "./components/display/IconFrame";
+export { ImageGalleryDialog } from "./components/display/ImageGalleryDialog";
 export { Surface } from "./components/display/Surface";
 export { ContentContainer } from "./components/layout/ContentContainer";
 export { FeaturePageHeader } from "./components/layout/FeaturePageHeader";
@@ -9,3 +10,4 @@ export { Section } from "./components/layout/Section";
 export { Dialog } from "./components/overlay/Dialog";
 export { Heading } from "./components/typography/Heading";
 export { Text } from "./components/typography/Text";
+export { useGalleryNavigation } from "./hooks/useGalleryNavigation";
