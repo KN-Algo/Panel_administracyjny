@@ -31,6 +31,7 @@ export default function NewsCarousel({
     nextSlide,
     previousSlide,
     goToSlide,
+    completeTransition,
   } = useResponsiveCarousel(news.length);
 
   const displayedNews = news.slice(
@@ -70,6 +71,12 @@ export default function NewsCarousel({
 
           <div className="min-h-[620px] flex items-center justify-center">
             <div
+              onTransitionEnd={(event) => {
+                if (event.target === event.currentTarget) completeTransition();
+              }}
+              onTransitionCancel={(event) => {
+                if (event.target === event.currentTarget) completeTransition();
+              }}
               className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 w-full max-w-7xl transition-all duration-300 ease-in-out ${
                 isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
               }`}
