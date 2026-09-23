@@ -2,6 +2,7 @@ package algo.dto;
 
 import algo.module.Project;
 import algo.module.ProjectType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +18,35 @@ import java.util.List;
  * @param translations localized project translations
  */
 @ResponseBody
+@Schema(description = "Obiekt żądania używany do tworzenia lub aktualizacji danych projektu", example = """
+        {
+          "status": "COMPLETED",
+          "displayOrder": 1,
+          "images": [
+            "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+          ],
+          "translations": [
+            {
+              "translationId": 2,
+              "languageCode": "EN",
+              "title": "KN Algo Web Application",
+              "description": "<p>Detailed description of the project and technologies used.</p>"
+            },
+            {
+              "translationId": 1,
+              "languageCode": "PL",
+              "title": "Aplikacja Webowa KN Algo",
+              "description": "<p>Szczegółowy opis projektu i użytych technologii.</p>"
+            },
+            {
+              "translationId": 3,
+              "languageCode": "DE",
+              "title": "KN Algo Webanwendung",
+              "description": "<p>Detaillierte Beschreibung des Projekts und der verwendeten Technologien.</p>"
+            }
+          ]
+        }
+        """)
 public record ProjectRequestDto(
     @NotNull ProjectType status,
     Integer displayOrder,
