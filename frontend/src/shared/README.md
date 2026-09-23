@@ -101,6 +101,15 @@ stealing focus from the selected control. Tab after the last link or Shift+Tab
 before the first closes the popup and returns focus to its trigger; this is a
 navigation disclosure, not an ARIA application menu.
 
+Every press of `MobileNavigationTrigger` plays a 620 ms border glow; its hook
+restarts the animation for rapid presses. `MobileNavigationLinks` delegates
+route changes to `useMobileLinkNavigation`: clicking a different route first
+brightens its text and grows the underline for 400 ms, then navigates. During
+that interval, the remaining links are disabled to preserve the selected path.
+The underline grows at a constant pace, so its visible progress matches the
+navigation delay. The delay stays below 0.8 seconds and is skipped for
+reduced-motion users.
+
 Crossing to the desktop breakpoint closes the popup and moves focus to the
 logo instead of the hidden trigger. The PL/EN/DE language controls remain
 available outside the popup; selecting a language also dismisses it, preserves
@@ -112,6 +121,8 @@ Escape and outside click, Tab out, switch PL/EN/DE with the menu open, and
 resize through 768 px. Check initial/return focus, trigger ARIA attributes,
 and the bounds of the panel and header controls. Also check opening/closing
 animation, rapid toggling, short viewports (scrollable links), and reduced motion.
+Verify the trigger glow on both opening and closing; then select a different
+link and confirm its text and underline animate before the route changes.
 
 ## Adding or changing a shared component
 
