@@ -93,10 +93,13 @@ warstwy. Canvas ma bufor `48px` poza każdym widocznym bokiem Hero:
 - `px-12 py-12` kompensuje rozszerzenie i zachowuje wcześniejsze położenie
   treści.
 
-Publiczny navbar ma wysokość `120px`. Po rozszerzeniu obu pionowych granic
-rzeczywista wysokość Hero wynosi `calc(100vh - 24px)`, ale dwa ujemne marginesy
-sprawiają, że widoczna wysokość strony nadal odpowiada
-`calc(100vh - 120px)` i nie przesuwa sekcji About.
+Publiczny navbar nie ma stałej wysokości. `Layout` mierzy jego wysokość przez
+`ResizeObserver` i zapisuje ją jako `--public-navbar-height`; wartość obejmuje
+aktualne logo i pionowe odstępy na telefonie, tablecie oraz desktopie.
+Po rozszerzeniu obu pionowych granic Hero ma minimalną wysokość
+`calc(100svh - var(--public-navbar-height) + 6rem)`. Dwa ujemne marginesy
+sprawiają, że widoczna część strony od dolnej krawędzi navbaru do sekcji About
+odpowiada `calc(100svh - var(--public-navbar-height))`, bez przesuwania About.
 
 Rozszerzenia są celowymi granicami animacji: cząsteczki są usuwane dopiero w
 zamaskowanych obszarach, zamiast znikać dokładnie na widocznych krawędziach.

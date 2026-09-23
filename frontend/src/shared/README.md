@@ -84,8 +84,13 @@ open state, route/breakpoint dismissal, and keyboard/focus handling. It receives
 the logo ref as a desktop focus target.
 Below `md`
 (768 px), a menu button exposes the home, team, projects, and events links.
-The header controls and menu fit a 320 px viewport; desktop links remain in
-the header. This change does not affect the administrator frontend.
+The header controls and menu fit a 320 px viewport; the smallest navbar is
+72 px tall, leaving 14 px above and below its 44 px controls. Desktop links
+remain in the header. The public navbar is content-sized: its logo and vertical padding
+scale across breakpoints, while language controls retain a 44 px minimum touch
+target. `Layout` exposes its measured height through `--public-navbar-height`
+for the mobile menu and home Hero. This change does not affect the administrator
+frontend.
 
 The menu extends the full width of the navbar directly below its bottom edge,
 overlaying page content without shifting it. `mobile-navigation.css` animates

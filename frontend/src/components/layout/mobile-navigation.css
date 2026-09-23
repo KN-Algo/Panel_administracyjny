@@ -21,7 +21,7 @@
 }
 
 .mobile-navigation__links {
-  max-height: calc(100dvh - 120px);
+  max-height: calc(100dvh - var(--public-navbar-height));
   overflow-y: auto;
 }
 

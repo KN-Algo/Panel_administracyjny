@@ -2,11 +2,17 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MobileNavigation from "./MobileNavigation";
+import { useElementHeight } from "./useElementHeight";
 import { Button, ContentContainer } from "@/shared";
 
-export default function Navbar() {
+interface NavbarProps {
+  onHeightChange: (height: number) => void;
+}
+
+export default function Navbar({ onHeightChange }: NavbarProps) {
   const { t, i18n } = useTranslation();
   const logoRef = useRef<HTMLAnchorElement>(null);
+  const navbarRef = useElementHeight<HTMLElement>(onHeightChange);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -20,20 +26,20 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-brand-dark text-white sticky top-0 z-50 shadow-lg h-[120px] flex items-center">
-      <ContentContainer>
-        <div className="flex items-center justify-between py-3">
+    <nav ref={navbarRef} className="sticky top-0 z-50 bg-brand-dark text-white shadow-lg">
+      <ContentContainer className="px-3 sm:px-4">
+        <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
           <Link ref={logoRef} to="/" className="flex shrink-0 items-center">
             <img
               src="/img/favicos/favicon.svg"
               alt="Logo"
-              className="h-14 w-14 md:h-20 md:w-20"
+              className="h-12 w-12 sm:h-14 sm:w-14 md:h-20 md:w-20"
             />
           </Link>
 
           {/* Navigation Links */}
-          <ul className="hidden md:flex space-x-6 items-center">
+          <ul className="hidden items-center space-x-6 md:flex">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
@@ -48,11 +54,11 @@ export default function Navbar() {
           </ul>
 
           {/* Language Switcher */}
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
             {["pl", "en", "de"].map((lang) => (
               <Button
                 key={lang}
-                className="min-h-11 px-2 md:px-4"
+                className="min-h-11 min-w-11 px-1.5 sm:px-2 md:px-4"
                 onClick={() => changeLanguage(lang)}
                 appearance={
                   i18n.language === lang ? "light" : "outlineOnDark"
