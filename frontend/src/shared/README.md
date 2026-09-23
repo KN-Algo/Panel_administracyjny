@@ -71,6 +71,67 @@ complete literal visible to the Tailwind scanner.
 Feature components may use shared primitives internally while retaining their
 domain-specific markup and behavior.
 
+## Public mobile navigation
+
+`src/components/layout/Navbar.tsx` composes the public header and passes the
+same translated links to desktop navigation and `MobileNavigation.tsx`.
+`MobileNavigation` only composes the components in `layout/mobile-navigation/`:
+`MobileNavigationTrigger` owns the button and its ARIA attributes,
+`MobileNavigationPanel` owns the animated panel structure and Tab boundary handling,
+and `MobileNavigationLinks` renders translated links and their active state.
+`PublicNavigationLink` is the shared `NavLink` wrapper used by the desktop and
+mobile variants. It uses exact route matching, supplies `aria-current="page"`
+for the active route, and owns their visible active and keyboard-focus states.
+`useMobileNavigation` owns its
+open state, route/breakpoint dismissal, and keyboard/focus handling. It receives
+the logo ref as a desktop focus target.
+Below `md`
+(768 px), a menu button exposes the home, team, projects, and events links.
+The header controls and menu fit a 320 px viewport; the smallest navbar is
+72 px tall, leaving 14 px above and below its 44 px controls. Desktop links
+remain in the header. The public navbar is content-sized: its logo and vertical padding
+scale across breakpoints, while language controls retain a 44 px minimum touch
+target. `Layout` exposes its measured height through `--public-navbar-height`
+for the mobile menu and home Hero. This change does not affect the administrator
+frontend.
+
+The menu extends the full width of the navbar directly below its bottom edge,
+overlaying page content without shifting it. `mobile-navigation.css` animates
+the panel height in both directions (320 ms) and staggers the link entrances.
+The panel stays mounted for smooth reversal during rapid toggling; closed links
+are immediately inert and hidden from assistive technology. Reduced-motion
+preferences disable the transitions. No portal or floating dialog is used.
+Its trigger supplies `aria-expanded` and
+`aria-controls`. Opening focuses the first link; Escape, selecting a link
+(including the current route), or a route change closes the menu and returns
+focus to the trigger. Outside pointer/focus interactions dismiss it without
+stealing focus from the selected control. Tab after the last link or Shift+Tab
+before the first closes the popup and returns focus to its trigger; this is a
+navigation disclosure, not an ARIA application menu.
+
+Every press of `MobileNavigationTrigger` plays a 620 ms border glow; its hook
+restarts the animation for rapid presses. `MobileNavigationLinks` delegates
+route changes to `useMobileLinkNavigation`: clicking a different route first
+brightens its text and grows the underline for 400 ms, then navigates. During
+that interval, the remaining links are disabled to preserve the selected path.
+The underline grows at a constant pace, so its visible progress matches the
+navigation delay. The delay stays below 0.8 seconds and is skipped for
+reduced-motion users.
+
+Crossing to the desktop breakpoint closes the popup and moves focus to the
+logo instead of the hidden trigger. The PL/EN/DE language controls remain
+available outside the popup; selecting a language also dismisses it, preserves
+focus on the language button, and updates translated menu labels.
+
+Regression checks: at 320 px, open the menu with keyboard and pointer, follow
+all four links, select the current route, navigate back/forward, dismiss with
+Escape and outside click, Tab out, switch PL/EN/DE with the menu open, and
+resize through 768 px. Check initial/return focus, trigger ARIA attributes,
+and the bounds of the panel and header controls. Also check opening/closing
+animation, rapid toggling, short viewports (scrollable links), and reduced motion.
+Verify the trigger glow on both opening and closing; then select a different
+link and confirm its text and underline animate before the route changes.
+
 ## Adding or changing a shared component
 
 1. Confirm that the pattern occurs in more than one public context or is a
