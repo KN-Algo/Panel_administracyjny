@@ -52,6 +52,12 @@
   transform-origin: left;
 }
 
+.mobile-navigation__link--active {
+  color: white;
+  font-weight: 600;
+  box-shadow: inset 3px 0 var(--color-brand-light);
+}
+
 .mobile-navigation__link--navigating {
   color: white;
   text-shadow: 0 0 12px rgb(255 255 255 / 65%);

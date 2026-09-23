@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { PublicNavigationLink } from "../PublicNavigationLink";
 import { useMobileLinkNavigation } from "./useMobileLinkNavigation";
 
 export interface NavigationLink {
@@ -26,15 +26,15 @@ export function MobileNavigationLinks({ links, pathname, onNavigate }: MobileNav
           className="mobile-navigation__item"
           style={{ "--link-index": index } as CSSProperties}
         >
-          <Link
+          <PublicNavigationLink
             to={link.path}
-            aria-current={pathname === link.path ? "page" : undefined}
-            aria-disabled={pendingPath !== null || undefined}
+            variant="mobile"
+            disabled={pendingPath !== null}
+            navigating={pendingPath === link.path}
             onClick={(event) => navigateAfterAnimation(link.path, pathname === link.path, event)}
-            className={`mobile-navigation__link flex min-h-12 items-center rounded-md px-3 py-3 text-lg text-brand-light hover:bg-brand-dark-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-light${pendingPath === link.path ? " mobile-navigation__link--navigating" : ""}`}
           >
             {link.label}
-          </Link>
+          </PublicNavigationLink>
         </li>
       ))}
     </ul>

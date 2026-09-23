@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MobileNavigation from "./MobileNavigation";
 import { useElementHeight } from "./useElementHeight";
+import { PublicNavigationLink } from "./PublicNavigationLink";
 import { Button, ContentContainer } from "@/shared";
 
 interface NavbarProps {
@@ -42,13 +43,12 @@ export default function Navbar({ onHeightChange }: NavbarProps) {
           <ul className="hidden items-center space-x-6 md:flex">
             {navLinks.map((link) => (
               <li key={link.path}>
-                <Link
+                <PublicNavigationLink
                   to={link.path}
-                  className="relative text-brand-light transition-colors hover:text-white group"
+                  variant="desktop"
                 >
                   {link.label}
-                  <span className="absolute left-0 -bottom-[3px] w-0 h-0.5 bg-brand-light transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                </PublicNavigationLink>
               </li>
             ))}
           </ul>

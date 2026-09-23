@@ -79,6 +79,9 @@ same translated links to desktop navigation and `MobileNavigation.tsx`.
 `MobileNavigationTrigger` owns the button and its ARIA attributes,
 `MobileNavigationPanel` owns the animated panel structure and Tab boundary handling,
 and `MobileNavigationLinks` renders translated links and their active state.
+`PublicNavigationLink` is the shared `NavLink` wrapper used by the desktop and
+mobile variants. It uses exact route matching, supplies `aria-current="page"`
+for the active route, and owns their visible active and keyboard-focus states.
 `useMobileNavigation` owns its
 open state, route/breakpoint dismissal, and keyboard/focus handling. It receives
 the logo ref as a desktop focus target.
