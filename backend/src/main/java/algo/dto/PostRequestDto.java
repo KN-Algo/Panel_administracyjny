@@ -1,6 +1,7 @@
 package algo.dto;
 
 import algo.module.PostType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,40 @@ import java.util.List;
  * @param externalLink external link for the post
  * @param translations localized post translations
  */
+@Schema(description = "Obiekt żądania do tworzenia lub edycji posta/wydarzenia", example = """
+        {
+          "postType": "NEWS",
+          "eventDate": "2026-10-01T12:00:00",
+          "startsAt": "2026-09-20T08:00:00",
+          "expiresAt": "2026-10-02T23:59:59",
+          "thumbnailUrl": "https://example.com/thumb.jpg",
+          "imageUrls": [
+            "https://example.com/img1.jpg",
+            "https://example.com/img2.jpg"
+          ],
+          "externalLink": "https://pwr.edu.pl",
+          "translations": [
+            {
+              "languageCode": "pl",
+              "title": "Nowa rekrutacja do KN Algo",
+              "shortDescription": "Dołącz do nas!",
+              "fullDescription": "<p>Pełny opis rekrutacji na nowy semestr...</p>"
+            },
+            {
+              "languageCode": "en",
+              "title": "New recruitment for KN Algo",
+              "shortDescription": "Join us!",
+              "fullDescription": "<p>Full description of the recruitment process...</p>"
+            },
+            {
+              "languageCode": "de",
+              "title": "Neue Rekrutierung für KN Algo",
+              "shortDescription": "Mach mit!",
+              "fullDescription": "<p>Vollständige Beschreibung des Rekrutierungsprozesses...</p>"
+            }
+          ]
+        }
+        """)
 public record PostRequestDto(
     @NotNull PostType postType,
     @NotNull LocalDateTime eventDate,
