@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/features/admin/components/ui/breadcrumb";
 import { getBreadcrumbs } from "@/features/admin/config/navigation";
 
 export function AdminBreadcrumbs() {

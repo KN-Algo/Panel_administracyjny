@@ -7,7 +7,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from "@/features/admin/components/ui/alert-dialog";
 import { buttonVariants } from "@/components/ui/button";
 
 interface ConfirmDialogProps {

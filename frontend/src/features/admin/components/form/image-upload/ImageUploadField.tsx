@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/features/admin/components/ui/label";
 import { ImageDropzone } from "./ImageDropzone";
 import { ImageTile } from "./ImageTile";
 import { useImageUpload } from "./useImageUpload";

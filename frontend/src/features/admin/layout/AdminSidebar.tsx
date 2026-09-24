@@ -12,7 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar";
+} from "@/features/admin/components/ui/sidebar";
 import {
   NAV_GROUPS,
   isNavItemActive,

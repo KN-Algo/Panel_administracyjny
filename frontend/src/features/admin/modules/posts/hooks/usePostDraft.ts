@@ -28,22 +28,28 @@ export function usePostDraft(initialValues?: PostDraft) {
     setDraft((prev) => ({ ...prev, [field]: value }));
   };
 
-  const updateTranslation = (
+    const updateTranslation = (
     lang: LangCode,
     field: TranslationField,
     value: string,
   ) => {
     setDraft((prev) => ({
       ...prev,
-      translations: prev.translations.map((t) =>
-        t.languageCode === lang ? { ...t, [field]: value } : t,
-      ),
+      translations: {
+        ...prev.translations,
+        [lang]: { ...prev.translations[lang], [field]: value },
+      },
     }));
   };
 
+
   const addImages = (urls: string[]) => {
-    setDraft((prev) => ({ ...prev, imageUrls: [...prev.imageUrls, ...urls] }));
+    setDraft((prev) => ({
+      ...prev,
+      imageUrls: [...new Set([...prev.imageUrls, ...urls])],
+    }));
   };
+
 
   const removeImage = (idx: number) => {
     setDraft((prev) => {
@@ -60,7 +66,7 @@ export function usePostDraft(initialValues?: PostDraft) {
   // zwraca true, gdy szkic jest poprawny
   const validate = () => {
     setSubmitAttempted(true);
-    return !hasErrors(allErrors);
+    return hasErrors(allErrors) ? allErrors : null;
   };
 
   const markSaved = () => {

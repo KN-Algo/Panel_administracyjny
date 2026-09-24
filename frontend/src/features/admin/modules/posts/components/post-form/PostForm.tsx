@@ -7,7 +7,6 @@ import { ADMIN_PATHS } from "@/features/admin/config/paths";
 import { usePostDraft } from "../../hooks/usePostDraft";
 import { LANGS } from "../../model/constants";
 import type { LangCode, PostDraft } from "../../model/types";
-import { validatePostDraft } from "../../model/validation";
 import { PostMediaSection } from "./PostMediaSection";
 import { PostSettingsSection } from "./PostSettingsSection";
 import { TranslationsSection } from "./TranslationsSection";
@@ -37,10 +36,10 @@ export function PostForm({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!post.validate()) {
+    const validationErrors = post.validate();
+    if (validationErrors) {
       // przełącz na pierwszy język z błędami i przewiń do pierwszego błędnego pola
-      const langErrors = validatePostDraft(draft).langs;
-      const firstLangWithError = LANGS.find((l) => langErrors[l.code]);
+      const firstLangWithError = LANGS.find((l) => validationErrors.langs[l.code]);
       if (firstLangWithError) setActiveLang(firstLangWithError.code);
       setStatus("invalid");
       requestAnimationFrame(() => {
@@ -91,9 +90,18 @@ export function PostForm({
           />
           <PostMediaSection
             draft={draft}
-            onAddImages={post.addImages}
-            onRemoveImage={post.removeImage}
-            onThumbnailChange={(url) => post.updateField("thumbnailUrl", url)}
+            onAddImages={(urls) => {
+              post.addImages(urls);
+              setStatus("idle");
+            }}
+            onRemoveImage={(index) => {
+              post.removeImage(index);
+              setStatus("idle");
+            }}
+            onThumbnailChange={(url) => {
+              post.updateField("thumbnailUrl", url);
+              setStatus("idle");
+            }}
           />
         </div>
       </div>

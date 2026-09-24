@@ -1,5 +1,5 @@
 import { useId, type ReactNode } from "react";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/features/admin/components/ui/label";
 import { cn } from "@/lib/utils";
 
 interface FieldControlProps {
@@ -32,7 +32,7 @@ export function FormField({
   const id = useId();
   const hintId = `${id}-hint`;
   const errorId = `${id}-error`;
-  const describedBy = [hint && hintId, error && errorId]
+  const describedBy = [hint && !error && hintId, error && errorId]
     .filter(Boolean)
     .join(" ");
 

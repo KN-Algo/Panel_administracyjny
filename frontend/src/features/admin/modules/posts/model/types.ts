@@ -28,7 +28,7 @@ export interface PostDraft {
   imageUrls: string[];
   // Krystian chciał usunąć to pole - zostaje zgodnie z przykładowym payloadem z dokumentacji
   externalLink: string;
-  translations: Translation[];
+  translations: Record<LangCode, Translation>;
 }
 
 export type DateField = "eventDate" | "startsAt" | "expiresAt";

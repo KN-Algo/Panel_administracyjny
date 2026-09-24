@@ -1,7 +1,7 @@
 import { ExternalLink, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@/features/admin/components/ui/sidebar";
 import { useAdminAuth } from "@/features/admin/auth/useAdminAuth";
 import { AdminBreadcrumbs } from "./AdminBreadcrumbs";
 

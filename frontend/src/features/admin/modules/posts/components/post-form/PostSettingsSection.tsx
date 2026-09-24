@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/features/admin/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { FormField } from "@/features/admin/components/form/FormField";
 import { FormSection } from "@/features/admin/components/form/FormSection";

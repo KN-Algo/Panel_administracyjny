@@ -5,9 +5,13 @@ import { cn } from "@/lib/utils";
 interface ImageDropzoneProps {
   id?: string;
   uploading: boolean;
-  onFiles: (files: FileList | null) => void;
+  onFiles: (files: File[]) => void;
   "aria-describedby"?: string;
 }
+
+const toImageFiles = (fileList: FileList | null) =>
+  Array.from(fileList ?? []).filter((file) => file.type.startsWith("image/"));
+
 
 export function ImageDropzone({
   id,
@@ -25,7 +29,6 @@ export function ImageDropzone({
   return (
     <>
       <div
-        id={id}
         role="button"
         tabIndex={0}
         aria-disabled={uploading}
@@ -41,8 +44,9 @@ export function ImageDropzone({
         onDrop={(e) => {
           e.preventDefault();
           setIsDragging(false);
-          if (!uploading) onFiles(e.dataTransfer.files);
+          if (!uploading) onFiles(toImageFiles(e.dataTransfer.files));
         }}
+
         onClick={openPicker}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -77,15 +81,17 @@ export function ImageDropzone({
       </div>
       <input
         ref={fileInputRef}
+        id={id}
         type="file"
         accept="image/*"
         multiple
         className="hidden"
         tabIndex={-1}
         onChange={(e) => {
-          onFiles(e.target.files);
+          onFiles(toImageFiles(e.target.files));
           e.target.value = "";
         }}
+
       />
     </>
   );

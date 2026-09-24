@@ -2,7 +2,7 @@ import eventsPl from "@/data/events_pl.json";
 import eventsEn from "@/data/events_en.json";
 import eventsDe from "@/data/events_de.json";
 import { LANGS, createEmptyDraft } from "../model/constants";
-import type { LangCode, PostDraft, PostRow } from "../model/types";
+import type { LangCode, PostDraft, PostRow, Translation } from "../model/types";
 
 // dane tymczasowe z JSON-ów strony - do podmiany na GET /api/posts
 
@@ -39,14 +39,20 @@ export function getMockPostDraft(id: string): PostDraft | null {
     postType: "STANDARD",
     thumbnailUrl: toAbsoluteUrl(base.thumbnail),
     imageUrls: (base.images ?? []).map(toAbsoluteUrl),
-    translations: LANGS.map(({ code }) => {
-      const event = EVENTS_BY_LANG[code].find((e) => e.id === id);
-      return {
-        languageCode: code,
-        title: event?.title ?? "",
-        shortDescription: "",
-        fullDescription: event?.description ?? "",
-      };
-    }),
+    translations: Object.fromEntries(
+      LANGS.map(({ code }) => {
+        const event = EVENTS_BY_LANG[code].find((e) => e.id === id);
+        return [
+          code,
+          {
+            languageCode: code,
+            title: event?.title ?? "",
+            shortDescription: "",
+            fullDescription: event?.description ?? "",
+          },
+        ];
+      }),
+    ) as Record<LangCode, Translation>,
+
   };
 }

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/features/admin/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageFallback } from "@/features/admin/components/PageFallback";
 import { AdminHeader } from "./AdminHeader";

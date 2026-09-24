@@ -22,7 +22,7 @@ const isTranslationEmpty = (t: Translation) =>
   t.shortDescription.trim() === "";
 
 export const getTranslation = (draft: PostDraft, lang: LangCode) =>
-  draft.translations.find((t) => t.languageCode === lang)!;
+  draft.translations[lang];
 
 export const getMissingLangs = (draft: PostDraft) =>
   LANGS.filter((l) => !isTranslationComplete(getTranslation(draft, l.code)));
@@ -32,9 +32,9 @@ export const getMissingLangs = (draft: PostDraft) =>
 export function validatePostDraft(draft: PostDraft): PostDraftErrors {
   const errors: PostDraftErrors = { langs: {}, dates: {} };
 
-  const hasComplete = draft.translations.some(isTranslationComplete);
+  const hasComplete = Object.values(draft.translations).some(isTranslationComplete);
 
-  for (const t of draft.translations) {
+  for (const t of Object.values(draft.translations)) {
     // puste języki pomijamy, ale zaczęte tłumaczenie musi być kompletne
     const mustValidate = hasComplete
       ? !isTranslationEmpty(t)

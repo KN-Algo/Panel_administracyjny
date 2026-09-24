@@ -1,4 +1,4 @@
-import type { LangCode, PostDraft, PostType } from "./types";
+import type { LangCode, PostDraft, PostType, Translation } from "./types";
 
 export const LANGS: { code: LangCode; label: string; name: string }[] = [
   { code: "pl", label: "PL", name: "polski" },
@@ -45,10 +45,16 @@ export const createEmptyDraft = (): PostDraft => ({
   thumbnailUrl: "",
   imageUrls: [],
   externalLink: "",
-  translations: LANGS.map(({ code }) => ({
-    languageCode: code,
-    title: "",
-    shortDescription: "",
-    fullDescription: "",
-  })),
+    translations: Object.fromEntries(
+    LANGS.map(({ code }) => [
+      code,
+      {
+        languageCode: code,
+        title: "",
+        shortDescription: "",
+        fullDescription: "",
+      },
+    ]),
+  ) as Record<LangCode, Translation>,
+
 });

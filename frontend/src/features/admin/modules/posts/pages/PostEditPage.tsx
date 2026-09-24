@@ -41,7 +41,7 @@ export function PostEditPage() {
       <PageHeader
         icon={FileEdit}
         title="Edytuj post"
-        description={initialValues.translations[0].title}
+        description={initialValues.translations.pl.title}
         actions={
           <Button asChild variant="ghost">
             <Link to={ADMIN_PATHS.posts}>

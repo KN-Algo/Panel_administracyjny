@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/features/admin/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { LANGS } from "../../model/constants";
 import type { LangCode } from "../../model/types";
