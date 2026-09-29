@@ -35,6 +35,10 @@ export function useMobileLinkNavigation(pathname: string, onClose: () => void) {
 
     setPendingNavigation({ path, pathname });
     timeoutRef.current = window.setTimeout(() => {
+      // The navigation shell remains mounted between routes. Clear this transient
+      // animation state before changing history so it cannot reappear after Back.
+      setPendingNavigation(null);
+      timeoutRef.current = null;
       navigate(path);
       onClose();
     }, navigationDelay);
