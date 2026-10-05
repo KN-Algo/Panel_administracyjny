@@ -75,7 +75,7 @@ domain-specific markup and behavior.
 
 `src/components/layout/Navbar.tsx` composes the public header and passes the
 same translated links to desktop navigation and `MobileNavigation.tsx`.
-`MobileNavigation` only composes the components in `layout/mobile-navigation/`:
+`MobileNavigation` only composes the components in `components/mobile/navigation/`:
 `MobileNavigationTrigger` owns the button and its ARIA attributes,
 `MobileNavigationPanel` owns the animated panel structure and Tab boundary handling,
 and `MobileNavigationLinks` renders translated links and their active state.

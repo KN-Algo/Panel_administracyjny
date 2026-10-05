@@ -1,9 +1,9 @@
 import { useId, type RefObject } from "react";
-import { MobileNavigationTrigger } from "./mobile-navigation/MobileNavigationTrigger";
-import { MobileNavigationPanel } from "./mobile-navigation/MobileNavigationPanel";
-import { MobileNavigationLinks, type NavigationLink } from "./mobile-navigation/MobileNavigationLinks";
+import { MobileNavigationTrigger } from "./navigation/MobileNavigationTrigger";
+import { MobileNavigationPanel } from "./navigation/MobileNavigationPanel";
+import { MobileNavigationLinks, type NavigationLink } from "./navigation/MobileNavigationLinks";
 import { useMobileNavigation } from "./useMobileNavigation";
-import "./mobile-navigation.css";
+import "./navigation.css";
 
 interface MobileNavigationProps {
   links: NavigationLink[];

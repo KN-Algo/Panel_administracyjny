@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
-import { PublicNavigationLink } from "../PublicNavigationLink";
+import { PublicNavigationLink } from "../../layout/PublicNavigationLink";
 import { useMobileLinkNavigation } from "./useMobileLinkNavigation";
 
 export interface NavigationLink {
