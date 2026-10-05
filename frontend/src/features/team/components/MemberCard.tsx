@@ -34,6 +34,7 @@ export default function MemberCard({
       cursor={hasDetails ? "pointer" : "default"}
       textAlign="left"
       group
+      className="team-member-card"
       aria-label={hasDetails ? fullName : undefined}
     >
       {hasDetails && (
@@ -46,19 +47,19 @@ export default function MemberCard({
           <ArrowRight size={14} />
         </IconFrame>
       )}
-      <div className="py-5 px-5 flex flex-col items-center">
+      <div className="team-member-card__content py-5 px-5 flex flex-col items-center">
         <div className="mb-0">
           <img
             src={member.image.replace("../img/", "/img/")}
             alt={fullName}
-            className="w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
+            className="team-member-card__image w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
           />
         </div>
-        <h3 className="text-white text-base font-normal text-center mb-1 mt-4">
+        <h3 className="team-member-card__name text-white text-base font-normal text-center mb-1 mt-4">
           {fullName}
         </h3>
         {positionLabel && (
-          <p className="text-white text-sm font-bold">{positionLabel}</p>
+          <p className="team-member-card__position text-white text-sm font-bold">{positionLabel}</p>
         )}
       </div>
     </Surface>
