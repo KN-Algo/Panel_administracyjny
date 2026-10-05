@@ -53,13 +53,13 @@ export default function TeamMemberDialog({
                 <img
                   src={imagePath}
                   alt={`${member.firstName} ${member.lastName}`}
-                  className="w-full aspect-[3/4] object-cover rounded-3xl shadow-2xl ring-4 ring-brand-dark/20 transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full aspect-[3/4] object-cover rounded-3xl shadow-2xl ring-4 ring-brand-dark/20 transition-transform duration-500 [@media(hover:hover)]:group-hover:scale-[1.02]"
                   onError={(e) => {
                     e.currentTarget.src = "/img/members/temp.webp";
                   }}
                 />
                 {/* Gradient overlay na hover */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-brand-dark/20 to-transparent opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
           </div>
@@ -122,12 +122,12 @@ export default function TeamMemberDialog({
                         href={details.socialMedia.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-md hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 hover:scale-110"
+                        className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-md [@media(hover:hover)]:hover:shadow-lg [@media(hover:hover)]:hover:shadow-pink-500/30 transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
                         aria-label="Instagram"
                       >
                         <Instagram
                           size={20}
-                          className="group-hover:rotate-12 transition-transform duration-300"
+                          className="[@media(hover:hover)]:group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300"
                         />
                       </a>
                     )}
@@ -136,12 +136,12 @@ export default function TeamMemberDialog({
                         href={details.socialMedia.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-center w-9 h-9 bg-social-linkedin text-white rounded-md hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-110"
+                        className="group flex items-center justify-center w-9 h-9 bg-social-linkedin text-white rounded-md [@media(hover:hover)]:hover:shadow-lg [@media(hover:hover)]:hover:shadow-blue-500/30 transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
                         aria-label="LinkedIn"
                       >
                         <Linkedin
                           size={20}
-                          className="group-hover:rotate-12 transition-transform duration-300"
+                          className="[@media(hover:hover)]:group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300"
                         />
                       </a>
                     )}
@@ -150,12 +150,12 @@ export default function TeamMemberDialog({
                         href={details.socialMedia.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-center w-9 h-9 bg-gray-800 text-white rounded-md hover:shadow-lg hover:shadow-gray-800/30 transition-all duration-300 hover:scale-110"
+                        className="group flex items-center justify-center w-9 h-9 bg-gray-800 text-white rounded-md [@media(hover:hover)]:hover:shadow-lg [@media(hover:hover)]:hover:shadow-gray-800/30 transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
                         aria-label="GitHub"
                       >
                         <Github
                           size={20}
-                          className="group-hover:rotate-12 transition-transform duration-300"
+                          className="[@media(hover:hover)]:group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300"
                         />
                       </a>
                     )}
@@ -164,12 +164,12 @@ export default function TeamMemberDialog({
                         href={details.socialMedia.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-brand-dark to-brand-deeper text-white rounded-md hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 hover:scale-110"
+                        className="group flex items-center justify-center w-9 h-9 bg-gradient-to-r from-brand-dark to-brand-deeper text-white rounded-md [@media(hover:hover)]:hover:shadow-lg [@media(hover:hover)]:hover:shadow-blue-900/30 transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
                         aria-label={t("team.personal_website")}
                       >
                         <Globe
                           size={20}
-                          className="group-hover:rotate-12 transition-transform duration-300"
+                          className="[@media(hover:hover)]:group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300"
                         />
                       </a>
                     )}

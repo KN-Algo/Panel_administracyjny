@@ -79,7 +79,7 @@ export default function TeamPage() {
             <img
               src="/img/kn_algo_grupowe1.webp"
               alt="Zdjęcie zespołu"
-              className="w-full rounded-3xl shadow-xl transition-transform duration-300 hover:scale-105"
+              className="w-full rounded-3xl shadow-xl transition-transform duration-300 [@media(hover:hover)]:hover:scale-105"
             />
           </div>
         </ContentContainer>
@@ -96,7 +96,7 @@ export default function TeamPage() {
                 <img
                   src="/img/leaders/opiekunowie2.webp"
                   alt="Opiekunowie"
-                  className="w-full rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105"
+                  className="w-full rounded-2xl shadow-lg transition-transform duration-300 [@media(hover:hover)]:hover:scale-105"
                 />
               </div>
               <div className="md:w-1/2 space-y-4 text-gray-700">

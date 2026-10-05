@@ -52,7 +52,7 @@ export default function MemberCard({
           <img
             src={member.image.replace("../img/", "/img/")}
             alt={fullName}
-            className="team-member-card__image w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 hover:scale-105"
+            className="team-member-card__image w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 [@media(hover:hover)]:hover:scale-105 active:scale-105"
           />
         </div>
         <h3 className="team-member-card__name text-white text-base font-normal text-center mb-1 mt-4">
