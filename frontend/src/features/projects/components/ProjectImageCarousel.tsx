@@ -17,7 +17,7 @@ export default function ProjectImageCarousel({
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInitialIndex, setModalInitialIndex] = useState(0);
-  const { currentIndex, goTo, next, previous } = useGalleryNavigation(
+  const { currentIndex, direction, goTo, next, previous } = useGalleryNavigation(
     images.length,
   );
 
@@ -85,9 +85,10 @@ export default function ProjectImageCarousel({
             onClick={() => openModal(currentIndex)}
           >
             <img
+              key={currentIndex}
               src={getImageSource(images[currentIndex])}
               alt={`${title} - ${currentIndex + 1}`}
-              className="max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+              className={`max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300 ${direction === "next" ? "animate-gallery-next" : "animate-gallery-prev"}`}
             />
           </button>
         </div>

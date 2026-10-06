@@ -24,7 +24,7 @@ export function ImageGalleryDialog({
   title,
 }: ImageGalleryDialogProps) {
   const { t } = useTranslation();
-  const { currentIndex, next, previous } = useGalleryNavigation(
+  const { currentIndex, direction, next, previous } = useGalleryNavigation(
     images.length,
     initialIndex,
   );
@@ -64,9 +64,10 @@ export function ImageGalleryDialog({
 
       <div className="gallery-dialog__content relative flex flex-1 w-full items-center justify-center overflow-hidden p-8" {...swipe}>
         <img
+          key={currentIndex}
           src={getImageSource(images[currentIndex])}
           alt={`${title} - ${currentIndex + 1}`}
-          className="max-h-full max-w-full rounded-lg object-contain"
+          className={`max-h-full max-w-full rounded-lg object-contain ${direction === "next" ? "animate-gallery-next" : "animate-gallery-prev"}`}
         />
 
         {images.length > 1 && (

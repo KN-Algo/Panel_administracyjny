@@ -3,6 +3,7 @@
 @import "shadcn/tailwind.css";
 @import "./shared/styles/theme.css";
 @import "./shared/styles/scrollbar.css";
+@import "./shared/components/display/mobile/gallery-dialog-mobile.css";
 
 @custom-variant dark (&:is(.dark *));
 
