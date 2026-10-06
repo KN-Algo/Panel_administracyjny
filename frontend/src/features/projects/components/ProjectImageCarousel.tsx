@@ -49,7 +49,7 @@ export default function ProjectImageCarousel({
           <img
             src={getImageSource(images[0])}
             alt={title}
-            className="project-carousel__single-image max-w-full max-h-[600px] rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300"
+            className="project-carousel__single-image max-w-full max-h-[600px] rounded-2xl shadow-xl cursor-pointer [@media(hover:hover)]:hover:scale-105 active:scale-[1.02] transition-transform duration-300"
           />
         </button>
         {modal}
@@ -88,7 +88,7 @@ export default function ProjectImageCarousel({
               key={currentIndex}
               src={getImageSource(images[currentIndex])}
               alt={`${title} - ${currentIndex + 1}`}
-              className={`max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer hover:scale-105 transition-transform duration-300 ${direction === "next" ? "animate-gallery-next" : "animate-gallery-prev"}`}
+              className={`max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer [@media(hover:hover)]:hover:scale-105 active:scale-[1.02] transition-transform duration-300 ${direction === "next" ? "animate-gallery-next" : "animate-gallery-prev"}`}
             />
           </button>
         </div>
@@ -99,7 +99,7 @@ export default function ProjectImageCarousel({
             type="button"
             onClick={previous}
             aria-label={t("common.previous")}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-dark rounded-full p-3 shadow-lg transition-all hover:scale-110"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-dark rounded-full p-3 shadow-lg transition-all [@media(hover:hover)]:hover:scale-110 active:scale-110"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -107,7 +107,7 @@ export default function ProjectImageCarousel({
             type="button"
             onClick={next}
             aria-label={t("common.next")}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-dark rounded-full p-3 shadow-lg transition-all hover:scale-110"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brand-dark rounded-full p-3 shadow-lg transition-all [@media(hover:hover)]:hover:scale-110 active:scale-110"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -124,7 +124,7 @@ export default function ProjectImageCarousel({
             type="button"
             onClick={previous}
             aria-label={t("common.previous")}
-            className="project-carousel__mobile-prev rounded-full p-2 shadow-md transition-all hover:scale-110"
+            className="project-carousel__mobile-prev rounded-full p-2 shadow-md transition-all [@media(hover:hover)]:hover:scale-110 active:scale-110"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -132,7 +132,7 @@ export default function ProjectImageCarousel({
             type="button"
             onClick={next}
             aria-label={t("common.next")}
-            className="project-carousel__mobile-next rounded-full p-2 shadow-md transition-all hover:scale-110"
+            className="project-carousel__mobile-next rounded-full p-2 shadow-md transition-all [@media(hover:hover)]:hover:scale-110 active:scale-110"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

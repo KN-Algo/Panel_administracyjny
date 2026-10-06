@@ -97,7 +97,7 @@ export default function NewsCarousel({
             <button
               type="button"
               onClick={previousSlide}
-              className="home-news__previous absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+              className="home-news__previous absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
               aria-label={previousSlideLabel}
             >
               <ChevronLeft size={32} />
@@ -106,7 +106,7 @@ export default function NewsCarousel({
             <button
               type="button"
               onClick={nextSlide}
-              className="home-news__next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+              className="home-news__next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
               aria-label={nextSlideLabel}
             >
               <ChevronRight size={32} />

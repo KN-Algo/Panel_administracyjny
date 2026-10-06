@@ -20,7 +20,7 @@ export default function NewsCard({
       <Link
         to="/events"
         state={{ eventId }}
-        className="home-news__card-link block bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl h-[580px] flex flex-col group"
+        className="home-news__card-link block bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-2 [@media(hover:hover)]:hover:shadow-2xl active:-translate-y-1 h-[580px] flex flex-col group"
       >
         <img
           src={image}
