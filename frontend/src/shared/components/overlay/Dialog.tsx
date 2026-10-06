@@ -61,11 +61,23 @@ export function Dialog({
     >
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay
-          className={cn("fixed inset-0 z-50 bg-black/60", overlayClassName)}
+          className={cn(
+            "fixed inset-0 z-50 bg-black/60",
+            "data-[state=open]:animate-in data-[state=open]:fade-in-0",
+            "data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+            "duration-200",
+            overlayClassName,
+          )}
         />
         <DialogPrimitive.Content
           aria-describedby={undefined}
-          className={cn("fixed z-50", className)}
+          className={cn(
+            "fixed z-50",
+            "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+            "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+            "duration-200",
+            className,
+          )}
           onOpenAutoFocus={() => {
             if (document.activeElement instanceof HTMLElement) {
               openerRef.current = document.activeElement;
