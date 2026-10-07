@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { useGalleryNavigation } from "@/shared/hooks/useGalleryNavigation";
+import { useSwipe } from "@/shared/hooks/useSwipe";
 import { Dialog } from "../overlay/Dialog";
 
 interface ImageGalleryDialogProps {
@@ -23,10 +24,11 @@ export function ImageGalleryDialog({
   title,
 }: ImageGalleryDialogProps) {
   const { t } = useTranslation();
-  const { currentIndex, next, previous } = useGalleryNavigation(
+  const { currentIndex, direction, next, previous } = useGalleryNavigation(
     images.length,
     initialIndex,
   );
+  const swipe = useSwipe(next, previous);
 
   useEffect(() => {
     if (!open || images.length <= 1) return;
@@ -49,7 +51,7 @@ export function ImageGalleryDialog({
       title={title}
       closeOnBackdrop={false}
       overlayClassName="z-[60] bg-black/95"
-      className="inset-0 z-[60] flex items-center justify-center"
+      className="gallery-dialog__wrapper inset-0 z-[60] flex flex-col"
     >
       <button
         type="button"
@@ -60,11 +62,12 @@ export function ImageGalleryDialog({
         <X className="h-8 w-8" aria-hidden="true" />
       </button>
 
-      <div className="relative flex h-full w-full items-center justify-center overflow-hidden p-8">
+      <div className="gallery-dialog__content relative flex flex-1 w-full items-center justify-center overflow-hidden p-8" {...swipe}>
         <img
+          key={currentIndex}
           src={getImageSource(images[currentIndex])}
           alt={`${title} - ${currentIndex + 1}`}
-          className="max-h-full max-w-full rounded-lg object-contain"
+          className={`max-h-full max-w-full rounded-lg object-contain ${direction === "next" ? "animate-gallery-next" : "animate-gallery-prev"}`}
         />
 
         {images.length > 1 && (
@@ -73,28 +76,59 @@ export function ImageGalleryDialog({
               type="button"
               onClick={previous}
               aria-label={t("common.previous")}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 text-black shadow-lg transition-transform hover:scale-110 sm:left-8 sm:p-4"
+              className="gallery-dialog__prev absolute left-8 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-4 text-black shadow-lg transition-transform hover:scale-110"
             >
-              <ChevronLeft className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
+              <ChevronLeft className="h-8 w-8" aria-hidden="true" />
             </button>
             <button
               type="button"
               onClick={next}
               aria-label={t("common.next")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 text-black shadow-lg transition-transform hover:scale-110 sm:right-8 sm:p-4"
+              className="gallery-dialog__next absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-4 text-black shadow-lg transition-transform hover:scale-110"
             >
-              <ChevronRight className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
+              <ChevronRight className="h-8 w-8" aria-hidden="true" />
             </button>
           </>
         )}
 
         <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-white"
+          className="gallery-dialog__counter absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-white"
           aria-live="polite"
           aria-atomic="true"
         >
           {currentIndex + 1} / {images.length}
         </div>
+      </div>
+
+      {/* Mobile-only bottom navigation bar — hidden on desktop via projects-mobile.css */}
+      <div className="gallery-dialog__mobile-nav">
+        {images.length > 1 && (
+          <button
+            type="button"
+            onClick={previous}
+            aria-label={t("common.previous")}
+            className="rounded-full bg-white/90 p-3 text-black shadow-lg transition-transform hover:scale-110"
+          >
+            <ChevronLeft className="h-7 w-7" aria-hidden="true" />
+          </button>
+        )}
+        <span
+          className="rounded-full bg-black/40 px-4 py-1.5 text-sm text-white"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {currentIndex + 1} / {images.length}
+        </span>
+        {images.length > 1 && (
+          <button
+            type="button"
+            onClick={next}
+            aria-label={t("common.next")}
+            className="rounded-full bg-white/90 p-3 text-black shadow-lg transition-transform hover:scale-110"
+          >
+            <ChevronRight className="h-7 w-7" aria-hidden="true" />
+          </button>
+        )}
       </div>
     </Dialog>
   );

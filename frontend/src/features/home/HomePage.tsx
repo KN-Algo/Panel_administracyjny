@@ -7,6 +7,7 @@ import type { NewsItem } from "@/types";
 import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
 import NewsCarousel from "./components/news/NewsCarousel";
+import "./components/mobile/home-mobile.css";
 
 export default function HomePage() {
   const { t, i18n } = useTranslation();

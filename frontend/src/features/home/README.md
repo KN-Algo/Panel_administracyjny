@@ -38,6 +38,8 @@ home/
 │   │   ├── HeroAnimation.tsx
 │   │   ├── HeroContent.tsx
 │   │   └── HeroSectionLayout.tsx
+│   ├── mobile/
+│   │   └── home-mobile.css
 │   └── news/
 │       ├── NewsCard.tsx
 │       └── NewsCarousel.tsx

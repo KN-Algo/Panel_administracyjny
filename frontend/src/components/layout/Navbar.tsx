@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import MobileNavigation from "./MobileNavigation";
+import MobileNavigation from "../mobile/MobileNavigation";
 import { useElementHeight } from "./useElementHeight";
 import { PublicNavigationLink } from "./PublicNavigationLink";
 import { Button, ContentContainer } from "@/shared";

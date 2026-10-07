@@ -1,4 +1,16 @@
+@keyframes gallery-slide-from-right {
+  from { opacity: 0; transform: translateX(1.25rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gallery-slide-from-left {
+  from { opacity: 0; transform: translateX(-1.25rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
 @theme inline {
+  --animate-gallery-next: gallery-slide-from-right 0.25s ease-out;
+  --animate-gallery-prev: gallery-slide-from-left 0.25s ease-out;
   --color-brand-darkest: #0b0c2a;
   --color-brand-dark: #000424;
   --color-brand-dark-hover: rgb(0 4 36 / 0.9);

@@ -10,6 +10,7 @@ import type { Event } from "@/types";
 
 import EventDialog from "./components/EventDialog";
 import EventGrid from "./components/EventGrid";
+import "./components/mobile/events-mobile.css";
 import { useEventDialog } from "./hooks/useEventDialog";
 
 export default function EventsPage() {

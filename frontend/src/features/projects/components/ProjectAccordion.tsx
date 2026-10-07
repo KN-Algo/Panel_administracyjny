@@ -29,9 +29,9 @@ export default function ProjectAccordion({
         size="inline"
         aria-expanded={isExpanded}
       >
-        <span className="text-lg font-semibold">{project.title}</span>
+        <span className="project-accordion__title text-lg font-semibold min-w-0 break-words hyphens-auto text-left">{project.title}</span>
         <ChevronDown
-          className={`w-6 h-6 transition-transform duration-500 ease-out ${
+          className={`shrink-0 ml-2 w-6 h-6 transition-transform duration-500 ease-out ${
             isExpanded ? "rotate-180" : ""
           }`}
         />
@@ -58,7 +58,7 @@ export default function ProjectAccordion({
       >
         <div className="overflow-hidden">
           <div
-            className={`bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 ${
+            className={`project-accordion__card bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 ${
               isExpanded ? "translate-y-0" : "-translate-y-4"
             }`}
           >
@@ -66,7 +66,7 @@ export default function ProjectAccordion({
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(project.description),
               }}
-              className="text-gray-700 leading-relaxed mb-6"
+              className="text-gray-700 leading-relaxed mb-6 break-words hyphens-auto [&_*]:max-w-full [&_img]:h-auto"
             />
 
             {images.length > 0 && (

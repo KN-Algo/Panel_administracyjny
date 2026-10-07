@@ -1,0 +1,63 @@
+@media (width < 48rem) {
+  .team-members__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .team-member-card__content {
+    padding: 0.625rem !important;
+  }
+
+  .team-member-card__image {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4;
+    border-width: 2px !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .team-member-card__name {
+    margin-top: 0.625rem !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .team-member-card__position {
+    font-size: 0.6875rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+@media (width >= 40rem) and (width < 48rem) {
+  .team-members__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (width < 48rem) {
+  .team-supervisors__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .team-supervisor-card__content {
+    padding: 0.75rem !important;
+  }
+
+  .team-supervisor-card__image {
+    width: 70% !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .team-supervisor-card__name {
+    margin-bottom: 0.75rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .team-supervisor-card__biography p {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    text-align: left;
+  }
+}
