@@ -19,12 +19,21 @@ export default function MemberGrid({
 }: MemberGridProps) {
   const { t } = useTranslation();
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const getMemberDetails = (memberId: number) =>
     memberDetails.find((details) => details.id === memberId) ?? null;
 
   const openMember = (member: TeamMember) => {
-    if (getMemberDetails(member.id)) setSelectedMember(member);
+    if (getMemberDetails(member.id)) {
+      setSelectedMember(member);
+      setIsOpen(true);
+    }
+  };
+
+  const closeMember = () => {
+    setIsOpen(false);
+    setTimeout(() => setSelectedMember(null), 200);
   };
 
   return (
@@ -34,9 +43,9 @@ export default function MemberGrid({
           {title}
         </Heading>
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
+          <div className="team-members__grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
             {members.map((member) => (
-              <div key={member.id}>
+              <div className="team-members__item" key={member.id}>
                 <MemberCard
                   member={member}
                   positionLabel={
@@ -55,8 +64,8 @@ export default function MemberGrid({
         <TeamMemberDialog
           member={selectedMember}
           details={getMemberDetails(selectedMember.id)}
-          isOpen
-          onClose={() => setSelectedMember(null)}
+          isOpen={isOpen}
+          onClose={closeMember}
         />
       )}
     </Section>

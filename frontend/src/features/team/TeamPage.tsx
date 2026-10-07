@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Users } from "lucide-react";
 
@@ -17,12 +18,22 @@ import MemberGrid from "./components/MemberGrid";
 import SupervisorCard, {
   type SupervisorCardProps,
 } from "./components/SupervisorCard";
+import "./components/mobile/team-mobile.css";
 
 export default function TeamPage() {
   const { t } = useTranslation();
+  const [expandedSupervisors, setExpandedSupervisors] = useState<Set<string>>(
+    new Set(),
+  );
+  const [settledSupervisors, setSettledSupervisors] = useState<Set<string>>(
+    new Set(),
+  );
   const members = teamData as TeamMember[];
   const memberDetails = teamDetailsData as TeamMemberDetails[];
-  const supervisors: SupervisorCardProps[] = [
+  const supervisors: Omit<
+    SupervisorCardProps,
+    "isExpanded" | "onToggle" | "onBiographyTransitionEnd"
+  >[] = [
     {
       name: "mgr inż. Marta Lampasiak",
       image: "/img/leaders/martalampasiak.webp",
@@ -36,6 +47,23 @@ export default function TeamPage() {
       biography: t("team.jacek_bio"),
     },
   ];
+  const equalizeSupervisors = supervisors.every(
+    ({ name }) =>
+      expandedSupervisors.has(name) && settledSupervisors.has(name),
+  );
+  const toggleSupervisor = (name: string) => {
+    setSettledSupervisors((settled) => {
+      const next = new Set(settled);
+      next.delete(name);
+      return next;
+    });
+    setExpandedSupervisors((expanded) => {
+      const next = new Set(expanded);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  };
 
   return (
     <PublicPage>
@@ -51,7 +79,7 @@ export default function TeamPage() {
             <img
               src="/img/kn_algo_grupowe1.webp"
               alt="Zdjęcie zespołu"
-              className="w-full rounded-3xl shadow-xl transition-transform duration-300 hover:scale-105"
+              className="w-full rounded-3xl shadow-xl transition-transform duration-300 [@media(hover:hover)]:hover:scale-105"
             />
           </div>
         </ContentContainer>
@@ -68,7 +96,7 @@ export default function TeamPage() {
                 <img
                   src="/img/leaders/opiekunowie2.webp"
                   alt="Opiekunowie"
-                  className="w-full rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105"
+                  className="w-full rounded-2xl shadow-lg transition-transform duration-300 [@media(hover:hover)]:hover:scale-105"
                 />
               </div>
               <div className="md:w-1/2 space-y-4 text-gray-700">
@@ -90,9 +118,23 @@ export default function TeamPage() {
       <Section tone="subtle">
         <ContentContainer>
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-10 items-start">
+            <div
+              className={`team-supervisors__grid grid md:grid-cols-2 gap-10 ${
+                equalizeSupervisors ? "items-stretch" : "items-start"
+              }`}
+            >
               {supervisors.map((supervisor) => (
-                <SupervisorCard key={supervisor.name} {...supervisor} />
+                <SupervisorCard
+                  key={supervisor.name}
+                  {...supervisor}
+                  isExpanded={expandedSupervisors.has(supervisor.name)}
+                  onToggle={() => toggleSupervisor(supervisor.name)}
+                  onBiographyTransitionEnd={() =>
+                    setSettledSupervisors((settled) =>
+                      new Set(settled).add(supervisor.name),
+                    )
+                  }
+                />
               ))}
             </div>
           </div>

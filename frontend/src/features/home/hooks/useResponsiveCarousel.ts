@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const TABLET_BREAKPOINT = 768;
 const DESKTOP_BREAKPOINT = 1024;
 
 const getItemsPerSlide = (): number => {
   if (typeof window === "undefined") return 3;
   if (window.innerWidth >= DESKTOP_BREAKPOINT) return 3;
-  if (window.innerWidth >= TABLET_BREAKPOINT) return 2;
-  return 1;
+  return 2;
 };
 
 export interface ResponsiveCarouselState {

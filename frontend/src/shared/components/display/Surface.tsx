@@ -45,11 +45,11 @@ const surfaceVariants = cva("", {
     interaction: {
       none: "",
       liftStrong:
-        "transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
+        "transition-all duration-500 [@media(hover:hover)]:hover:-translate-y-2 [@media(hover:hover)]:hover:shadow-2xl active:-translate-y-1 active:shadow-xl",
       liftGentle:
-        "transition-all duration-300 hover:-translate-y-1 hover:bg-gray-100/50 hover:border-gray-200 hover:shadow-md",
-      rise: "transition-transform duration-300 hover:-translate-y-2",
-      scale: "transition-all duration-300 hover:scale-[1.02]",
+        "transition-all duration-300 [@media(hover:hover)]:hover:-translate-y-1 [@media(hover:hover)]:hover:bg-gray-100/50 [@media(hover:hover)]:hover:border-gray-200 [@media(hover:hover)]:hover:shadow-md active:-translate-y-0.5",
+      rise: "transition-transform duration-300 [@media(hover:hover)]:hover:-translate-y-2 active:-translate-y-1",
+      scale: "transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.02] active:scale-[1.02]",
     },
     overflow: {
       visible: "",
