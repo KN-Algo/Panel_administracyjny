@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/shared";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import type { Project } from "@/types";
 import ProjectImageCarousel from "./ProjectImageCarousel";
 
@@ -18,6 +19,7 @@ export default function ProjectAccordion({
   onToggle,
 }: ProjectAccordionProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   const images = project.images ?? [];
 
   return (
@@ -45,7 +47,7 @@ export default function ProjectAccordion({
             isExpanded
           ) {
             rootRef.current?.scrollIntoView({
-              behavior: "smooth",
+              behavior: reducedMotion ? "instant" : "smooth",
               block: "nearest",
             });
           }
