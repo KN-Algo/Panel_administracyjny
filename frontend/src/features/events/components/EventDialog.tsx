@@ -64,6 +64,8 @@ export default function EventDialog({
                     <img
                       src={image.replace("../img/", "/img/")}
                       alt={`${event.title} - ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </button>

@@ -52,6 +52,8 @@ export default function MemberCard({
           <img
             src={member.image.replace("../img/", "/img/")}
             alt={fullName}
+            loading="lazy"
+            decoding="async"
             className="team-member-card__image w-[270px] h-[350px] object-cover rounded-2xl border-[3px] border-white transition-transform duration-300 [@media(hover:hover)]:hover:scale-105 active:scale-105"
           />
         </div>

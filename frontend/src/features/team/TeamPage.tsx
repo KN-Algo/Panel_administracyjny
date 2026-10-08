@@ -79,6 +79,9 @@ export default function TeamPage() {
             <img
               src="/img/kn_algo_grupowe1.webp"
               alt="Zdjęcie zespołu"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className="w-full rounded-3xl shadow-xl transition-transform duration-300 [@media(hover:hover)]:hover:scale-105"
             />
           </div>
@@ -96,6 +99,8 @@ export default function TeamPage() {
                 <img
                   src="/img/leaders/opiekunowie2.webp"
                   alt="Opiekunowie"
+                  loading="eager"
+                  decoding="async"
                   className="w-full rounded-2xl shadow-lg transition-transform duration-300 [@media(hover:hover)]:hover:scale-105"
                 />
               </div>

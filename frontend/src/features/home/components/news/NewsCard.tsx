@@ -25,6 +25,8 @@ export default function NewsCard({
         <img
           src={image}
           alt={title}
+          loading="lazy"
+          decoding="async"
           className="home-news__card-image w-full h-64 object-contain bg-neutral-lightest flex-shrink-0"
         />
         <div className="home-news__card-content p-6 bg-neutral-lighter flex-grow flex flex-col justify-between">

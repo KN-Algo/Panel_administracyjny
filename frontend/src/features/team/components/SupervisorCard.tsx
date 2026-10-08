@@ -40,6 +40,8 @@ export default function SupervisorCard({
         <img
           src={image}
           alt={imageAlt}
+          loading="lazy"
+          decoding="async"
           className="team-supervisor-card__image w-1/2 object-cover rounded-2xl mx-auto mb-4 border-[3px] border-black shadow-lg"
         />
         <h3 className="team-supervisor-card__name text-lg font-semibold mb-4 text-gray-900">{name}</h3>

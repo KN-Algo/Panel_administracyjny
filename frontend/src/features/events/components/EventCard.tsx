@@ -33,6 +33,8 @@ export default function EventCard({
         <img
           src={event.thumbnail.replace("../img/", "/img/")}
           alt={event.title}
+          loading="lazy"
+          decoding="async"
           style={{ objectPosition: event.thumbnailPosition ?? "center 35%" }}
           className="w-full h-full object-cover transition-transform duration-300 [@media(hover:hover)]:group-hover:scale-105 group-active:scale-105"
         />

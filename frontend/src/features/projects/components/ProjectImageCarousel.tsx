@@ -17,10 +17,7 @@ export default function ProjectImageCarousel({
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInitialIndex, setModalInitialIndex] = useState(0);
-  const { currentIndex, direction, goTo, next, previous } = useGalleryNavigation(
-    images.length,
-  );
-
+  const { currentIndex, goTo, next, previous } = useGalleryNavigation(images.length);
   const swipe = useSwipe(next, previous);
 
   const openModal = (startIndex = 0) => {
@@ -49,6 +46,8 @@ export default function ProjectImageCarousel({
           <img
             src={getImageSource(images[0])}
             alt={title}
+            loading="eager"
+            decoding="async"
             className="project-carousel__single-image max-w-full max-h-[600px] rounded-2xl shadow-xl cursor-pointer [@media(hover:hover)]:hover:scale-105 active:scale-[1.02] transition-transform duration-300"
           />
         </button>
@@ -76,21 +75,27 @@ export default function ProjectImageCarousel({
     <>
       <div className="project-carousel__frame relative">
         <div
-          className="project-carousel__image-box flex justify-center items-center h-[500px] bg-gray-50 rounded-2xl overflow-hidden"
+          className="project-carousel__image-box group relative flex justify-center items-center h-[500px] bg-gray-50 rounded-2xl overflow-hidden"
           {...swipe}
         >
+          {images.map((src, index) => (
+            <img
+              key={src}
+              src={getImageSource(src)}
+              alt={`${title} - ${index + 1}`}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+              className={`absolute inset-0 m-auto max-w-full max-h-full object-contain rounded-2xl shadow-xl transition-all duration-300 [@media(hover:hover)]:group-hover:scale-105 group-active:scale-[1.02] ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           <button
             type="button"
-            className="flex h-full w-full items-center justify-center"
+            className="absolute inset-0 w-full h-full cursor-pointer"
             onClick={() => openModal(currentIndex)}
-          >
-            <img
-              key={currentIndex}
-              src={getImageSource(images[currentIndex])}
-              alt={`${title} - ${currentIndex + 1}`}
-              className={`max-w-full max-h-full object-contain rounded-2xl shadow-xl cursor-pointer [@media(hover:hover)]:hover:scale-105 active:scale-[1.02] transition-transform duration-300 ${direction === "next" ? "animate-gallery-next" : "animate-gallery-prev"}`}
-            />
-          </button>
+            aria-label={`${title} - ${currentIndex + 1}`}
+          />
         </div>
 
         {/* Desktop arrows — absolute on sides, hidden on mobile via CSS */}
