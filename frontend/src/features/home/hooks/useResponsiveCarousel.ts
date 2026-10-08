@@ -21,6 +21,7 @@ export interface ResponsiveCarouselState {
 
 export function useResponsiveCarousel(
   itemCount: number,
+  reducedMotion = false,
 ): ResponsiveCarouselState {
   const [itemsPerSlide, setItemsPerSlide] = useState(getItemsPerSlide);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -81,10 +82,15 @@ export function useResponsiveCarousel(
         ((newSlide % totalSlides) + totalSlides) % totalSlides;
       if (normalizedSlide === currentSlideRef.current) return;
 
+      if (reducedMotion) {
+        updateCurrentSlide(normalizedSlide);
+        return;
+      }
+
       pendingSlideRef.current = normalizedSlide;
       setPendingSlide(normalizedSlide);
     },
-    [totalSlides],
+    [totalSlides, reducedMotion, updateCurrentSlide],
   );
 
   const nextSlide = useCallback(

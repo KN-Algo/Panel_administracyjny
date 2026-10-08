@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { NewsItem } from "@/types";
 import NewsCard from "./NewsCard";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useResponsiveCarousel } from "../../hooks/useResponsiveCarousel";
 
 const GRID_PATTERN_SVG =
@@ -23,6 +24,7 @@ export default function NewsCarousel({
   nextSlideLabel,
   getSlideLabel,
 }: NewsCarouselProps) {
+  const reducedMotion = useReducedMotion();
   const {
     currentSlide,
     itemsPerSlide,
@@ -32,7 +34,7 @@ export default function NewsCarousel({
     previousSlide,
     goToSlide,
     completeTransition,
-  } = useResponsiveCarousel(news.length);
+  } = useResponsiveCarousel(news.length, reducedMotion);
 
   const displayedNews = news.slice(
     currentSlide * itemsPerSlide,
