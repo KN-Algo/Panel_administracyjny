@@ -1,0 +1,8 @@
+/* TEAM */
+Developer: Krystian Bury
+GitHub: https://github.com/KBruy
+
+/* SITE */
+Last update: 2026/10/09
+Language: Polish
+Standards: HTML5, CSS3
