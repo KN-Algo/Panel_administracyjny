@@ -1,0 +1,28 @@
+.gallery-dialog__mobile-nav {
+  display: none;
+}
+
+@media (width < 48rem) {
+  .gallery-dialog__prev,
+  .gallery-dialog__next {
+    display: none !important;
+  }
+
+  .gallery-dialog__counter {
+    display: none !important;
+  }
+
+  .gallery-dialog__content {
+    padding: 0.75rem !important;
+  }
+
+  .gallery-dialog__mobile-nav {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding-block: 1rem;
+    background-color: rgb(0 0 0 / 0.6);
+    flex-shrink: 0;
+  }
+}

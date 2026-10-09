@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { NewsItem } from "@/types";
 import NewsCard from "./NewsCard";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useResponsiveCarousel } from "../../hooks/useResponsiveCarousel";
 
 const GRID_PATTERN_SVG =
@@ -23,6 +24,7 @@ export default function NewsCarousel({
   nextSlideLabel,
   getSlideLabel,
 }: NewsCarouselProps) {
+  const reducedMotion = useReducedMotion();
   const {
     currentSlide,
     itemsPerSlide,
@@ -32,7 +34,7 @@ export default function NewsCarousel({
     previousSlide,
     goToSlide,
     completeTransition,
-  } = useResponsiveCarousel(news.length);
+  } = useResponsiveCarousel(news.length, reducedMotion);
 
   const displayedNews = news.slice(
     currentSlide * itemsPerSlide,
@@ -43,7 +45,7 @@ export default function NewsCarousel({
 
   return (
     <section
-      className="relative py-20 text-white z-10"
+      className="home-news relative py-20 text-white z-10"
       style={{
         backgroundColor: "var(--color-brand-darkest)",
         backgroundImage: `
@@ -54,22 +56,13 @@ export default function NewsCarousel({
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+      <div className="home-news__container container mx-auto px-4 relative z-10 max-w-7xl">
+        <h2 className="home-news__title text-3xl md:text-4xl font-bold text-center mb-12">
           {title}
         </h2>
 
         <div className="relative">
-          <button
-            type="button"
-            onClick={previousSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
-            aria-label={previousSlideLabel}
-          >
-            <ChevronLeft size={32} />
-          </button>
-
-          <div className="min-h-[620px] flex items-center justify-center">
+          <div className="home-news__viewport min-h-[620px] flex items-center justify-center">
             <div
               onTransitionEnd={(event) => {
                 if (event.target === event.currentTarget) completeTransition();
@@ -77,7 +70,7 @@ export default function NewsCarousel({
               onTransitionCancel={(event) => {
                 if (event.target === event.currentTarget) completeTransition();
               }}
-              className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 w-full max-w-7xl transition-all duration-300 ease-in-out ${
+              className={`home-news__grid grid grid-cols-3 gap-8 px-4 w-full max-w-7xl transition-all duration-300 ease-in-out ${
                 isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
               }`}
               style={{
@@ -102,14 +95,25 @@ export default function NewsCarousel({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
-            aria-label={nextSlideLabel}
-          >
-            <ChevronRight size={32} />
-          </button>
+          <div className="home-news__controls contents">
+            <button
+              type="button"
+              onClick={previousSlide}
+              className="home-news__previous absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
+              aria-label={previousSlideLabel}
+            >
+              <ChevronLeft size={32} />
+            </button>
+
+            <button
+              type="button"
+              onClick={nextSlide}
+              className="home-news__next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-110 active:scale-110"
+              aria-label={nextSlideLabel}
+            >
+              <ChevronRight size={32} />
+            </button>
+          </div>
         </div>
 
         <div className="flex justify-center gap-3 mt-8">

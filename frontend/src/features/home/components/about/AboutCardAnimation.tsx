@@ -13,24 +13,34 @@ export interface AboutCardAnimationProps {
   children: ReactNode;
   tone: AboutCardTone;
   delay: number;
+  expanded: boolean;
+  onToggle?: () => void;
 }
 
 export default function AboutCardAnimation({
   children,
   tone,
   delay,
+  expanded,
+  onToggle,
 }: AboutCardAnimationProps) {
   return (
     <Surface
+      as={onToggle ? "button" : undefined}
       tone="white"
       radius="2xl"
       padding="xl"
       shadow="md"
-      interaction="liftStrong"
+      interaction={onToggle ? "scale" : "liftStrong"}
       overflow="hidden"
       position="relative"
       group
+      className={`home-about__card${expanded ? " is-expanded" : ""}`}
       style={{ transitionDelay: `${delay}ms` }}
+      cursor={onToggle ? "pointer" : "default"}
+      width="full"
+      aria-expanded={onToggle ? expanded : undefined}
+      onClick={onToggle}
     >
       <div
         className={`absolute inset-0 ${gradientByTone[tone]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}

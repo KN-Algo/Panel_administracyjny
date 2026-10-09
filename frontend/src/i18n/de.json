@@ -1,5 +1,8 @@
 {
   "nav": {
+    "menu": "Hauptmenü",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
     "home": "Startseite",
     "team": "Team",
     "projects": "Projekte",

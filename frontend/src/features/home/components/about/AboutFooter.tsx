@@ -14,8 +14,9 @@ export default function AboutFooter({ text }: AboutFooterProps) {
         border="subtle"
         interaction="liftGentle"
         cursor="default"
+        className="home-about__footer-panel"
       >
-        <Text size="lg" align="center" leading="relaxed">
+        <Text size="lg" align="center" leading="relaxed" className="home-about__footer-text">
           {text}
         </Text>
       </Surface>

@@ -1,0 +1,46 @@
+@media (width < 48rem) {
+  /* Accordion */
+  .project-accordion__title {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .project-accordion__card {
+    padding: 1rem !important;
+  }
+
+  /* Carousel — single image */
+  .project-carousel__single-image {
+    max-height: 17.5rem !important;
+  }
+
+  /* Carousel — multi-image */
+  .project-carousel__image-box {
+    height: 15rem !important;
+  }
+
+  .project-carousel__desktop-arrows,
+  .project-carousel__dots {
+    display: none !important;
+  }
+
+  .project-carousel__mobile-arrows {
+    display: flex !important;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .project-carousel__mobile-prev,
+  .project-carousel__mobile-next {
+    background-color: var(--color-brand-dark) !important;
+    color: white !important;
+  }
+
+  .project-carousel__mobile-dots {
+    display: flex !important;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+}

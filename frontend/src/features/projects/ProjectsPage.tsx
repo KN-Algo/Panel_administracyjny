@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { FolderKanban } from "lucide-react";
 
+import "./components/mobile/projects-mobile.css";
+
 import mipProjectsDataDe from "@/data/mip_projects_de.json";
 import mipProjectsDataEn from "@/data/mip_projects_en.json";
 import mipProjectsDataPl from "@/data/mip_projects_pl.json";

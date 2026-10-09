@@ -11,3 +11,4 @@ export { Dialog } from "./components/overlay/Dialog";
 export { Heading } from "./components/typography/Heading";
 export { Text } from "./components/typography/Text";
 export { useGalleryNavigation } from "./hooks/useGalleryNavigation";
+export { useSwipe } from "./hooks/useSwipe";

@@ -27,29 +27,31 @@ export default function EventCard({
       textAlign="left"
       group
       onClick={() => onOpen(event)}
-      className="transition-all duration-300 hover:shadow-2xl hover:scale-105"
+      className="transition-all duration-300 [@media(hover:hover)]:hover:shadow-2xl [@media(hover:hover)]:hover:scale-105 active:scale-[1.02]"
     >
-      <div className="h-64 bg-neutral-lighter flex items-center justify-center overflow-hidden">
+      <div className="event-card__image-wrap h-64 bg-neutral-lighter flex items-center justify-center overflow-hidden">
         <img
           src={event.thumbnail.replace("../img/", "/img/")}
           alt={event.title}
+          loading="lazy"
+          decoding="async"
           style={{ objectPosition: event.thumbnailPosition ?? "center 35%" }}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-300 [@media(hover:hover)]:group-hover:scale-105 group-active:scale-105"
         />
       </div>
-      <div className="p-6">
+      <div className="event-card__body p-6">
         <Heading
           level={3}
           size="body"
           spacingBottom="xs"
-          className="line-clamp-2"
+          className="event-card__title line-clamp-2"
         >
           {event.title}
         </Heading>
-        <Text size="sm" tone="muted" spacingBottom="lg">
+        <Text size="sm" tone="muted" spacingBottom="lg" className="event-card__date">
           {formattedDate}
         </Text>
-        <Button asChild appearance="text" size="inline">
+        <Button asChild appearance="text" size="inline" className="event-card__action">
           <span>{readMoreLabel} →</span>
         </Button>
       </div>
