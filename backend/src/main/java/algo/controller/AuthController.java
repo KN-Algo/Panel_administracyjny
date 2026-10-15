@@ -3,6 +3,11 @@ package algo.controller;
 import algo.dto.UserSummary;
 import algo.module.AppUser;
 import algo.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 /** Controller handling authentication and user identity endpoints. */
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Autoryzacja", description = "Endpointy do weryfikacji sesji i pobierania danych aktualnie zalogowanego użytkownika")
 public class AuthController {
 
   /** Service handling user-related operations. */
@@ -24,6 +30,15 @@ public class AuthController {
    * @param appUser the authenticated user from the security context
    * @return a response containing the user summary
    */
+  @Operation(summary = "Pobierz moje dane", description = "Zwraca podsumowanie profilu zalogowanego użytkownika. Endpoint wymaga aktywnej sesji.")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Pomyślnie pobrano dane zalogowanego użytkownika"),
+          @ApiResponse(
+                  responseCode = "401",
+                  description = "Brak autoryzacji",
+                  content = @Content
+          )
+  })
   @GetMapping("/me")
   public ResponseEntity<UserSummary> getCurrentUser(
       @AuthenticationPrincipal final AppUser appUser) {

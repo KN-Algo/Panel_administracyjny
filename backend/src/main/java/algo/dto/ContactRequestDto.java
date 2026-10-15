@@ -1,5 +1,6 @@
 package algo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,6 +14,14 @@ import jakarta.validation.constraints.Size;
  * @param message        the body of the message.
  * @param recaptchaToken the reCAPTCHA token provided by the client for verification.
  */
+@Schema(description = "Obiekt żądania reprezentujący formularz kontaktowy", example = """
+        {
+          "name": "Jan Kowalski",
+          "replyTo": "jan.kowalski@example.com",
+          "message": "Dzień dobry, mam pytanie odnośnie rekrutacji do koła...",
+          "recaptchaToken": "03AFcWeA4_przykladowy_token_google_recaptcha"
+        }
+        """)
 public record ContactRequestDto(
         @NotBlank(message = "Name cannot be empty")
         @Size(max = 100, message = "Name is too long")
