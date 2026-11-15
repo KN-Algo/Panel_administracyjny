@@ -3,8 +3,11 @@ package algo.controller;
 import algo.config.SwaggerExamples;
 import algo.dto.PostRequestDto;
 import algo.dto.PostResponseDto;
+import algo.dto.PostTranslationDto;
+import algo.dto.TranslationRequestDto;
 import algo.module.PostType;
 import algo.module.Posts;
+import algo.services.AutoTranslationService;
 import algo.services.PostMap;
 import algo.services.PostService;
 import algo.services.exceptions.PostValidationException;
@@ -51,15 +54,18 @@ public class PostController {
   /** Mapper for converting between Post entities and DTOs. */
   private final PostMap mapper;
 
+  private final AutoTranslationService translationService;
+
   /**
    * Constructs a PostController with required dependencies.
    *
    * @param pServ post service
    * @param pMap post mapper
    */
-  public PostController(final PostService pServ, final PostMap pMap) {
+  public PostController(final PostService pServ, final PostMap pMap, AutoTranslationService translationService) {
     this.service = pServ;
     this.mapper = pMap;
+      this.translationService = translationService;
   }
 
   /**
@@ -337,4 +343,24 @@ public class PostController {
           "Parameter 'size' must be between 1 and " + MAX_PAGE_SIZE + ".");
     }
   }
+
+    /**
+     * Translates the working draft of a post on the fly.
+     *
+     * @param dto the request payload containing the original Polish text
+     * @return response entity containing a list of translations, or an empty list if translation fails
+     */
+    @Operation(summary = "Tłumaczenie wpisu w locie", description = "Przyjmuje polski tytuł i opisy, zwracając automatycznie przetłumaczone warianty (EN, DE). Nie zapisuje nic w bazie. Jeśli wykorzystano darmowy limit API, zwróci pustą listę.")
+    @PostMapping("/translate")
+    public ResponseEntity<List<PostTranslationDto>> translateInFly(
+            @Parameter(description = "Robocza polska treść posta")
+            @Valid @RequestBody final TranslationRequestDto dto) {
+
+        List<PostTranslationDto> translations = translationService.translatePostInFly(dto);
+
+        if (translations.isEmpty()) {
+            return ResponseEntity.ok(List.of());
+        }
+        return ResponseEntity.ok(translations);
+    }
 }
