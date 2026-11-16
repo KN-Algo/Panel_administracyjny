@@ -3,6 +3,10 @@ node_modules/
 .env
 composer.lock
 
+# IntelliJ IDEA
+.idea/
+*.iml
+
 # Node
 node_modules/
 npm-debug.log*
